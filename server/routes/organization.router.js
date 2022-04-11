@@ -109,11 +109,11 @@ router.post('/', (req, res) => {
 });
 
 // Updates an organizations details but only those that belong to the current user
-router.put('/edit/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const org = req.body;
+  const id = req.params.id;
 
   values = [
-    org.id,
     org.name,
     org.email,
     org.phone,
@@ -127,7 +127,7 @@ router.put('/edit/:id', (req, res) => {
     org.address2,
     org.zip,
     org.state,
-    req.params.id,
+    id,
   ];
 
   let query = `
@@ -144,8 +144,8 @@ router.put('/edit/:id', (req, res) => {
   address1 = $10,
   address2 = $11,
   zip = $12,
-  state = $13,
-  WHERE user.id = $14;
+  state = $13
+  WHERE id = $14;
   `;
   pool
     .query(query, values)
@@ -153,6 +153,8 @@ router.put('/edit/:id', (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
+      console.log('this is the error', err);
+      
       res.sendStatus(500);
     });
 });
