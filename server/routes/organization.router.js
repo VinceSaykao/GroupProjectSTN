@@ -36,6 +36,27 @@ router.get('/organization/:id', (req, res) => {
     });
 });
 
+// Gets a specific organization or set organizations by the users id
+router.get('/user/:id', (req, res) => {
+  const id = req.params.id;
+
+  const query = `SELECT *
+  FROM organizations
+  JOIN users on user.org_id = organizations.id 
+  WHERE user_id = $1
+  GROUP BY user.id, organizations.id;`;
+  pool
+    .query(query, [id])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('ERROR: Getting users organizations', err);
+      res.sendStatus(500);
+    });
+});
+
+
 // Posts a new organization to the website
 router.post('/', (req, res) => {
   let newOrg = req.body;
