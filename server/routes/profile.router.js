@@ -20,7 +20,15 @@ router.post('/', (req, res) => {
     let queryInserts = ``;
     if (req.isAuthenticated) {
         pool
-            .
+            .query(queryText, queryInserts)
+            .then((results) => {
+            })
+            .catch((error) => {
+                console.log('Error in profile router POST', error);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
     }
 });
 
