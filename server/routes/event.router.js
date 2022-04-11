@@ -36,6 +36,25 @@ router.get('/:id', (req, res) => {
     };
 });
 
+// GET all pending admin event information
+router.get('/admin/pending', (req, res) => {
+
+    // let status = req.params.status;
+
+    if (req.isAuthenticated()) {
+        pool
+            .query(`select * from events;`)
+            .then((results) => res.send(results.rows))
+            .catch((error) => {
+                console.log('Error in GET for admin pending event information', error);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403); // Forbidden
+    };
+});
+
+
 // GET profile user specific event by profile.id
 router.get('/organization/:id', (req, res) => {
 
