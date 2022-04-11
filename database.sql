@@ -44,7 +44,7 @@ CREATE TABLE "events" (
 "id" SERIAL PRIMARY KEY,
 "org_id" int,
 "category_id" int,
-"status" VARCHAR (100),
+"status" VARCHAR (100) DEFAULT 'pending',
 "name" VARCHAR (100),
 "description" VARCHAR (300),
 "date" DATE,
