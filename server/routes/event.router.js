@@ -56,9 +56,7 @@ router.get('/organization/:id', (req, res) => {
 
 
 
-/**
- * POST route template
- */
+// Will POST an Event to database as *pending status event* when an organization fills out their Event register form. 
 router.post('/', (req, res) => {
     // POST route code here
 });
