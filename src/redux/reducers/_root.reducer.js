@@ -6,6 +6,7 @@ import fetchProfileEvent from "./Profile_Reducer/fetchProfileEvent.reducer";
 import addProfile from "./Profile_Reducer/addProfile.reducer";
 import updateProfile from "./Profile_Reducer/updateProfile.reducer";
 import fetchOrganization from "./Organization_Reducer/fetchOrganization.reducer";
+import fetchOrganizationEvent from "./Organization_Reducer/fetchOrganizationEvent.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   addProfile,
   updateProfile,
   fetchOrganization,
+  fetchOrganizationEvent,
 });
 
 export default rootReducer;
