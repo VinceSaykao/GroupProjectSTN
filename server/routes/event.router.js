@@ -39,8 +39,6 @@ router.get('/:id', (req, res) => {
 // GET all pending admin event information
 router.get('/admin/pending', (req, res) => {
 
-    // let status = req.params.status;
-
     if (req.isAuthenticated()) {
         pool
             .query(`select * from events;`)
