@@ -6,3 +6,5 @@ const fetchProfile = (state = [], action) => {
       return state;
   }
 };
+
+export default fetchProfile

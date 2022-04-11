@@ -6,3 +6,5 @@ const fetchProfileEvent = (state = [], action) => {
       return state;
   }
 };
+
+export default fetchProfileEvent;
