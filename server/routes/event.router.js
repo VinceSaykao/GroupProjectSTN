@@ -6,8 +6,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
     if (req.isAuthenticated()) {
         pool
-            .query(``)
-            .then((results) => res.send(result.rows))
+            .query(`select * from events;`)
+            .then((result) => res.send(result.rows))
             .catch((error) => {
                 console.log('Error in GET for all events information', error);
                 res.sendStatus(500);

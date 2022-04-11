@@ -2,25 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-
-// CREATE TABLE "user" (
-//     "id" SERIAL PRIMARY KEY,
-//     "username" VARCHAR (100),
-//     "password" VARCHAR (200),
-//     "active" BOOLEAN DEFAULT TRUE,
-//     "access_level" int,
-//     "org_id" int,
-//     "first_name" VARCHAR (50),
-//     "last_name" VARCHAR (50),
-//     "bio" VARCHAR (500),
-//     "email" VARCHAR (50),
-//     "image" VARCHAR (1000)
-//     );
-
-
-
-
-
 // This will GET all profile information for a specific profile user 
 router.get('/:id', (req, res) => {
 
@@ -60,7 +41,7 @@ router.post('/', (req, res) => {
     }
 });
 
-// update for specific user profile
+// update information for specific user profile
 router.put('/:id', (req, res) => {
     const queryText = `
     update "user" set
