@@ -1,4 +1,4 @@
-const addProfile = (state = [], action){
+const addProfile = (state = [], action) => {
   switch (action.type) {
     case "SET_ADD_PROFILE":
       return action.payload;
@@ -7,4 +7,4 @@ const addProfile = (state = [], action){
   }
 };
 
-export default addProfile
+export default addProfile;
