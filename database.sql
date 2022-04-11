@@ -4,6 +4,7 @@ CREATE TABLE "users" (
 "password" VARCHAR (200),
 "active" BOOLEAN DEFAULT TRUE,
 "access_level" int,
+"org_id" int,
 "first_name" VARCHAR (50),
 "last_name" VARCHAR (50),
 "bio" VARCHAR (500),
