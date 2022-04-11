@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 });
 
 // Gets a specific organization or set organizations by their id
-router.get('/organization/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const id = req.params.id;
 
   const query = `SELECT *
@@ -37,24 +37,24 @@ router.get('/organization/:id', (req, res) => {
 });
 
 // Gets a specific organization or set organizations by the users id
-router.get('/user/:id', (req, res) => {
-  const id = req.params.id;
+// router.get('/user/:id', (req, res) => {
+//   const id = req.params.id;
 
-  const query = `SELECT *
-  FROM organizations
-  JOIN users on user.org_id = organizations.id 
-  WHERE user_id = $1
-  GROUP BY user.id, organizations.id;`;
-  pool
-    .query(query, [id])
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch((err) => {
-      console.log('ERROR: Getting users organizations', err);
-      res.sendStatus(500);
-    });
-});
+//   const query = `SELECT *
+//   FROM "organizations"
+//   JOIN "user" ON "user"."org_id" = "organizations"."id" 
+//   WHERE "user"."id" = 1
+//   GROUP BY "user"."id", "organizations"."id";`;
+//   pool
+//     .query(query, [id])
+//     .then((result) => {
+//       res.send(result.rows);
+//     })
+//     .catch((err) => {
+//       console.log('ERROR: Getting users organizations', err);
+//       res.sendStatus(500);
+//     });
+// });
 
 
 // Posts a new organization to the website
@@ -153,6 +153,25 @@ router.put('/edit/:id', (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
+      res.sendStatus(500);
+    });
+});
+
+router.delete('/:id', (req, res) => {
+  let id = req.params.id;
+
+  let queryText = `DELETE FROM "organizations" WHERE "id" = $1;`;
+
+  pool
+    .query(queryText, [id])
+    .then((result) => {
+      console.log('Organization deleted');
+
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('Organization NOT deleted error', error);
+
       res.sendStatus(500);
     });
 });
