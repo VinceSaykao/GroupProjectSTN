@@ -4,6 +4,8 @@ import registrationSaga from "./registration.saga";
 import userSaga from "./user.saga";
 import fetchProfile from "./Profile_SAGA/fetchProfile.saga";
 import fetchProfileEvent from "../reducers/Profile_Reducer/fetchProfileEvent.reducer";
+import addProfile from "./Profile_SAGA/addProfile.saga";
+import updateProfile from "./Profile_SAGA/updateProfile.saga";
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -18,5 +20,7 @@ export default function* rootSaga() {
     userSaga(),
     fetchProfile(),
     fetchProfileEvent(),
+    addProfile(),
+    updateProfile(),
   ]);
 }

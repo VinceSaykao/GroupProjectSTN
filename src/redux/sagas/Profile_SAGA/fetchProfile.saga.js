@@ -11,7 +11,7 @@ function* getProfileSaga() {
 }
 
 function* fetchProfile() {
-  yield takeEvery("SET_PROFILE", getProfileSaga);
+  yield takeEvery("SET_PROFILE_SAGA", getProfileSaga);
 }
 
 export default fetchProfile;

@@ -11,7 +11,7 @@ function* getProfileEventSaga() {
 }
 
 function* fetchProfileEvent() {
-  yield takeEvery("SET_PROFILE_EVENT", getProfileEventSaga);
+  yield takeEvery("SET_PROFILE_EVENT_SAGA", getProfileEventSaga);
 }
 
 export default fetchProfileEvent;
