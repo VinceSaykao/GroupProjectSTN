@@ -4,7 +4,7 @@ const router = express.Router();
 
 // This will GET all profile information for a specific profile user 
 router.get('/:id', (req, res) => {
-    if (req.isAuthetnicated()) {
+    if (req.isAuthenticated()) {
         pool
             .query(``)
             .then((results) => res.send(results.rows))
