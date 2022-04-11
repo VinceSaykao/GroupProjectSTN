@@ -1,6 +1,10 @@
-import { combineReducers } from 'redux';
-import errors from './errors.reducer';
-import user from './user.reducer';
+import { combineReducers } from "redux";
+import errors from "./errors.reducer";
+import user from "./user.reducer";
+import fetchProfile from "./Profile_Reducer/fetchProfile.reducer";
+import fetchProfileEvent from "./Profile_Reducer/fetchProfileEvent.reducer";
+import addProfile from "./Profile_Reducer/addProfile.reducer";
+import updateProfile from "./Profile_Reducer/updateProfile.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -11,6 +15,10 @@ import user from './user.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
+  fetchProfile,
+  fetchProfileEvent,
+  addProfile,
+  updateProfile,
 });
 
 export default rootReducer;
