@@ -5,8 +5,7 @@ const router = express.Router();
 // Gets all the organizations from the database
  router.get('/', (req, res) => {
   const query = `SELECT *
-    FROM organizations
-    GROUP BY organizations.id;`;
+    FROM organizations`;
   pool
     .query(query)
     .then((result) => {
@@ -45,22 +44,41 @@ router.post('/', (req, res) => {
   // POST route code here
 });
 
+// Updates an organizations details but only those that belong to the current user
 router.put('/edit/:id', (req, res) => {
   const id = req.params.id;
-  const org_name = req.body.org_name;
-  const org_location = req.body.org_location;
-  const org_img_url = req.body.org_img_url;
-  const about = req.body.about;
+  const name = req.body.name;
+  const email = req.body.email;
+  const phone = req.body.phone;
+  const website = req.body.website;
+  const twitter = req.body.twitter;
+  const facebook = req.body.facebook;
+  const instagram = req.body.instagram;
+  const description = req.body.description;
+  const image = req.body.image;
+  const address1 = req.body.address1;
+  const address2 = req.body.address2;
+  const zip = req.body.zip;
+  const state = req.body.state;
   const query = `
   UPDATE organizations 
-  SET org_name = $1,
-  org_location = $2,
-  org_img_url = $3,
-  about = $4
-  WHERE org_user_id = $5;
+  SET name = $1,
+  email = $2,
+  phone = $3,
+  website = $4,
+  twitter = $5,
+  facebook = $6,
+  instagram = $7,
+  description = $8,
+  image = $9,
+  address1 = $10,
+  address2 = $11,
+  zip = $12,
+  state = $13,
+  WHERE user.id = $14;
   `;
   pool
-    .query(query, [org_name, org_location, org_img_url, about, id])
+    .query(query, [name, email, phone, website, twitter, facebook, instagram, description, image, address1, address2, zip, state, id ])
     .then((result) => {
       res.sendStatus(200);
     })
@@ -68,6 +86,7 @@ router.put('/edit/:id', (req, res) => {
       res.sendStatus(500);
     });
 });
+
 
 
 module.exports = router;
