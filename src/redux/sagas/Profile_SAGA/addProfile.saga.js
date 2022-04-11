@@ -3,7 +3,7 @@ import axios from "axios";
 
 function* postProfile() {
   try {
-    const createProfile = yield axios.get("/api/event/:id");
+    const createProfile = yield axios.post("/api/profile");
     yield put({ type: "SET_PROFILE_SAGA", payload: createProfile.data });
   } catch {
     console.log("get all error");
