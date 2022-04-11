@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // Gets all the organizations from the database
- router.get('/', (req, res) => {
+router.get('/', (req, res) => {
   const query = `SELECT *
     FROM organizations`;
   pool
@@ -36,31 +36,80 @@ router.get('/organization/:id', (req, res) => {
     });
 });
 
-
-/**
- * POST route template
- */
+// Posts a new organization to the website
 router.post('/', (req, res) => {
-  // POST route code here
+  let newOrg = req.body;
+
+  const values = [
+    newOrg.name,
+    newOrg.email,
+    newOrg.phone,
+    newOrg.website,
+    newOrg.twitter,
+    newOrg.facebook,
+    newOrg.instagram,
+    newOrg.description,
+    newOrg.image,
+    newOrg.address1,
+    newOrg.address2,
+    newOrg.zip,
+    newOrg.state,
+  ];
+
+  let query = `
+    INSERT INTO organizations (
+    name,
+    email,
+    phone,
+    website,
+    twitter,
+    facebook,
+    instagram,
+    description,
+    image,
+    address1,
+    address2,
+    zip,
+    state
+    )
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13 );  
+  `;
+
+  pool
+    .query(query, values)
+    .then((result) => {
+      console.log('New organization posted', result);
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error with new organization post', error);
+      res.sendStatus(500);
+    });
 });
 
 // Updates an organizations details but only those that belong to the current user
 router.put('/edit/:id', (req, res) => {
-  const id = req.params.id;
-  const name = req.body.name;
-  const email = req.body.email;
-  const phone = req.body.phone;
-  const website = req.body.website;
-  const twitter = req.body.twitter;
-  const facebook = req.body.facebook;
-  const instagram = req.body.instagram;
-  const description = req.body.description;
-  const image = req.body.image;
-  const address1 = req.body.address1;
-  const address2 = req.body.address2;
-  const zip = req.body.zip;
-  const state = req.body.state;
-  const query = `
+  const org = req.body;
+
+  values = [
+    org.id,
+    org.name,
+    org.email,
+    org.phone,
+    org.website,
+    org.twitter,
+    org.facebook,
+    org.instagram,
+    org.description,
+    org.image,
+    org.address1,
+    org.address2,
+    org.zip,
+    org.state,
+    req.params.id,
+  ];
+
+  let query = `
   UPDATE organizations 
   SET name = $1,
   email = $2,
@@ -78,7 +127,7 @@ router.put('/edit/:id', (req, res) => {
   WHERE user.id = $14;
   `;
   pool
-    .query(query, [name, email, phone, website, twitter, facebook, instagram, description, image, address1, address2, zip, state, id ])
+    .query(query, values)
     .then((result) => {
       res.sendStatus(200);
     })
@@ -86,7 +135,5 @@ router.put('/edit/:id', (req, res) => {
       res.sendStatus(500);
     });
 });
-
-
 
 module.exports = router;
