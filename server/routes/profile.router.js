@@ -3,10 +3,17 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // This will GET all profile information for a specific profile user 
+<<<<<<< HEAD
 router.get('/:id', (req, res) => {
+=======
+router.get('/', (req, res) => {
+
+    let id = req.params.id;
+
+>>>>>>> feature-profile-router
     if (req.isAuthenticated()) {
         pool
-            .query(``)
+            .query(`select * from users;`)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in profile router GET', error);
@@ -30,6 +37,20 @@ router.post('/', (req, res) => {
     } else {
         res.sendStatus(403);
     }
+});
+
+// update for specific user profile
+router.put('/:id', (req, res) => {
+    const queryText = ``;
+    
+    const queryValues = [];
+    
+    pool.query(queryText, queryValues).then(() => {
+        res.sendStatus(200)
+    }).catch((error) => {
+        console.log('Error updating specific profile user', error);
+        res.sendStatus(500);
+    })
 });
 
 module.exports = router;
