@@ -20,6 +20,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
+import UserProfile from '../UserProfile/UserProfile';
+
 import './App.css';
 
 function App() {
@@ -67,6 +69,15 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+
+          <Route
+            exact
+            path="/userprofile"
+          >
+    
+              <UserProfile />
+            
+          </Route>
 
           <Route
             exact

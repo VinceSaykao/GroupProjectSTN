@@ -2,12 +2,12 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// GET all events' information
+// GET all events' information that are approved
 router.get('/', (req, res) => {
     
     if (req.isAuthenticated()) {
         pool
-            .query(`select * from events;`)
+            .query(`select * from events where status= 'approved';`)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for all events information', error);
@@ -35,6 +35,23 @@ router.get('/:id', (req, res) => {
         res.sendStatus(403); // Forbidden
     };
 });
+
+// GET all pending admin event information
+router.get('/admin/pending', (req, res) => {
+
+    if (req.isAuthenticated()) {
+        pool
+            .query(`select * from events;`)
+            .then((results) => res.send(results.rows))
+            .catch((error) => {
+                console.log('Error in GET for admin pending event information', error);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403); // Forbidden
+    };
+});
+
 
 // GET profile user specific event by profile.id
 router.get('/organization/:id', (req, res) => {
