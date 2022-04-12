@@ -1,1 +1,1 @@
-         
+// Admin Delete Modal
