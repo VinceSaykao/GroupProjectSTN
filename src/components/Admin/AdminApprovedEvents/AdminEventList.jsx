@@ -2,27 +2,30 @@
 
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-// import AdminEventDetails from "./AdminEventDetails";
+import AdminEventDetails from "./AdminEventDetails";
 
 export default function AdminEventList() {
 
-    const fetchAdminEvents = useSelector(store => store.fetchAdminEvents)
+    const fetchApprovedEvents = useSelector(store => store.fetchApprovedEvents);
 
     const dispatch = useDispatch();
 
     // useEffect
     useEffect(() => {
-        dispatch ({ type: 'FETCH_EVENT_ADMIN' });
+        // dispatch ({ type: 'FETCH_EVENT_ADMIN' });
+        dispatch ({ type: 'FETCH_APPROVED_EVENTS' });
+        
+        
     },[]);
 
 
-
+    console.log('approved events', fetchApprovedEvents);
     return (
         <div>
             <h1>TEHEE</h1>
 
 
-            {/* {fetchAdminEvents.map((event,i) => {
+            {/* {fetchApprovedEvents?.map((event, i) => {
                 return (
                     <div key={i}>
                         Event Details
