@@ -22,7 +22,6 @@ export default function UserProfile() {
     console.log('event', fetchProfileEvent);
     return (
         <div>
-            <h1>HELLO</h1>
 
             
             {fetchProfile?.map((info,i) => {
@@ -34,8 +33,6 @@ export default function UserProfile() {
                     </div>
                 )
             })}
-
-
 
             {fetchProfileEvent.map((event,i) => {
                 return (
