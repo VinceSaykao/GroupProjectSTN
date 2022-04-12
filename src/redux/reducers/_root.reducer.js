@@ -13,12 +13,14 @@ import addOrganization from "./Organization_Reducer/addOrganization.reducer";
 import updateOrganization from "./Organization_Reducer/updateOrganization.reducer";
 import fetchAllOrganizations from "./Organization_Reducer/fetchAllOrganizations.reducer";
 // Events
-import fetchEvent from "./Event_Reducers/fetchEvent.reducer";
-import fetchEventAdmin from "./Event_Reducers/fetchEventAdmin.reducer";
-import fetchEventOrganization from "./Event_Reducers/fetchEventOrganization.reducer";
-import fetchEventProfile from "./Event_Reducers/fetchEventProfile.reducer";
+import fetchApprovedEvents from "./Event_Reducers/fetchApprovedEvents.reducer";
+import fetchAdminEvents from "./Event_Reducers/fetchAdminEvents.reducer";
+import fetchOrgEvents from "./Event_Reducers/fetchOrgEvents.reducer";
+import fetchEventId from "./Event_Reducers/fetchEventId.reducer";
 import addEvent from "./Event_Reducers/addEvent.reducer";
 import updateEvent from "./Event_Reducers/updateEvent.reducer";
+import fetchSavedEvents from "./Event_Reducers/fetchSavedEvents.reducer";
+
 
 
 
@@ -46,17 +48,14 @@ const rootReducer = combineReducers({
   addOrganization,
   updateOrganization,
   // Event
-  fetchEvent,
-  fetchEventAdmin,
-  fetchEventOrganization,
-  fetchEventProfile,
+  fetchApprovedEvents,
+  fetchAdminEvents,
+  fetchOrgEvents,
+  fetchEventId,
   addEvent,
   updateEvent,
+  fetchSavedEvents,
   fetchAllOrganizations,
-  fetchOrganization,
-  addOrganization,
-  fetchOrganizationEvent,
-  updateOrganization,
 });
 
 export default rootReducer;

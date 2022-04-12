@@ -5,7 +5,7 @@ function* addEvent() {
 
     try {
         axios.post('/api/event', action.payload);   // Posts Event to DB
-        yield put({ type: 'FETCH_EVENT' });         // Re-Fetch ALL events
+        yield put({ type: 'FETCH_APPROVED_EVENTS' });         // Re-Fetch ALL events
 
 
     } catch (error) {

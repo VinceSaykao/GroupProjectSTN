@@ -4,7 +4,8 @@ import { takeLatest } from 'redux-saga/effects';
 function* fetchApprovedEvents() {
 
     try {
-        axios.get(`/api/event`);  // Gets All Approved Events
+        const ApprovedEvents = yield axios.get(`/api/event`);                       // Gets All Approved Events
+        yield put ({ type: 'SET_FETCH_APPROVED_EVENTS', payload: ApprovedEvents }); // Approved Events Reducer
 
     } catch (error) {
         console.log('fetchEvent Failed:', error);
@@ -12,7 +13,7 @@ function* fetchApprovedEvents() {
 }
 
 function* fetchApprovedEventsSaga() {
-    yield takeLatest('FETCH_EVENT', fetchApprovedEvents);
+    yield takeLatest('FETCH_APPROVED_EVENTS', fetchApprovedEvents);
 }
 
-export default fetchApprovedEvents;
+export default fetchApprovedEventsSaga;

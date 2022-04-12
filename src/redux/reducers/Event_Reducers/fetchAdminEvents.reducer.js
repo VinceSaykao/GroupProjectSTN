@@ -1,4 +1,4 @@
-const fetchEventAdmin = (state = [], action) => {
+const fetchAdminEvents = (state = [], action) => {
   switch (action.type) {
     case "SET_FETCH_EVENT_ADMIN":
       return action.payload;
@@ -7,4 +7,4 @@ const fetchEventAdmin = (state = [], action) => {
   }
 };
 
-export default fetchEventAdmin;
+export default fetchAdminEvents;
