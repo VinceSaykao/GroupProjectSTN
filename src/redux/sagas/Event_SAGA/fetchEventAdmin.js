@@ -4,7 +4,7 @@ import { takeLatest } from 'redux-saga/effects';
 function* fetchEventAdmin() {
 
     try {
-        axios.get(`/api/event/admin`);  // Gets All Events Admin
+        axios.get(`/api/event/admin`);  // Gets All Events for Admin user (All Statuses)
 
     } catch (error) {
         console.log('fetchEventAdmin Failed:', error);
