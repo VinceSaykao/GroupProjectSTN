@@ -38,7 +38,7 @@ function UserProfileEditForm() {
         <input type="text" name="Email" onChange={(event) => setEmail(event.target.value)} />
         <h3>Phone Number</h3>
         <input type="text" name="Phone Number" onChange={(event) => setPhoneNumber(event.target.value)} />
-        //TODO: Image upload input
+        {/*  TODO: Image upload input  */}
       </form>
       <button onClick={handleUpdateUser}>Update</button>
     </>
