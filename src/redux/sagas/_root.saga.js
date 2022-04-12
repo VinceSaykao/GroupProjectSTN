@@ -3,7 +3,7 @@ import loginSaga from "./login.saga";
 import registrationSaga from "./registration.saga";
 import userSaga from "./user.saga";
 import fetchProfile from "./Profile_SAGA/fetchProfile.saga";
-import fetchProfileEvent from "../reducers/Profile_Reducer/fetchProfileEvent.reducer";
+import fetchProfileEvent from "./Profile_SAGA/fetchProfileEvent.saga";
 import addProfile from "./Profile_SAGA/addProfile.saga";
 import updateProfile from "./Profile_SAGA/updateProfile.saga";
 import fetchOrganizationsSaga from './Organization_SAGA/fetchOrganizations.saga';

@@ -1,3 +1,6 @@
+import { put, takeEvery } from "redux-saga/effects";
+import axios from "axios";
+
 function* fetchOrganizations() {
   // get all organizations from the DB
   try {
@@ -10,7 +13,7 @@ function* fetchOrganizations() {
 }
 
 function* fetchOrganizationsSaga() {
-  yield takeLatest('FETCH_ORGANIZATIONS', fetchOrganizations);
+  yield takeEvery('FETCH_ORGANIZATIONS', fetchOrganizations);
 }
 
 export default fetchOrganizationsSaga;
