@@ -6,16 +6,19 @@ import UserProfileItem from "./UserProfileItem";
 export default function UserProfile() {
 
     const dispatch = useDispatch();
-    const fetchProfile = useSelector(store => store.fetchProfile)
-    const user = useSelector(store => store.user)
+    const fetchProfile = useSelector(store => store.fetchProfile);
+    const fetchProfileEvent = useSelector (store => store.fetchProfileEvent);
+    const user = useSelector(store => store.user);
     
     useEffect(() => {
         dispatch ({ type: 'SET_PROFILE_SAGA', payload: user.id });
+        dispatch ({ type: 'SET_PROFILE_EVENT_SAGA', payload: user.id });
     },[]);
 
 
-    console.log('profile', fetchProfile)
-    console.log('user', user)
+    console.log('profile', fetchProfile);
+    console.log('user', user);
+    console.log('event', fetchProfileEvent);
     return (
         <div>
             <h1>HELLO</h1>
@@ -30,6 +33,14 @@ export default function UserProfile() {
                     </div>
                 )
             })}
+
+            {/* {fetchProfileEvent.map((event,i) => {
+                return (
+                    {event.name}
+                )
+            })} */}
+
+
 
 
 
