@@ -25,7 +25,7 @@ export default function AdminEventList() {
             <h1>TEHEE</h1>
 
 
-            {fetchApprovedEvents?.map((event, i) => {
+            {/* {fetchApprovedEvents?.map((event, i) => {
                 return (
                     <div key={i}>
                         Event Details
@@ -34,7 +34,7 @@ export default function AdminEventList() {
                     />
                     </div>
                 )
-            })}
+            })} */}
 
         </div>
     )
