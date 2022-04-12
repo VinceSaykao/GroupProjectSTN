@@ -1,10 +1,12 @@
 import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
-function* editProfileSaga() {
+function* editProfileSaga(action) {
   try {
-    const profileUpdate = yield axios.put("/api/profile/:id");
+    console.log("BEFORE editProfileSaga PUT");
+    const profileUpdate = yield axios.put(`/api/profile/${action.payload.id}`, action.payload);
     yield put({ type: "SET_PROFILE_SAGA", payload: profileUpdate.data });
+    console.log("AFTER editProfileSaga PUT");
   } catch {
     console.log("get all error");
   }
