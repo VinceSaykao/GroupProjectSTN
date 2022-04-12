@@ -1,17 +1,13 @@
-import React, { useEffect } from 'react';
-import {
-  HashRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import React, { useEffect } from "react";
+import { HashRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
@@ -21,17 +17,26 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import OrganizationRegisterForm from '../Organization/OrganizationRegisterForm'
 
+
+
+import "./App.css";
+// User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
+import UserProfileEditForm from "../UserProfilePage/UserProfileEditForm";
+
+
+// Admin 
+import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
 
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   return (
@@ -62,6 +67,16 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+          
+          {/* ADMIN */}
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/adminlist"
+          >
+            <AdminEventList />
+          </ProtectedRoute>
+           {/* ADMIN */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -70,6 +85,7 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+
 
           <Route
             exact
@@ -93,13 +109,24 @@ function App() {
           >
             {user.id ?
               // If the user is already logged in, 
+
+          
+          <Route exact path="/userprofileedit">
+            <UserProfileEditForm />
+          </Route>
+
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
+
               // redirect to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the login page
               <LoginPage />
-            }
+            )}
           </Route>
+
 
           {/* // from login, has logic to determine next url
           <CustomRoute exact path="/user">
@@ -108,31 +135,40 @@ function App() {
             <AdminActiveEvents />
           </CustomRoute> */}
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+//           <Route
+//             exact
+//             path="/registration"
+//           >
+//             {user.id ?
+//               // If the user is already logged in, 
+//               // redirect them to the /user page
+//               <Redirect to="/user1" />
+//               :
+
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user1" />
-              :
+              <Redirect to="/user" />
+            ) : (
+
               // Otherwise, show the registration page
               <RegisterPage />
-            }
-          </Route>
-
-          <Route exact path="/user1">
-            {user.access_level === 1 ? (
-              // If the user is an artist,
-              // redirect them to the /favorites page
-              <Redirect to="/events-calendar" />
-            ) : (
-              // Otherwise, they are an organization
-              // redirect them to their profile page
-              <Redirect to="/organization-register-form" />
             )}
           </Route>
+
+
+//           <Route exact path="/user1">
+//             {user.access_level === 1 ? (
+//               // If the user is an artist,
+//               // redirect them to the /favorites page
+//               <Redirect to="/events-calendar" />
+//             ) : (
+//               // Otherwise, they are an organization
+//               // redirect them to their profile page
+//               <Redirect to="/organization-register-form" />
+//             )}
+//           </Route>
 
           <Route
             exact
@@ -140,12 +176,17 @@ function App() {
           >
             {user.id ?
               // If the user is already logged in, 
+
+          <Route exact path="/home">
+            {user.id ? (
+              // If the user is already logged in,
+
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
