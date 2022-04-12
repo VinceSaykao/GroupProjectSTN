@@ -15,6 +15,11 @@ import fetchEventOrganization from "./Event_Reducers/fetchEventOrganization.redu
 import fetchEventProfile from "./Event_Reducers/fetchEventProfile.reducer";
 import addEvent from "./Event_Reducers/addEvent.reducer";
 import updateEvent from "./Event_Reducers/updateEvent.reducer";
+import fetchAllOrganizations from "./Organization_Reducer/fetchAllOrganizations.reducer";
+import fetchOrganization from "./Organization_Reducer/fetchOrganization.reducer";
+import addOrganization from "./Organization_Reducer/addOrganization.reducer";
+import fetchOrganizationEvent from "./Organization_Reducer/fetchOrganizationEvent.reducer";
+import updateOrganization from "./Organization_Reducer/updateOrganization.reducer"
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -38,6 +43,11 @@ const rootReducer = combineReducers({
   fetchEventProfile,
   addEvent,
   updateEvent,
+  fetchAllOrganizations,
+  fetchOrganization,
+  addOrganization,
+  fetchOrganizationEvent,
+  updateOrganization,
 });
 
 export default rootReducer;
