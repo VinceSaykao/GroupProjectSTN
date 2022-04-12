@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Profiler, useEffect } from "react";
+import UserProfileItem from "./UserProfileItem";
 
 
 export default function UserProfile() {
-    
+
     const dispatch = useDispatch();
     const fetchProfile = useSelector(store => store.fetchProfile)
     const user = useSelector(store => store.user)
@@ -23,11 +24,14 @@ export default function UserProfile() {
             {fetchProfile?.map((info,i) => {
                 return (
                     <div id={i}>
-                    {info.username} your name is {info.first_name}
+                    <UserProfileItem 
+                    info={info}
+                    />
                     </div>
                 )
-
             })}
+
+
 
         
 
