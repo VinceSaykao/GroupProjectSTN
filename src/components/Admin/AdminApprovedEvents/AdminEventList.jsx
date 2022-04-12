@@ -2,7 +2,7 @@
 
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-// import AdminEventDetails from "./AdminEventDetails";
+import AdminEventDetails from "./AdminEventDetails";
 
 export default function AdminEventList() {
 
@@ -16,13 +16,13 @@ export default function AdminEventList() {
     },[]);
 
 
-
+    console.log('approved events', fetchAdminEvents);
     return (
         <div>
             <h1>TEHEE</h1>
 
 
-            {/* {fetchAdminEvents.map((event,i) => {
+            {fetchAdminEvents.map((event,i) => {
                 return (
                     <div key={i}>
                         Event Details
@@ -31,7 +31,7 @@ export default function AdminEventList() {
                     />
                     </div>
                 )
-            })} */}
+            })}
 
         </div>
     )
