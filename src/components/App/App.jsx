@@ -8,12 +8,15 @@ import Footer from "../Footer/Footer";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import AboutPage from "../AboutPage/AboutPage";
-import UserPage from "../UserPage/UserPage";
-import InfoPage from "../InfoPage/InfoPage";
-import LandingPage from "../LandingPage/LandingPage";
-import LoginPage from "../LoginPage/LoginPage";
-import RegisterPage from "../RegisterPage/RegisterPage";
+
+import AboutPage from '../AboutPage/AboutPage';
+import UserPage from '../UserPage/UserPage';
+import InfoPage from '../InfoPage/InfoPage';
+import LandingPage from '../LandingPage/LandingPage';
+import LoginPage from '../LoginPage/LoginPage';
+import RegisterPage from '../RegisterPage/RegisterPage';
+import OrganizationRegisterForm from '../Organization/OrganizationRegisterForm'
+
 
 
 import "./App.css";
@@ -83,9 +86,30 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <Route exact path="/userprofile">
-            <UserProfilePage />
+
+          <Route
+            exact
+            path="/userprofile"
+          >
+              <UserProfilePage />
+            
           </Route>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/organization-register-form"
+          >
+            <OrganizationRegisterForm />
+          </ProtectedRoute>
+
+          <Route
+            exact
+            path="/login"
+          >
+            {user.id ?
+              // If the user is already logged in, 
+
           
           <Route exact path="/userprofileedit">
             <UserProfileEditForm />
@@ -94,6 +118,7 @@ function App() {
           <Route exact path="/login">
             {user.id ? (
               // If the user is already logged in,
+
               // redirect to the /user page
               <Redirect to="/user" />
             ) : (
@@ -102,20 +127,60 @@ function App() {
             )}
           </Route>
 
+
+          {/* // from login, has logic to determine next url
+          <CustomRoute exact path="/user">
+            <UserProfilePage />
+            <OrganizationView />
+            <AdminActiveEvents />
+          </CustomRoute> */}
+
+//           <Route
+//             exact
+//             path="/registration"
+//           >
+//             {user.id ?
+//               // If the user is already logged in, 
+//               // redirect them to the /user page
+//               <Redirect to="/user1" />
+//               :
+
           <Route exact path="/registration">
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
             ) : (
+
               // Otherwise, show the registration page
               <RegisterPage />
             )}
           </Route>
 
+
+//           <Route exact path="/user1">
+//             {user.access_level === 1 ? (
+//               // If the user is an artist,
+//               // redirect them to the /favorites page
+//               <Redirect to="/events-calendar" />
+//             ) : (
+//               // Otherwise, they are an organization
+//               // redirect them to their profile page
+//               <Redirect to="/organization-register-form" />
+//             )}
+//           </Route>
+
+          <Route
+            exact
+            path="/home"
+          >
+            {user.id ?
+              // If the user is already logged in, 
+
           <Route exact path="/home">
             {user.id ? (
               // If the user is already logged in,
+
               // redirect them to the /user page
               <Redirect to="/user" />
             ) : (
