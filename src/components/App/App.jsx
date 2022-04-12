@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
+import OrganizationView from '../Organization/OrganizationView'
 
 import './App.css';
 
@@ -70,6 +71,13 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            exact
+            path="/organization-view"
+          >
+            <OrganizationView />
+          </ProtectedRoute>
+
           <Route
             exact
             path="/userprofile"
@@ -78,6 +86,8 @@ function App() {
               <UserProfilePage />
             
           </Route>
+
+
 
           <Route
             exact
