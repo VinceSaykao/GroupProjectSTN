@@ -12,9 +12,10 @@ import fetchOrganizationsSaga from './Organization_SAGA/fetchOrganizations.saga'
 // Events
 import addEvent from "./Event_SAGA/addEvent.saga";
 import deleteEvent from "./Event_SAGA/deleteEvent.saga";
-import fetchEvent from "./Event_SAGA/fetchEvent.saga";
-import fetchEventAdmin from "./Event_SAGA/fetchEventAdmin.saga";
-import fetchEventOrganization from "./Event_SAGA/fetchEventOrganization.saga";
+import fetchAdminEvents from "./Event_SAGA/fetchAdminEvents.saga";
+import fetchApprovedEvents from "./Event_SAGA/fetchApprovedEvents.saga";
+import fetchEventId from "./Event_SAGA/fetchEventId.saga";
+import fetchOrgEvents from "./Event_SAGA/fetchOrgEvents.saga"
 import fetchSavedEvents from "./Event_SAGA/fetchSavedEvents.saga";
 import updateEvent from "./Event_SAGA/updateEvent.saga";
 
@@ -43,9 +44,10 @@ export default function* rootSaga() {
     // Events
     addEvent(),
     deleteEvent(),
-    fetchEvent(),
-    fetchEventAdmin(),
-    fetchEventOrganization(),
+    fetchAdminEvents(),
+    fetchApprovedEvents(),
+    fetchEventId(),
+    fetchOrgEvents(),
     fetchSavedEvents(),
     updateEvent(),
   ]);

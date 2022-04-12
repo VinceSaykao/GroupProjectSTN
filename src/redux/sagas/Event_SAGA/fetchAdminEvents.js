@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { takeLatest } from 'redux-saga/effects';
 
-function* fetchEventAdmin() {
+function* fetchAdminEvents() {
 
     try {
         axios.get(`/api/event/admin`);  // Gets All Events for Admin user (All Statuses)
@@ -11,8 +11,8 @@ function* fetchEventAdmin() {
     }
 }
 
-function* fetchEventAdminSaga() {
-    yield takeLatest('FETCH_EVENT_ADMIN', fetchEventAdmin);
+function* fetchAdminEventsSaga() {
+    yield takeLatest('FETCH_EVENT_ADMIN', fetchAdminEvents);
 }
 
-export default fetchEventAdminSaga;
+export default fetchAdminEventsSaga;
