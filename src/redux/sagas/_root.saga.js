@@ -14,7 +14,6 @@ import fetchAllOrganizationsSaga from './Organization_SAGA/fetchAllOrganizations
 import fetchOrganization from './Organization_SAGA/fetchOrganization.saga'
 import updateOrganization from "./Organization_SAGA/updateOrganization.saga";
 
-import fetchOrganizationsSaga from './Organization_SAGA/fetchOrganizations.saga';
 // Events
 import addEvent from "./Event_SAGA/addEvent.saga";
 import deleteEvent from "./Event_SAGA/deleteEvent.saga";
