@@ -12,7 +12,10 @@ export default function AdminEventList() {
 
     // useEffect
     useEffect(() => {
-        dispatch ({ type: 'FETCH_EVENT_ADMIN' });
+        // dispatch ({ type: 'FETCH_EVENT_ADMIN' });
+        dispatch ({ type: 'FETCH_APPROVED_EVENTS' });
+        
+        
     },[]);
 
 
@@ -22,7 +25,7 @@ export default function AdminEventList() {
             <h1>TEHEE</h1>
 
 
-            {fetchApprovedEvents.map((event,i) => {
+            {fetchApprovedEvents?.map((event, i) => {
                 return (
                     <div key={i}>
                         Event Details
