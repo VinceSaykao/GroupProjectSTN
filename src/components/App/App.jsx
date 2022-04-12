@@ -20,7 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
-import UserProfile from '../UserProfile/UserProfile';
+import UserProfilePage from '../UserProfilePage/UserProfilePage';
 
 import './App.css';
 
@@ -75,7 +75,7 @@ function App() {
             path="/userprofile"
           >
     
-              <UserProfile />
+              <UserProfilePage />
             
           </Route>
 
