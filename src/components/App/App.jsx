@@ -15,12 +15,11 @@ import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 
-import UserProfilePage from "../UserProfilePage/UserProfilePage";
-import UserProfileEditForm from "../UserProfilePage/UserProfileEditForm";
 
 import "./App.css";
 // User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
+import UserProfileEditForm from "../UserProfilePage/UserProfileEditForm";
 
 
 // Admin 
