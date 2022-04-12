@@ -5,7 +5,7 @@ function* deleteEvent(action) {
 
     try {
         axios.delete(`/api/event/${action.payload}`);  // Deletes Specified Listing
-        yield put({ type: 'FETCH_EVENT' });                    // Re-Fetch ALL Listings
+        yield put({ type: 'FETCH_APPROVED_EVENTS' });            // Re-Fetch ALL Listings
 
     } catch (error) {
         console.log('deleteEvent Failed', error);

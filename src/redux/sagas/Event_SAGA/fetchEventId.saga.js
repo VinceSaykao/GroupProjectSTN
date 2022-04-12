@@ -4,8 +4,9 @@ import { takeLatest } from 'redux-saga/effects';
 function* fetchEventId(action) {
 
     try {
-        axios.get(`/api/event/${action.payload}`);  // Gets Event by ID
-
+        const selectedEvent = yield axios.get(`/api/event/${action.payload}`);  // Gets Event by ID
+        yield put ({ type: 'SET_FETCH_EVENT_ID', payload: selectedEvent })      // Set Selected Event Reducer
+        
     } catch (error) {
         console.log('fetchEventOrganization Failed:', error);
     }
