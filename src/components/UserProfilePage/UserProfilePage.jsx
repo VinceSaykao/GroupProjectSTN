@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Profiler, useEffect } from "react";
+import { useEffect } from "react";
 import UserProfileItem from "./UserProfileItem";
 import UserSavedProfileEvent from "./UserSavedProfileEvent";
 
