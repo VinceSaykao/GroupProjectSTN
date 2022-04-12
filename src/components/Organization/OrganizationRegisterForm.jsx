@@ -175,10 +175,10 @@ function AddOrganization() {
               autoComplete="off"
               type="text"
               required
-              label="i"
-              value={newOrg.}
+              label="Address 1"
+              value={newOrg.address1}
               onChange={(e) =>
-                setNewOrg({ ...newOrg, i: e.target.value })
+                setNewOrg({ ...newOrg, address1: e.target.value })
               }
             />
                         <TextField
@@ -186,10 +186,21 @@ function AddOrganization() {
               autoComplete="off"
               type="text"
               required
-              label="i"
-              value={newOrg.}
+              label="Address 2"
+              value={newOrg.address2}
               onChange={(e) =>
-                setNewOrg({ ...newOrg, i: e.target.value })
+                setNewOrg({ ...newOrg, address2: e.target.value })
+              }
+            />
+                        <TextField
+              sx={{ margin: '10px' }}
+              autoComplete="off"
+              type="number"
+              required
+              label="Zip Code"
+              value={newOrg.zip}
+              onChange={(e) =>
+                setNewOrg({ ...newOrg, zip: e.target.value })
               }
             />
                         <TextField
@@ -197,21 +208,10 @@ function AddOrganization() {
               autoComplete="off"
               type="text"
               required
-              label="i"
-              value={newOrg.}
+              label="State"
+              value={newOrg.state}
               onChange={(e) =>
-                setNewOrg({ ...newOrg, i: e.target.value })
-              }
-            />
-                        <TextField
-              sx={{ margin: '10px' }}
-              autoComplete="off"
-              type="text"
-              required
-              label="i"
-              value={newOrg.}
-              onChange={(e) =>
-                setNewOrg({ ...newOrg, i: e.target.value })
+                setNewOrg({ ...newOrg, state: e.target.value })
               }
             />
           </FormControl>
