@@ -20,8 +20,14 @@ function UserProfileEditForm() {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState([]);
 
-
-  
+  const handleUpdateUser = () => {
+    let updateForm = {
+      name: name,
+      email: email,
+      phoneNumber: phoneNumber,
+    };
+    dispatch({ type: "SET_UPDATE_PROFILE_SAGA", payload: updateForm });
+  };
 
   return (
     <>
@@ -33,7 +39,7 @@ function UserProfileEditForm() {
         <h3>Phone Number</h3>
         <input type="text" name="Phone Number" onChange={(event) => setPhoneNumber(event.target.value)} />
       </form>
-      <button onClick={handleUpdateUser} >Update</button>
+      <button onClick={handleUpdateUser}>Update</button>
     </>
   );
 }
