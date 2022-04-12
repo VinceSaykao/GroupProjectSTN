@@ -48,7 +48,6 @@ export default function* rootSaga() {
     updateOrganization(),
 
     // Organizations
-    fetchOrganizationsSaga(),
 
     fetchProfile(),
     fetchProfileEvent(),
