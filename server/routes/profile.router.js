@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
             })
     }
 });
-
+  
 // This will POST for when a new user registers an account
 router.post('/', (req, res) => {
     let queryText = `
