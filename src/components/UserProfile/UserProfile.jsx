@@ -34,11 +34,13 @@ export default function UserProfile() {
                 )
             })}
 
-            {/* {fetchProfileEvent.map((event,i) => {
+            {fetchProfileEvent.map((event,i) => {
                 return (
+                    <div id={i}>
                     {event.name}
+                    </div>
                 )
-            })} */}
+            })}
 
 
 
