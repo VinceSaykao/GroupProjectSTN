@@ -7,13 +7,35 @@
 // }
 
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useParams, Link, useHistory } from "react-router-dom";
 
-function UserProfileEditForm({ event }) {
-  return 
-  <div>
-      {event.name}
-      
-    </div>;
+function UserProfileEditForm() {
+  const dispatch = useDispatch();
+  // const updateProfile = useSelector(store => store.updateProfile);
+  const fetchProfile = useSelector((store) => store.fetchProfile);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState([]);
+
+
+  
+
+  return (
+    <>
+      <form>
+        <h3>Name</h3>
+        <input type="text" name="Name" required onChange={(event) => setName(event.target.value)} />
+        <h3>Email</h3>
+        <input type="text" name="Email" onChange={(event) => setEmail(event.target.value)} />
+        <h3>Phone Number</h3>
+        <input type="text" name="Phone Number" onChange={(event) => setPhoneNumber(event.target.value)} />
+      </form>
+      <button onClick={handleUpdateUser} >Update</button>
+    </>
+  );
 }
 
 export default UserProfileEditForm;
