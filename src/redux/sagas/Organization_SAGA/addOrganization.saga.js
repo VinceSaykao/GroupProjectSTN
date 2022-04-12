@@ -1,11 +1,10 @@
-import { takeLatest } from 'redux-saga/effects'
-import axios from 'axios'
+import { takeLatest } from 'redux-saga/effects';
+import axios from 'axios';
 
 function* addOrg(action) {
   try {
     yield axios.post('/api/organizations/', action.payload);
-  }
-  catch (error) {
+  } catch (error) {
     console.log('Error posting the new organization', error);
   }
 }

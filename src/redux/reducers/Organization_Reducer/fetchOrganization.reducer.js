@@ -1,6 +1,6 @@
 const fetchOrganization = (state = [], action) => {
   switch (action.type) {
-    case "SET_FETCH_ORGANIZATION":
+    case "SET_ORG_PROFILE":
       return action.payload;
     default:
       return state;
