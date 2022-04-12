@@ -3,8 +3,8 @@
 export default function UserProfileItem({info}) {
     return (
         <div>
+            Profile Info id: 
             {info.id}
-            <h1>REE</h1>
         </div>
     )
 }

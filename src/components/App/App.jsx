@@ -20,8 +20,13 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
+// User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import OrganizationView from '../Organization/OrganizationView'
+
+
+// Admin 
+import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
 
 import './App.css';
 
@@ -62,6 +67,16 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+          
+          {/* ADMIN */}
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/adminlist"
+          >
+            <AdminEventList />
+          </ProtectedRoute>
+           {/* ADMIN */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
