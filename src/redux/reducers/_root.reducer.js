@@ -5,7 +5,7 @@ import fetchProfile from "./Profile_Reducer/fetchProfile.reducer";
 import fetchProfileEvent from "./Profile_Reducer/fetchProfileEvent.reducer";
 import addProfile from "./Profile_Reducer/addProfile.reducer";
 import updateProfile from "./Profile_Reducer/updateProfile.reducer";
-import fetchOrganizations from "./Organization_Reducer/fetchOrganizations.reducer";
+import fetchOrganization from "./Organization_Reducer/fetchOrganization.reducer";
 import fetchOrganizationEvent from "./Organization_Reducer/fetchOrganizationEvent.reducer";
 import addOrganization from "./Organization_Reducer/addOrganization.reducer";
 import updateOrganization from "./Organization_Reducer/updateOrganization.reducer";
@@ -28,7 +28,7 @@ const rootReducer = combineReducers({
   fetchProfileEvent,
   addProfile,
   updateProfile,
-  fetchOrganizations,
+  fetchOrganization,
   fetchOrganizationEvent,
   addOrganization,
   updateOrganization,
