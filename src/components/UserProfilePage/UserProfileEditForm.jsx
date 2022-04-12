@@ -1,10 +1,4 @@
-// export default function UserSavedProfileEvent({event}) {
-//     return (
-//         <div>
-//             {event.name}
-//         </div>
-//     )
-// }
+
 
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
