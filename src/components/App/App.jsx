@@ -19,6 +19,14 @@ import UserProfilePage from "../UserProfilePage/UserProfilePage";
 import UserProfileEditForm from "../UserProfilePage/UserProfileEditForm";
 
 import "./App.css";
+// User Profile
+import UserProfilePage from '../UserProfilePage/UserProfilePage';
+
+
+// Admin 
+import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
+
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +65,16 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+          
+          {/* ADMIN */}
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/adminlist"
+          >
+            <AdminEventList />
+          </ProtectedRoute>
+           {/* ADMIN */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage

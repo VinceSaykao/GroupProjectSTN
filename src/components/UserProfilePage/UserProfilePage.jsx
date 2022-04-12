@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Profiler, useEffect } from "react";
+import { useEffect } from "react";
 import UserProfileItem from "./UserProfileItem";
 import UserSavedProfileEvent from "./UserSavedProfileEvent";
 
@@ -22,7 +22,6 @@ export default function UserProfile() {
     console.log('event', fetchProfileEvent);
     return (
         <div>
-            <h1>HELLO</h1>
 
             
             {fetchProfile?.map((info,i) => {
@@ -34,8 +33,6 @@ export default function UserProfile() {
                     </div>
                 )
             })}
-
-
 
             {fetchProfileEvent.map((event,i) => {
                 return (
