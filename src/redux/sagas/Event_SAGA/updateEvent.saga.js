@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 
 function* updateEvent(action) {
     try {
@@ -13,7 +13,7 @@ function* updateEvent(action) {
 }
 
 function* fetchSavedEventsSaga() {
-    yield takeLatest('UPDATE_EVENT', updateEvent);
+    yield takeEvery('UPDATE_EVENT', updateEvent);
 }
 
 export default fetchSavedEventsSaga;
