@@ -22,9 +22,31 @@ export default function AdminPendingEventDetails() {
 
     // when approve button is pressed, it will change event status to approved
     const handleApprove = () => {
-        console.log('approved')
+        
+        const event = fetchEventId[0];
 
-        dispatch ({ type: 'UPDATE_EVENT', payload: {id: user.id, status: status} });
+
+
+        dispatch ({ type: 'UPDATE_EVENT', 
+        payload: 
+        {
+            id: user.id, 
+            org_id: event.org_id, 
+            category_id: event.category_id, 
+            status: status,
+            name: event.name,
+            description: event.description,
+            date: event.date,
+            start_time: event.start_time,
+            end_time: event.end_time,
+            image: event.image,
+            address1: event.address1,
+            address2: event.address2,
+            city: event.city,
+            zip: event.zip,
+            state: event.state,
+            feedback: event.feedback,
+        } });
 
     }; // end of handleApprove
 
@@ -33,7 +55,8 @@ export default function AdminPendingEventDetails() {
         console.log('denied')
     }; // end of handleDeny
 
-
+    console.log(`'fetchEventId', ${fetchEventId.name}`);
+    console.log('fdsaf', fetchEventId[0].name);
     return (
         <div>
             <Helmet>
