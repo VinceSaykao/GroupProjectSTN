@@ -69,12 +69,22 @@ function App() {
           
           {/* ADMIN */}
           <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
+     
             exact
             path="/adminlist"
           >
             <AdminEventList />
           </ProtectedRoute>
+
+          <ProtectedRoute
+
+            exact
+            path="/adminlist"
+          >
+            <AdminEventList />
+          </ProtectedRoute>
+
+
            {/* ADMIN */}
 
           <ProtectedRoute
