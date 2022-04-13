@@ -1,39 +1,45 @@
-import React, { useEffect } from "react";
-import { HashRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import React, { useEffect } from 'react';
+import {
+  HashRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from "../AboutPage/AboutPage";
-import UserPage from "../UserPage/UserPage";
-import InfoPage from "../InfoPage/InfoPage";
-import LandingPage from "../LandingPage/LandingPage";
-import LoginPage from "../LoginPage/LoginPage";
-import RegisterPage from "../RegisterPage/RegisterPage";
+import AboutPage from '../AboutPage/AboutPage';
+import UserPage from '../UserPage/UserPage';
+import InfoPage from '../InfoPage/InfoPage';
+import LandingPage from '../LandingPage/LandingPage';
+import LoginPage from '../LoginPage/LoginPage';
+import RegisterPage from '../RegisterPage/RegisterPage';
 
-
-import "./App.css";
 // User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
-import UserProfileEditForm from "../UserProfilePage/UserProfileEditForm";
+import OrganizationView from '../Organization/OrganizationView'
 
 
 // Admin 
 import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
+import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
+import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
+import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
 
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector((store) => store.user);
+  const user = useSelector(store => store.user);
 
   useEffect(() => {
-    dispatch({ type: "FETCH_USER" });
+    dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
   return (
@@ -64,16 +70,45 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
-          
-          {/* ADMIN */}
+
+          {/* ADMIN START */}
           <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
+
+            exact
+            path="/admin-approved-event-details"
+          >
+            <AdminEventDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+
             exact
             path="/adminlist"
           >
             <AdminEventList />
           </ProtectedRoute>
-           {/* ADMIN */}
+
+          <ProtectedRoute
+
+            exact
+            path="/admin-pending-list"
+          >
+            <AdminPendingEventList />
+          </ProtectedRoute>
+
+
+
+
+          <ProtectedRoute
+
+            exact
+            path="/admin-pending-event-details"
+          >
+            <AdminPendingEventDetails/>
+          </ProtectedRoute>
+
+
+          {/* ADMIN END */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -83,45 +118,64 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <Route exact path="/userprofile">
+          <ProtectedRoute
+            exact
+            path="/organization-view"
+          >
+            <OrganizationView />
+          </ProtectedRoute>
+
+          <Route
+            exact
+            path="/userprofile"
+          >
+
             <UserProfilePage />
-          </Route>
-          
-          <Route exact path="/userprofileedit">
-            <UserProfileEditForm />
+
           </Route>
 
-          <Route exact path="/login">
-            {user.id ? (
-              // If the user is already logged in,
+
+
+          <Route
+            exact
+            path="/login"
+          >
+            {user.id ?
+              // If the user is already logged in, 
               // redirect to the /user page
               <Redirect to="/user" />
-            ) : (
+              :
               // Otherwise, show the login page
               <LoginPage />
-            )}
+            }
           </Route>
 
-          <Route exact path="/registration">
-            {user.id ? (
-              // If the user is already logged in,
+          <Route
+            exact
+            path="/registration"
+          >
+            {user.id ?
+              // If the user is already logged in, 
               // redirect them to the /user page
               <Redirect to="/user" />
-            ) : (
+              :
               // Otherwise, show the registration page
               <RegisterPage />
-            )}
+            }
           </Route>
 
-          <Route exact path="/home">
-            {user.id ? (
-              // If the user is already logged in,
+          <Route
+            exact
+            path="/home"
+          >
+            {user.id ?
+              // If the user is already logged in, 
               // redirect them to the /user page
               <Redirect to="/user" />
-            ) : (
+              :
               // Otherwise, show the Landing page
               <LandingPage />
-            )}
+            }
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
