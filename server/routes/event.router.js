@@ -41,7 +41,7 @@ router.get('/admin/pending', (req, res) => {
 
     if (req.isAuthenticated()) {
         pool
-            .query(`select * from events;`)
+            .query(`select * from events where status = 'pending';`)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for admin pending event information', error);
