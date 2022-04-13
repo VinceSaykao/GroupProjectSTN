@@ -4,7 +4,7 @@ import { takeEvery, put } from 'redux-saga/effects';
 function* fetchAdminEvents() {
 
     try {
-        const AdminEvents = yield axios.get(`/api/event`);            // Gets All Events for Admin user (All Statuses)
+        const AdminEvents = yield axios.get(`/api/event`); // Gets All Approved Events for Admin user 
         yield put({ type: 'SET_FETCH_EVENT_ADMIN', payload: AdminEvents }); // Sets Admin Event Reducer
 
     } catch (error) {

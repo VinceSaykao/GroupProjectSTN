@@ -27,6 +27,9 @@ import OrganizationView from '../Organization/OrganizationView'
 
 // Admin 
 import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
+import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
+import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
+import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
 
 import './App.css';
 
@@ -67,16 +70,45 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
-          
-          {/* ADMIN */}
+
+          {/* ADMIN START */}
           <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
+
+            exact
+            path="/admin-approved-event-details"
+          >
+            <AdminEventDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+
             exact
             path="/adminlist"
           >
             <AdminEventList />
           </ProtectedRoute>
-           {/* ADMIN */}
+
+          <ProtectedRoute
+
+            exact
+            path="/admin-pending-list"
+          >
+            <AdminPendingEventList />
+          </ProtectedRoute>
+
+
+
+
+          <ProtectedRoute
+
+            exact
+            path="/admin-pending-event-details"
+          >
+            <AdminPendingEventDetails/>
+          </ProtectedRoute>
+
+
+          {/* ADMIN END */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -97,9 +129,9 @@ function App() {
             exact
             path="/userprofile"
           >
-    
-              <UserProfilePage />
-            
+
+            <UserProfilePage />
+
           </Route>
 
 

@@ -23,6 +23,7 @@ import fetchEventId from "./Event_SAGA/fetchEventId.saga";
 import fetchOrgEvents from "./Event_SAGA/fetchOrgEvents.saga"
 import fetchSavedEvents from "./Event_SAGA/fetchSavedEvents.saga";
 import updateEvent from "./Event_SAGA/updateEvent.saga";
+import fetchAdminPendingEvents from "./Event_SAGA/fetchAdminPendingEvents.saga";
 
 
 
@@ -62,5 +63,6 @@ export default function* rootSaga() {
     fetchOrgEvents(),
     fetchSavedEvents(),
     updateEvent(),
+    fetchAdminPendingEvents(),
   ]);
 }
