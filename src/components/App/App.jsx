@@ -27,6 +27,7 @@ import UserProfilePage from '../UserProfilePage/UserProfilePage';
 // Admin 
 import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
 import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
+import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
 
 import './App.css';
 
@@ -67,10 +68,10 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
-          
-          {/* ADMIN */}
+
+          {/* ADMIN START */}
           <ProtectedRoute
-     
+
             exact
             path="/admin-approved-event-details"
           >
@@ -85,8 +86,18 @@ function App() {
             <AdminEventList />
           </ProtectedRoute>
 
+          <ProtectedRoute
 
-           {/* ADMIN */}
+            exact
+            path="/admin-pending-list"
+          >
+            <AdminPendingEventList />
+          </ProtectedRoute>
+
+
+
+
+          {/* ADMIN END */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -100,9 +111,9 @@ function App() {
             exact
             path="/userprofile"
           >
-    
-              <UserProfilePage />
-            
+
+            <UserProfilePage />
+
           </Route>
 
           <Route
