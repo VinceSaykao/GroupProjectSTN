@@ -1,0 +1,19 @@
+import axios from 'axios';
+import { takeEvery, put } from 'redux-saga/effects';
+
+function* fetchPendingAdminEvents() {
+
+    try {
+        const  AdminEvents = yield axios.get(`/api/event`);            // Gets All Events for Admin user (All Statuses)
+        yield put({ type: 'SET_FETCH_PENDING_EVENT_ADMIN', payload: AdminEvents }); // Sets Admin Event Reducer
+
+    } catch (error) {
+        console.log('fetchEventAdmin Failed:', error);
+    }
+}
+
+function* fetchAdminEventsSaga() {
+    yield takeEvery('FETCH_PENDING_EVENT_ADMIN', fetchPendingAdminEvents);
+}
+
+export default fetchAdminEventsSaga;

@@ -17,7 +17,7 @@ export default function AdminPendingEventList() {
             }`}
                 </style>
             </Helmet>
-            <h1>TEHEE</h1>
+            
 
         </div>
     )
