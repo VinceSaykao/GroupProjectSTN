@@ -4,7 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useHistory } from 'react-router-dom'
 
-import AdminEventDetails from "./AdminEventDetails";
+import { Helmet } from 'react-helmet';
+
+import AdminEventListItem from "./AdminEventListItem";
 
 import './AdminEventList.scss';
 
@@ -13,7 +15,7 @@ export default function AdminEventList() {
 
     // store that grabs approved events, although fetchApprovedEvents brings in more data...??
     const fetchApprovedEvents = useSelector(store => store.fetchApprovedEvents);
-    const user = useSelector(store => store.user);
+
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -21,29 +23,31 @@ export default function AdminEventList() {
     // useEffect to grab the approved events
     useEffect(() => {
         dispatch({ type: 'FETCH_APPROVED_EVENTS' });
-        dispatch({ type: 'FETCH_EVENT_DETAILS', payload: user.id })
-
-
     }, []);
 
-    // when user clicks on event, it will push to event details
-    const handleClick = () => {
-        history.push('/admin-approved-event-details')
-    }; // end of handleClick
+
 
     return (
         <div>
+
+            <Helmet>
+                <style>{`body { background-color: #090909ee;); 
+            
+            }`}
+
+                </style>
+            </Helmet>
 
             <div className="approved-event-list">
                 {fetchApprovedEvents?.map((event, i) => {
                     return (
                         <div key={i}>
 
-                            <span onClick={handleClick}>Event Details
-                            {/* <AdminEventDetails
+                            <span><u>Event</u>
+                                <AdminEventListItem
                                 event={event}
-                            /> */}
-                            </span> 
+                            />
+                            </span>
                         </div>
                     )
                 })}
