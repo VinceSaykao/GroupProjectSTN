@@ -1,10 +1,11 @@
 
 
-export default function AdminPendingEventListItem() {
+export default function AdminPendingEventListItem({event}) {
 
     return (
         <div>
-            
+            <h1>HELLO</h1>
+            {/* {event.name} */}
         </div>
     )
 

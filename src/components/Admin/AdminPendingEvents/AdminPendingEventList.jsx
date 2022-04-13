@@ -4,12 +4,22 @@ import { useHistory } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet';
 
-const fetchPendingEvents = useSelector(store => store.fetchPendingEvents);
+import AdminPendingEventListItem from "./AdminPendingEventListItem";
+
 
 export default function AdminPendingEventList() {
+    
+    const dispatch = useDispatch();
+    
+    // useEffect to grab the pending events
+    useEffect(() => {
+        dispatch({ type: 'FETCH_PENDING_EVENT_ADMIN' });
+    }, []);
+    
+    const fetchPendingEvents = useSelector(store => store.fetchPendingEvents);
 
 
-
+    console.log('pending: ', fetchPendingEvents);
     return (
         <div>
             <Helmet>
@@ -18,10 +28,18 @@ export default function AdminPendingEventList() {
                 </style>
             </Helmet>
 
+
             {fetchPendingEvents.map((event,i) => {
+
+                return (
+                    <div id={i}>
+
                 <AdminPendingEventListItem 
                 event={event}
                 />
+
+                </div>
+                )
             })}
             
 
