@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { takeLatest } from 'redux-saga/effects';
+import { takeEvery, put } from 'redux-saga/effects';
 
 function* fetchEventId(action) {
 
     try {
         const selectedEvent = yield axios.get(`/api/event/${action.payload}`);  // Gets Event by ID
-        yield put ({ type: 'SET_FETCH_EVENT_ID', payload: selectedEvent })      // Set Selected Event Reducer
+        yield put ({ type: 'SET_FETCH_EVENT_ID', payload: selectedEvent.data })      // Set Selected Event Reducer
         
     } catch (error) {
         console.log('fetchEventOrganization Failed:', error);
@@ -13,7 +13,7 @@ function* fetchEventId(action) {
 }
 
 function* fetchEventIdSaga() {
-    yield takeLatest('FETCH_EVENT_ORGANIZATION', fetchEventId);
+    yield takeEvery('FETCH_EVENT_DETAILS', fetchEventId);
 }
 
 export default fetchEventIdSaga;

@@ -4,12 +4,13 @@ import loginSaga from "./login.saga";
 import registrationSaga from "./registration.saga";
 import userSaga from "./user.saga";
 
-// Organizations
+// Profiles
 import fetchProfile from "./Profile_SAGA/fetchProfile.saga";
 import fetchProfileEvent from "./Profile_SAGA/fetchProfileEvent.saga";
 import addProfile from "./Profile_SAGA/addProfile.saga";
 import updateProfile from "./Profile_SAGA/updateProfile.saga";
 
+// Organizations
 import addOrganizationsSaga from "./Organization_SAGA/addOrganization.saga";
 import fetchAllOrganizationsSaga from './Organization_SAGA/fetchAllOrganizations.saga';
 import fetchOrganization from './Organization_SAGA/fetchOrganization.saga'
@@ -24,7 +25,9 @@ import fetchEventId from "./Event_SAGA/fetchEventId.saga";
 import fetchOrgEvents from "./Event_SAGA/fetchOrgEvents.saga"
 import fetchSavedEvents from "./Event_SAGA/fetchSavedEvents.saga";
 import updateEvent from "./Event_SAGA/updateEvent.saga";
-// import fetchAdminPendingEvents from "./Event_SAGA/fetchAdminPendingEvents.saga";
+import fetchAdminPendingEvents from "./Event_SAGA/fetchAdminPendingEvents.saga";
+
+
 
 
 // rootSaga is the primary saga.
@@ -42,17 +45,18 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
 
+    // Organizations
     addOrganizationsSaga(),
     fetchAllOrganizationsSaga(),
     fetchOrganization(),
     updateOrganization(),
 
-    // Organizations
-
+    // Profile
     fetchProfile(),
     fetchProfileEvent(),
     addProfile(),
     updateProfile(),
+    
     // Events
     addEvent(),
     deleteEvent(),
@@ -62,6 +66,6 @@ export default function* rootSaga() {
     fetchOrgEvents(),
     fetchSavedEvents(),
     updateEvent(),
-    // fetchAdminPendingEvents(),
+    fetchAdminPendingEvents(),
   ]);
 }

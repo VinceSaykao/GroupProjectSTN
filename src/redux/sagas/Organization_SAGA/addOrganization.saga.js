@@ -3,7 +3,8 @@ import axios from 'axios';
 
 function* addOrg(action) {
   try {
-    yield axios.post('/api/organizations/', action.payload);
+    console.log(action.payload);
+    yield axios.post('/api/organization/', action.payload);
   } catch (error) {
     console.log('Error posting the new organization', error);
   }
