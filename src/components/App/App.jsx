@@ -26,6 +26,7 @@ import UserProfilePage from '../UserProfilePage/UserProfilePage';
 
 // Admin 
 import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
+import AdminEventDetails from '../Admin/AdminEventDetails/AdminEventDetails';
 
 import './App.css';
 
@@ -71,9 +72,9 @@ function App() {
           <ProtectedRoute
      
             exact
-            path="/adminlist"
+            path="/admin-approved-event-details"
           >
-            <AdminEventList />
+            <AdminEventDetails />
           </ProtectedRoute>
 
           <ProtectedRoute
