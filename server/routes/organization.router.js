@@ -37,6 +37,56 @@ router.get('/:id', (req, res) => {
 });
 
 // Posts a new organization to the website
+// router.post('/', (req, res) => {
+//   let newOrg = req.body;
+
+//   const values = [
+//     newOrg.name,
+//     newOrg.email,
+//     newOrg.phone,
+//     newOrg.website,
+//     newOrg.twitter,
+//     newOrg.facebook,
+//     newOrg.instagram,
+//     newOrg.description,
+//     newOrg.image,
+//     newOrg.address1,
+//     newOrg.address2,
+//     newOrg.zip,
+//     newOrg.state,
+//   ];
+
+//   let query = `
+//     INSERT INTO organizations (
+//     name,
+//     email,
+//     phone,
+//     website,
+//     twitter,
+//     facebook,
+//     instagram,
+//     description,
+//     image,
+//     address1,
+//     address2,
+//     zip,
+//     state
+//     )
+//     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13 );  
+//   `;
+
+//   pool
+//     .query(query, values)
+//     .then((result) => {
+//       console.log('New organization posted', result);
+//       res.sendStatus(201);
+//     })
+//     .catch((error) => {
+//       console.log('Error with new organization post', error);
+//       res.sendStatus(500);
+//     });
+// });
+
 router.post('/', (req, res) => {
   let newOrg = req.body;
 
@@ -79,6 +129,14 @@ router.post('/', (req, res) => {
     .query(query, values)
     .then((result) => {
       console.log('New organization posted', result);
+      const createdOrgID = response.rows[0].id; // ID of the organization that was created
+      
+      const orgUserQuery = `
+        UPDATE user 
+        SET org_id = $1
+        WHERE user.id = $2;`;
+      
+      pool.query(orgUserQuery, [createdOrgID, req.user.id])  
       res.sendStatus(201);
     })
     .catch((error) => {

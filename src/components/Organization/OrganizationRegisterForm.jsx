@@ -15,6 +15,7 @@ function AddOrganization() {
   const user = useSelector((store) => store.user);
 
   const orgState = {
+    user_id: user.id,
     name: '',
     email: '',
     phone: '',
