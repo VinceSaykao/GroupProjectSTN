@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Helmet } from 'react-helmet';
 
 import AdminPendingEventListItem from "./AdminPendingEventListItem";
+import './AdminPendingEventList.scss';
 
 
 export default function AdminPendingEventList() {
@@ -27,8 +28,11 @@ export default function AdminPendingEventList() {
             }`}
                 </style>
             </Helmet>
+            <h1
+            className="admin-event-header"
+            >Admin Event List</h1>
 
-
+            <div className="pending-event-list-container">
             {fetchPendingEvents.map((event,i) => {
 
                 return (
@@ -41,6 +45,7 @@ export default function AdminPendingEventList() {
                 </div>
                 )
             })}
+            </div>
             
 
         </div>

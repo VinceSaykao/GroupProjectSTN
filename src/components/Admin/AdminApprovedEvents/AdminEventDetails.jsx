@@ -1,6 +1,9 @@
 // Event Details
 
 import { useSelector } from "react-redux";
+import "./AdminEventDetails.scss";
+
+import { Helmet } from 'react-helmet';
 
 export default function AdminEventDetails() {
 
@@ -8,16 +11,25 @@ export default function AdminEventDetails() {
 
     return (
         <div>
-            <h1>YEE</h1>
+            <Helmet>
+                <style>{`body { background-color: #090909ee;); 
+            }`}
+                </style>
+            </Helmet>
+            <h1
+            className="event-approved-details-header"
+            >Event Details</h1>
 
-            {fetchEventId.map((detail,i) => {
+            <div className="event-approved-list-container">
+            {fetchEventId.map((detail, i) => {
                 return (
                     <div id={i}>
-                    <p>You Live In: </p>{detail.city}
+                        <p>You Live In: </p>{detail.city}
                     </div>
                 )
             })}
-        
+            </div>
+
         </div>
     )
 }
