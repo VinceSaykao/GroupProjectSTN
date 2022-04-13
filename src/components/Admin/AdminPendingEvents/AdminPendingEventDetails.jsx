@@ -23,6 +23,7 @@ export default function AdminPendingEventDetails() {
     // when approve button is pressed, it will change event status to approved
     const handleApprove = () => {
         
+        // destructures the array of object
         const event = fetchEventId[0];
 
 
@@ -55,8 +56,7 @@ export default function AdminPendingEventDetails() {
         console.log('denied')
     }; // end of handleDeny
 
-    console.log(`'fetchEventId', ${fetchEventId.name}`);
-    console.log('fdsaf', fetchEventId[0].name);
+
     return (
         <div>
             <Helmet>
