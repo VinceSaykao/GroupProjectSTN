@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet';
 
-
+const fetchPendingEvents = useSelector(store => store.fetchPendingEvents);
 
 export default function AdminPendingEventList() {
 
@@ -17,6 +17,12 @@ export default function AdminPendingEventList() {
             }`}
                 </style>
             </Helmet>
+
+            {fetchPendingEvents.map((event,i) => {
+                <AdminPendingEventListItem 
+                event={event}
+                />
+            })}
             
 
         </div>

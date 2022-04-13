@@ -5,7 +5,7 @@ function* fetchPendingAdminEvents() {
 
     try {
         const  AdminEvents = yield axios.get(`/api/event/pending`);  // Gets All Pending Events for Admin user 
-        yield put({ type: 'SET_FETCH_PENDING_EVENT_ADMIN', payload: AdminEvents }); // Sets Admin Event Reducer
+        yield put({ type: 'SET_FETCH_PENDING_EVENT_ADMIN', payload: AdminEvents.data }); // Sets Admin Event Reducer
 
     } catch (error) {
         console.log('fetchEventAdmin Failed:', error);
