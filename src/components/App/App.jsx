@@ -20,7 +20,16 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
+// User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
+import OrganizationView from '../Organization/OrganizationView'
+
+
+// Admin 
+import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
+import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
+import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
+import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
 
 import './App.css';
 
@@ -62,6 +71,45 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
+          {/* ADMIN START */}
+          <ProtectedRoute
+
+            exact
+            path="/admin-approved-event-details"
+          >
+            <AdminEventDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+
+            exact
+            path="/adminlist"
+          >
+            <AdminEventList />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+
+            exact
+            path="/admin-pending-list"
+          >
+            <AdminPendingEventList />
+          </ProtectedRoute>
+
+
+
+
+          <ProtectedRoute
+
+            exact
+            path="/admin-pending-event-details"
+          >
+            <AdminPendingEventDetails/>
+          </ProtectedRoute>
+
+
+          {/* ADMIN END */}
+
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
@@ -70,14 +118,23 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            exact
+            path="/organization-view"
+          >
+            <OrganizationView />
+          </ProtectedRoute>
+
           <Route
             exact
             path="/userprofile"
           >
-    
-              <UserProfilePage />
-            
+
+            <UserProfilePage />
+
           </Route>
+
+
 
           <Route
             exact

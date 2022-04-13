@@ -20,6 +20,7 @@ import fetchEventId from "./Event_Reducers/fetchEventId.reducer";
 import addEvent from "./Event_Reducers/addEvent.reducer";
 import updateEvent from "./Event_Reducers/updateEvent.reducer";
 import fetchSavedEvents from "./Event_Reducers/fetchSavedEvents.reducer";
+import fetchPendingEvents from "./Event_Reducers/fetchPendingEvents.reducer";
 
 
 
@@ -56,6 +57,7 @@ const rootReducer = combineReducers({
   updateEvent,
   fetchSavedEvents,
   fetchAllOrganizations,
+  fetchPendingEvents,
 });
 
 export default rootReducer;
