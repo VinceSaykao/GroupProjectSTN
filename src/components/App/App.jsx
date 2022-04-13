@@ -28,6 +28,7 @@ import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
 import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
 import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
+import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
 
 import './App.css';
 
@@ -95,6 +96,15 @@ function App() {
           </ProtectedRoute>
 
 
+
+
+          <ProtectedRoute
+
+            exact
+            path="/admin-pending-event-details"
+          >
+            <AdminPendingEventDetails/>
+          </ProtectedRoute>
 
 
           {/* ADMIN END */}
