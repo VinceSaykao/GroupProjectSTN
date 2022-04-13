@@ -13,6 +13,17 @@ export default function AdminPendingEventDetails() {
 
     const fetchEventId = useSelector(store => store.fetchEventId)
 
+    const handleApprove = () => {
+
+        
+
+        console.log('approved')
+    }; // end of handleApprove
+
+    const handleDeny = () => {
+        console.log('denied')
+    }; // end of handleDeny
+
 
     return (
         <div>
@@ -22,18 +33,22 @@ export default function AdminPendingEventDetails() {
                 </style>
             </Helmet>
 
+            <h1>Event Details</h1>
+
+            <Button onClick={handleApprove} variant="contained" startIcon={<CheckCircleOutlineIcon fontSize='large'/>}>
+                Approve
+            </Button>
+
+            <Button onClick={handleDeny} variant="contained" startIcon={<CloseIcon fontSize='large'/>}>
+                Deny
+            </Button>
+
             <div className='admin-pending-event-detail-container'>
             {fetchEventId.map((detail,i) => {
                 return (
                     <div id={i}>
                     <p>You Live In: </p>{detail.city}
-                    <Button variant="contained" startIcon={<CheckCircleOutlineIcon fontSize='large'/>}>
-                Approve
-            </Button>
-
-            <Button variant="contained" startIcon={<CloseIcon fontSize='large'/>}>
-                Deny
-            </Button>
+                
                     </div>
                 )
             })}
