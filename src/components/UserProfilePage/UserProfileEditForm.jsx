@@ -5,7 +5,7 @@ import { useParams, Link, useHistory } from "react-router-dom";
 
 function UserProfileEditForm() {
   const dispatch = useDispatch();
-    const { id } = useParams();
+  const { id } = useParams();
   // const updateProfile = useSelector(store => store.updateProfile);
   //   const fetchProfile = useSelector((store) => store.fetchProfile);
   const user = useSelector((store) => store.user);
@@ -16,17 +16,16 @@ function UserProfileEditForm() {
   //   const [phoneNumber, setPhoneNumber] = useState([]);
 
   const handleUpdateUser = () => {
-    let updateForm = {
-      id: user.id,
-      bio: bio,
-      email: email,
-      //   phoneNumber: phoneNumber,
-    };
-    dispatch({ type: "SET_UPDATE_PROFILE_SAGA", payload: updateForm });
-    console.log("updateForm =", updateForm);
-    console.log("id =", user.id);
-    // console.log(profileUser);
+    dispatch({
+      type: "SET_UPDATE_PROFILE_SAGA",
+      payload: {
+        id: user.id,
+        bio: bio,
+        email: email,
+      },
+    });
   };
+  console.log("bio, email= ", bio, email);
   return (
     <>
       <form>

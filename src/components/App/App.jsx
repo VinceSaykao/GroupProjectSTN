@@ -22,14 +22,15 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 // User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
-import OrganizationView from '../Organization/OrganizationView'
+import UserProfileEditForm from '../UserProfilePage/UserProfileEditForm';
+// import OrganizationView from '../Organization/OrganizationView'
 
 
 // Admin 
-import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
-import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
-import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
-import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
+// import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
+// import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
+// import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
+// import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
 
 import './App.css';
 
@@ -72,7 +73,7 @@ function App() {
           </ProtectedRoute>
 
           {/* ADMIN START */}
-          <ProtectedRoute
+          {/* <ProtectedRoute
 
             exact
             path="/admin-approved-event-details"
@@ -105,7 +106,7 @@ function App() {
             path="/admin-pending-event-details"
           >
             <AdminPendingEventDetails/>
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
 
           {/* ADMIN END */}
@@ -118,12 +119,12 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             exact
             path="/organization-view"
           >
             <OrganizationView />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <Route
             exact
@@ -131,6 +132,15 @@ function App() {
           >
 
             <UserProfilePage />
+
+          </Route>
+
+          <Route
+            exact
+            path="/userprofileedit"
+          >
+
+            <UserProfileEditForm />
 
           </Route>
 
