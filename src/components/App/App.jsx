@@ -26,7 +26,7 @@ import UserProfilePage from '../UserProfilePage/UserProfilePage';
 
 // Admin 
 import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
-import AdminEventDetails from '../Admin/AdminEventDetails/AdminEventDetails';
+import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
 
 import './App.css';
 

@@ -8,10 +8,12 @@ import AdminEventDetails from "./AdminEventDetails";
 
 import './AdminEventList.scss';
 
+
 export default function AdminEventList() {
 
     // store that grabs approved events, although fetchApprovedEvents brings in more data...??
     const fetchApprovedEvents = useSelector(store => store.fetchApprovedEvents);
+    const user = useSelector(store => store.user);
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -19,6 +21,7 @@ export default function AdminEventList() {
     // useEffect to grab the approved events
     useEffect(() => {
         dispatch({ type: 'FETCH_APPROVED_EVENTS' });
+        dispatch({ type: 'FETCH_EVENT_DETAILS', payload: user.id })
 
 
     }, []);

@@ -10,6 +10,14 @@ export default function AdminEventDetails() {
     return (
         <div>
             <h1>YEE</h1>
+
+            {fetchEventId.map((detail,i) => {
+                return (
+                    <div id={i}>
+                    {detail.city}
+                    </div>
+                )
+            })}
         
         </div>
     )
