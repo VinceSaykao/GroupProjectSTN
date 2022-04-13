@@ -1,4 +1,4 @@
-CREATE TABLE "users" (
+CREATE TABLE "user" (
 "id" SERIAL PRIMARY KEY,
 "username" VARCHAR (100),
 "password" VARCHAR (200),
@@ -48,7 +48,9 @@ CREATE TABLE "events" (
 "status" VARCHAR (100) DEFAULT 'pending',
 "name" VARCHAR (100),
 "description" VARCHAR (300),
-"date" DATE,
+"link" VARCHAR (500),
+"start_date" DATE,
+"end_date" DATE,
 "start_time" TIME,
 "end_time" TIME,
 "image" VARCHAR (1000),

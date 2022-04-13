@@ -21,6 +21,8 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
+import AdminEventCreate from '../Admin/AdminForm/AdminEventCreate';
+import AdminEventEdit from '../Admin/AdminForm/AdminEventEdit';
 
 import './App.css';
 
@@ -120,6 +122,14 @@ function App() {
               <LandingPage />
             }
           </Route>
+
+          <ProtectedRoute exact path="/admin-event-create">
+            <AdminEventCreate />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/admin-event-edit">
+            <AdminEventEdit />
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

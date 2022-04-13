@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* addEvent() {
+function* postEvent(action) {
 
     try {
-        axios.post('/api/event', action.payload);   // Posts Event to DB
-        yield put({ type: 'FETCH_APPROVED_EVENTS' });         // Re-Fetch ALL events
+        console.log('action.payload', action.payload);
+        
+        axios.post('/api/event', action.payload);       // Posts Event to DB
+        yield put({ type: 'FETCH_APPROVED_EVENTS' });   // Re-Fetch ALL events
 
 
     } catch (error) {
@@ -14,7 +16,7 @@ function* addEvent() {
 }
 
 function* addEventSaga() {
-    yield takeLatest('ADD_EVENT', addEvent);
+    yield takeLatest('POST_EVENT', postEvent);
 }
 
 export default addEventSaga;

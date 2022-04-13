@@ -75,14 +75,32 @@ router.get('/organization/:id', (req, res) => {
 
 // Will POST an Event to database as *pending status event* when an organization fills out their Event register form. 
 router.post('/', (req, res) => {
-    let queryText = `
-    insert into "events" ("org_id","category_id","status","name","description","date","start_time","end_time","image","address1","address2","city","zip","state","feedback") values
-    ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15);
+
+    console.log('req.body', req.body);
+    
+    const queryText = `
+        INSERT INTO "events" ("org_id","category_id","status","name","description","date","start_time","end_time","image","address1","address2","city","zip","state","feedback") 
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15);
     `;
 
-    let queryInserts = [req.body.org_id,req.body.category_id,req.body.status,req.body.name,
-        req.body.description,req.body.date,req.body.start_time,req.body.end_time,req.body.image,
-        req.body.address1,req.body.address2,req.body.city,req.body.zip,req.body.state,req.body.feedback];
+    const queryInserts = [
+            req.body.org_id,
+            req.body.category_id,
+            req.body.status,
+            req.body.name,
+            req.body.description,
+            req.body.date,
+            req.body.start_time,
+            req.body.end_time,
+            req.body.image,
+            req.body.address1,
+            req.body.address2,
+            req.body.city,
+            req.body.zip,
+            req.body.state,
+            req.body.feedback
+        ];
+
     if (req.isAuthenticated) {
         pool
             .query(queryText, queryInserts)
