@@ -14,7 +14,7 @@ export default function AdminEventDetails() {
             {fetchEventId.map((detail,i) => {
                 return (
                     <div id={i}>
-                    {detail.city}
+                    <p>You Live In: </p>{detail.city}
                     </div>
                 )
             })}
