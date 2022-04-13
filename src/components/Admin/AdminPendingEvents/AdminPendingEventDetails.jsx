@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet';
 import { useSelector } from "react-redux";
 
+import "./AdminPendingEventDetails.scss";
+
 export default function AdminPendingEventDetails() {
 
     const fetchEventId = useSelector(store => store.fetchEventId)
@@ -14,6 +16,7 @@ export default function AdminPendingEventDetails() {
                 </style>
             </Helmet>
 
+            <div className='admin-pending-event-detail-container'>
             {fetchEventId.map((detail,i) => {
                 return (
                     <div id={i}>
@@ -21,6 +24,7 @@ export default function AdminPendingEventDetails() {
                     </div>
                 )
             })}
+            </div>
 
         </div>
     )
