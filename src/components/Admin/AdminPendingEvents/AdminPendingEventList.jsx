@@ -16,10 +16,10 @@ export default function AdminPendingEventList() {
         dispatch({ type: 'FETCH_PENDING_EVENT_ADMIN' });
     }, []);
     
+    //store that grabs events that are ONLY pending
     const fetchPendingEvents = useSelector(store => store.fetchPendingEvents);
 
 
-    console.log('pending: ', fetchPendingEvents);
     return (
         <div>
             <Helmet>
