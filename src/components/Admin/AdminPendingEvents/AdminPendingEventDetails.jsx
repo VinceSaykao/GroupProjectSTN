@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react';
 
 import "./AdminPendingEventDetails.scss";
 
@@ -11,15 +12,23 @@ import CloseIcon from '@mui/icons-material/Close';
 
 export default function AdminPendingEventDetails() {
 
-    const fetchEventId = useSelector(store => store.fetchEventId)
+    const dispatch = useDispatch();
 
+    const [status, setStatus] = useState('approved')
+
+    // store that has the specific event I want by id
+    const fetchEventId = useSelector(store => store.fetchEventId);
+    const user = useSelector(store => store.user);
+
+    // when approve button is pressed, it will change event status to approved
     const handleApprove = () => {
-
-        
-
         console.log('approved')
+
+        dispatch ({ type: 'UPDATE_EVENT', payload: {id: user.id, status: status} });
+
     }; // end of handleApprove
 
+    // when deny button is pressed, it will allow for admin feedback
     const handleDeny = () => {
         console.log('denied')
     }; // end of handleDeny
