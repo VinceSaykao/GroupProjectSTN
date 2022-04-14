@@ -53,7 +53,7 @@ export default function AdminEventList() {
                 <div className="admin-search-div">
                 <InputBase
                     sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
-                    placeholder="Search"
+                    placeholder="| Search"
                     inputProps={{ 'aria-label': 'search google maps' }}
                 />
                 <IconButton>
