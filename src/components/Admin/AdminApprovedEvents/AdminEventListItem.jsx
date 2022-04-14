@@ -32,16 +32,10 @@ export default function AdminEventListItem({ event }) {
         className='admin-event-item'
         onClick={handleClick}>
 
+        {/* {event.city} */}
 
 
-        {event.city}
-
-
-
-
-
-
-{/* <Grid container spacing={10} sx={{ py: 3.25 }}
+ <Grid container spacing={10} sx={{ py: 3.25 }}
 className="admin-grid-events"
 >
                 <Grid item xs={3}>
@@ -72,7 +66,7 @@ className="admin-grid-events"
                     </div>
             
                 </Grid>
-            </Grid> */}
+            </Grid> 
         
 
         </div>
