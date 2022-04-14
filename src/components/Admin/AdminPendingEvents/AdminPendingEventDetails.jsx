@@ -1,18 +1,19 @@
 import { Helmet } from 'react-helmet';
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import "./AdminPendingEventDetails.scss";
 
 //MUI
 import Button from '@mui/material/Button';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function AdminPendingEventDetails() {
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [status, setStatus] = useState('approved')
 
@@ -25,8 +26,6 @@ export default function AdminPendingEventDetails() {
         
         // destructures the array of object
         const event = fetchEventId[0];
-
-
 
         dispatch ({ type: 'UPDATE_EVENT', 
         payload: 
@@ -48,6 +47,8 @@ export default function AdminPendingEventDetails() {
             state: event.state,
             feedback: event.feedback,
         } });
+
+        history.push('./admin-pending-list');
 
     }; // end of handleApprove
 
