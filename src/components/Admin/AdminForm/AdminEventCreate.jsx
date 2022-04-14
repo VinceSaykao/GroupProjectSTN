@@ -11,12 +11,6 @@ import MobileTimePicker from '@mui/lab/MobileTimePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Grid from '@mui/material/Grid';
-
 
 
 function AdminEventCreate() {
@@ -64,6 +58,16 @@ function AdminEventCreate() {
                 required
             />
             <br /><br />
+            <TextField
+                label="Description"
+                autoComplete="off"
+                value={newEvent.description}
+                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'description', value: e.target.value } })}
+                required
+                minRows={3}
+                multiline
+            />
+            <br /><br />
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <MobileDatePicker
                     label="Start Date"
@@ -72,7 +76,6 @@ function AdminEventCreate() {
                     onChange={dispatchStartDate}
                     renderInput={(params) => <TextField {...params} />}
                 />
-                <br />
                 <MobileDatePicker
                     label="End Date"
                     value={endDate}
@@ -86,7 +89,6 @@ function AdminEventCreate() {
                     onChange={dispatchStartTime}
                     renderInput={(params) => <TextField {...params} />}
                 />
-                <br />
                 <MobileTimePicker
                     label="End Time"
                     value={endTime}
@@ -94,16 +96,6 @@ function AdminEventCreate() {
                     renderInput={(params) => <TextField {...params} />}
                 />
             </LocalizationProvider>
-            <br /><br />
-            <TextField
-                label="Description"
-                autoComplete="off"
-                value={newEvent.description}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'description', value: e.target.value } })}
-                required
-                minRows={3}
-                multiline
-            />
             <br /><br />
             <TextField
                 label="Email"
@@ -117,6 +109,46 @@ function AdminEventCreate() {
                 autoComplete="off"
                 value={newEvent.phone}
                 onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'phone', value: e.target.value } })}
+            />
+            <br /><br />
+            <TextField
+                label="Image / Flyer"
+                autoComplete="off"
+                value={newEvent.image}
+                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'image', value: e.target.value } })}
+            />
+            <br /><br />
+            <TextField
+                label="Address Line 1"
+                autoComplete="off"
+                value={newEvent.address1}
+                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'address1', value: e.target.value } })}
+            />
+            <br /><br />
+            <TextField
+                label="Address Line 2"
+                autoComplete="off"
+                value={newEvent.address2}
+                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'address2', value: e.target.value } })}
+            />
+            <br /><br />
+            <TextField
+                label="City"
+                autoComplete="off"
+                value={newEvent.city}
+                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'city', value: e.target.value } })}
+            />
+            <TextField
+                label="State"
+                autoComplete="off"
+                value={newEvent.state}
+                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'state', value: e.target.value } })}
+            />
+            <TextField
+                label="Zip Code"
+                autoComplete="off"
+                value={newEvent.zip}
+                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'zip', value: e.target.value } })}
             />
             <br /><br />
             <TextField

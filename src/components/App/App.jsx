@@ -22,12 +22,12 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 // User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
-import AdminEventCreate from '../Admin/AdminForm/AdminEventCreate';
-import AdminEventEdit from '../Admin/AdminForm/AdminEventEdit';
 import OrganizationView from '../Organization/OrganizationView'
 
 
 // Admin 
+import AdminEventCreate from '../Admin/AdminForm/AdminEventCreate';
+import AdminEventEdit from '../Admin/AdminForm/AdminEventEdit';
 import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
 import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
 import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
