@@ -35,10 +35,10 @@ export default function AdminEventList() {
 
 
     return (
-        <div>
+        <div className="admin-event-view">
 
             <Helmet>
-                <style>{`body { background-color: #090909ee;); 
+                <style>{`body { background-color: #090909ee; overflow: hidden;); 
             
             }`}
 
@@ -64,6 +64,8 @@ export default function AdminEventList() {
                 <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
             </div>
 
+
+
             <div className="approved-event-list">
                 {fetchApprovedEvents?.map((event, i) => {
                     return (
@@ -78,6 +80,8 @@ export default function AdminEventList() {
                     )
                 })}
             </div>
+
+
 
         </div>
     )

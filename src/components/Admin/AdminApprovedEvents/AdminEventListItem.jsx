@@ -34,7 +34,7 @@ export default function AdminEventListItem({ event }) {
 
 
 
-        {event.date}
+        {event.city}
 
 
 
