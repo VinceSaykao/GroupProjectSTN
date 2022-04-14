@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 // User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
+import UserProfileEditForm from '../UserProfilePage/UserProfileEditForm';
 import OrganizationView from '../Organization/OrganizationView'
 
 
@@ -118,12 +119,12 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             exact
             path="/organization-view"
           >
             <OrganizationView />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <Route
             exact
@@ -131,6 +132,15 @@ function App() {
           >
 
             <UserProfilePage />
+
+          </Route>
+
+          <Route
+            exact
+            path="/userprofileedit"
+          >
+
+            <UserProfileEditForm />
 
           </Route>
 
