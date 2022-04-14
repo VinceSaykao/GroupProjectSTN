@@ -19,7 +19,6 @@ export default function AdminPendingEventDetails() {
 
     // store that has the specific event I want by id
     const fetchEventId = useSelector(store => store.fetchEventId);
-    const user = useSelector(store => store.user);
 
     // when approve button is pressed, it will change event status to approved
     const handleApprove = () => {
