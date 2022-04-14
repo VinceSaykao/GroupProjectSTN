@@ -4,7 +4,7 @@ const router = express.Router();
 
 // This will GET all profile information for a specific profile user
 router.get("/:id", (req, res) => {
-//   console.log("req.body= ", req.body);
+  //   console.log("req.body= ", req.body)
   let id = req.params.id;
 
   if (req.isAuthenticated()) {
@@ -50,16 +50,26 @@ router.post("/", (req, res) => {
 
 // update information for specific user profile
 router.put("/:id", (req, res) => {
-  //   console.log("req.body= ", req.body);
+  console.log("req.body= ", req.body);
+  console.log("params.id= ", req.params.id);
   const queryText = `
     update "user" set
-    "bio" = $1,
-    "email" = $2,
-    "image" = $3
-    where "id" = $4;
+    "first_name" = $1,
+    "last_name" = $2,
+    "bio" = $3,
+    "email" = $4,
+    "image" = $5
+    WHERE "id" = $6;
     `;
 
-  const queryValues = [req.body.bio, req.body.email, req.body.image, req.params.id];
+  const queryValues = [
+    req.body.first_name,
+    req.body.last_name,
+    req.body.bio,
+    req.body.email,
+    req.body.image,
+    req.params.id,
+  ];
 
   pool
     .query(queryText, queryValues)
