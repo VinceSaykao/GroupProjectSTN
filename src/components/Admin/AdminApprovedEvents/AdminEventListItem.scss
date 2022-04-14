@@ -1,3 +1,24 @@
 .admin-event-item {
-    background-color: rgba(0, 255, 128, 0.103);;
+    background-color: rgba(255, 255, 255, 0.94);
+    line-height: 80px;
+    height: 80px;
+    border: 1px solid white;
+    text-align: center;
+
+    margin: 1rem 1rem;
+
+    border-radius: 10px;
+}
+
+
+.admin-event-date, .admin-event-name {
+    font-size: 10px;
+}
+
+// .pending-event-list-detail {
+// }
+
+.approved-event-list {
+    text-align: center;
+    color: black;
 }
