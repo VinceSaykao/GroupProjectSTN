@@ -6,7 +6,7 @@ import { useParams, Link, useHistory } from "react-router-dom";
 function UserProfileEditForm() {
   const dispatch = useDispatch();
   //   const { id } = useParams();
-  // const updateProfile = useSelector(store => store.updateProfile);
+  const updateProfile = useSelector(store => store.updateProfile);
   //   const fetchProfile = useSelector((store) => store.fetchProfile);
   const user = useSelector((store) => store.user);
   //   const [profileUser, setProfileUser] = useState(user.id);

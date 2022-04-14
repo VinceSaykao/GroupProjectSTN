@@ -5,7 +5,7 @@ function* getProfileSaga(action) {
   console.log('id is', action.payload);
   try {
     console.log("BEFORE= ", action.payload);
-    const profiles = yield axios.get(`/api/profile/${action.payload.id}`, action.payload);
+    const profiles = yield axios.get(`/api/profile/${action.payload}`);
     yield put({ type: "SET_PROFILE", payload: profiles.data });
   } catch (error) {
     console.log("get all error");
