@@ -30,7 +30,7 @@ export default function AdminPendingEventDetails() {
         dispatch ({ type: 'UPDATE_EVENT', 
         payload: 
         {
-            id: user.id, 
+            id: event.id, 
             org_id: event.org_id, 
             category_id: event.category_id, 
             status: status,
