@@ -9,6 +9,8 @@ export default function AdminEventDetails() {
 
     const fetchEventId = useSelector(store => store.fetchEventId)
 
+
+    console.log('fetch', fetchEventId)
     return (
         <div>
             <Helmet>
