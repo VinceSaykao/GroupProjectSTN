@@ -32,14 +32,25 @@ export default function AdminEventListItem({ event }) {
         className='admin-event-item'
         onClick={handleClick}>
 
-<Grid container spacing={10} sx={{ py: 1 }}>
+
+
+        {event.date}
+
+
+
+
+
+
+{/* <Grid container spacing={10} sx={{ py: 3.25 }}
+className="admin-grid-events"
+>
                 <Grid item xs={3}>
                     <div className="category-icon">
                     Icon
                     </div>
                 </Grid>
                 <Grid item xs={6}>
-                    <Typography sx={{ mb: 3 }}>
+                    <Typography sx={{ mb: 6 }}>
                 <div className="pending-event-list-detail">
     
                     <span className='admin-event-date'>
@@ -50,9 +61,6 @@ export default function AdminEventListItem({ event }) {
                 
                         {event.name}
                         </span>
-            
-                    
-                    
                         
                     </div>
                         </Typography>
@@ -64,7 +72,7 @@ export default function AdminEventListItem({ event }) {
                     </div>
             
                 </Grid>
-            </Grid>
+            </Grid> */}
         
 
         </div>

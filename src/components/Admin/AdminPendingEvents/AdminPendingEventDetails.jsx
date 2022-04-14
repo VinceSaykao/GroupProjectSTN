@@ -15,7 +15,8 @@ export default function AdminPendingEventDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [status, setStatus] = useState('approved')
+    const [status, setStatus] = useState('approved');
+
 
     // store that has the specific event I want by id
     const fetchEventId = useSelector(store => store.fetchEventId);

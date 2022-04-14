@@ -44,18 +44,23 @@ export default function AdminEventList() {
 
                 </style>
             </Helmet>
+
             <h1
                 className="admin-event-header"
             >Admin Approved Events</h1>
             <div>
+
+                <div className="admin-search-div">
                 <InputBase
-                    sx={{ ml: 12, flex: 1, bgcolor: 'white', }}
+                    sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
                     placeholder="Search"
                     inputProps={{ 'aria-label': 'search google maps' }}
                 />
                 <IconButton>
                     <SearchIcon />
                 </IconButton>
+                </div>
+
                 <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
             </div>
 
