@@ -64,11 +64,11 @@ export default function AdminEventList() {
                     return (
                         <div key={i}>
 
-                            <span><u>Event</u>
+                        
                                 <AdminEventListItem
                                 event={event}
                             />
-                            </span>
+                        
                         </div>
                     )
                 })}
