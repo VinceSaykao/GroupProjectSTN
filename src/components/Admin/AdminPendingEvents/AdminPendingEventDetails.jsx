@@ -18,7 +18,6 @@ export default function AdminPendingEventDetails() {
 
     // store that has the specific event I want by id
     const fetchEventId = useSelector(store => store.fetchEventId);
-    const user = useSelector(store => store.user);
 
     // when approve button is pressed, it will change event status to approved
     const handleApprove = () => {
@@ -31,7 +30,7 @@ export default function AdminPendingEventDetails() {
         dispatch ({ type: 'UPDATE_EVENT', 
         payload: 
         {
-            id: user.id, 
+            id: event.id, 
             org_id: event.org_id, 
             category_id: event.category_id, 
             status: status,
