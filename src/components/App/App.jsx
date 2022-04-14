@@ -23,6 +23,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 // User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import OrganizationView from '../Organization/OrganizationView'
+import OrganizationEditForm from '../Organization/OrganizationEditForm';
+import OrganizationRegisterForm from '../Organization/OrganizationRegisterForm'
 
 
 // Admin 
@@ -118,12 +120,29 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          {/* Organization Start */}
+
           <Route
             exact
-            path="/organization-view"
+            path="/organization-register-form"
+          >
+            <OrganizationRegisterForm />
+          </Route>
+          <Route
+            exact
+            path="/organization-view/:id"
           >
             <OrganizationView />
           </Route>
+
+          <Route
+            exact
+            path="/organization-edit-form/:id"
+          >
+            <OrganizationEditForm />
+          </Route>
+
+          {/* Organization End */}
 
           <Route
             exact

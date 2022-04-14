@@ -21,27 +21,35 @@ import DialogActions from '@mui/material/DialogActions';
 
 function OrganizationEditForm() {
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   useEffect(() => {
     // Upon load, get the selected organization profile based on their user id
     dispatch({ type: 'FETCH_ORG_PROFILE', payload: id });
   }, []);
 
-  const org = useSelector((store) => store.orgProfile);
+  const org = useSelector((store) => store.fetchOrganization);
   const user = useSelector((store) => store.user);
 
-  const id = user.id;
+ 
   console.log('ID is', id);
   console.log('org is', org);
 
   const updateState = {
-    org_name: org.org_name,
-    org_location: org.org_location,
-    org_img_url: org.org_img_url,
-    about: org.about,
-    instagram_url: org.instagram_url,
-    facebook_url: org.facebook_url,
-    twitter_url: org.twitter_url,
+    name: org.name,
+    email: org.email,
+    phone: org.phone,
+    website: org.website,
+    twitter: org.twitter,
+    facebook: org.facebook,
+    instagram: org.instagram,
+    description: org.description,
+    image: org.image,
+    address1: org.address1,
+    address2: org.address2,
+    city: org.city,
+    state: org.state,
+    zip: org.zip,
   };
 
   // Storing the local updates to the organization in here
@@ -94,65 +102,12 @@ function OrganizationEditForm() {
             variant="contained"
             onClick={handleClickOpen}
           >
-            Edit
+            update
           </Button>
         </div>
       </Grid>
-      <Typography gutterBottom variant="subtitle2" component="div">
-        About:
-      </Typography>
-      <Typography gutterBottom variant="body2" component="div">
-          {org.about}
-        </Typography>
-      <Typography gutterBottom variant="subtitle2" component="div">
-        Facilities:
-      </Typography>
-      <Typography gutterBottom variant="body2" component="div">
-          {org.facilities}
-        </Typography>
-        <Typography gutterBottom variant="subtitle2" component="div">
-        Discipline:
-      </Typography>
-      <Typography gutterBottom variant="body2" component="div">
-          {org.discipline}
-        </Typography>
-      <Typography gutterBottom variant="subtitle2" component="div">
-        Public Programs:
-      </Typography>
-      <Typography gutterBottom variant="body2" component="div">
-          {org.public_programs}
-        </Typography>
-      <Typography gutterBottom variant="subtitle2" component="div">
-        Housing:
-      </Typography>
-      <Typography gutterBottom variant="body2" component="div">
-          {org.housing}
-        </Typography>
-      <Typography gutterBottom variant="subtitle2" component="div">
-        Location:
-      </Typography>
-      <Grid container justifyContent="center">
-        <iframe
-          width="300"
-          height="200"
-          frameBorder={0}
-          style={{ border: 0 }}
-          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDX4e7v69d8lQVeWvBOcs-Bt9mFS2VVogg&q=${org.org_location}`}
-          allowFullScreen
-        ></iframe>
-        <BottomNavigation sx={{ width: 'auto' }}>
-          <Link href={org.instagram_url}>
-            <BottomNavigationAction icon={<InstagramIcon />} />
-          </Link>
-          <Link href={org.twitter_url}>
-            <BottomNavigationAction icon={<TwitterIcon />} />
-          </Link>
-          <Link href={org.facebook_url}>
-            <BottomNavigationAction icon={<FacebookIcon />} />
-          </Link>
-        </BottomNavigation>
-      </Grid>
-      {open && (
+      
+
         <Dialog open={open} onClose={handleCloseEdit}>
           <DialogTitle>{org.org_name}</DialogTitle>
           <DialogContent>
@@ -258,7 +213,6 @@ function OrganizationEditForm() {
             <Button onClick={updateOrg}>Update</Button>
           </DialogActions>
         </Dialog>
-      )}
     </>
   );
 }

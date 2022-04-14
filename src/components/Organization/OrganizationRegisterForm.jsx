@@ -27,8 +27,9 @@ function AddOrganization() {
     image: '',
     address1: '',
     address2: '',
-    zip: '',
+    city:'',
     state: '',
+    zip: '',
   };
 
   const [newOrg, setNewOrg] = useState(orgState);
@@ -47,8 +48,9 @@ function AddOrganization() {
       newOrg.image,
       newOrg.address1,
       newOrg.address2,
-      newOrg.zip,
-      newOrg.state)
+      newOrg.city,
+      newOrg.state,
+      newOrg.zip)
     ) {
       event.preventDefault();
       dispatch({ type: 'ADD_ORGANIZATION', payload: newOrg });
@@ -129,7 +131,7 @@ function AddOrganization() {
               sx={{ margin: '10px' }}
               autoComplete="off"
               type="text"
-              required
+             
               label="Facebook URL"
               value={newOrg.facebook}
               onChange={(e) =>
@@ -171,7 +173,7 @@ function AddOrganization() {
                 setNewOrg({ ...newOrg, image: e.target.value })
               }
             />
-                        <TextField
+            <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"
               type="text"
@@ -182,29 +184,28 @@ function AddOrganization() {
                 setNewOrg({ ...newOrg, address1: e.target.value })
               }
             />
-                        <TextField
+            <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"
               type="text"
-              required
               label="Address 2"
               value={newOrg.address2}
               onChange={(e) =>
                 setNewOrg({ ...newOrg, address2: e.target.value })
               }
             />
-                        <TextField
+            <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"
-              type="number"
+              type="text"
               required
-              label="Zip Code"
-              value={newOrg.zip}
+              label="City"
+              value={newOrg.city}
               onChange={(e) =>
-                setNewOrg({ ...newOrg, zip: e.target.value })
+                setNewOrg({ ...newOrg, city: e.target.value })
               }
             />
-                        <TextField
+            <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"
               type="text"
@@ -213,6 +214,17 @@ function AddOrganization() {
               value={newOrg.state}
               onChange={(e) =>
                 setNewOrg({ ...newOrg, state: e.target.value })
+              }
+            />
+            <TextField
+              sx={{ margin: '10px' }}
+              autoComplete="off"
+              type="number"
+              required
+              label="Zip Code"
+              value={newOrg.zip}
+              onChange={(e) =>
+                setNewOrg({ ...newOrg, zip: e.target.value })
               }
             />
           </FormControl>
