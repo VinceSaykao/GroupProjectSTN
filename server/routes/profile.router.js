@@ -4,6 +4,7 @@ const router = express.Router();
 
 // This will GET all profile information for a specific profile user
 router.get("/:id", (req, res) => {
+//   console.log("req.body= ", req.body);
   let id = req.params.id;
 
   if (req.isAuthenticated()) {
@@ -49,7 +50,7 @@ router.post("/", (req, res) => {
 
 // update information for specific user profile
 router.put("/:id", (req, res) => {
-  console.log("req.body= ", req.body);
+  //   console.log("req.body= ", req.body);
   const queryText = `
     update "user" set
     "bio" = $1,

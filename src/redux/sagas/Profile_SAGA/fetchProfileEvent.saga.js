@@ -3,7 +3,7 @@ import axios from "axios";
 
 function* getProfileEventSaga(action) {
   try {
-    const eventProfile = yield axios.get(`/api/event/${action.payload}`);
+    const eventProfile = yield axios.get(`/api/event/${action.payload.id}`);
     yield put({ type: "SET_PROFILE_EVENT", payload: eventProfile.data });
   } catch {
     console.log("get all error");
