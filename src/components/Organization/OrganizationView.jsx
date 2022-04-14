@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -19,6 +18,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 
+
 function OrganizationView() {
   const dispatch = useDispatch();
 
@@ -27,15 +27,15 @@ function OrganizationView() {
     dispatch({ type: 'FETCH_ORG_PROFILE', payload: id });
   }, []);
 
-  const org = useSelector((store) => store.orgProfile);
+  const org = useSelector((store) => store.fetchOrganization);
   const user = useSelector((store) => store.user);
 
-  const id = user.id;
+  const id = user.org_id;
   console.log('ID is', id);
   console.log('org is', org);
 
   const updateState = {
-    org_name: org.org_name,
+    name: org.name,
     org_location: org.org_location,
     org_img_url: org.org_img_url,
     about: org.about,
@@ -74,7 +74,7 @@ function OrganizationView() {
     <>
       <Grid container justifyContent="center">
         <Typography gutterBottom variant="h6" component="div">
-          {org.org_name}
+          {org.name}
         </Typography>
         <div className="org-box">
           <Box
@@ -86,7 +86,7 @@ function OrganizationView() {
               maxWidth: { xs: 350, md: 250 },
             }}
             alt=""
-            src={org.org_img_url}
+            src={org.image}
           />
           <Button
             className="edit-button"
@@ -99,35 +99,26 @@ function OrganizationView() {
         </div>
       </Grid>
       <Typography gutterBottom variant="subtitle2" component="div">
-        About:
+        Description:
       </Typography>
       <Typography gutterBottom variant="body2" component="div">
-          {org.about}
-        </Typography>
+        {org.description}
+      </Typography>
       <Typography gutterBottom variant="subtitle2" component="div">
-        Facilities:
+        Events:
       </Typography>
       <Typography gutterBottom variant="body2" component="div">
-          {org.facilities}
-        </Typography>
-        <Typography gutterBottom variant="subtitle2" component="div">
-        Discipline:
+        {}//Organization's events list component will go here
       </Typography>
-      <Typography gutterBottom variant="body2" component="div">
-          {org.discipline}
-        </Typography>
       <Typography gutterBottom variant="subtitle2" component="div">
-        Public Programs:
+        Contact Information:
       </Typography>
       <Typography gutterBottom variant="body2" component="div">
-          {org.public_programs}
-        </Typography>
-      <Typography gutterBottom variant="subtitle2" component="div">
-        Housing:
+        {org.website} {org.email} {org.phone}
       </Typography>
       <Typography gutterBottom variant="body2" component="div">
-          {org.housing}
-        </Typography>
+        {org.housing}
+      </Typography>
       <Typography gutterBottom variant="subtitle2" component="div">
         Location:
       </Typography>
@@ -141,13 +132,13 @@ function OrganizationView() {
           allowFullScreen
         ></iframe>
         <BottomNavigation sx={{ width: 'auto' }}>
-          <Link href={org.instagram_url}>
+          <Link href={org.instagram}>
             <BottomNavigationAction icon={<InstagramIcon />} />
           </Link>
-          <Link href={org.twitter_url}>
+          <Link href={org.twitter}>
             <BottomNavigationAction icon={<TwitterIcon />} />
           </Link>
-          <Link href={org.facebook_url}>
+          <Link href={org.facebook}>
             <BottomNavigationAction icon={<FacebookIcon />} />
           </Link>
         </BottomNavigation>
@@ -158,7 +149,7 @@ function OrganizationView() {
           <DialogContent>
             <TextField
               autoFocus
-              autoComplete='off'
+              autoComplete="off"
               margin="dense"
               id="org_name"
               label="Name"
@@ -224,7 +215,9 @@ function OrganizationView() {
               type="text"
               variant="standard"
               value={update.instagram_url}
-              onChange={(e) => setUpdate({ ...update, instagram_url: e.target.value })}
+              onChange={(e) =>
+                setUpdate({ ...update, instagram_url: e.target.value })
+              }
             />
             <TextField
               autoFocus
@@ -237,7 +230,9 @@ function OrganizationView() {
               type="text"
               variant="standard"
               value={update.facebook_url}
-              onChange={(e) => setUpdate({ ...update, facebook_url: e.target.value })}
+              onChange={(e) =>
+                setUpdate({ ...update, facebook_url: e.target.value })
+              }
             />
             <TextField
               autoFocus
@@ -250,7 +245,9 @@ function OrganizationView() {
               type="text"
               variant="standard"
               value={update.twitter_url}
-              onChange={(e) => setUpdate({ ...update, twitter_url: e.target.value })}
+              onChange={(e) =>
+                setUpdate({ ...update, twitter_url: e.target.value })
+              }
             />
           </DialogContent>
           <DialogActions>
