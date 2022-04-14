@@ -41,6 +41,17 @@ CREATE TABLE "categories" (
 "icon" VARCHAR (1000)
 );
 
+INSERT INTO "categories" (name)
+VALUES 
+('Community Council & District Meetings'),
+('Education'),
+('Park & City Cleanup'),
+('Community Drives'),
+('Community Events'),
+('PopUps'),
+('Philanthropy & Donations'),
+('Other');
+
 CREATE TABLE "events" (
 "id" SERIAL PRIMARY KEY,
 "org_id" int,

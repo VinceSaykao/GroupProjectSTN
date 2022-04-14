@@ -11,12 +11,26 @@ import MobileTimePicker from '@mui/lab/MobileTimePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+import CategoryItem from './CategoryItem';
+
 
 
 function AdminEventCreate() {
 
     const dispatch = useDispatch();
     const newEvent = useSelector(store => store.addEvent);
+    const categories = useSelector(store => store.categories);
+
+    const [category, setCategory] = useState('');
+    const handleChange = (event) => {
+        setCategory(event.target.value);
+    };
 
     // ------- Date Time Dispatches -------------------------------------------------------------- //
 
@@ -48,6 +62,10 @@ function AdminEventCreate() {
         console.log('newEvent":', newEvent);
     }
 
+    useEffect (() => {
+        dispatch({ type: 'FETCH_CATEGORIES' })
+    }, [])
+
     return (
         <>
             <TextField
@@ -67,6 +85,19 @@ function AdminEventCreate() {
                 minRows={3}
                 multiline
             />
+            <br /><br />
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="category">Category</InputLabel>
+                <Select
+                    value={category}
+                    label="Category"
+                    onChange={handleChange}
+                >
+                    {categories.map(category => (
+                        <CategoryItem key={category.id} category={category} />
+                    ))}
+                </Select>
+            </FormControl>
             <br /><br />
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <MobileDatePicker
