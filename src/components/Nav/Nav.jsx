@@ -8,6 +8,10 @@ import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import MenuIcon from '@mui/icons-material/Menu';
+import AddIcon from '@mui/icons-material/Add';
+import GroupIcon from '@mui/icons-material/Group';
+import PendingActionsIcon from '@mui/icons-material/PendingActions';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 
 
 
@@ -36,6 +40,7 @@ import MailIcon from '@mui/icons-material/Mail';
 
 
 
+
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -60,7 +65,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
-  background: '#437953',
+  background: '#3e3e3e',
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -79,7 +84,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
-  background: '#437953',
+  background: '#3e3e3e',
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: 'flex-start',
@@ -173,26 +178,32 @@ function Nav() {
         >
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+              {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon className='chevron-right' fontSize='large'  />}
             </IconButton>
           </DrawerHeader>
           <Divider />
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+          <List className='nav-row'>
+            {['Profile', 'Calendar', 'Add Event', 'Organizations', 'Pending', 'Events'].map((text, index) => (
+              <ListItem button key={text} >
+                <ListItemIcon className='nav-tab'>
+                  {index === 0 ? <PersonIcon fontSize='large' className='nav-icon'/> : <HomeIcon /> &&
+                  index === 1 ? <HomeIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> &&
+                  index === 2 ? <AddIcon  fontSize='large'className='nav-icon'/> : <InboxIcon /> &&
+                  index === 3 ? <GroupIcon  fontSize='large'className='nav-icon'/> : <InboxIcon /> &&
+                  index === 4 ? <PendingActionsIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> &&
+                  index === 5 ? <EventAvailableIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> 
+                  }
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
           <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          <List className='nav-logout'>
+            {['Logout'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {index % 2 === 0 ? <ExitToAppIcon  fontSize='large' className='nav-icon'/> : <MailIcon />}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
