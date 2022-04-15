@@ -5,6 +5,10 @@ import { useHistory } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+
+
 
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import MobileTimePicker from '@mui/lab/MobileTimePicker';
@@ -62,141 +66,201 @@ function AdminEventCreate() {
         console.log('newEvent":', newEvent);
     }
 
-    useEffect (() => {
+    useEffect(() => {
         dispatch({ type: 'FETCH_CATEGORIES' })
     }, [])
 
     return (
-        <>
-            <TextField
-                label="Event Name"
-                autoComplete="off"
-                value={newEvent.name}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'name', value: e.target.value } })}
-                required
-            />
-            <br /><br />
-            <TextField
-                label="Description"
-                autoComplete="off"
-                value={newEvent.description}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'description', value: e.target.value } })}
-                required
-                minRows={3}
-                multiline
-            />
-            <br /><br />
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="category">Category</InputLabel>
-                <Select
-                    value={category}
-                    label="Category"
-                    onChange={handleChange}
-                >
-                    {categories.map(category => (
-                        <CategoryItem key={category.id} category={category} />
-                    ))}
-                </Select>
-            </FormControl>
-            <br /><br />
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <MobileDatePicker
-                    label="Start Date"
-                    inputFormat="MM/dd/yyyy"
-                    value={startDate}
-                    onChange={dispatchStartDate}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-                <MobileDatePicker
-                    label="End Date"
-                    value={endDate}
-                    onChange={dispatchEndDate}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-                <br /><br />
-                <MobileTimePicker
-                    label="Start Time"
-                    value={startTime}
-                    onChange={dispatchStartTime}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-                <MobileTimePicker
-                    label="End Time"
-                    value={endTime}
-                    onChange={dispatchEndTime}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-            </LocalizationProvider>
-            <br /><br />
-            <TextField
-                label="Email"
-                autoComplete="off"
-                value={newEvent.email}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'email', value: e.target.value } })}
-            />
-            <br /><br />
-            <TextField
-                label="Phone #"
-                autoComplete="off"
-                value={newEvent.phone}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'phone', value: e.target.value } })}
-            />
-            <br /><br />
-            <TextField
-                label="Image / Flyer"
-                autoComplete="off"
-                value={newEvent.image}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'image', value: e.target.value } })}
-            />
-            <br /><br />
-            <TextField
-                label="Address Line 1"
-                autoComplete="off"
-                value={newEvent.address1}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'address1', value: e.target.value } })}
-            />
-            <br /><br />
-            <TextField
-                label="Address Line 2"
-                autoComplete="off"
-                value={newEvent.address2}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'address2', value: e.target.value } })}
-            />
-            <br /><br />
-            <TextField
-                label="City"
-                autoComplete="off"
-                value={newEvent.city}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'city', value: e.target.value } })}
-            />
-            <TextField
-                label="State"
-                autoComplete="off"
-                value={newEvent.state}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'state', value: e.target.value } })}
-            />
-            <TextField
-                label="Zip Code"
-                autoComplete="off"
-                value={newEvent.zip}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'zip', value: e.target.value } })}
-            />
-            <br /><br />
-            <TextField
-                label="Sign Up Link"
-                autoComplete="off"
-                value={newEvent.link}
-                onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'link', value: e.target.value } })}
-                required
-            />
-            <br /><br />
-            <Button
-                variant="contained"
-                onClick={handleSubmit}
-            >
-                Submit
-            </Button>
-        </>
+        <Box sx={{ mx: 2 }}>
+
+            {/*  ----- EVENT DETAIL ------------------------------------------------ */}
+
+            <Typography variant="h5" sx={{ my: 2 }}>Event Detail</Typography>
+            
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Event Name"
+                        autoComplete="off"
+                        value={newEvent.name}
+                        onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'name', value: e.target.value } })}
+                        required
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Description"
+                        autoComplete="off"
+                        value={newEvent.description}
+                        onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'description', value: e.target.value } })}
+                        required
+                        minRows={3}
+                        multiline
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Image / Flyer"
+                        autoComplete="off"
+                        value={newEvent.image}
+                        onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'image', value: e.target.value } })}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <FormControl sx={{ minWidth: "100%" }}>
+                        <InputLabel id="category">Category</InputLabel>
+                        <Select
+                            value={category}
+                            label="Category"
+                            onChange={handleChange}
+                        >
+                            {categories.map(category => (
+                                <CategoryItem key={category.id} category={category} />
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Grid>
+            </Grid>
+
+            {/*  ----- TIME & DATE ------------------------------------------------------ */}
+
+            <Typography variant="h5" sx={{ my: 2 }}>Time & Date</Typography>
+
+            <Grid container spacing={2}>
+                <Grid item xs={6}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <MobileDatePicker
+                            label="Start Date"
+                            inputFormat="MM/dd/yyyy"
+                            value={startDate}
+                            onChange={dispatchStartDate}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </LocalizationProvider>
+                </Grid>
+                <Grid item xs={6}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <MobileDatePicker
+                            label="End Date"
+                            value={endDate}
+                            onChange={dispatchEndDate}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </LocalizationProvider>
+                </Grid>
+                <Grid item xs={6}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <MobileTimePicker
+                            label="Start Time"
+                            value={startTime}
+                            onChange={dispatchStartTime}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </LocalizationProvider>
+                </Grid>
+                <Grid item xs={6}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <MobileTimePicker
+                            label="End Time"
+                            value={endTime}
+                            onChange={dispatchEndTime}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </LocalizationProvider>
+                </Grid>
+            </Grid>
+
+            {/*  ----- CONTACT & LOCATION ------------------------------------------------ */}
+
+            <Typography variant="h5" sx={{ my: 2 }}>Contact & Location</Typography>
+
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Sign Up Link"
+                        autoComplete="off"
+                        value={newEvent.link}
+                        onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'link', value: e.target.value } })}
+                        required
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Email"
+                        autoComplete="off"
+                        value={newEvent.email}
+                        onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'email', value: e.target.value } })}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Phone #"
+                        autoComplete="off"
+                        value={newEvent.phone}
+                        onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'phone', value: e.target.value } })}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Address Line 1"
+                        autoComplete="off"
+                        value={newEvent.address1}
+                        onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'address1', value: e.target.value } })}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Address Line 2"
+                        autoComplete="off"
+                        value={newEvent.address2}
+                        onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'address2', value: e.target.value } })}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={4}>
+                    <TextField
+                        label="City"
+                        autoComplete="off"
+                        value={newEvent.city}
+                        onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'city', value: e.target.value } })}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={4}>
+                    <TextField
+                        label="State"
+                        autoComplete="off"
+                        value={newEvent.state}
+                        onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'state', value: e.target.value } })}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={4}>
+                    <TextField
+                        label="Zip Code"
+                        autoComplete="off"
+                        value={newEvent.zip}
+                        onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'zip', value: e.target.value } })}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        variant="contained"
+                        onClick={handleSubmit}
+                    >
+                        Submit
+                    </Button>
+                </Grid>
+            </Grid>
+        </Box >
     )
 }
 

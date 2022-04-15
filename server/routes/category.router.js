@@ -5,7 +5,7 @@ const router = express.Router();
 // --- Get All Categories ----------------------------------------
 router.get('/', (req, res) => {
     if (req.isAuthenticated()) {
-        pool.query('SELECT * FROM categories;')
+        pool.query('SELECT * FROM categories ORDER BY id;')
             .then(result => res.send(result.rows))
             .catch(error => {
                 console.log('category GET error:', error);
