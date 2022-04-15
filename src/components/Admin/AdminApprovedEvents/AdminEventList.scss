@@ -6,4 +6,22 @@
     background: rgb(255, 255, 255);
     box-shadow: 1px 1px 20px black;
     width: 90%;
+    border-radius: 10px;
+
+
+}
+
+// .admin-event-view {
+    // background-color: blue;
+    // position: fixed;
+    // box-sizing: border-box;
+// }
+
+.approved-event-list {
+    text-align: center;
+    color: black;
+    overflow: scroll;
+    // background-color: green;
+    height: 500px;
+    margin: 0 auto;
 }
