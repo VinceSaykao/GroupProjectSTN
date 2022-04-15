@@ -98,7 +98,8 @@ function OrganizationView() {
           allowFullScreen
         ></iframe>
         <BottomNavigation sx={{ width: 'auto' }}>
-          <Link href={org.instagram}>
+          <Link 
+          href={org.instagram}>
             <BottomNavigationAction icon={<InstagramIcon />} />
           </Link>
           <Link href={org.twitter}>

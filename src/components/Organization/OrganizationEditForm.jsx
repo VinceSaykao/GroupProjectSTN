@@ -56,6 +56,10 @@ function OrganizationEditForm() {
     // dispatch({ type: 'GET_DETAILS', payload: id }); // Needs to be done to show the updated edits
   };
 
+  const cancel =(e) => {
+    history.push(`/organization-view/${org.id}`)
+  }
+
 console.log(updateState.state);
 
   return (
@@ -221,6 +225,9 @@ console.log(updateState.state);
           >
             <Button variant="outlined" onClick={updateOrg} sx={{ margin: '10px' }}>
               <Typography variant="h6">Update</Typography>
+            </Button>
+            <Button variant="outlined" onClick={cancel} sx={{ margin: '10px' }}>
+              <Typography variant="h6">Cancel</Typography>
             </Button>
           </Box>
         </Box>
