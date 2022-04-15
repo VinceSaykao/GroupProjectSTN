@@ -4,10 +4,33 @@ const router = express.Router();
 
 // GET all events' information that are approved
 router.get('/', (req, res) => {
-    
+
     if (req.isAuthenticated()) {
         pool
-            .query(`select * from events where status= 'approved';`)
+            .query(`  select 
+            id,
+            org_id,
+            category_id,
+            status,
+            "name",
+            description,
+            TO_CHAR(date, 'Mon') AS "month",
+            extract(
+            day from date
+            ) AS "day",
+            start_time,
+            end_time,
+            image,
+            address1,
+            address2,
+            city,
+            zip,
+            state,
+            feedback
+            from events
+            where status = 'approved'
+            order by date asc
+            ;`)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for all events information', error);
@@ -25,7 +48,27 @@ router.get('/:id', (req, res) => {
 
     if (req.isAuthenticated()) {
         pool
-            .query(`select * from events where id = $1;`,[id])
+            .query(`select 
+            id,
+            org_id,
+            category_id,
+            status,
+            "name",
+            description,
+            TO_CHAR(date, 'Mon') AS "month",
+            extract(
+            day from date
+            ) AS "day",
+            start_time,
+            end_time,
+            image,
+            address1,
+            address2,
+            city,
+            zip,
+            state,
+            feedback    
+            from events where id = $1;`, [id])
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for specific event information', error);
@@ -60,7 +103,7 @@ router.get('/organization/:id', (req, res) => {
 
     if (req.isAuthenticated()) {
         pool
-            .query(`select * from events where org_id = $1;`,[id])
+            .query(`select * from events where org_id = $1;`, [id])
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for specific organization event information', error);
@@ -80,9 +123,9 @@ router.post('/', (req, res) => {
     ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15);
     `;
 
-    let queryInserts = [req.body.org_id,req.body.category_id,req.body.status,req.body.name,
-        req.body.description,req.body.date,req.body.start_time,req.body.end_time,req.body.image,
-        req.body.address1,req.body.address2,req.body.city,req.body.zip,req.body.state,req.body.feedback];
+    let queryInserts = [req.body.org_id, req.body.category_id, req.body.status, req.body.name,
+    req.body.description, req.body.date, req.body.start_time, req.body.end_time, req.body.image,
+    req.body.address1, req.body.address2, req.body.city, req.body.zip, req.body.state, req.body.feedback];
     if (req.isAuthenticated) {
         pool
             .query(queryText, queryInserts)
@@ -121,9 +164,9 @@ router.put('/:id', (req, res) => {
     ;
     `;
 
-    const queryValues = [req.body.org_id,req.body.category_id,req.body.status,req.body.name,
-        req.body.description,req.body.date,req.body.start_time,req.body.end_time,req.body.image,
-        req.body.address1,req.body.address2,req.body.city,req.body.zip,req.body.state,req.body.feedback,req.params.id];
+    const queryValues = [req.body.org_id, req.body.category_id, req.body.status, req.body.name,
+    req.body.description, req.body.date, req.body.start_time, req.body.end_time, req.body.image,
+    req.body.address1, req.body.address2, req.body.city, req.body.zip, req.body.state, req.body.feedback, req.params.id];
 
     pool.query(queryText, queryValues).then(() => {
         res.sendStatus(200)
@@ -137,18 +180,18 @@ router.put('/:id', (req, res) => {
 router.delete("/:id", (req, res) => {
     let queryText = `delete from events where id = $1;`;
     let queryInsert = req.params.id;
-    
+
     if (req.isAuthenticated()) {
         pool
-        .query(queryText, [queryInsert])
-        .then((results) => {
-            console.log("Success on delete events", results);
-            res.sendStatus(200);
-        })
-        .catch((err) => {
-            console.log("Error on delete events,", err);
-            res.sendStatus(500);
-        });
+            .query(queryText, [queryInsert])
+            .then((results) => {
+                console.log("Success on delete events", results);
+                res.sendStatus(200);
+            })
+            .catch((err) => {
+                console.log("Error on delete events,", err);
+                res.sendStatus(500);
+            });
     } else {
         res.sendStatus(403);
     }

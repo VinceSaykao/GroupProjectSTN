@@ -22,10 +22,12 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 // User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
+import UserProfileEditForm from '../UserProfilePage/UserProfileEditForm';
 import OrganizationView from '../Organization/OrganizationView'
 import OrganizationEditForm from '../Organization/OrganizationEditForm';
 import OrganizationRegisterForm from '../Organization/OrganizationRegisterForm'
 import OrganizationsList from '../Organization/OrganizationsList'
+import UserCalanderView from '../UserCalanderView/UserCalanderView';
 
 
 // Admin 
@@ -107,8 +109,8 @@ function App() {
             exact
             path="/admin-pending-event-details"
           >
-            <AdminPendingEventDetails/>
-          </ProtectedRoute> */}
+            <AdminPendingEventDetails />
+          </ProtectedRoute>
 
 
           {/* ADMIN END */}
@@ -123,12 +125,13 @@ function App() {
 
           {/* Organization Start */}
 
-          <Route
+          
+          <ProtectedRoute
             exact
             path="/organization-register-form"
           >
-            <OrganizationRegisterForm />
-          </Route>
+              <OrganizationRegisterForm />
+
           <Route
             exact
             path="/organization-view/:id"
@@ -151,6 +154,15 @@ function App() {
           </Route>
 
           {/* Organization End */}
+          </ProtectedRoute> 
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/calanderview"
+          >
+            <UserCalanderView />
+          </ProtectedRoute>
 
           <Route
             exact
@@ -158,6 +170,15 @@ function App() {
           >
 
             <UserProfilePage />
+
+          </Route>
+
+          <Route
+            exact
+            path="/userprofileedit"
+          >
+
+            <UserProfileEditForm />
 
           </Route>
 
@@ -210,7 +231,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );

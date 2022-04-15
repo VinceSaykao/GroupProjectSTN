@@ -2,9 +2,11 @@ import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
 function* getProfileSaga(action) {
-  console.log('id is', action.payload);
+  console.log("id is", action.payload);
   try {
+    console.log("BEFORE= ", action.payload);
     const profiles = yield axios.get(`/api/profile/${action.payload}`);
+    console.log("profiles.data = ", profiles.data);
     yield put({ type: "SET_PROFILE", payload: profiles.data });
   } catch (error) {
     console.log("get all error");
