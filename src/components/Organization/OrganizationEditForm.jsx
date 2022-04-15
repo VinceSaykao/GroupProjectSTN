@@ -49,12 +49,13 @@ function OrganizationEditForm() {
   const updateOrg = (e) => {
     e.preventDefault();
     // Sending dispatch to saga to handle the edit organization function
-    dispatch({ type: 'EDIT_ORG', payload: { update, id } });
+    dispatch({ type: 'UPDATE_ORGANIZATION', payload: { update, id } });
     setUpdate(updateState); // reset the edit state to default
+    history.push(`/organization-view/${org.id}`)
     // dispatch({ type: 'GET_DETAILS', payload: id }); // Needs to be done to show the updated edits
   };
 
-console.log(updateState.name);
+console.log(updateState.state);
 
   return (
     <>
@@ -78,7 +79,7 @@ console.log(updateState.name);
               autoComplete="off"
               type="text"
               label="Name"
-              value={org.name}
+              value={update.name}
               onChange={(e) => setUpdate({ ...update, name: e.target.value })}
             />
             <TextField
@@ -86,7 +87,7 @@ console.log(updateState.name);
               autoComplete="off"
               type="text"
               label="Email"
-              value={org.email}
+              value={update.email}
               onChange={(e) => setUpdate({ ...update, email: e.target.value })}
             />
             <TextField
@@ -94,14 +95,14 @@ console.log(updateState.name);
               autoComplete="off"
               type="text"
               label="Phone"
-              value={org.phone}
+              value={update.phone}
               onChange={(e) => setUpdate({ ...update, phone: e.target.value })}
             />
             <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"
               label="Website"
-              value={org.website}
+              value={update.website}
               onChange={(e) =>
                 setUpdate({ ...update, website: e.target.value })
               }
@@ -111,7 +112,7 @@ console.log(updateState.name);
               autoComplete="off"
               type="text"
               label="Twitter URL"
-              value={org.twitter}
+              value={update.twitter}
               onChange={(e) =>
                 setUpdate({ ...update, twitter: e.target.value })
               }
@@ -121,7 +122,7 @@ console.log(updateState.name);
               autoComplete="off"
               type="text"
               label="Facebook URL"
-              value={org.facebook}
+              value={update.facebook}
               onChange={(e) =>
                 setUpdate({ ...update, facebook: e.target.value })
               }
@@ -131,7 +132,7 @@ console.log(updateState.name);
               autoComplete="off"
               type="text"
               label="Instagram URL"
-              value={org.instagram}
+              value={update.instagram}
               onChange={(e) =>
                 setUpdate({ ...update, instagram: e.target.value })
               }
@@ -143,7 +144,7 @@ console.log(updateState.name);
               multiline
               rows="5"
               label="Description"
-              value={org.description}
+              value={update.description}
               onChange={(e) =>
                 setUpdate({ ...update, description: e.target.value })
               }
@@ -153,7 +154,7 @@ console.log(updateState.name);
               autoComplete="off"
               type="text"
               label="Image"
-              value={org.image}
+              value={update.image}
               onChange={(e) =>
                 setUpdate({ ...update, image: e.target.value })
               }
@@ -163,7 +164,7 @@ console.log(updateState.name);
               autoComplete="off"
               type="text"
               label="Address 1"
-              value={org.address1}
+              value={update.address1}
               onChange={(e) =>
                 setUpdate({ ...update, address1: e.target.value })
               }
@@ -173,7 +174,7 @@ console.log(updateState.name);
               autoComplete="off"
               type="text"
               label="Address 2"
-              value={org.address2}
+              value={update.address2}
               onChange={(e) =>
                 setUpdate({ ...update, address2: e.target.value })
               }
@@ -183,7 +184,7 @@ console.log(updateState.name);
               autoComplete="off"
               type="text"
               label="City"
-              value={org.city}
+              value={update.city}
               onChange={(e) =>
                 setUpdate({ ...update, city: e.target.value })
               }
@@ -193,7 +194,7 @@ console.log(updateState.name);
               autoComplete="off"
               type="text"
               label="State"
-              value={org.state}
+              value={update.state}
               onChange={(e) =>
                 setUpdate({ ...update, state: e.target.value })
               }
@@ -203,7 +204,7 @@ console.log(updateState.name);
               autoComplete="off"
               type="number"
               label="Zip Code"
-              value={org.zip}
+              value={update.zip}
               onChange={(e) =>
                 setUpdate({ ...update, zip: e.target.value })
               }
