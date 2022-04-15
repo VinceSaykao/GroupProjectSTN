@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -13,6 +13,7 @@ import FormControl from '@mui/material/FormControl'
 
 function OrganizationEditForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { id } = useParams();
 
   const org = useSelector((store) => store.fetchOrganization);
