@@ -1,5 +1,27 @@
+.admin-search-div {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(255, 255, 255);
+    box-shadow: 1px 1px 20px black;
+    width: 90%;
+    border-radius: 10px;
+
+
+}
+
+// .admin-event-view {
+    // background-color: blue;
+    // position: fixed;
+    // box-sizing: border-box;
+// }
+
 .approved-event-list {
-    background-color: #71717129;
     text-align: center;
-    color: white;
+    color: black;
+    overflow: scroll;
+    // background-color: green;
+    height: 500px;
+    margin: 0 auto;
 }
