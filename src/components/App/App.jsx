@@ -24,14 +24,17 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import UserProfileEditForm from '../UserProfilePage/UserProfileEditForm';
 import OrganizationView from '../Organization/OrganizationView'
+import OrganizationEditForm from '../Organization/OrganizationEditForm';
+import OrganizationRegisterForm from '../Organization/OrganizationRegisterForm'
+import OrganizationsList from '../Organization/OrganizationsList'
 import UserCalanderView from '../UserCalanderView/UserCalanderView';
 
 
 // Admin 
-import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
-import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
-import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
-import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
+// import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
+// import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
+// import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
+// import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
 
 import './App.css';
 
@@ -74,7 +77,7 @@ function App() {
           </ProtectedRoute>
 
           {/* ADMIN START */}
-          <ProtectedRoute
+          {/* <ProtectedRoute
 
             exact
             path="/admin-approved-event-details"
@@ -120,12 +123,36 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          {/* <ProtectedRoute
+                    {/* Organization Start */}
+
+                    <Route
             exact
-            path="/organization-view"
+            path="/organization-register-form"
+          >
+            <OrganizationRegisterForm />
+          </Route>
+          <Route
+            exact
+            path="/organization-view/:id"
           >
             <OrganizationView />
-          </ProtectedRoute> */}
+          </Route>
+
+          <Route
+            exact
+            path="/organization-edit-form/:id"
+          >
+            <OrganizationEditForm />
+          </Route>
+
+          <Route
+            exact
+            path="/organizations-list"
+          >
+            <OrganizationsList />
+          </Route>
+
+          {/* Organization End */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
