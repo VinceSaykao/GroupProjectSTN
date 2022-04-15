@@ -2,217 +2,227 @@ import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
+import Container from '@mui/material/Container';
+import FormControl from '@mui/material/FormControl'
 
 function OrganizationEditForm() {
   const dispatch = useDispatch();
   const { id } = useParams();
+
+  const org = useSelector((store) => store.fetchOrganization);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     // Upon load, get the selected organization profile based on their user id
     dispatch({ type: 'FETCH_ORG_PROFILE', payload: id });
   }, []);
 
-  const org = useSelector((store) => store.fetchOrganization);
-  const user = useSelector((store) => store.user);
-
- 
   console.log('ID is', id);
   console.log('org is', org);
-
+  
+  // Storing the local updates to the organization in here
   const updateState = {
-    name: org.name,
-    email: org.email,
-    phone: org.phone,
-    website: org.website,
-    twitter: org.twitter,
-    facebook: org.facebook,
-    instagram: org.instagram,
-    description: org.description,
-    image: org.image,
-    address1: org.address1,
-    address2: org.address2,
-    city: org.city,
-    state: org.state,
-    zip: org.zip,
+      name: org.name,
+      email: org.email,
+      phone: org.phone,
+      website: org.website,
+      twitter: org.twitter,
+      facebook: org.facebook,
+      instagram: org.instagram,
+      description: org.description,
+      image: org.image,
+      address1: org.address1,
+      address2: org.address2,
+      city: org.city,
+      state: org.state,
+      zip: org.zip
   };
 
-  // Storing the local updates to the organization in here
   const [update, setUpdate] = useState(updateState);
 
   const updateOrg = (e) => {
     e.preventDefault();
     // Sending dispatch to saga to handle the edit organization function
     dispatch({ type: 'EDIT_ORG', payload: { update, id } });
-    setOpen(false); // Close the edit dialog
     setUpdate(updateState); // reset the edit state to default
     // dispatch({ type: 'GET_DETAILS', payload: id }); // Needs to be done to show the updated edits
   };
 
-  //Handles opening the edit dialog
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    // Opens edit Dialog box.
-    setOpen(true);
-  };
-
-  const handleCloseEdit = () => {
-    //Handles closing the dialog box
-    setOpen(false);
-    setUpdate(updateState);
-  };
+console.log(updateState.name);
 
   return (
     <>
-      <Grid container justifyContent="center">
-        <Typography gutterBottom variant="h6" component="div">
-          {org.org_name}
-        </Typography>
-        <div className="org-box">
-          <Box
-            component="img"
-            sx={{
-              height: 'auto',
-              width: 350,
-              maxHeight: { xs: 233, md: 167 },
-              maxWidth: { xs: 350, md: 250 },
-            }}
-            alt=""
-            src={org.org_img_url}
-          />
-          <Button
-            className="edit-button"
-            size="small"
-            variant="contained"
-            onClick={handleClickOpen}
-          >
-            update
-          </Button>
-        </div>
-      </Grid>
-      
-
-        <Dialog open={open} onClose={handleCloseEdit}>
-          <DialogTitle>{org.org_name}</DialogTitle>
-          <DialogContent>
+      <Container sx={{ mt: '30px', display: 'flex', justifyContent: 'center' }}>
+        <Box
+          elevation={10}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            width: '500px',
+            p: '20px',
+          }}
+        >
+          <FormControl sx={{ width: '100%' }}>
+            <Typography variant="h5" sx={{ mb: '25px' }}>
+             Edit Organization Info
+            </Typography>
             <TextField
-              autoFocus
-              autoComplete='off'
-              margin="dense"
-              id="org_name"
+              sx={{ margin: '10px' }}
+              autoComplete="off"
+              type="text"
               label="Name"
+              value={org.name}
+              onChange={(e) => setUpdate({ ...update, name: e.target.value })}
+            />
+            <TextField
+              sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
-              fullWidth
-              variant="standard"
-              value={update.org_name}
+              label="Email"
+              value={org.email}
+              onChange={(e) => setUpdate({ ...update, email: e.target.value })}
+            />
+            <TextField
+              sx={{ margin: '10px' }}
+              autoComplete="off"
+              type="text"
+              label="Phone"
+              value={org.phone}
+              onChange={(e) => setUpdate({ ...update, phone: e.target.value })}
+            />
+            <TextField
+              sx={{ margin: '10px' }}
+              autoComplete="off"
+              label="Website"
+              value={org.website}
               onChange={(e) =>
-                setUpdate({ ...update, org_name: e.target.value })
+                setUpdate({ ...update, website: e.target.value })
               }
             />
             <TextField
-              autoFocus
-              multiline
-              rows="2"
-              fullWidth
-              label="Location"
-              margin="dense"
-              id="org_location"
+              sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
-              variant="standard"
-              value={update.org_location}
+              label="Twitter URL"
+              value={org.twitter}
               onChange={(e) =>
-                setUpdate({ ...update, org_location: e.target.value })
+                setUpdate({ ...update, twitter: e.target.value })
               }
             />
             <TextField
-              autoFocus
-              multiline
-              rows="4"
-              fullWidth
-              label="Image"
-              margin="dense"
-              id="org_img_url"
+              sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
-              variant="standard"
-              value={update.org_img_url}
+              label="Facebook URL"
+              value={org.facebook}
               onChange={(e) =>
-                setUpdate({ ...update, org_img_url: e.target.value })
+                setUpdate({ ...update, facebook: e.target.value })
               }
             />
             <TextField
-              autoFocus
+              sx={{ margin: '10px' }}
+              autoComplete="off"
+              type="text"
+              label="Instagram URL"
+              value={org.instagram}
+              onChange={(e) =>
+                setUpdate({ ...update, instagram: e.target.value })
+              }
+            />
+            <TextField
+              sx={{ margin: '10px' }}
+              autoComplete="off"
+              type="text"
               multiline
               rows="5"
-              fullWidth
-              label="About"
-              margin="dense"
-              id="about"
-              type="text"
-              variant="standard"
-              value={update.about}
-              onChange={(e) => setUpdate({ ...update, about: e.target.value })}
+              label="Description"
+              value={org.description}
+              onChange={(e) =>
+                setUpdate({ ...update, description: e.target.value })
+              }
             />
             <TextField
-              autoFocus
-              multiline
-              rows="1"
-              fullWidth
-              label="Instagram"
-              margin="dense"
-              id="instagram_url"
+              sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
-              variant="standard"
-              value={update.instagram_url}
-              onChange={(e) => setUpdate({ ...update, instagram_url: e.target.value })}
+              label="Image"
+              value={org.image}
+              onChange={(e) =>
+                setUpdate({ ...update, image: e.target.value })
+              }
             />
             <TextField
-              autoFocus
-              multiline
-              rows="1"
-              fullWidth
-              label="Facebook"
-              margin="dense"
-              id="facebook_url"
+              sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
-              variant="standard"
-              value={update.facebook_url}
-              onChange={(e) => setUpdate({ ...update, facebook_url: e.target.value })}
+              label="Address 1"
+              value={org.address1}
+              onChange={(e) =>
+                setUpdate({ ...update, address1: e.target.value })
+              }
             />
             <TextField
-              autoFocus
-              multiline
-              rows="1"
-              fullWidth
-              label="Twitter"
-              margin="dense"
-              id="twitter_url"
+              sx={{ margin: '10px' }}
+              autoComplete="off"
               type="text"
-              variant="standard"
-              value={update.twitter_url}
-              onChange={(e) => setUpdate({ ...update, twitter_url: e.target.value })}
+              label="Address 2"
+              value={org.address2}
+              onChange={(e) =>
+                setUpdate({ ...update, address2: e.target.value })
+              }
             />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseEdit}>Cancel</Button>
-            <Button onClick={updateOrg}>Update</Button>
-          </DialogActions>
-        </Dialog>
+            <TextField
+              sx={{ margin: '10px' }}
+              autoComplete="off"
+              type="text"
+              label="City"
+              value={org.city}
+              onChange={(e) =>
+                setUpdate({ ...update, city: e.target.value })
+              }
+            />
+            <TextField
+              sx={{ margin: '10px' }}
+              autoComplete="off"
+              type="text"
+              label="State"
+              value={org.state}
+              onChange={(e) =>
+                setUpdate({ ...update, state: e.target.value })
+              }
+            />
+            <TextField
+              sx={{ margin: '10px' }}
+              autoComplete="off"
+              type="number"
+              label="Zip Code"
+              value={org.zip}
+              onChange={(e) =>
+                setUpdate({ ...update, zip: e.target.value })
+              }
+            />
+          </FormControl>
+          <Box
+            sx={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              mt: '10px',
+            }}
+          >
+            <Button variant="outlined" onClick={updateOrg} sx={{ margin: '10px' }}>
+              <Typography variant="h6">Update</Typography>
+            </Button>
+          </Box>
+        </Box>
+      </Container>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -17,16 +17,18 @@ import Button from '@mui/material/Button';
 function OrganizationView() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { id } = useParams();
+
+  const org = useSelector((store) => store.fetchOrganization);
+  const user = useSelector((store) => store.user);
+
 
   useEffect(() => {
     // Upon load, get the selected organization profile based on their user id
     dispatch({ type: 'FETCH_ORG_PROFILE', payload: id });
   }, []);
 
-  const org = useSelector((store) => store.fetchOrganization);
-  const user = useSelector((store) => store.user);
-
-  const id = user.org_id;
+  // const id = user.org_id;
   console.log('ID is', id);
   console.log('org is', org);
 
