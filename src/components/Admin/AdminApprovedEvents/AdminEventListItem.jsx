@@ -6,6 +6,8 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
+import Divider from '@mui/material/Divider';
+
 import Avatar from '@mui/material/Avatar';
 
 
@@ -60,7 +62,7 @@ export default function AdminEventListItem({ event }) {
 
 
 
-
+    console.log('event', event)
     return (
 
         <div
@@ -84,17 +86,22 @@ export default function AdminEventListItem({ event }) {
                             </ButtonBase>
                         </Grid>
                         <Grid item xs={8}>
-                            <Typography noWrap>{event.date}</Typography>
-                            <Typography noWrap>{event.name} <span className='i'>|</span></Typography>
-                            <Typography noWrap>{event.city}</Typography>
+                            <Typography
+            
+                                variant='h4'
+                                noWrap>{event.Mon}</Typography>
+                            <Divider />
+                    
+                            <Typography noWrap>{event.name} </Typography>
+                            <Typography noWrap>By: {event.city}</Typography>
 
                         </Grid>
 
-                            <ArrowForwardIosIcon
+                        <ArrowForwardIosIcon
                             className='admin-arrow'
-                                fontSize='large'
-                            />
-                
+                            fontSize='large'
+                        />
+
                     </Grid>
                 </StyledPaper>
 

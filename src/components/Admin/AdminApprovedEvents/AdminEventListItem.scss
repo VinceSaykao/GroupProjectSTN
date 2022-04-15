@@ -1,23 +1,10 @@
-
+@import "../../Variables/Variables.scss";
 
 .admin-grid-events {
-    // background-color: rgba(4, 103, 252, 0.314);
     height: 1px;
 }
 
 
-// .admin-event-item {
-//     background-color: rgba(242, 148, 148, 0.94);
-//     height: 80px;
-//     border: 1px solid white;
-//     text-align: center;
-    
-//     // line-height: 80px;
-
-//     margin: 1rem 1rem;
-
-//     border-radius: 10px;
-// }
 
 
 .admin-event-date, .admin-event-name {
@@ -25,11 +12,12 @@
 }
 
 .admin-arrow {
-    margin-top: 11%;
-    transform: scale(1.8);
+    margin-top: 11.5%;
+    transform: scale(1.5);
 }
 
-// .pending-event-list-detail {
-// }
+.admin-title-by {
+    float: left;
+}
 
 

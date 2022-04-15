@@ -7,7 +7,27 @@ router.get('/', (req, res) => {
     
     if (req.isAuthenticated()) {
         pool
-            .query(`  select * from events where status= 'approved' order by id asc;`)
+            .query(`  select 
+            id,
+            org_id,
+            category_id,
+            status,
+            "name",
+            description,
+            TO_CHAR(date, 'Mon') AS "Mon",
+            start_time,
+            end_time,
+            image,
+            address1,
+            address2,
+            city,
+            zip,
+            state,
+            feedback
+            from events
+            where status = 'approved'
+            order by id asc
+            ;`)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for all events information', error);
