@@ -55,7 +55,7 @@ function AddOrganization() {
       event.preventDefault();
       dispatch({ type: 'ADD_ORGANIZATION', payload: newOrg });
       setNewOrg(orgState);
-      // history.push('/org-profile'); // Go to profile page after entering org info
+      history.push('/organization-view{}'); // Go to profile page after entering org info
     } else {
       // If a field is not filled out
       alert('Please fill out all input fields');

@@ -122,20 +122,24 @@ router.post('/', (req, res) => {
     zip,
     state
     )
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13 );  
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13 )  
+    RETURNING id;
   `;
 
   pool
     .query(query, values)
-    .then((result) => {
-      console.log('New organization posted', result);
+    .then(response => {
+      // console.log('New organization posted', result);
       const createdOrgID = response.rows[0].id; // ID of the organization that was created
       
       const orgUserQuery = `
-        UPDATE user 
+        UPDATE "user" 
         SET org_id = $1
-        WHERE user.id = $2;`;
+        WHERE "user"."id" = $2;`;
       
+      console.log('req.user.id:', req.user.id, 'createdOrgID', createdOrgID);
+      
+
       pool.query(orgUserQuery, [createdOrgID, req.user.id])  
       res.sendStatus(201);
     })

@@ -25,6 +25,7 @@ import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import OrganizationView from '../Organization/OrganizationView'
 import OrganizationEditForm from '../Organization/OrganizationEditForm';
 import OrganizationRegisterForm from '../Organization/OrganizationRegisterForm'
+import OrganizationsList from '../Organization/OrganizationsList'
 
 
 // Admin 
@@ -140,6 +141,13 @@ function App() {
             path="/organization-edit-form/:id"
           >
             <OrganizationEditForm />
+          </Route>
+
+          <Route
+            exact
+            path="/organizations-list"
+          >
+            <OrganizationsList />
           </Route>
 
           {/* Organization End */}

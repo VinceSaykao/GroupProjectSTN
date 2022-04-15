@@ -21,7 +21,9 @@ function OrganizationEditForm() {
 
   useEffect(() => {
     // Upon load, get the selected organization profile based on their user id
+    // setUpdate({...update, name: org.name})
     dispatch({ type: 'FETCH_ORG_PROFILE', payload: id });
+
   }, []);
 
   console.log('ID is', id);
@@ -45,7 +47,6 @@ function OrganizationEditForm() {
       zip: org.zip
   };
 
-  const [update, setUpdate] = useState(updateState);
 
   const updateOrg = (e) => {
     e.preventDefault();
@@ -53,14 +54,13 @@ function OrganizationEditForm() {
     dispatch({ type: 'UPDATE_ORGANIZATION', payload: { update, id } });
     setUpdate(updateState); // reset the edit state to default
     history.push(`/organization-view/${org.id}`)
-    // dispatch({ type: 'GET_DETAILS', payload: id }); // Needs to be done to show the updated edits
   };
 
   const cancel =(e) => {
     history.push(`/organization-view/${org.id}`)
   }
 
-console.log(updateState.state);
+  const [update, setUpdate] = useState(updateState);
 
   return (
     <>
