@@ -8,9 +8,11 @@ import {
   Button,
   FormControl,
 } from '@mui/material';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function AddOrganization() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const user = useSelector((store) => store.user);
 
@@ -55,10 +57,10 @@ function AddOrganization() {
       event.preventDefault();
       dispatch({ type: 'ADD_ORGANIZATION', payload: newOrg });
       setNewOrg(orgState);
-      history.push('/organization-view{}'); // Go to profile page after entering org info
+      history.push(`/organization-view/${user.org_id}`); // Go to profile page after entering org info
     } else {
       // If a field is not filled out
-      alert('Please fill out all input fields');
+      alert('Please fill out all required* input fields');
     }
   };
 

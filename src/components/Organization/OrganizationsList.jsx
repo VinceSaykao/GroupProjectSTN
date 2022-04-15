@@ -16,7 +16,7 @@ function OrganizationsList() {
         <Box textAlign={'center'} sx={{m:2}}>
           <Typography variant="h6"> # of Organizations: {organizations.length + 37}</Typography>
         </Box>
-        {/* <Box className="searchOrganizations" textAlign="center">
+        <Box className="searchOrganizations" textAlign="center">
           <TextField
             id="standard-multiline-flexible"
             multiline
@@ -29,7 +29,7 @@ function OrganizationsList() {
             onChange={(event) => {addSearch}}
             value={search}
           />
-        </Box> */}
+        </Box>
         <Grid
           container
           spacing={2}
