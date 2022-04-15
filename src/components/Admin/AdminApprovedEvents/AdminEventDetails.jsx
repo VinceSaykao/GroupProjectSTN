@@ -44,6 +44,10 @@ export default function AdminEventDetails() {
 
     }
 
+    const handleCancel = () => {
+        history.goBack();
+    }
+
 
     // modal
     const style = {
@@ -72,6 +76,7 @@ export default function AdminEventDetails() {
         return (
             <React.Fragment>
                 <Button onClick={handleDelete}>Delete</Button>
+                <Button onClick={handleCancel}>Cancel</Button>
                 {/* <Modal
                     hideBackdrop
                     open={open}
@@ -160,6 +165,7 @@ export default function AdminEventDetails() {
                                                 <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
                                                     Delete
                                                 </Button>
+                                                
                                             </Item>
                                         </Grid>
                                     </Grid>

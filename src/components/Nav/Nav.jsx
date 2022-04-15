@@ -9,30 +9,83 @@ import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import MenuIcon from '@mui/icons-material/Menu';
 
+
+
+
 //DRAWER
-import Button from '@mui/material/Button';
-import Drawer from '@mui/material/Drawer';
+
+
+import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import CssBaseline from '@mui/material/CssBaseline';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-import LogoutIcon from '@mui/icons-material/Logout';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import GroupIcon from '@mui/icons-material/Group';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import GroupsIcon from '@mui/icons-material/Groups';
-import AddIcon from '@mui/icons-material/Add';
-import ContactSupportIcon from '@mui/icons-material/ContactSupport';
-import SettingsIcon from '@mui/icons-material/Settings';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import ForumIcon from '@mui/icons-material/Forum';
+
+
+
+const drawerWidth = 240;
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginRight: -drawerWidth,
+    ...(open && {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginRight: 0,
+    }),
+  }),
+);
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  background: '#437953',
+  transition: theme.transitions.create(['margin', 'width'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginRight: drawerWidth,
+  }),
+}));
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  background: '#437953',
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-start',
+}));
+
+
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -40,89 +93,19 @@ function Nav() {
 
 
 
-    // start of drawer ******
-
-    const [state, setState] = React.useState({
-      left: false
-    });
-  
-    const toggleDrawer = (anchor, open) => (event) => {
-      if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-        return;
-      }
-  
-      setState({ ...state, [anchor]: open });
-    };
-  
-    const list = (anchor) => (
-      <Box id='box'
-        sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-        role="presentation"
-        onClick={toggleDrawer(anchor, false)}
-        onKeyDown={toggleDrawer(anchor, false)}
-      >
-        <List id='footer-list'>
-          {[<p id='footer-profile-label' >Profile</p>,<p id='footer-client-label' >Client Info</p>].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <AccountBoxIcon 
-                id='footer-profile'
-            
-                fontSize='large'
-                /> : <GroupIcon id='footer-client' />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List id='second-footer-list'>
-          {[<p id='footer-add-label' >Add Timesheet</p>, <p id='footer-chat-label' >Chat</p>].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <AddCircleOutlineIcon id='footer-add' /> : <ForumIcon id='footer-chat' />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-  
-        <List id='second-footer-list'>
-          {[<p id='footer-add-label' >Feedback</p>, <p id='footer-chat-label'>Settings</p>].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <ContactSupportIcon id='footer-add'/> : <SettingsIcon id='footer-chat'/>}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-  
-        <Divider />
-        <List id='footer-footer'>
-          {[<h4 id='logout-footer'><LogOutButton /></h4>].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <LogoutIcon 
-                id='logout-footer-icon'
-          
-                /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      
-        
-      </Box>
-    );
-    const [value, setValue] = React.useState(0);
-    // end of drawer *****
 
 
 
-    
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
 
 
@@ -133,36 +116,107 @@ function Nav() {
 
 
 
-{/* <Box sx={{ width: '414px' }}>
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      >
-        {['Menu'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
-        <BottomNavigationAction label="Home" icon={<ListAltIcon />} />
-        <BottomNavigationAction  label="Profile" icon={<GroupsIcon  />} />
-      </BottomNavigation>
-    </Box> */}
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <AppBar position="fixed" open={open}>
+          <Toolbar>
+            <Typography noWrap sx={{ flexGrow: 1 }} component="div">
+
+
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+          
+            >
+
+
+          <HomeIcon 
+          fontSize='large'
+          />
+
+
+</IconButton>
+
+
+
+            </Typography>
+        
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              onClick={handleDrawerOpen}
+              sx={{ ...(open && { display: 'none' }) }}
+            >
+              <MenuIcon 
+              fontSize='large'
+              />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <Main open={open}>
+          <DrawerHeader />
+
+        </Main>
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+            },
+          }}
+          variant="temporary"
+          anchor="right"
+          open={open}
+        >
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+      </Box>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
       {/* If a user is logged in, show these links */}
-      {user.id && (
+      {/* {user.id && (
         <>
           <Link className="navLink" to="/user">
             <HomeIcon
@@ -180,40 +234,35 @@ function Nav() {
             <br></br>
             Profile
           </Link>
-  
-          {['Menu'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
-            anchor="right"
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
 
 
-          {/* <Link className="navLink" to="/userprofile">
+
+
+          <div className="navLink" >
             <MenuIcon
               fontSize='large'
-              
+              color="inherit"
+              aria-label="open drawer"
+
+
             />
             <br></br>
             Menu
-          </Link> */}
+          </div>
 
 
-          {/* <LogOutButton className="navLink" /> */}
+          <LogOutButton className="navLink" />
         </>
-      )}
+      )} */}
 
       {/* <Link className="navLink" to="/about">
           <ExitToAppIcon 
           fontSize='large'
           />
         </Link> */}
+
+
+
 
 
     </div>
