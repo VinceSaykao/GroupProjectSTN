@@ -35,10 +35,10 @@ export default function AdminEventList() {
 
 
     return (
-        <div>
+        <div className="admin-event-view">
 
             <Helmet>
-                <style>{`body { background-color: #090909ee;); 
+                <style>{`body { background-color: #090909ee; overflow: hidden;); 
             
             }`}
 
@@ -47,13 +47,13 @@ export default function AdminEventList() {
 
             <h1
                 className="admin-event-header"
-            >Admin Approved Events</h1>
+            >Admin Event List</h1>
             <div>
 
                 <div className="admin-search-div">
                 <InputBase
                     sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
-                    placeholder="Search"
+                    placeholder="| Search"
                     inputProps={{ 'aria-label': 'search google maps' }}
                 />
                 <IconButton>
@@ -63,6 +63,8 @@ export default function AdminEventList() {
 
                 <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
             </div>
+
+
 
             <div className="approved-event-list">
                 {fetchApprovedEvents?.map((event, i) => {
@@ -78,6 +80,8 @@ export default function AdminEventList() {
                     )
                 })}
             </div>
+
+
 
         </div>
     )
