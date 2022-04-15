@@ -7,9 +7,14 @@ import { useSelector } from 'react-redux';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import MenuIcon from '@mui/icons-material/Menu';
 
 function Nav() {
   const user = useSelector((store) => store.user);
+
+
+
+  
 
   return (
     <div className="nav">
@@ -24,23 +29,39 @@ function Nav() {
               <HomeIcon 
               fontSize='large'
               />
+               <br></br>
+              Home
             </Link>
 
             <Link className="navLink" to="/userprofile">
               <PersonIcon 
               fontSize='large'
+              flexDirection='column'
               />
+              <br></br>
+              Profile
             </Link>
 
-            <LogOutButton className="navLink" />
+  
+          <Link className="navLink" to="/userprofile">
+          <MenuIcon 
+          fontSize='large'
+          />
+           <br></br>
+              Menu
+            </Link>
+
+
+            {/* <LogOutButton className="navLink" /> */}
           </>
         )}
 
-        <Link className="navLink" to="/about">
+        {/* <Link className="navLink" to="/about">
           <ExitToAppIcon 
           fontSize='large'
           />
-        </Link>
+        </Link> */}
+
 
     </div>
   );
