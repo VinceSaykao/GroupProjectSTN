@@ -26,7 +26,7 @@ function Nav() {
               />
             </Link>
 
-            <Link className="navLink" to="/info">
+            <Link className="navLink" to="/userprofile">
               <PersonIcon 
               fontSize='large'
               />

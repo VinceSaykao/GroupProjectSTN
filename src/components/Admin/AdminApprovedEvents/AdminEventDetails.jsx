@@ -35,9 +35,6 @@ export default function AdminEventDetails() {
             }`}
                 </style>
             </Helmet>
-            <h1
-                className="event-approved-details-header"
-            >Event Details</h1>
 
             {/* <div className="event-approved-list-container">
             {fetchEventId.map((detail, i) => {
@@ -54,8 +51,19 @@ export default function AdminEventDetails() {
 
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
-                    <Grid item xs={8}>
-                        <Item>xs=8</Item>
+                    <Grid item xs={12}>
+                        <Paper
+                            sx={{
+                                height: 140,
+                            }}
+                        >
+                            <img
+                                src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+                                loading="lazy"
+                                height="140px"
+                                width="100%"
+                            />
+                        </Paper>
                     </Grid>
                     <Grid item xs={4}>
                         <Item>xs=4</Item>
