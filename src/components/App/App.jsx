@@ -31,10 +31,10 @@ import UserCalanderView from '../UserCalanderView/UserCalanderView';
 
 
 // Admin 
-// import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
-// import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
-// import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
-// import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
+import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
+import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
+import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
+import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
 
 import './App.css';
 
@@ -77,7 +77,7 @@ function App() {
           </ProtectedRoute>
 
           {/* ADMIN START */}
-          {/* <ProtectedRoute
+        <ProtectedRoute
 
             exact
             path="/admin-approved-event-details"
