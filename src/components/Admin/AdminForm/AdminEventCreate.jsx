@@ -74,8 +74,12 @@ function AdminEventCreate() {
         dispatch({ type: 'FETCH_CATEGORIES' })
     }, [])
 
-
-
+    const dispatchTimeTest = (time) => {
+        dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'start_time', value: time }});
+    }
+    
+    const [time, setTime] = useState('04:20')
+    console.log('time', time);
 
     return (
         <Box sx={{ mx: 2 }}>
@@ -125,51 +129,22 @@ function AdminEventCreate() {
                             label="Category"
                             onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'category_id', value: e.target.value } })}
                         >
-                            <MenuItem value={categories[0]?.id}>
-                                <img className="icon_dropdown" src={icon_cleanup} />
-                                {categories[0]?.name}
-                            </MenuItem>
-                            <MenuItem value={categories[1]?.id}>
-                                <img className="icon_dropdown" src={icon_community_meeting} />
-                                {categories[1]?.name}
-                            </MenuItem>
-                            <MenuItem value={categories[2]?.id}>
-                                <img className="icon_dropdown" src={icon_donations} />
-                                {categories[2]?.name}
-                            </MenuItem>
-                            <MenuItem value={categories[3]?.id}>
-                                <img className="icon_dropdown" src={icon_drives} />
-                                {categories[3]?.name}
-                            </MenuItem>
-                            <MenuItem value={categories[4]?.id}>
-                                <img className="icon_dropdown" src={icon_education} />
-                                {categories[4]?.name}
-                            </MenuItem>
-                            <MenuItem value={categories[5]?.id}>
-                                <img className="icon_dropdown" src={icon_events} />
-                                {categories[5]?.name}
-                            </MenuItem>
-                            <MenuItem value={categories[6]?.id}>
-                                <img className="icon_dropdown" src={icon_popups} />
-                                {categories[6]?.name}
-                            </MenuItem>
-                            <MenuItem value={categories[7]?.id}>
-                                <img className="icon_dropdown" src={icon_other} />
-                                {categories[7]?.name}
-                            </MenuItem>
 
-                            
-
-                            {/* 
-
-                            SELECT MENU DOESN'T WORK WHEN MAPPED ??? 😡 😡 😡
-                            
                             {categories.map(category => (
-                                <CategoryItem key={category.id} category={category} />
-                            ))} 
-                            
-                            */}
-
+                                <MenuItem key={category.id} value={category.id}>
+                                    {/* -------- Conditional Rendering for Icons ----------------------------------- */}
+                                    {category.id == 1 && <img className="icon_dropdown" src={icon_cleanup} />}
+                                    {category.id == 2 && <img className="icon_dropdown" src={icon_community_meeting} />}
+                                    {category.id == 3 && <img className="icon_dropdown" src={icon_donations} />}
+                                    {category.id == 4 && <img className="icon_dropdown" src={icon_drives} />}
+                                    {category.id == 5 && <img className="icon_dropdown" src={icon_education} />}
+                                    {category.id == 6 && <img className="icon_dropdown" src={icon_events} />}
+                                    {category.id == 7 && <img className="icon_dropdown" src={icon_popups} />}
+                                    {category.id == 8 && <img className="icon_dropdown" src={icon_other} />}
+                                    {/* ---------------------------------------------------------------------------- */}
+                                    {category.name}
+                                </MenuItem>
+                            ))};
                         </Select>
                     </FormControl>
                 </Grid>
@@ -203,12 +178,27 @@ function AdminEventCreate() {
                 </Grid>
                 <Grid item xs={6}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <MobileTimePicker
+                        {/* <MobileTimePicker
                             label="Start Time"
                             value={startTime}
                             onChange={dispatchStartTime}
                             renderInput={(params) => <TextField {...params} />}
+                        /> */}
+
+                        <TextField
+                            id="time"
+                            label="Start Time"
+                            type="time"
+                            // defaultValue="03:30"
+                            // value={newEvent.start_time}
+                            onChange={e => dispatchTimeTest(e.target.value)}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            fullWidth
                         />
+
+
                     </LocalizationProvider>
                 </Grid>
                 <Grid item xs={6}>
@@ -227,7 +217,7 @@ function AdminEventCreate() {
 
             <Typography variant="h5" sx={{ my: 2 }}>Contact & Location</Typography>
 
-            <Grid container spacing={2}>
+            <Grid container spacing={2} sx={{ mb: 10 }}>
                 <Grid item xs={12}>
                     <TextField
                         label="Sign Up Link"
@@ -301,10 +291,11 @@ function AdminEventCreate() {
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sx={{ alignItems: 'center' }}>
                     <Button
                         variant="contained"
                         onClick={handleSubmit}
+                        fullWidth
                     >
                         Submit
                     </Button>
