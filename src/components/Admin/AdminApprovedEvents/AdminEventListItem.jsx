@@ -56,13 +56,10 @@ export default function AdminEventListItem({ event }) {
         color: theme.palette.text.primary,
     }));
 
-    const message = `Truncation should be conditionally applicable on this long line of text
-      as this is a much longer line than what the container can support. `;
 
 
 
 
-    console.log('event', event)
     return (
 
         <div
@@ -87,11 +84,11 @@ export default function AdminEventListItem({ event }) {
                         </Grid>
                         <Grid item xs={8}>
                             <Typography
-            
+
                                 variant='h4'
                                 noWrap>{event.month} {event.day}</Typography>
                             <Divider />
-                    
+
                             <Typography noWrap>{event.name}</Typography>
                             <Typography noWrap>By: {event.city}</Typography>
 

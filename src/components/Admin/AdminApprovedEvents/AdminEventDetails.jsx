@@ -8,15 +8,23 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
+import CloseIcon from '@mui/icons-material/Close';
 
 
+//modal
+import Modal from '@mui/material/Modal';
 
-import { useSelector } from "react-redux";
+
+import { useSelector,  useDispatch  } from "react-redux";
 import "./AdminEventDetails.scss";
+import { useHistory} from 'react-router-dom'
 
 import { Helmet } from 'react-helmet';
 
 export default function AdminEventDetails() {
+
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const fetchEventId = useSelector(store => store.fetchEventId)
 
@@ -30,9 +38,78 @@ export default function AdminEventDetails() {
         color: theme.palette.text.secondary,
     }));
 
+    const handleDelete = () => {
+        dispatch ({type: 'DELETE_EVENT', payload: fetchEventId[0].id})
+        history.push("/adminlist");
+
+    }
 
 
-    console.log('detail', fetchEventId) // need to fetch month and date
+    // modal
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        pt: 2,
+        px: 4,
+        pb: 3,
+    };
+
+    function ChildModal() {
+        const [open, setOpen] = React.useState(false);
+        const handleOpen = () => {
+            setOpen(true);
+        };
+        const handleClose = () => {
+            setOpen(false);
+        };
+
+        return (
+            <React.Fragment>
+                <Button onClick={handleDelete}>Delete</Button>
+                {/* <Modal
+                    hideBackdrop
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="child-modal-title"
+                    aria-describedby="child-modal-description"
+                >
+                    <Box sx={{ ...style, width: 200 }}>
+                        <h2 id="child-modal-title">Text in a child modal</h2>
+                        <p id="child-modal-description">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        </p>
+                        <Button onClick={handleClose}>Close Child Modal</Button>
+                    </Box>
+                </Modal> */}
+            </React.Fragment>
+        );
+    }
+
+
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleExit = () => {
+        history.goBack();
+    }
+
+
+
+
+
+    console.log('event', fetchEventId[0].id);
     return (
         <div>
             <Helmet>
@@ -40,6 +117,12 @@ export default function AdminEventDetails() {
             }`}
                 </style>
             </Helmet>
+
+            <CloseIcon 
+            className='exit-icon'
+            fontSize='large'
+            onClick={handleExit}
+            />
 
             <div className="event-approved-list-container">
                 {fetchEventId.map((detail, i) => {
@@ -55,7 +138,7 @@ export default function AdminEventDetails() {
                                             }}
                                         >
                                             <img
-                                                src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+                                                src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" // Gonna be {detail.image}
                                                 loading="lazy"
                                                 height="140px"
                                                 width="100%"
@@ -75,7 +158,7 @@ export default function AdminEventDetails() {
                                                     startIcon={<ContentCopyIcon />}
                                                     variant="contained"
                                                 >Copy</Button>
-                                                <Button variant="contained" startIcon={<DeleteIcon />}>
+                                                <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
                                                     Delete
                                                 </Button>
                                             </Item>
@@ -93,11 +176,33 @@ export default function AdminEventDetails() {
 
                                 </Grid>
                             </Box>
+
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="parent-modal-title"
+                aria-describedby="parent-modal-description"
+            >
+                <Box sx={{ ...style, width: 400 }}>
+                    <h2 id="parent-modal-title">Deleting</h2>
+                    <p id="parent-modal-description">
+                        You Are Deleting "{detail.name}". Are You Sure?
+                    </p>
+                    <ChildModal />
+                </Box>
+            </Modal>
                         </div>
                     )
                 })}
             </div>
 
+
+
+
         </div>
+
+
+
+
     )
 }
