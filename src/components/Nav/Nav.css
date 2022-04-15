@@ -68,6 +68,7 @@
 .nav-logout {
   background: rgb(88, 88, 88);
   color: white;
+  overflow: hidden;
 }
 
 .nav-tab {
@@ -77,6 +78,8 @@
 
 .nav-icon {
   color:white;
+  background: rgb(0, 0, 0);
+  border-radius: 10px;
 }
 
 .nav-text {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
@@ -95,6 +95,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 function Nav() {
   const user = useSelector((store) => store.user);
 
+  const history = useHistory();
+
 
 
 
@@ -117,15 +119,26 @@ function Nav() {
   }
 
   const handleNavTag = () => {
-    console.log('profile')
+
+    // for ( i<0; i<nav.length; i++) {
+    //   if (nav[i] === 'Profile') {
+    //     console.log('Profile Works');
+    //   } else {
+    //     console.log('something');
+    //   }
+    // }
   }
 
 
+  const nav = ['Profile', 'Calendar', 'Add Event', 'Organizations', 'Pending', 'Events'];
 
+  
 
 
   return (
     <div className="nav">
+
+    
 
 
 
@@ -191,7 +204,7 @@ function Nav() {
           </DrawerHeader>
           <Divider />
           <List className='nav-row'>
-            {['Profile', 'Calendar', 'Add Event', 'Organizations', 'Pending', 'Events'].map((text, index) => (
+            {nav.map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon className='nav-tab'>
                   {index === 0 ? <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} /> : <HomeIcon /> &&
@@ -203,7 +216,9 @@ function Nav() {
                   } 
                 </ListItemIcon>
                 <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/>
+                  
               </ListItem>
+        
             ))}
           </List>
           <Divider />
