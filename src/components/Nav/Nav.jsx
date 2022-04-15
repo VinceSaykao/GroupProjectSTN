@@ -4,32 +4,32 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
 
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
     <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
-      </Link>
-      <div>
-        {/* If no user is logged in, show these links */}
-        {!user.id && (
-          // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
-        )}
+    
+
+  
 
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
             <Link className="navLink" to="/user">
-              Home
+              <HomeIcon 
+              fontSize='large'
+              />
             </Link>
 
             <Link className="navLink" to="/info">
-              Info Page
+              <PersonIcon 
+              fontSize='large'
+              />
             </Link>
 
             <LogOutButton className="navLink" />
@@ -37,9 +37,11 @@ function Nav() {
         )}
 
         <Link className="navLink" to="/about">
-          About
+          <ExitToAppIcon 
+          fontSize='large'
+          />
         </Link>
-      </div>
+
     </div>
   );
 }

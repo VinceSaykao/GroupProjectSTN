@@ -47,7 +47,7 @@ export default function AdminEventList() {
 
             <h1
                 className="admin-event-header"
-            >Admin Approved Events</h1>
+            >Admin Event List</h1>
             <div>
 
                 <div className="admin-search-div">
