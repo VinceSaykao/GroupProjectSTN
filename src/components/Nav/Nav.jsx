@@ -112,6 +112,14 @@ function Nav() {
     setOpen(false);
   };
 
+  const handleProfile = () => {
+    console.log('profile')
+  }
+
+  const handleNavTag = () => {
+    console.log('profile')
+  }
+
 
 
 
@@ -184,17 +192,17 @@ function Nav() {
           <Divider />
           <List className='nav-row'>
             {['Profile', 'Calendar', 'Add Event', 'Organizations', 'Pending', 'Events'].map((text, index) => (
-              <ListItem button key={text} >
+              <ListItem button key={text}>
                 <ListItemIcon className='nav-tab'>
-                  {index === 0 ? <PersonIcon fontSize='large' className='nav-icon'/> : <HomeIcon /> &&
+                  {index === 0 ? <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} /> : <HomeIcon /> &&
                   index === 1 ? <HomeIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> &&
                   index === 2 ? <AddIcon  fontSize='large'className='nav-icon'/> : <InboxIcon /> &&
                   index === 3 ? <GroupIcon  fontSize='large'className='nav-icon'/> : <InboxIcon /> &&
                   index === 4 ? <PendingActionsIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> &&
                   index === 5 ? <EventAvailableIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> 
-                  }
+                  } 
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/>
               </ListItem>
             ))}
           </List>

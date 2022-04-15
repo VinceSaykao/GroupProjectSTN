@@ -78,3 +78,9 @@
 .nav-icon {
   color:white;
 }
+
+.nav-text {
+  font-size: 50px;
+  padding: 10%;
+  object-fit: cover;
+}
