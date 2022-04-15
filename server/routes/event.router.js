@@ -118,9 +118,31 @@ router.get('/organization/:id', (req, res) => {
 
 // Will POST an Event to database as *pending status event* when an organization fills out their Event register form. 
 router.post('/', (req, res) => {
-    let queryText = `
-    insert into "events" ("org_id","category_id","status","name","description","date","start_time","end_time","image","address1","address2","city","zip","state","feedback") values
-    ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15);
+
+    console.log('req.body', req.body);
+    console.log('req.user.org_id', req.user.org_id);
+    
+    const queryText = `
+        INSERT INTO "events" (
+            "org_id",
+            "category_id",
+            "name",
+            "description",
+            "start_date",
+            "end_date",
+            "start_time",
+            "end_time",
+            "image",
+            "address1",
+            "address2",
+            "city",
+            "zip",
+            "state",
+            "email",
+            "phone",
+            "link"
+        ) 
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17);
     `;
 
     let queryInserts = [req.body.org_id, req.body.category_id, req.body.status, req.body.name,

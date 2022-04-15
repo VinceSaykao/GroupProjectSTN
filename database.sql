@@ -1,4 +1,4 @@
-CREATE TABLE "users" (
+CREATE TABLE "user" (
 "id" SERIAL PRIMARY KEY,
 "username" VARCHAR (100),
 "password" VARCHAR (200),
@@ -41,6 +41,17 @@ CREATE TABLE "categories" (
 "icon" VARCHAR (1000)
 );
 
+INSERT INTO "categories" (name)
+VALUES 
+('Community Council & District Meetings'),
+('Education'),
+('Park & City Cleanup'),
+('Community Drives'),
+('Community Events'),
+('PopUps'),
+('Philanthropy & Donations'),
+('Other');
+
 CREATE TABLE "events" (
 "id" SERIAL PRIMARY KEY,
 "org_id" int,
@@ -48,10 +59,14 @@ CREATE TABLE "events" (
 "status" VARCHAR (100) DEFAULT 'pending',
 "name" VARCHAR (100),
 "description" VARCHAR (300),
-"date" DATE,
+"link" VARCHAR (500),
+"start_date" DATE,
+"end_date" DATE,
 "start_time" TIME,
 "end_time" TIME,
 "image" VARCHAR (1000),
+"email" VARCHAR (50),
+"phone" bigint,
 "address1" VARCHAR (50),
 "address2" VARCHAR (50),
 "city" VARCHAR (60),
