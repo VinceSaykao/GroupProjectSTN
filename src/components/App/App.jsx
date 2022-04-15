@@ -123,15 +123,14 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          {/* Organization Start */}
+                    {/* Organization Start */}
 
-          
-          <ProtectedRoute
+                    <Route
             exact
             path="/organization-register-form"
           >
-              <OrganizationRegisterForm />
-
+            <OrganizationRegisterForm />
+          </Route>
           <Route
             exact
             path="/organization-view/:id"
@@ -154,7 +153,6 @@ function App() {
           </Route>
 
           {/* Organization End */}
-          </ProtectedRoute> 
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
