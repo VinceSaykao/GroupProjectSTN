@@ -1,3 +1,23 @@
-.admin-event-item {
-    background-color: rgba(0, 255, 128, 0.103);;
+@import "../../Variables/Variables.scss";
+
+.admin-grid-events {
+    height: 1px;
 }
+
+
+
+
+.admin-event-date, .admin-event-name {
+    font-size: 30px;
+}
+
+.admin-arrow {
+    margin-top: 11.5%;
+    transform: scale(1.5);
+}
+
+.admin-title-by {
+    float: left;
+}
+
+
