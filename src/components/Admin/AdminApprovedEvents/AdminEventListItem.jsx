@@ -77,7 +77,7 @@ export default function AdminEventListItem({ event }) {
                         p: 2,
                     }}
                 >
-                    <Grid container wrap="nowrap" spacing={2}>
+                    <Grid container wrap="nowrap" spacing={2} height={90}>
                         <Grid item>
                             <ButtonBase sx={{ width: 70, height: 1 }}>
                                 <Avatar
@@ -92,7 +92,7 @@ export default function AdminEventListItem({ event }) {
                                 noWrap>{event.month} {event.day}</Typography>
                             <Divider />
                     
-                            <Typography noWrap>{event.name} </Typography>
+                            <Typography noWrap>{event.name}</Typography>
                             <Typography noWrap>By: {event.city}</Typography>
 
                         </Grid>
