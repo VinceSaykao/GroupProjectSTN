@@ -3,34 +3,43 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 
+
 function UserProfileEditForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
   //   const { id } = useParams();
-  const updateProfile = useSelector(store => store.updateProfile);
-  //   const fetchProfile = useSelector((store) => store.fetchProfile);
+  const updateProfile = useSelector((store) => store.updateProfile);
+  // const fetchProfile = useSelector((store) => store.fetchProfile);
   const user = useSelector((store) => store.user);
   //   const [profileUser, setProfileUser] = useState(user.id);
-
+  const [image, setImage] = useState("");
   const [bio, setBio] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const handleUpdateUser = () => {
+  const handleUpdateUser = (e) => {
+    e.preventDefault();
     dispatch({
       type: "SET_UPDATE_PROFILE_SAGA",
       payload: {
         id: user.id,
+        image: image,
         first_name: firstName,
         last_name: lastName,
         bio: bio,
         email: email,
       },
     });
+    history.push("/userprofile");
   };
-  console.log("bio, email= ", firstName, lastName, bio, email);
+  // console.log("bio, email= ", firstName, lastName, bio, email);
   return (
     <>
+      <form>
+        <h4>Image URL</h4>
+        <input type="text" name="image" value={image} onChange={(event) => setImage(event.target.value)} />
+      </form>
       <form>
         <h4>First Name</h4>
         <input type="text" name="firstName" value={firstName} onChange={(event) => setFirstName(event.target.value)} />
@@ -40,7 +49,6 @@ function UserProfileEditForm() {
         <input type="text" name="Bio" value={bio} onChange={(event) => setBio(event.target.value)} />
         <h4>Email</h4>
         <input type="text" name="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
-        <h4>Image</h4>
         {/* <input type="text" name="Phone Number" onChange={(event) => setPhoneNumber(event.target.value)} /> */}
         {/*  TODO: Image upload input  */}
       </form>

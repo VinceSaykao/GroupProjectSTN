@@ -21,7 +21,8 @@ import addEvent from "./Event_Reducers/addEvent.reducer";
 import updateEvent from "./Event_Reducers/updateEvent.reducer";
 import fetchSavedEvents from "./Event_Reducers/fetchSavedEvents.reducer";
 import fetchPendingEvents from "./Event_Reducers/fetchPendingEvents.reducer";
-
+// Categories
+import categories from './categories.reducer';
 
 
 
@@ -58,6 +59,8 @@ const rootReducer = combineReducers({
   fetchSavedEvents,
   fetchAllOrganizations,
   fetchPendingEvents,
+  // Categories
+  categories,
 });
 
 export default rootReducer;
