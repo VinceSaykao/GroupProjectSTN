@@ -33,6 +33,9 @@ import UserCalanderView from '../UserCalanderView/UserCalanderView';
 // import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
 // import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
 
+import AdminEventCreate from '../Admin/AdminForm/AdminEventCreate';
+import AdminEventEdit from '../Admin/AdminForm/AdminEventEdit';
+
 import './App.css';
 
 function App() {
