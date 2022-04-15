@@ -10,6 +10,23 @@ const addEvent = (state = [], action) => {
       return {
         ...state,
         name: '',
+        org_id: '',
+        category_id: '',
+        status: 'pending',
+        name: '',
+        description: '',
+        link: '',
+        start_date: '',
+        end_date: '',
+        start_time: '',
+        end_time: '',
+        image: '',
+        address1: '',
+        address2: '',
+        city: '',
+        zip: '',
+        state: '',
+        feedback: '',
       }
   }
 };

@@ -21,20 +21,24 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import CategoryItem from './CategoryItem';
+import CategoryItem from './CategoryItem'; // No Longer used
 
+import icon_cleanup from '../../../category_icons/icon_cleanup.png'
+import icon_community_meeting from '../../../category_icons/icon_community_meeting.png'
+import icon_donations from '../../../category_icons/icon_donations.png'
+import icon_drives from '../../../category_icons/icon_drives.png'
+import icon_education from '../../../category_icons/icon_education.png'
+import icon_events from '../../../category_icons/icon_events.png'
+import icon_popups from '../../../category_icons/icon_popups.png'
+import icon_other from '../../../category_icons/icon_other.png'
 
+import './CategoryItem.css' // Used for icon spacing
 
 function AdminEventCreate() {
 
     const dispatch = useDispatch();
     const newEvent = useSelector(store => store.addEvent);
     const categories = useSelector(store => store.categories);
-
-    const [category, setCategory] = useState('');
-    const handleChange = (event) => {
-        setCategory(event.target.value);
-    };
 
     // ------- Date Time Dispatches -------------------------------------------------------------- //
 
@@ -70,13 +74,16 @@ function AdminEventCreate() {
         dispatch({ type: 'FETCH_CATEGORIES' })
     }, [])
 
+
+
+
     return (
         <Box sx={{ mx: 2 }}>
 
             {/*  ----- EVENT DETAIL ------------------------------------------------ */}
 
             <Typography variant="h5" sx={{ my: 2 }}>Event Detail</Typography>
-            
+
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <TextField
@@ -109,17 +116,60 @@ function AdminEventCreate() {
                         fullWidth
                     />
                 </Grid>
+
                 <Grid item xs={12}>
                     <FormControl sx={{ minWidth: "100%" }}>
                         <InputLabel id="category">Category</InputLabel>
                         <Select
-                            value={category}
+                            value={newEvent.category_id}
                             label="Category"
-                            onChange={handleChange}
+                            onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'category_id', value: e.target.value } })}
                         >
+                            <MenuItem value={categories[0]?.id}>
+                                <img className="icon_dropdown" src={icon_cleanup} />
+                                {categories[0]?.name}
+                            </MenuItem>
+                            <MenuItem value={categories[1]?.id}>
+                                <img className="icon_dropdown" src={icon_community_meeting} />
+                                {categories[1]?.name}
+                            </MenuItem>
+                            <MenuItem value={categories[2]?.id}>
+                                <img className="icon_dropdown" src={icon_donations} />
+                                {categories[2]?.name}
+                            </MenuItem>
+                            <MenuItem value={categories[3]?.id}>
+                                <img className="icon_dropdown" src={icon_drives} />
+                                {categories[3]?.name}
+                            </MenuItem>
+                            <MenuItem value={categories[4]?.id}>
+                                <img className="icon_dropdown" src={icon_education} />
+                                {categories[4]?.name}
+                            </MenuItem>
+                            <MenuItem value={categories[5]?.id}>
+                                <img className="icon_dropdown" src={icon_events} />
+                                {categories[5]?.name}
+                            </MenuItem>
+                            <MenuItem value={categories[6]?.id}>
+                                <img className="icon_dropdown" src={icon_popups} />
+                                {categories[6]?.name}
+                            </MenuItem>
+                            <MenuItem value={categories[7]?.id}>
+                                <img className="icon_dropdown" src={icon_other} />
+                                {categories[7]?.name}
+                            </MenuItem>
+
+                            
+
+                            {/* 
+
+                            SELECT MENU DOESN'T WORK WHEN MAPPED ??? 😡 😡 😡
+                            
                             {categories.map(category => (
                                 <CategoryItem key={category.id} category={category} />
-                            ))}
+                            ))} 
+                            
+                            */}
+
                         </Select>
                     </FormControl>
                 </Grid>

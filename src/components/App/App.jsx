@@ -24,7 +24,6 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import OrganizationView from '../Organization/OrganizationView'
 
-
 // Admin 
 import AdminEventCreate from '../Admin/AdminForm/AdminEventCreate';
 import AdminEventEdit from '../Admin/AdminForm/AdminEventEdit';
@@ -120,12 +119,14 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          {/* 
           <ProtectedRoute
             exact
             path="/organization-view"
           >
             <OrganizationView />
-          </ProtectedRoute>
+          </ProtectedRoute> 
+          */}
 
           <Route
             exact
