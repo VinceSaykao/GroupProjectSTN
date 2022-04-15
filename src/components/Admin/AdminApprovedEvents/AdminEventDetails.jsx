@@ -108,8 +108,7 @@ export default function AdminEventDetails() {
 
 
 
-
-    console.log('event', fetchEventId[0].id);
+    console.log(fetchEventId)
     return (
         <div>
             <Helmet>
