@@ -8,13 +8,16 @@ import {
   Button,
   FormControl,
 } from '@mui/material';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function AddOrganization() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const user = useSelector((store) => store.user);
 
   const orgState = {
+    user_id: user.id,
     name: '',
     email: '',
     phone: '',
@@ -26,8 +29,9 @@ function AddOrganization() {
     image: '',
     address1: '',
     address2: '',
-    zip: '',
+    city:'',
     state: '',
+    zip: '',
   };
 
   const [newOrg, setNewOrg] = useState(orgState);
@@ -46,16 +50,17 @@ function AddOrganization() {
       newOrg.image,
       newOrg.address1,
       newOrg.address2,
-      newOrg.zip,
-      newOrg.state)
+      newOrg.city,
+      newOrg.state,
+      newOrg.zip)
     ) {
       event.preventDefault();
       dispatch({ type: 'ADD_ORGANIZATION', payload: newOrg });
       setNewOrg(orgState);
-      // history.push('/org-profile'); // Go to profile page after entering org info
+      history.push(`/organization-view/${user.org_id}`); // Go to profile page after entering org info
     } else {
       // If a field is not filled out
-      alert('Please fill out all input fields');
+      alert('Please fill out all required* input fields');
     }
   };
 
@@ -128,7 +133,7 @@ function AddOrganization() {
               sx={{ margin: '10px' }}
               autoComplete="off"
               type="text"
-              required
+             
               label="Facebook URL"
               value={newOrg.facebook}
               onChange={(e) =>
@@ -170,7 +175,7 @@ function AddOrganization() {
                 setNewOrg({ ...newOrg, image: e.target.value })
               }
             />
-                        <TextField
+            <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"
               type="text"
@@ -181,29 +186,28 @@ function AddOrganization() {
                 setNewOrg({ ...newOrg, address1: e.target.value })
               }
             />
-                        <TextField
+            <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"
               type="text"
-              required
               label="Address 2"
               value={newOrg.address2}
               onChange={(e) =>
                 setNewOrg({ ...newOrg, address2: e.target.value })
               }
             />
-                        <TextField
+            <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"
-              type="number"
+              type="text"
               required
-              label="Zip Code"
-              value={newOrg.zip}
+              label="City"
+              value={newOrg.city}
               onChange={(e) =>
-                setNewOrg({ ...newOrg, zip: e.target.value })
+                setNewOrg({ ...newOrg, city: e.target.value })
               }
             />
-                        <TextField
+            <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"
               type="text"
@@ -212,6 +216,17 @@ function AddOrganization() {
               value={newOrg.state}
               onChange={(e) =>
                 setNewOrg({ ...newOrg, state: e.target.value })
+              }
+            />
+            <TextField
+              sx={{ margin: '10px' }}
+              autoComplete="off"
+              type="number"
+              required
+              label="Zip Code"
+              value={newOrg.zip}
+              onChange={(e) =>
+                setNewOrg({ ...newOrg, zip: e.target.value })
               }
             />
           </FormControl>
