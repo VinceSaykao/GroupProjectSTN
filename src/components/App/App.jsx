@@ -24,6 +24,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import UserProfileEditForm from '../UserProfilePage/UserProfileEditForm';
 import OrganizationView from '../Organization/OrganizationView'
+import UserCalanderView from '../UserCalanderView/UserCalanderView';
 
 
 // Admin 
@@ -105,7 +106,7 @@ function App() {
             exact
             path="/admin-pending-event-details"
           >
-            <AdminPendingEventDetails/>
+            <AdminPendingEventDetails />
           </ProtectedRoute>
 
 
@@ -125,6 +126,14 @@ function App() {
           >
             <OrganizationView />
           </ProtectedRoute> */}
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/calanderview"
+          >
+            <UserCalanderView />
+          </ProtectedRoute>
 
           <Route
             exact
