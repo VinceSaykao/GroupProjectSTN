@@ -89,7 +89,7 @@ export default function AdminEventListItem({ event }) {
                             <Typography
             
                                 variant='h4'
-                                noWrap>{event.Mon}</Typography>
+                                noWrap>{event.month} {event.day}</Typography>
                             <Divider />
                     
                             <Typography noWrap>{event.name} </Typography>
