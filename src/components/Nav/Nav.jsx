@@ -41,7 +41,7 @@ import MailIcon from '@mui/icons-material/Mail';
 
 
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -149,6 +149,11 @@ function Nav() {
     history.push('adminlist');
   }
 
+  const handleLogout = () => {
+    console.log('Logout');
+    LogOutButton();
+  }
+
   // end of event listeners
 
 
@@ -182,6 +187,7 @@ function Nav() {
 
           <HomeIcon 
           fontSize='large'
+          onClick={handleHome}
           />
 
 
@@ -209,6 +215,7 @@ function Nav() {
 
         </Main>
         <Drawer
+        className='nav-drawer'
           sx={{
             width: drawerWidth,
             flexShrink: 0,
@@ -227,7 +234,10 @@ function Nav() {
           </DrawerHeader>
           <Divider />
           <List className='nav-row'>
-            {nav.map((text, index) => (
+
+
+
+          {nav.map((text, index) => (
               <ListItem button key={index}>
                 <ListItemIcon className='nav-tab'>
                   {index === 0 ? <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} />: <HomeIcon /> &&
@@ -253,6 +263,22 @@ function Nav() {
               </ListItem>
         
             ))}
+   
+              {/* <ListItem >
+                <ListItemIcon className='nav-tab'>
+                  { <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} />
+                  } 
+                </ListItemIcon>
+
+                <ListItemText className='nav-text'>
+                {<h2 onClick={handleProfile}>Profile</h2>
+                  } 
+
+                </ListItemText>
+                  
+              </ListItem> */}
+        
+      
           </List>
           <Divider />
           <List className='nav-logout'>
@@ -261,10 +287,16 @@ function Nav() {
                 <ListItemIcon>
                   {index % 2 === 0 ? <ExitToAppIcon  fontSize='large' className='nav-icon'/> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText onClick={handleLogout}>
+                {index === 0 ? <h2><LogOutButton className='nav-logout-text'/></h2> : <p>NA</p> }
+
+                </ListItemText>
+              
               </ListItem>
             ))}
           </List>
+
+          <Divider />
         </Drawer>
       </Box>
 
