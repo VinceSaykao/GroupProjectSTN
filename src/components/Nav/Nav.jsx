@@ -111,26 +111,32 @@ function Nav() {
 
   const handleProfile = () => {
     console.log('Send-Profile')
+    history.push('/userprofile')
   }
 
   const handleHome = () => {
     console.log('Send-Home')
+    history.push('/calanderview')
   }
 
   const handleAdd = () => {
     console.log('Send-Add')
+    history.push('/admin-event-create')
   }
 
   const handleOrganizations = () => {
     console.log('Send-Org')
+    history.push('/organizations-list')
   }
   
   const handlePending = () => {
     console.log('Send-Pending')
+    history.push('/admin-pending-list')
   }
 
   const handleEvents = () => {
     console.log('Send Events')
+    history.push('adminlist')
   }
 
 

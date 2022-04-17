@@ -4,9 +4,10 @@ import OrganizationListItem from './OrganizationListItem';
 import Grid from '@mui/material/Grid';
 import { Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import { TextField } from '@mui/material';
 
 function OrganizationsList() {
-  const org = useSelector((store) => store.fetchAllOrganizations);
+  const organizations = useSelector((store) => store.fetchAllOrganizations);
 
   // organizations.filter(org.org_name => org.org_name.toLowerCase().includes(search.toLowerCase()))
 
@@ -27,7 +28,7 @@ function OrganizationsList() {
             color="primary"
             autoComplete="off"
             onChange={(event) => {addSearch}}
-            value={search}
+            // value={search}
           />
         </Box>
         <Grid
