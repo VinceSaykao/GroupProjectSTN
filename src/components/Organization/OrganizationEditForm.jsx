@@ -202,7 +202,7 @@ function OrganizationEditForm() {
               onChange={(e) => setUpdate({ ...update, city: e.target.value })}
             />
           </Grid>
-          <Grid item xs={3.25}>
+          <Grid item xs={4}>
             <TextField
               sx={{ margin: '10px' }}
               autoComplete="off"
