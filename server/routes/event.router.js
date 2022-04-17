@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
             extract(
             day from date
             ) AS "day",
-            to_char(date, 'Day') AS "dayname",
+            to_char(date, 'Dy') AS "dayname",
             events.start_time,
             events.end_time,
             events.image,
