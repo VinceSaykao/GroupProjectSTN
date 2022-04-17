@@ -54,7 +54,7 @@ export default function AdminPendingEventListItem({ event }) {
         className='admin-event-item'
         onClick={handleClick}>
 
-        <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
+        <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, }}>
             <StyledPaper
                 sx={{
                     my: 1,
@@ -62,7 +62,7 @@ export default function AdminPendingEventListItem({ event }) {
                     p: 2,
                 }}
             >
-                <Grid container wrap="nowrap" spacing={3} height={90}>
+                <Grid container wrap="nowrap" spacing={3} height={90} width="100%">
                     <Grid item>
                         <ButtonBase sx={{ width: 70, height: 1 }}>
                             <Avatar
@@ -72,13 +72,15 @@ export default function AdminPendingEventListItem({ event }) {
                     </Grid>
                     <Grid item xs={8}>
                         <Typography
+                            sx={{ width: '100%', height: 30 }}
                             className='event-list-date'
                             variant='h5'
                             noWrap>{event.dayname}, {event.month} {event.day}</Typography>
-                        <Divider />
 
-                        <Typography noWrap>{event.name}</Typography>
-                        <Typography noWrap>By: {event.city}</Typography>
+                        <Divider />
+                
+                        <Typography noWrap><b>{event.name}</b></Typography>
+                        <Typography noWrap>{event.city}</Typography>
 
                     </Grid>
 
@@ -91,6 +93,7 @@ export default function AdminPendingEventListItem({ event }) {
             </StyledPaper>
 
         </Box>
+
 
 
 

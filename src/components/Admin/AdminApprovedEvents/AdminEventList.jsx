@@ -23,6 +23,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
+import TabList from '@mui/lab/TabList';
+
 
 import AdminPendingEventList from '../AdminPendingEvents/AdminPendingEventList';
 
@@ -139,10 +141,12 @@ export default function AdminEventList() {
                     </IconButton>
                 </div>
 
+                <Divider sx={{ height: 10, m: 0.5 }} orientation="vertical" /> 
+
 
                 <Box 
                 className="event-tab"
-                sx={{ bgcolor: 'background.paper', height: '1px', width: '100%', textAlign: 'center', }}>
+                sx={{ bgcolor: 'background.paper', height: '0px', width: '100%', textAlign: 'center', }}>
                     <AppBar position="static">
                         <Tabs
                             value={value}
@@ -170,7 +174,7 @@ export default function AdminEventList() {
                     return (
                         <div key={i}>
 
-
+                            
                             <AdminEventListItem
                                 event={event}
                             />
