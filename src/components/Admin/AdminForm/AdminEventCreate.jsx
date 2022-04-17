@@ -42,25 +42,16 @@ function AdminEventCreate() {
 
     // ------- Date Time Dispatches -------------------------------------------------------------- //
 
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-    const [startTime, setStartTime] = useState(new Date(), 'hh:mm:ss');
-    const [endTime, setEndTime] = useState(new Date(), 'hh:mm:ss');
-
-    const dispatchStartDate = (newStartDate) => {
-        setStartDate(newStartDate);
+    const dispatchStartDate = (startDate) => {
         dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'start_date', value: startDate } })
     }
-    const dispatchEndDate = (newEndDate) => {
-        setEndDate(newEndDate);
+    const dispatchEndDate = (endDate) => {
         dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'end_date', value: endDate } })
     }
-    const dispatchStartTime = (newStartTime) => {
-        setStartTime(newStartTime);
+    const dispatchStartTime = (startTime) => {
         dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'start_time', value: startTime } })
     }
-    const dispatchEndTime = (newEndTime) => {
-        setEndTime(newEndTime);
+    const dispatchEndTime = (endTime) => {
         dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'end_time', value: endTime } })
     }
     // ------------------------------------------------------------------------------------------ //
@@ -75,11 +66,8 @@ function AdminEventCreate() {
     }, [])
 
     const dispatchTimeTest = (time) => {
-        dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'start_time', value: time }});
+        dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'start_time', value: time } });
     }
-    
-    const [time, setTime] = useState('04:20')
-    console.log('time', time);
 
     return (
         <Box sx={{ mx: 2 }}>
@@ -157,20 +145,33 @@ function AdminEventCreate() {
             <Grid container spacing={2}>
                 <Grid item xs={6}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <MobileDatePicker
+                        {/* <MobileDatePicker
                             label="Start Date"
                             inputFormat="MM/dd/yyyy"
                             value={startDate}
                             onChange={dispatchStartDate}
                             renderInput={(params) => <TextField {...params} />}
+                        /> */}
+
+                        <TextField
+                            id="date"
+                            label="Start Date"
+                            type="date"
+                            value={newEvent.start_date}
+                            onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'start_date', value: e.target.value } })}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            fullWidth
                         />
+
                     </LocalizationProvider>
                 </Grid>
                 <Grid item xs={6}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <MobileDatePicker
                             label="End Date"
-                            value={endDate}
+                            value={newEvent.end_date}
                             onChange={dispatchEndDate}
                             renderInput={(params) => <TextField {...params} />}
                         />
@@ -189,9 +190,8 @@ function AdminEventCreate() {
                             id="time"
                             label="Start Time"
                             type="time"
-                            // defaultValue="03:30"
-                            // value={newEvent.start_time}
-                            onChange={e => dispatchTimeTest(e.target.value)}
+                            value={newEvent.start_time}
+                            onChange={e => dispatchStartTime(e.target.value)}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -205,7 +205,7 @@ function AdminEventCreate() {
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <MobileTimePicker
                             label="End Time"
-                            value={endTime}
+                            value={newEvent.end_time}
                             onChange={dispatchEndTime}
                             renderInput={(params) => <TextField {...params} />}
                         />
