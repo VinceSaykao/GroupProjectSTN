@@ -84,13 +84,17 @@ export default function AdminEventListItem({ event }) {
                         </Grid>
                         <Grid item xs={8}>
                             <Typography
-
+                                className='event-list-date'
                                 variant='h4'
                                 noWrap>{event.month} {event.day}</Typography>
+                        
                             <Divider />
-
+                            <Divider />
+                            <Divider />
+                            <Divider />
+                    
                             <Typography noWrap>{event.name}</Typography>
-                            <Typography noWrap>By: {event.city}</Typography>
+                            <Typography noWrap>{event.city}</Typography>
 
                         </Grid>
 

@@ -1,10 +1,6 @@
-@import "../../Variables/Variables.scss";
-
 .admin-grid-events {
     height: 1px;
 }
-
-
 
 
 .admin-event-date, .admin-event-name {
@@ -19,5 +15,10 @@
 .admin-title-by {
     float: left;
 }
+
+.event-list-date {
+    margin-bottom: 20px;
+}
+
 
 
