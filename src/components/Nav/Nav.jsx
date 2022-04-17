@@ -101,6 +101,7 @@ function Nav() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -109,35 +110,46 @@ function Nav() {
     setOpen(false);
   };
 
+
+  // event listeners for drawer pushes
+
   const handleProfile = () => {
-    console.log('Send-Profile')
-    history.push('/userprofile')
+    console.log('Send-Profile');
+    handleDrawerClose();
+    history.push('/userprofile');
   }
 
   const handleHome = () => {
-    console.log('Send-Home')
-    history.push('/calanderview')
+    console.log('Send-Home');
+    handleDrawerClose();
+    history.push('/calanderview');
   }
 
   const handleAdd = () => {
-    console.log('Send-Add')
-    history.push('/admin-event-create')
+    console.log('Send-Add');
+    handleDrawerClose();
+    history.push('/admin-event-create');
   }
 
   const handleOrganizations = () => {
-    console.log('Send-Org')
-    history.push('/organizations-list')
+    console.log('Send-Org');
+    handleDrawerClose();
+    history.push('/organizations-list');
   }
   
   const handlePending = () => {
-    console.log('Send-Pending')
-    history.push('/admin-pending-list')
+    console.log('Send-Pending');
+    handleDrawerClose();
+    history.push('/admin-pending-list');
   }
 
   const handleEvents = () => {
-    console.log('Send Events')
-    history.push('adminlist')
+    console.log('Send Events');
+    handleDrawerClose();
+    history.push('adminlist');
   }
+
+  // end of event listeners
 
 
   const nav = ['Profile', 'Calendar', 'Add Event', 'Organizations', 'Pending', 'Events'];
@@ -255,17 +267,6 @@ function Nav() {
           </List>
         </Drawer>
       </Box>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
