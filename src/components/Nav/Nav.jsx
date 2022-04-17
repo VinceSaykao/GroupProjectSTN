@@ -98,11 +98,6 @@ function Nav() {
   const history = useHistory();
 
 
-
-
-
-
-
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -115,31 +110,36 @@ function Nav() {
   };
 
   const handleProfile = () => {
-    console.log('profile')
+    console.log('Send-Profile')
   }
 
   const handleHome = () => {
-    console.log('profile')
+    console.log('Send-Home')
+  }
+
+  const handleAdd = () => {
+    console.log('Send-Add')
+  }
+
+  const handleOrganizations = () => {
+    console.log('Send-Org')
+  }
+  
+  const handlePending = () => {
+    console.log('Send-Pending')
+  }
+
+  const handleEvents = () => {
+    console.log('Send Events')
   }
 
 
   const nav = ['Profile', 'Calendar', 'Add Event', 'Organizations', 'Pending', 'Events'];
 
-  const handleNavTag = (nav) => {
 
 
 
-    if (nav === 'Profile') {
-      console.log('cool');
-    }
-  
-  }
 
-
-
-  
-
-console.log(nav[0]);
   return (
     <div className="nav">
 
@@ -214,13 +214,23 @@ console.log(nav[0]);
                 <ListItemIcon className='nav-tab'>
                   {index === 0 ? <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} />: <HomeIcon /> &&
                   index === 1 ? <HomeIcon  fontSize='large' className='nav-icon' onClick={handleHome} /> : <InboxIcon /> &&
-                  index === 2 ? <AddIcon  fontSize='large'className='nav-icon'/> : <InboxIcon /> &&
-                  index === 3 ? <GroupIcon  fontSize='large'className='nav-icon'/> : <InboxIcon /> &&
-                  index === 4 ? <PendingActionsIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> &&
-                  index === 5 ? <EventAvailableIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> 
+                  index === 2 ? <AddIcon  fontSize='large'className='nav-icon' onClick={handleAdd}/> : <InboxIcon /> &&
+                  index === 3 ? <GroupIcon  fontSize='large'className='nav-icon' onClick={handleOrganizations}/> : <InboxIcon /> &&
+                  index === 4 ? <PendingActionsIcon  fontSize='large' className='nav-icon' onClick={handlePending}/> : <InboxIcon /> &&
+                  index === 5 ? <EventAvailableIcon  fontSize='large' className='nav-icon' onClick={handleEvents}/> : <InboxIcon /> 
                   } 
                 </ListItemIcon>
-                <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/>
+                {/* <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/> */}
+                <ListItemText className='nav-text'>
+                {index === 0 ? <h2 onClick={handleProfile}>Profile</h2>: <HomeIcon /> &&
+                  index === 1 ? <h2 onClick={handleHome}>Home</h2>: <HomeIcon /> &&
+                  index === 2 ? <h2 onClick={handleAdd}>Add Event</h2>: <HomeIcon /> &&
+                  index === 3 ? <h2 onClick={handleOrganizations} >Organizations</h2>: <HomeIcon /> &&
+                  index === 4 ? <h2 onClick={handlePending}>Pending</h2>: <HomeIcon /> &&
+                  index === 5 ? <h2 onClick={handleEvents}>Events</h2>: <HomeIcon /> 
+                  } 
+
+                </ListItemText>
                   
               </ListItem>
         

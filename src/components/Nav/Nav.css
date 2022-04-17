@@ -11,9 +11,6 @@
   height: 50px;
 }
 
-/* .nav a {
-  text-decoration: none;
-} */
 
 .nav-title {
   font-size: 24px;
@@ -37,9 +34,6 @@
   outline: 0;
 }
 
-/* .navLink:hover {
-  background-color: #008183;
-} */
 
 .menu-nav {
   line-height: 15px;
@@ -82,11 +76,9 @@
 }
 
 .nav-text {
-  font-size: 50px;
-  padding: 8%;
-  object-fit: cover;
+  height: 70px;
 }
 
 .MuiButtonBase-root.MuiListItem-root.MuiListItem-guttersMuiListItem-padding.MuiListItem-button.css-bshv44-MuiButtonBase-root-MuiListItem-root {
-  background-color: black;
+  background-color: green;
 }
