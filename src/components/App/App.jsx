@@ -28,10 +28,10 @@ import OrganizationsList from '../Organization/OrganizationsList'
 import UserCalanderView from '../UserCalanderView/UserCalanderView';
 
 // Admin 
-// import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
-// import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
-// import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
-// import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
+import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
+import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
+import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
+import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
 
 import AdminEventCreate from '../Admin/AdminForm/AdminEventCreate';
 import AdminEventEdit from '../Admin/AdminForm/AdminEventEdit';
@@ -77,7 +77,7 @@ function App() {
           </ProtectedRoute>
 
           {/* ADMIN START */}
-{/*   
+   
 
           <ProtectedRoute
             exact
@@ -102,7 +102,7 @@ function App() {
             path="/admin-pending-event-details"
           >
             <AdminPendingEventDetails />
-          </ProtectedRoute> */}
+          </ProtectedRoute> 
           {/* ADMIN END */}
 
           <ProtectedRoute
