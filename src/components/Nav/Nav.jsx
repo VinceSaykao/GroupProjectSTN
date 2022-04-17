@@ -41,7 +41,7 @@ import MailIcon from '@mui/icons-material/Mail';
 
 
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -98,13 +98,9 @@ function Nav() {
   const history = useHistory();
 
 
-
-
-
-
-
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -114,31 +110,63 @@ function Nav() {
     setOpen(false);
   };
 
+
+  // event listeners for drawer pushes
+
   const handleProfile = () => {
-    console.log('profile')
+    console.log('Send-Profile');
+    handleDrawerClose();
+    history.push('/userprofile');
   }
 
-  const handleNavTag = () => {
-
-    // for ( i<0; i<nav.length; i++) {
-    //   if (nav[i] === 'Profile') {
-    //     console.log('Profile Works');
-    //   } else {
-    //     console.log('something');
-    //   }
-    // }
+  const handleHome = () => {
+    console.log('Send-Home');
+    handleDrawerClose();
+    history.push('/calanderview');
   }
+
+  const handleAdd = () => {
+    console.log('Send-Add');
+    handleDrawerClose();
+    history.push('/admin-event-create');
+  }
+
+  const handleOrganizations = () => {
+    console.log('Send-Org');
+    handleDrawerClose();
+    history.push('/organizations-list');
+  }
+
+  const handlePending = () => {
+    console.log('Send-Pending');
+    handleDrawerClose();
+    history.push('/admin-pending-list');
+  }
+
+  const handleEvents = () => {
+    console.log('Send Events');
+    handleDrawerClose();
+    history.push('adminlist');
+  }
+
+  const handleLogout = () => {
+    console.log('Logout');
+    LogOutButton();
+  }
+
+  // end of event listeners
 
 
   const nav = ['Profile', 'Calendar', 'Add Event', 'Organizations', 'Pending', 'Events'];
 
-  
+
+
 
 
   return (
     <div className="nav">
 
-    
+
 
 
 
@@ -149,25 +177,26 @@ function Nav() {
             <Typography noWrap sx={{ flexGrow: 1 }} component="div">
 
 
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="end"
-          
-            >
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="end"
+
+              >
 
 
-          <HomeIcon 
-          fontSize='large'
-          />
+                <HomeIcon
+                  fontSize='large'
+                  onClick={handleHome}
+                />
 
 
-</IconButton>
+              </IconButton>
 
 
 
             </Typography>
-        
+
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -175,8 +204,8 @@ function Nav() {
               onClick={handleDrawerOpen}
               sx={{ ...(open && { display: 'none' }) }}
             >
-              <MenuIcon 
-              fontSize='large'
+              <MenuIcon
+                fontSize='large'
               />
             </IconButton>
           </Toolbar>
@@ -186,6 +215,7 @@ function Nav() {
 
         </Main>
         <Drawer
+          className='nav-drawer'
           sx={{
             width: drawerWidth,
             flexShrink: 0,
@@ -199,52 +229,76 @@ function Nav() {
         >
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon className='chevron-right' fontSize='large'  />}
+              {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon className='chevron-right' fontSize='large' />}
             </IconButton>
           </DrawerHeader>
           <Divider />
           <List className='nav-row'>
+
+
+
             {nav.map((text, index) => (
-              <ListItem button key={text}>
+              <ListItem button key={index}>
                 <ListItemIcon className='nav-tab'>
                   {index === 0 ? <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} /> : <HomeIcon /> &&
-                  index === 1 ? <HomeIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> &&
-                  index === 2 ? <AddIcon  fontSize='large'className='nav-icon'/> : <InboxIcon /> &&
-                  index === 3 ? <GroupIcon  fontSize='large'className='nav-icon'/> : <InboxIcon /> &&
-                  index === 4 ? <PendingActionsIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> &&
-                  index === 5 ? <EventAvailableIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> 
+                    index === 1 ? <HomeIcon fontSize='large' className='nav-icon' onClick={handleHome} /> : <InboxIcon /> &&
+                      index === 2 ? <AddIcon fontSize='large' className='nav-icon' onClick={handleAdd} /> : <InboxIcon /> &&
+                        index === 3 ? <GroupIcon fontSize='large' className='nav-icon' onClick={handleOrganizations} /> : <InboxIcon /> &&
+                          index === 4 ? <PendingActionsIcon fontSize='large' className='nav-icon' onClick={handlePending} /> : <InboxIcon /> &&
+                            index === 5 ? <EventAvailableIcon fontSize='large' className='nav-icon' onClick={handleEvents} /> : <InboxIcon />
+                  }
+                </ListItemIcon>
+                {/* <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/> */}
+                <ListItemText className='nav-text'>
+                  {index === 0 ? <h2 onClick={handleProfile}>Profile</h2> : <HomeIcon /> &&
+                    index === 1 ? <h2 onClick={handleHome}>Home</h2> : <HomeIcon /> &&
+                      index === 2 ? <h2 onClick={handleAdd}>Add Event</h2> : <HomeIcon /> &&
+                        index === 3 ? <h2 onClick={handleOrganizations} >Organizations</h2> : <HomeIcon /> &&
+                          index === 4 ? <h2 onClick={handlePending}>Pending</h2> : <HomeIcon /> &&
+                            index === 5 ? <h2 onClick={handleEvents}>Events</h2> : <HomeIcon />
+                  }
+
+                </ListItemText>
+
+              </ListItem>
+
+            ))}
+
+            {/* <ListItem >
+                <ListItemIcon className='nav-tab'>
+                  { <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} />
                   } 
                 </ListItemIcon>
-                <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/>
+
+                <ListItemText className='nav-text'>
+                {<h2 onClick={handleProfile}>Profile</h2>
+                  } 
+
+                </ListItemText>
                   
-              </ListItem>
-        
-            ))}
+              </ListItem> */}
+
+
           </List>
           <Divider />
           <List className='nav-logout'>
             {['Logout'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <ExitToAppIcon  fontSize='large' className='nav-icon'/> : <MailIcon />}
+                  {index % 2 === 0 ? <ExitToAppIcon fontSize='large' className='nav-icon' /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText onClick={handleLogout}>
+                  {index === 0 ? <h2><LogOutButton className='nav-logout-text' /></h2> : <p>NA</p>}
+
+                </ListItemText>
+
               </ListItem>
             ))}
           </List>
+
+          <Divider />
         </Drawer>
       </Box>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

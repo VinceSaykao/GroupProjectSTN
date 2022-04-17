@@ -3,12 +3,14 @@ import { all } from "redux-saga/effects";
 import loginSaga from "./login.saga";
 import registrationSaga from "./registration.saga";
 import userSaga from "./user.saga";
-// Organizations
+
+// Profiles
 import fetchProfile from "./Profile_SAGA/fetchProfile.saga";
 import fetchProfileEvent from "./Profile_SAGA/fetchProfileEvent.saga";
 import addProfile from "./Profile_SAGA/addProfile.saga";
 import updateProfile from "./Profile_SAGA/updateProfile.saga";
 
+// Organizations
 import addOrganizationsSaga from "./Organization_SAGA/addOrganization.saga";
 import fetchAllOrganizationsSaga from './Organization_SAGA/fetchAllOrganizations.saga';
 import fetchOrganization from './Organization_SAGA/fetchOrganization.saga'
@@ -25,6 +27,8 @@ import fetchSavedEvents from "./Event_SAGA/fetchSavedEvents.saga";
 import updateEvent from "./Event_SAGA/updateEvent.saga";
 import fetchAdminPendingEvents from "./Event_SAGA/fetchAdminPendingEvents.saga";
 
+// Categories
+import categories from './categories.saga';
 
 
 
@@ -43,17 +47,18 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
 
+    // Organizations
     addOrganizationsSaga(),
     fetchAllOrganizationsSaga(),
     fetchOrganization(),
     updateOrganization(),
 
-    // Organizations
-
+    // Profile
     fetchProfile(),
     fetchProfileEvent(),
     addProfile(),
     updateProfile(),
+
     // Events
     addEvent(),
     deleteEvent(),
@@ -64,5 +69,8 @@ export default function* rootSaga() {
     fetchSavedEvents(),
     updateEvent(),
     fetchAdminPendingEvents(),
+
+    // Categories
+    categories(),
   ]);
 }

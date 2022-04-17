@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from "@mui/material";
-import {Divider} from '@mui/material';
+import { Divider } from '@mui/material';
 
 
 
@@ -36,20 +36,33 @@ export default function AdminPendingEventList() {
             }`}
                 </style>
             </Helmet>
-            <h1
+            {/* <h1
                 className="admin-event-header"
-            >Admin Pending Requests</h1>
+            >Admin Pending Events</h1>
             <div>
-                <InputBase
-                    sx={{ ml: 12, flex: 1, bgcolor: 'white', }}
-                    placeholder="Search"
-                    inputProps={{ 'aria-label': 'search google maps' }}
-                />
-                <IconButton>
-                    <SearchIcon />
-                </IconButton>
+
+                <div className="admin-search-div">
+                    <InputBase
+                        sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
+                        placeholder="| Search"
+                        inputProps={{ 'aria-label': 'search google maps' }}
+                    />
+                    <IconButton>
+                        <SearchIcon />
+                    </IconButton>
+                </div>
+
                 <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-            </div>
+
+            </div> */}
+
+
+
+
+
+
+
+                
 
             <div className="pending-event-list-container">
                 {fetchPendingEvents.map((event, i) => {
