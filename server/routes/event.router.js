@@ -97,6 +97,7 @@ router.get('/admin/pending', (req, res) => {
             extract(
             day from date
             ) AS "day",
+            to_char(date, 'Dy') AS "dayname",
             start_time,
             end_time,
             image,
@@ -105,9 +106,11 @@ router.get('/admin/pending', (req, res) => {
             city,
             zip,
             state,
-            feedback    
-            from events 
-            where status = 'pending';`)
+            feedback
+            from events
+            where status = 'pending'
+            order by date asc
+            ;;`)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for admin pending event information', error);
