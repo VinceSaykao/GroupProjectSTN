@@ -137,16 +137,10 @@ function Nav() {
     history.push('/organizations-list');
   }
 
-  const handlePending = () => {
-    console.log('Send-Pending');
-    handleDrawerClose();
-    history.push('/admin-pending-list');
-  }
-
   const handleEvents = () => {
     console.log('Send Events');
     handleDrawerClose();
-    history.push('adminlist');
+    history.push('/adminlist');
   }
 
   const handleLogout = () => {
