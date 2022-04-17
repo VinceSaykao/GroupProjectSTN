@@ -157,7 +157,7 @@ function Nav() {
   // end of event listeners
 
 
-  const nav = ['Profile', 'Calendar', 'Add Event', 'Organizations', 'Pending', 'Events'];
+  const nav = ['Profile', 'Calendar', 'Add Event', 'Organizations', 'Events'];
 
 
 
@@ -244,8 +244,7 @@ function Nav() {
                     index === 1 ? <HomeIcon fontSize='large' className='nav-icon' onClick={handleHome} /> : <InboxIcon /> &&
                       index === 2 ? <AddIcon fontSize='large' className='nav-icon' onClick={handleAdd} /> : <InboxIcon /> &&
                         index === 3 ? <GroupIcon fontSize='large' className='nav-icon' onClick={handleOrganizations} /> : <InboxIcon /> &&
-                          index === 4 ? <PendingActionsIcon fontSize='large' className='nav-icon' onClick={handlePending} /> : <InboxIcon /> &&
-                            index === 5 ? <EventAvailableIcon fontSize='large' className='nav-icon' onClick={handleEvents} /> : <InboxIcon />
+                            index === 4 ? <EventAvailableIcon fontSize='large' className='nav-icon' onClick={handleEvents} /> : <InboxIcon />
                   }
                 </ListItemIcon>
                 {/* <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/> */}
@@ -254,8 +253,7 @@ function Nav() {
                     index === 1 ? <h2 onClick={handleHome}>Home</h2> : <HomeIcon /> &&
                       index === 2 ? <h2 onClick={handleAdd}>Add Event</h2> : <HomeIcon /> &&
                         index === 3 ? <h2 onClick={handleOrganizations} >Organizations</h2> : <HomeIcon /> &&
-                          index === 4 ? <h2 onClick={handlePending}>Pending</h2> : <HomeIcon /> &&
-                            index === 5 ? <h2 onClick={handleEvents}>Events</h2> : <HomeIcon />
+                            index === 4 ? <h2 onClick={handleEvents}>Events</h2> : <HomeIcon />
                   }
 
                 </ListItemText>
