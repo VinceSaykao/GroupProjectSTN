@@ -128,6 +128,7 @@ router.post('/', (req, res) => {
             "category_id",
             "name",
             "description",
+            "status",
             "start_date",
             "end_date",
             "start_time",
@@ -145,9 +146,26 @@ router.post('/', (req, res) => {
         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17);
     `;
 
-    let queryInserts = [req.body.org_id, req.body.category_id, req.body.status, req.body.name,
-    req.body.description, req.body.date, req.body.start_time, req.body.end_time, req.body.image,
-    req.body.address1, req.body.address2, req.body.city, req.body.zip, req.body.state, req.body.feedback];
+    let queryInserts = [
+        req.body.org_id, 
+        req.body.category_id, 
+        req.body.name,
+        req.body.description, 
+        req.body.status, 
+        req.body.start_date, 
+        req.body.end_date, 
+        req.body.start_time, 
+        req.body.end_time, 
+        req.body.image,
+        req.body.address1, 
+        req.body.address2, 
+        req.body.city, 
+        req.body.zip, 
+        req.body.state, 
+        req.body.email,
+        req.body.phone,
+        req.body.link,
+    ];
     if (req.isAuthenticated) {
         pool
             .query(queryText, queryInserts)

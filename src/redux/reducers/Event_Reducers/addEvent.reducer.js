@@ -9,13 +9,11 @@ const addEvent = (state = [], action) => {
     default:
       return {
         ...state,
-        name: '',
         org_id: '',
         category_id: '',
-        status: 'pending',
         name: '',
         description: '',
-        link: '',
+        status: 'pending',
         start_date: '',
         end_date: '',
         start_time: '',
@@ -26,7 +24,9 @@ const addEvent = (state = [], action) => {
         city: '',
         zip: '',
         state: '',
-        feedback: '',
+        email: '',
+        phone: '',
+        link: '',
       }
   }
 };
