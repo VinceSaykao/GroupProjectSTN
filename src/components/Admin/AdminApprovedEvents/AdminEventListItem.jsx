@@ -66,7 +66,7 @@ export default function AdminEventListItem({ event }) {
             className='admin-event-item'
             onClick={handleClick}>
 
-            <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
+            <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, }}>
                 <StyledPaper
                     sx={{
                         my: 1,
@@ -74,7 +74,7 @@ export default function AdminEventListItem({ event }) {
                         p: 2,
                     }}
                 >
-                    <Grid container wrap="nowrap" spacing={3} height={90}>
+                    <Grid container wrap="nowrap" spacing={3} height={90} width="100%">
                         <Grid item>
                             <ButtonBase sx={{ width: 70, height: 1 }}>
                                 <Avatar
@@ -84,6 +84,7 @@ export default function AdminEventListItem({ event }) {
                         </Grid>
                         <Grid item xs={8}>
                             <Typography
+                                sx={{ width: '100%', height: 30 }}
                                 className='event-list-date'
                                 variant='h5'
                                 noWrap>{event.dayname}, {event.month} {event.day}</Typography>
@@ -95,10 +96,10 @@ export default function AdminEventListItem({ event }) {
 
                         </Grid>
 
-                        <ArrowForwardIosIcon
+                        {/* <ArrowForwardIosIcon
                             className='admin-arrow'
                             fontSize='large'
-                        />
+                        /> */}
 
                     </Grid>
                 </StyledPaper>
