@@ -118,23 +118,28 @@ function Nav() {
     console.log('profile')
   }
 
-  const handleNavTag = () => {
-
-    // for ( i<0; i<nav.length; i++) {
-    //   if (nav[i] === 'Profile') {
-    //     console.log('Profile Works');
-    //   } else {
-    //     console.log('something');
-    //   }
-    // }
+  const handleHome = () => {
+    console.log('profile')
   }
 
 
   const nav = ['Profile', 'Calendar', 'Add Event', 'Organizations', 'Pending', 'Events'];
 
+  const handleNavTag = (nav) => {
+
+
+
+    if (nav === 'Profile') {
+      console.log('cool');
+    }
+  
+  }
+
+
+
   
 
-
+console.log(nav[0]);
   return (
     <div className="nav">
 
@@ -205,10 +210,10 @@ function Nav() {
           <Divider />
           <List className='nav-row'>
             {nav.map((text, index) => (
-              <ListItem button key={text}>
+              <ListItem button key={index}>
                 <ListItemIcon className='nav-tab'>
-                  {index === 0 ? <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} /> : <HomeIcon /> &&
-                  index === 1 ? <HomeIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> &&
+                  {index === 0 ? <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} />: <HomeIcon /> &&
+                  index === 1 ? <HomeIcon  fontSize='large' className='nav-icon' onClick={handleHome} /> : <InboxIcon /> &&
                   index === 2 ? <AddIcon  fontSize='large'className='nav-icon'/> : <InboxIcon /> &&
                   index === 3 ? <GroupIcon  fontSize='large'className='nav-icon'/> : <InboxIcon /> &&
                   index === 4 ? <PendingActionsIcon  fontSize='large' className='nav-icon'/> : <InboxIcon /> &&

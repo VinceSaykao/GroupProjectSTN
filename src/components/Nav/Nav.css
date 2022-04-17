@@ -61,18 +61,18 @@
 .nav-row {
   background: rgb(88, 88, 88);
   height: 100%;
-  font-size: 100px;
+  font-size: 10px;
   color: white;
 }
 
 .nav-logout {
   background: rgb(88, 88, 88);
   color: white;
-  overflow: hidden;
+  
 }
 
 .nav-tab {
-  padding: 20px 1px 25px 1px;
+  padding: 10px 1px 10px 1px;
   color: white;
 }
 
@@ -83,6 +83,10 @@
 
 .nav-text {
   font-size: 50px;
-  padding: 10%;
+  padding: 8%;
   object-fit: cover;
+}
+
+.MuiButtonBase-root.MuiListItem-root.MuiListItem-guttersMuiListItem-padding.MuiListItem-button.css-bshv44-MuiButtonBase-root-MuiListItem-root {
+  background-color: black;
 }

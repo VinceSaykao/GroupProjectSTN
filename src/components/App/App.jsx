@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import {
   HashRouter as Router,
   Redirect,
@@ -7,12 +8,9 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
@@ -24,7 +22,10 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import UserProfileEditForm from '../UserProfilePage/UserProfileEditForm';
 import OrganizationView from '../Organization/OrganizationView'
-
+import OrganizationEditForm from '../Organization/OrganizationEditForm';
+import OrganizationRegisterForm from '../Organization/OrganizationRegisterForm'
+import OrganizationsList from '../Organization/OrganizationsList'
+import UserCalanderView from '../UserCalanderView/UserCalanderView';
 
 // Admin 
 import AdminEventList from '../Admin/AdminApprovedEvents/AdminEventList';
@@ -32,11 +33,14 @@ import AdminEventDetails from '../Admin/AdminApprovedEvents/AdminEventDetails';
 import AdminPendingEventList from '../Admin/AdminPendingEvents/AdminPendingEventList';
 import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEventDetails';
 
+import AdminEventCreate from '../Admin/AdminForm/AdminEventCreate';
+import AdminEventEdit from '../Admin/AdminForm/AdminEventEdit';
+
 import './App.css';
 
 function App() {
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const user = useSelector(store => store.user);
 
   useEffect(() => {
@@ -47,10 +51,10 @@ function App() {
     <Router>
       <div>
         <Nav />
+        
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
-
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
             // shows AboutPage at all times (logged in or not)
@@ -73,42 +77,32 @@ function App() {
           </ProtectedRoute>
 
           {/* ADMIN START */}
-          <ProtectedRoute
+  
 
+          <ProtectedRoute
             exact
             path="/admin-approved-event-details"
           >
             <AdminEventDetails />
           </ProtectedRoute>
-
           <ProtectedRoute
-
             exact
             path="/adminlist"
           >
             <AdminEventList />
           </ProtectedRoute>
-
           <ProtectedRoute
-
             exact
             path="/admin-pending-list"
           >
             <AdminPendingEventList />
           </ProtectedRoute>
-
-
-
-
           <ProtectedRoute
-
             exact
             path="/admin-pending-event-details"
           >
-            <AdminPendingEventDetails/>
+            <AdminPendingEventDetails />
           </ProtectedRoute>
-
-
           {/* ADMIN END */}
 
           <ProtectedRoute
@@ -119,32 +113,65 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          {/* <ProtectedRoute
+          {/* Organization Start */}
+          <Route
             exact
-            path="/organization-view"
+            path="/organization-register-form"
+          >
+            <OrganizationRegisterForm />
+          </Route>
+
+          <Route
+            exact
+            path="/organization-view/:id"
           >
             <OrganizationView />
-          </ProtectedRoute> */}
+          </Route>
+
+          <Route
+            exact
+            path="/organization-edit-form/:id"
+          >
+            <OrganizationEditForm />
+          </Route>
+
+          <Route
+            exact
+            path="/organizations-list"
+          >
+            <OrganizationsList />
+          </Route>
+
+          {/* Organization End */}
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/calanderview"
+          >
+            <UserCalanderView />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/admin-event-create">
+            <AdminEventCreate />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/admin-event-edit">
+            <AdminEventEdit />
+          </ProtectedRoute>
 
           <Route
             exact
             path="/userprofile"
           >
-
             <UserProfilePage />
-
           </Route>
 
           <Route
             exact
             path="/userprofileedit"
           >
-
             <UserProfileEditForm />
-
           </Route>
-
-
 
           <Route
             exact
@@ -192,11 +219,11 @@ function App() {
           <Route>
             <h1>404</h1>
           </Route>
+
         </Switch>
         {/* <Footer /> */}
       </div>
     </Router>
   );
 }
-
 export default App;
