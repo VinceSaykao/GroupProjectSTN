@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 
     if (req.isAuthenticated()) {
         pool
-            .query(`  select 
+            .query(` select 
             id,
             org_id,
             category_id,
@@ -18,6 +18,7 @@ router.get('/', (req, res) => {
             extract(
             day from date
             ) AS "day",
+            to_char(date, 'Dy') AS "dayname",
             start_time,
             end_time,
             image,
@@ -59,6 +60,7 @@ router.get('/:id', (req, res) => {
             extract(
             day from date
             ) AS "day",
+            to_char(date, 'Day') AS "dayname",
             start_time,
             end_time,
             image,

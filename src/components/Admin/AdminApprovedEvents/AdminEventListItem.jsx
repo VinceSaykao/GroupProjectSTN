@@ -74,7 +74,7 @@ export default function AdminEventListItem({ event }) {
                         p: 2,
                     }}
                 >
-                    <Grid container wrap="nowrap" spacing={2} height={90}>
+                    <Grid container wrap="nowrap" spacing={3} height={90}>
                         <Grid item>
                             <ButtonBase sx={{ width: 70, height: 1 }}>
                                 <Avatar
@@ -85,15 +85,12 @@ export default function AdminEventListItem({ event }) {
                         <Grid item xs={8}>
                             <Typography
                                 className='event-list-date'
-                                variant='h4'
-                                noWrap>{event.month} {event.day}</Typography>
-                        
-                            <Divider />
-                            <Divider />
-                            <Divider />
+                                variant='h5'
+                                noWrap>{event.dayname}, {event.month} {event.day}</Typography>
+
                             <Divider />
                     
-                            <Typography noWrap>{event.name}</Typography>
+                            <Typography noWrap><b>{event.name}</b></Typography>
                             <Typography noWrap>{event.city}</Typography>
 
                         </Grid>
