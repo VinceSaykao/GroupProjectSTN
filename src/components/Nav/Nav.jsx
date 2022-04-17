@@ -215,6 +215,7 @@ function Nav() {
 
         </Main>
         <Drawer
+        onClick={handleDrawerClose}
           className='nav-drawer'
           sx={{
             width: drawerWidth,
@@ -253,7 +254,7 @@ function Nav() {
                     index === 1 ? <h2 onClick={handleHome}>Home</h2> : <HomeIcon /> &&
                       index === 2 ? <h2 onClick={handleAdd}>Add Event</h2> : <HomeIcon /> &&
                         index === 3 ? <h2 onClick={handleOrganizations} >Organizations</h2> : <HomeIcon /> &&
-                            index === 4 ? <h2 onClick={handleEvents}>Events</h2> : <HomeIcon />
+                            index === 4 ? <h2 onClick={handleEvents}>Admin</h2> : <HomeIcon />
                   }
 
                 </ListItemText>
