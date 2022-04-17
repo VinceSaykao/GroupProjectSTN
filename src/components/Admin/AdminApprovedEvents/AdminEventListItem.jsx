@@ -59,7 +59,7 @@ export default function AdminEventListItem({ event }) {
 
 
 
-
+    console.log('event', event)
     return (
 
         <div
@@ -92,7 +92,7 @@ export default function AdminEventListItem({ event }) {
                             <Divider />
                     
                             <Typography noWrap><b>{event.name}</b></Typography>
-                            <Typography noWrap>{event.city}</Typography>
+                            <Typography noWrap>{event.orgname}</Typography>
 
                         </Grid>
 
