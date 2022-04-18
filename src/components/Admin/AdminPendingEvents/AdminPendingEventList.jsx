@@ -36,7 +36,7 @@ export default function AdminPendingEventList() {
             }`}
                 </style>
             </Helmet>
-            <h1
+            {/* <h1
                 className="admin-event-header"
             >Admin Pending Events</h1>
             <div>
@@ -54,7 +54,7 @@ export default function AdminPendingEventList() {
 
                 <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
-            </div>
+            </div> */}
 
 
 
