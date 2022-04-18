@@ -16,11 +16,11 @@ router.get('/', (req, res) => {
             events.status,
             events."name",
             events.description,
-            TO_CHAR(date, 'Mon') AS "month",
+            TO_CHAR(start_date, 'Mon') AS "month",
             extract(
-            day from date
+            day from start_date
             ) AS "day",
-            to_char(date, 'Dy') AS "dayname",
+            to_char(start_date, 'Dy') AS "dayname",
             events.start_time,
             events.end_time,
             events.image,
@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
             on
             organizations.id = events.org_id
             where events.status = 'approved'
-            order by date asc;
+            order by start_date asc;
             `)
             .then((results) => res.send(results.rows))
             .catch((error) => {
@@ -153,7 +153,7 @@ router.post('/', (req, res) => {
 
     console.log('req.body', req.body);
     console.log('req.user.org_id', req.user.org_id);
-    
+
     const queryText = `
         INSERT INTO "events" (
             "org_id",
@@ -175,25 +175,25 @@ router.post('/', (req, res) => {
             "phone",
             "link"
         ) 
-        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17);
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18);
     `;
 
     let queryInserts = [
-        req.body.org_id, 
-        req.body.category_id, 
+        req.body.org_id,
+        req.body.category_id,
         req.body.name,
-        req.body.description, 
-        req.body.status, 
-        req.body.start_date, 
-        req.body.end_date, 
-        req.body.start_time, 
-        req.body.end_time, 
+        req.body.description,
+        req.body.status,
+        req.body.start_date,
+        req.body.end_date,
+        req.body.start_time,
+        req.body.end_time,
         req.body.image,
-        req.body.address1, 
-        req.body.address2, 
-        req.body.city, 
-        req.body.zip, 
-        req.body.state, 
+        req.body.address1,
+        req.body.address2,
+        req.body.city,
+        req.body.zip,
+        req.body.state,
         req.body.email,
         req.body.phone,
         req.body.link,

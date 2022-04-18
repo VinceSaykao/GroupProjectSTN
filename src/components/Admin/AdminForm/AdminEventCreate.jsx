@@ -29,6 +29,8 @@ import icon_popups from '../../../category_icons/icon_popups.png'
 import icon_other from '../../../category_icons/icon_other.png'
 
 import './CategoryItem.css' // Used for icon spacing
+import { EventAvailable, SettingsPhone } from '@mui/icons-material';
+import MuiPhoneNumber from 'material-ui-phone-number';
 
 function AdminEventCreate() {
 
@@ -115,10 +117,20 @@ function AdminEventCreate() {
     // }
     // // ------------------------------------------------------------------------------------------ //
 
-    const handleFormSubmit = () => {
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
         dispatch({ type: 'POST_EVENT', payload: newEvent })
         console.log('newEvent":', newEvent);
     }
+
+    const handleOnChange = (value) => {
+        this.setState({
+            phone: value
+         });
+    }
+
+    const [phone, setPhone] = useState('')
+    console.log('phone:', phone);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_CATEGORIES' })
@@ -128,7 +140,7 @@ function AdminEventCreate() {
         <Box
             sx={{ mx: 2 }}
         >
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={event => handleFormSubmit(event)}>
 
                 {/*  -----------------------------------------------------------------------
                             EVENT DETAIL
@@ -379,16 +391,19 @@ function AdminEventCreate() {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField
+                        <MuiPhoneNumber 
+                            fullWidth
                             variant={muiVariant}
-                            label="Phone #"
-                            autoComplete="off"
                             value={newEvent.phone}
+                            defaultCountry={'us'}
+                            onlyCountries={['us','ca','mx','pr']}
+                            disableAreaCodes
+                            label="Phone #"
+                            autoComplete="off"            
                             onChange={e => dispatch({ 
                                 type: 'SET_ADD_EVENT', 
-                                payload: { property: 'phone', value: e.target.value } 
+                                payload: { property: 'phone', value: e } 
                             })}
-                            fullWidth
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -438,6 +453,7 @@ function AdminEventCreate() {
                             <Select
                                 variant={muiVariant}
                                 value={newEvent.state}
+                                autoComplete="off"
                                 label="State"
                                 onChange={e => dispatch({ 
                                     type: 'SET_ADD_EVENT', 
@@ -461,7 +477,6 @@ function AdminEventCreate() {
                                 type: 'SET_ADD_EVENT', 
                                 payload: { property: 'zip', value: e.target.value } 
                             })}
-                            required
                             fullWidth
                         />
                     </Grid>
