@@ -10,26 +10,23 @@ import { Container, Box, Typography, TextField, Button, FormControl, Grid } from
 import { SettingsBrightnessOutlined } from "@mui/icons-material";
 
 export default function UserProfile() {
+  useEffect(() => {
+    dispatch({ type: "SET_PROFILE_SAGA" });
+    dispatch({ type: "FETCH_SAVE_EVENT" });
+  }, []);
   const dispatch = useDispatch();
   const fetchProfile = useSelector((store) => store.fetchProfile[0]);
-  const fetchProfileEvent = useSelector((store) => store.fetchProfileEvent);
+  const fetchSave = useSelector((store) => store.fetchSave);
   const user = useSelector((store) => store.user);
   const history = useHistory();
-
-  useEffect(() => {
-    // dispatch({ type: "SET_PROFILE_SAGA", payload: user.id });
-    dispatch({ type: "SET_PROFILE_SAGA" });
-
-    // dispatch({ type: "SET_PROFILE_EVENT_SAGA", payload: user.id });
-  }, []);
 
   const handleEditClick = () => {
     history.push("/userprofileedit");
   };
 
-  console.log("profile", fetchProfile);
-  console.log("user", user.id);
-  console.log("event", fetchProfileEvent);
+  console.log(user.id);
+
+  console.log("fetchSave =", fetchSave);
   return (
     <div>
       <Grid container justifyContent="center">
@@ -46,15 +43,12 @@ export default function UserProfile() {
             alt=""
             src="https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png"
           />
-          {/* <img src="https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png" /> */}
-          {/* <button onClick={handleEditClick}>Edit</button> */}
+
           <Button className="edit-button" size="small" variant="contained" onClick={handleEditClick}>
             Edit
           </Button>
         </div>
       </Grid>
-
-      {fetchProfileEvent?.id}
 
       <Typography gutterBottom variant="body2" component="div">
         <p>{fetchProfile?.first_name}</p>
@@ -62,22 +56,6 @@ export default function UserProfile() {
         <p>{fetchProfile?.bio}</p>
         <p>{fetchProfile?.email}</p>
       </Typography>
-
-      {/* {fetchProfile?.map((info, i) => {
-        return (
-          <div id={i}>
-            <UserProfileItem info={info} />
-          </div>
-        );
-      })} */}
-
-      {/* {fetchProfileEvent.map((event, i) => {
-        return (
-          <div id={i}>
-            <UserSavedProfileEvent event={event} />
-          </div>
-        );
-      })} */}
     </div>
   );
 }

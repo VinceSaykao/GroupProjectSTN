@@ -6,6 +6,7 @@ import fetchProfile from "./Profile_Reducer/fetchProfile.reducer";
 import fetchProfileEvent from "./Profile_Reducer/fetchProfileEvent.reducer";
 import addProfile from "./Profile_Reducer/addProfile.reducer";
 import updateProfile from "./Profile_Reducer/updateProfile.reducer";
+import fetchSave from "./Profile_Reducer/fetchSave.reducer";
 // Organizations
 import fetchOrganization from "./Organization_Reducer/fetchOrganization.reducer";
 import fetchAllOrganizations from "./Organization_Reducer/fetchAllOrganizations.reducer";
@@ -19,11 +20,7 @@ import updateEvent from "./Event_Reducers/updateEvent.reducer";
 import fetchSavedEvents from "./Event_Reducers/fetchSavedEvents.reducer";
 import fetchPendingEvents from "./Event_Reducers/fetchPendingEvents.reducer";
 // Categories
-import categories from './categories.reducer';
-
-
-
-
+import categories from "./categories.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -41,6 +38,7 @@ const rootReducer = combineReducers({
   fetchProfileEvent,
   addProfile,
   updateProfile,
+  fetchSave,
   // Organization
   fetchOrganization,
   fetchAllOrganizations,
