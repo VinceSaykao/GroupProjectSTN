@@ -19,6 +19,18 @@ import ButtonBase from '@mui/material/ButtonBase';
 import { styled } from '@mui/material/styles';
 
 
+// Icons
+import icon_cleanup from '../../../category_icons/icon_cleanup.png'
+import icon_community_meeting from '../../../category_icons/icon_community_meeting.png'
+import icon_donations from '../../../category_icons/icon_donations.png'
+import icon_drives from '../../../category_icons/icon_drives.png'
+import icon_education from '../../../category_icons/icon_education.png'
+import icon_events from '../../../category_icons/icon_events.png'
+import icon_popups from '../../../category_icons/icon_popups.png'
+import icon_other from '../../../category_icons/icon_other.png'
+
+
+
 
 export default function AdminPendingEventListItem({ event }) {
 
@@ -65,9 +77,64 @@ export default function AdminPendingEventListItem({ event }) {
                 <Grid container wrap="nowrap" spacing={3} height={90} width="100%">
                     <Grid item>
                         <ButtonBase sx={{ width: 70, height: 1 }}>
-                            <Avatar
-                                sx={{ width: 80, height: 80 }}
-                                src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80" />
+                            {event.category_id == 1 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_cleanup}
+                                />}
+
+
+                            {event.category_id == 2 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_community_meeting}
+                                />}
+
+                            {event.category_id == 3 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_donations}
+                                />}
+
+                            {event.category_id == 4 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_drives}
+                                />}
+
+                            {event.category_id == 5 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_education}
+                                />}
+
+                                   {event.category_id == 6 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_events}
+                                />}
+
+                                 {event.category_id == 7 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_popups}
+                                />}
+
+                                 {event.category_id == 8 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_other}
+                                />}
+
+
                         </ButtonBase>
                     </Grid>
                     <Grid item xs={8}>
@@ -78,23 +145,18 @@ export default function AdminPendingEventListItem({ event }) {
                             noWrap>{event.dayname}, {event.month} {event.day}</Typography>
 
                         <Divider />
-                
+
                         <Typography noWrap><b>{event.name}</b></Typography>
-                        <Typography noWrap>{event.city}</Typography>
+                        <Typography noWrap>{event.orgname}</Typography>
 
                     </Grid>
 
-                    {/* <ArrowForwardIosIcon
-                        className='admin-arrow'
-                        fontSize='large'
-                    /> */}
+            
 
                 </Grid>
             </StyledPaper>
 
         </Box>
-
-
 
 
 

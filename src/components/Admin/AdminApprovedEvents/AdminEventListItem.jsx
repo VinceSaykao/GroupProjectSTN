@@ -156,16 +156,6 @@ export default function AdminEventListItem({ event }) {
                                         src={icon_other}
                                     />}
 
-                                {/* {event.category_id == 1 && <img className="icon_dropdown" src={icon_cleanup} />}
-                                        {event.category_id == 2 && <img className="icon_dropdown" src={icon_community_meeting} />}
-                                        {event.category_id == 3 && <img className="icon_dropdown" src={icon_donations} />}
-                                        {event.category_id == 4 && <img className="icon_dropdown" src={icon_drives} />}
-                                        {event.category_id == 5 && <img className="icon_dropdown" src={icon_education} />}
-                                        {event.category_id == 6 && <img className="icon_dropdown" src={icon_events} />}
-                                        {event.category_id == 7 && <img className="icon_dropdown" src={icon_popups} />}
-                                        {event.category_id == 8 && <img className="icon_dropdown" src={icon_other} />}  */}
-
-
 
                             </ButtonBase>
                         </Grid>
@@ -183,60 +173,12 @@ export default function AdminEventListItem({ event }) {
 
                         </Grid>
 
-                        {/* <ArrowForwardIosIcon
-                            className='admin-arrow'
-                            fontSize='large'
-                        /> */}
+                
 
                     </Grid>
                 </StyledPaper>
 
             </Box>
-
-            {/* <Paper
-                sx={{
-                    p: 1,
-                    margin: 1,
-                    maxWidth: 500,
-                    flexGrow: 1,
-                    backgroundColor: (theme) =>
-                        theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-                }}
-            >
-                <Grid container spacing={1}>
-                    <Grid item>
-                        <ButtonBase sx={{ width: 70, height: 1 }}>
-                            <Avatar
-                                sx={{ width: 80, height: 80 }}
-                                alt="Remy Sharp" src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80" />
-                        </ButtonBase>
-                    </Grid>
-                    <Grid item xs={9.5} sm container>
-                        <Grid item xs container direction="column" spacing={5}>
-                            <Grid item xs >
-                                <Typography gutterBottom variant="subtitle1" component="div">
-                                    {event.city}
-                                    <br></br>
-                                    {event.date}
-                                    <br></br>
-                                    {event.name}
-                                </Typography>
-
-                            </Grid>
-
-                        </Grid>
-                        <Grid >
-                            <ButtonBase sx={{ width: 50, height: 1 }}
-                                align='justify'
-                                variant="subtitle1" component="div">
-                                <ArrowForwardIosIcon
-                                    fontSize='large'
-                                />
-                            </ButtonBase>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Paper> */}
 
 
 
