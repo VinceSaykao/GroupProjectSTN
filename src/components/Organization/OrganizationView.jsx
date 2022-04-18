@@ -13,6 +13,8 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 
+import OrganizationEventsList from './OrganizationEventsList';
+
 
 function OrganizationView() {
   const dispatch = useDispatch();
@@ -73,9 +75,7 @@ function OrganizationView() {
       <Typography gutterBottom variant="subtitle2" component="div">
         Events:
       </Typography>
-      <Typography gutterBottom variant="body2" component="div">
-        {}//Organization's events list component will go here
-      </Typography>
+      <OrganizationEventsList/>
       <Typography gutterBottom variant="subtitle2" component="div">
         Contact Information:
       </Typography>
