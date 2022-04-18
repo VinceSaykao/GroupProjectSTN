@@ -12,7 +12,7 @@ import updateProfile from "./Profile_SAGA/updateProfile.saga";
 
 // Organizations
 import addOrganizationsSaga from "./Organization_SAGA/addOrganization.saga";
-import fetchAllOrganizations from './Organization_SAGA/fetchAllOrganizations.saga';
+import fetchAllOrganizationsSaga from './Organization_SAGA/fetchAllOrganizations.saga';
 import fetchOrganization from './Organization_SAGA/fetchOrganization.saga'
 import updateOrganization from "./Organization_SAGA/updateOrganization.saga";
 
@@ -49,7 +49,7 @@ export default function* rootSaga() {
 
     // Organizations
     addOrganizationsSaga(),
-    fetchAllOrganizations(),
+    fetchAllOrganizationsSaga(),
     fetchOrganization(),
     updateOrganization(),
 
