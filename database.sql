@@ -53,16 +53,16 @@ VALUES
 ('Philanthropy & Donations'),
 ('Other');
 
+
 CREATE TABLE "events" (
 "id" SERIAL PRIMARY KEY,
 "org_id" int,
 "category_id" int,
-"status" VARCHAR (100) DEFAULT 'pending',
+"status" VARCHAR (100),
 "name" VARCHAR (100),
 "description" VARCHAR (300),
+"date" DATE,
 "link" VARCHAR (500),
-"start_date" DATE,
-"end_date" DATE,
 "start_time" TIME,
 "end_time" TIME,
 "image" VARCHAR (1000),
@@ -75,6 +75,7 @@ CREATE TABLE "events" (
 "state" VARCHAR (50),
 "feedback" VARCHAR (300)
 );
+
 
 INSERT INTO organizations (name, email, phone, website, twitter, facebook, instagram, description, image, address1, address2, city, state, zip)
 VALUES (
