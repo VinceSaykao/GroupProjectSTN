@@ -5,12 +5,14 @@ import OrganizationListItem from './OrganizationListItem';
 import Grid from '@mui/material/Grid';
 
 function OrganizationsList() {
-  const dispatch = useDispatch();
+
   const orgs = useSelector((store) => store.fetchAllOrganizations);
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_ORGANIZATIONS' });
-  }, []);
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch({ type: 'FETCH_ORGANIZATIONS' });
+  // }, []);
 
   console.log(orgs);
 
