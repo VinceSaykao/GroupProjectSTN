@@ -66,7 +66,7 @@ export default function AdminPendingEventListItem({ event }) {
         className='admin-event-item'
         onClick={handleClick}>
 
-        <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, }}>
+        <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}>
             <StyledPaper
                 sx={{
                     my: 1,
@@ -113,21 +113,21 @@ export default function AdminPendingEventListItem({ event }) {
                                     src={icon_education}
                                 />}
 
-                                   {event.category_id == 6 &&
+                            {event.category_id == 6 &&
                                 <Avatar
                                     className='avatar'
                                     sx={{ width: 80, height: 80 }}
                                     src={icon_events}
                                 />}
 
-                                 {event.category_id == 7 &&
+                            {event.category_id == 7 &&
                                 <Avatar
                                     className='avatar'
                                     sx={{ width: 80, height: 80 }}
                                     src={icon_popups}
                                 />}
 
-                                 {event.category_id == 8 &&
+                            {event.category_id == 8 &&
                                 <Avatar
                                     className='avatar'
                                     sx={{ width: 80, height: 80 }}
@@ -137,7 +137,7 @@ export default function AdminPendingEventListItem({ event }) {
 
                         </ButtonBase>
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={9}>
                         <Typography
                             sx={{ width: '100%', height: 30 }}
                             className='event-list-date'
@@ -145,16 +145,19 @@ export default function AdminPendingEventListItem({ event }) {
                             noWrap>{event.dayname}, {event.month} {event.day}</Typography>
 
                         <Divider />
-
-                        <Typography noWrap><b>{event.name}</b></Typography>
-                        <Typography noWrap>{event.orgname}</Typography>
+                        
+                        <Typography className='event-list-name' noWrap><b>{event.name}</b></Typography>
+                        <Typography className='event-list-name' noWrap>{event.orgname} </Typography>
 
                     </Grid>
 
-            
+
 
                 </Grid>
             </StyledPaper>
+            {/* <Typography className='event-list-name' noWrap><b>{event.name}</b><ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
+            {/* <Typography className='event-list-orgname' noWrap>{event.orgname}  <ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
+                                    {/* <ArrowForwardIosIcon className='event-arrow'/> */}
 
         </Box>
 
