@@ -18,9 +18,9 @@ import './AdminEventDetails.scss'
 import Modal from '@mui/material/Modal';
 
 
-import { useSelector,  useDispatch  } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./AdminEventDetails.scss";
-import { useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet';
 
@@ -47,20 +47,20 @@ export default function AdminEventDetails() {
         backgroundColor: '#88888844',
         padding: theme.spacing(1),
         borderRadius: theme.shape.borderRadius,
-      }));
+    }));
 
 
 
     const StyledItem = styled('div')(({ theme }) => ({
         color: 'white',
-        fontSize:'30px',
+        fontSize: '30px',
         backgroundColor: '#88888844',
         padding: theme.spacing(1),
         borderRadius: theme.shape.borderRadius,
-      }));
+    }));
 
     const handleDelete = () => {
-        dispatch ({type: 'DELETE_EVENT', payload: fetchEventId[0].id})
+        dispatch({ type: 'DELETE_EVENT', payload: fetchEventId[0].id })
         history.push("/adminlist");
 
     }
@@ -94,7 +94,7 @@ export default function AdminEventDetails() {
             setOpen(false);
         };
 
-    
+
 
         return (
             <React.Fragment>
@@ -146,10 +146,10 @@ export default function AdminEventDetails() {
                 </style>
             </Helmet>
 
-            <CloseIcon 
-            className='exit-icon'
-            fontSize='large'
-            onClick={handleExit}
+            <CloseIcon
+                className='exit-icon'
+                fontSize='large'
+                onClick={handleExit}
             />
 
             <div className="event-approved-list-container">
@@ -174,7 +174,7 @@ export default function AdminEventDetails() {
                                         </Paper>
                                     </Grid>
 
-                
+
                                     <Grid item xs={12}>
                                         <Item>{detail.name}</Item>
                                         <Grid item xs={12}>
@@ -191,7 +191,7 @@ export default function AdminEventDetails() {
                                                 <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
                                                     Delete
                                                 </Button>
-                                                
+
                                             </Item>
                                         </Grid>
                                     </Grid>
@@ -203,12 +203,12 @@ export default function AdminEventDetails() {
                                         <StyledItem>
                                             <b>Details</b>
                                             <br></br>
-                                           {/* <Divider sx={{ height: 15, m: 0.5 }} orientation="vertical"/> */}
+                                            {/* <Divider sx={{ height: 15, m: 0.5 }} orientation="vertical"/> */}
                                             {detail.description}
                                             <br></br>
-                                            
-                                    
-                                        
+
+
+
                                         </StyledItem>
 
 
@@ -220,20 +220,20 @@ export default function AdminEventDetails() {
                                 </Grid>
                             </Box>
 
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="parent-modal-title"
-                aria-describedby="parent-modal-description"
-            >
-                <Box sx={{ ...style, width: 400 }}>
-                    <h2 id="parent-modal-title">Deleting</h2>
-                    <p id="parent-modal-description">
-                        You Are Deleting "{detail.name}". Are You Sure?
-                    </p>
-                    <ChildModal />
-                </Box>
-            </Modal>
+                            <Modal
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="parent-modal-title"
+                                aria-describedby="parent-modal-description"
+                            >
+                                <Box sx={{ ...style, width: 400 }}>
+                                    <h2 id="parent-modal-title">Deleting</h2>
+                                    <p id="parent-modal-description">
+                                        You Are Deleting "{detail.name}". Are You Sure?
+                                    </p>
+                                    <ChildModal />
+                                </Box>
+                            </Modal>
                         </div>
                     )
                 })}
