@@ -1,6 +1,8 @@
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import * as React from 'react';
+import { useEffect } from "react";
+
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -46,6 +48,14 @@ export default function AdminEventListItem({ event }) {
 
 
 
+    const fetchApprovedEvents = useSelector(store => store.fetchApprovedEvents);
+
+    // useEffect to grab the approved events
+    useEffect(() => {
+        dispatch({ type: 'FETCH_APPROVED_EVENTS' });
+    }, []);
+
+
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -71,7 +81,7 @@ export default function AdminEventListItem({ event }) {
 
 
 
-    const cat = event.category_id
+
 
     return (
 
@@ -90,18 +100,28 @@ export default function AdminEventListItem({ event }) {
                     <Grid container wrap="nowrap" spacing={3} height={90} width="100%">
                         <Grid item>
                             <ButtonBase sx={{ width: 70, height: 1 }}>
-                                <Avatar
-                                    sx={{ width: 80, height: 80 }}>
-                                    {
-                                        cat === 1 ? <p>Nice</p> : <p>NO</p> &&
-                                            cat === 2 ? <p>Nice</p> : <p>NO</p> &&
-                                                cat === 3 ? <p>Nice</p> : <p>NO</p> &&
-                                                    cat === 4 ? <p>Nice</p> : <p>NO</p> &&
-                                                        cat === 5 ? <p>Nice</p> : <p>NO</p> &&
-                                                            cat === 6 ? <p>Nice</p> : <p>NO</p>
-                                    }
+                                {/* {fetchApprovedEvents.map((cat, i) => { */}
 
-                                </Avatar>
+
+                                    <Avatar
+                                        // key={i}
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_donations}
+                                        >
+
+                                        {/* {cat.org_id == 1 && <img className="icon_dropdown" src={icon_cleanup} />}
+                                        {cat.org_id == 2 && <img className="icon_dropdown" src={icon_community_meeting} />}
+                                        {cat.org_id == 3 && <img className="icon_dropdown" src={icon_donations} />}
+                                        {cat.org_id == 4 && <img className="icon_dropdown" src={icon_drives} />}
+                                        {cat.org_id == 5 && <img className="icon_dropdown" src={icon_education} />}
+                                        {cat.org_id == 6 && <img className="icon_dropdown" src={icon_events} />}
+                                        {cat.id == 7 && <img className="icon_dropdown" src={icon_popups} />}
+                                        {cat.id == 8 && <img className="icon_dropdown" src={icon_other} />} */}
+
+                                    </Avatar>
+                                    
+                                {/* })} */}
                             </ButtonBase>
                         </Grid>
                         <Grid item xs={8}>

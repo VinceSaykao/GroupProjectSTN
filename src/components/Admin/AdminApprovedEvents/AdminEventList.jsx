@@ -130,6 +130,8 @@ export default function AdminEventList() {
             >Admin Event List</h1>
             <div>
 
+                
+
                 <div className="admin-search-div">
                     <InputBase
                         sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
