@@ -11,6 +11,11 @@
 
 }
 
+.admin-event-header {
+    font-weight: 900;
+    letter-spacing: 7px;
+}
+
 // .admin-event-view {
     // background-color: blue;
     // position: fixed;
@@ -21,7 +26,14 @@
     text-align: center;
     color: black;
     overflow: scroll;
-    // background-color: green;
-    height: 500px;
+    width: 100%;
+    height: 450px;
+    margin: 0 auto;
+    background-color: rgb(52, 52, 52);
+
+
+}
+
+.event-tab {
     margin: 0 auto;
 }

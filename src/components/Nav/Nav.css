@@ -11,19 +11,9 @@
   height: 50px;
 }
 
-/* .nav a {
-  text-decoration: none;
-} */
 
-.nav-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #f2f2f2;
-  padding-left: 10px;
-  margin: 0;
-}
 
-.navLink {
+/* .navLink {
   display: inline-block;
   color: #f2f2f2;
   background-color: #00adb000;
@@ -35,11 +25,8 @@
   border: none;
   cursor: pointer;
   outline: 0;
-}
-
-/* .navLink:hover {
-  background-color: #008183;
 } */
+
 
 .menu-nav {
   line-height: 15px;
@@ -61,28 +48,47 @@
 .nav-row {
   background: rgb(88, 88, 88);
   height: 100%;
-  font-size: 100px;
   color: white;
-}
-
-.nav-logout {
-  background: rgb(88, 88, 88);
-  color: white;
-  overflow: hidden;
 }
 
 .nav-tab {
-  padding: 20px 1px 25px 1px;
+  margin: 30px 0px 30px 0px;
+}
+
+.nav-logout {
+  background: rgb(60, 60, 60);
+  color: white;
+  height: 100%;
+}
+
+.nav-logout-text {
+  display: inline-block;
+  color: #ffffff;
+  background-color: #1be6e900;
+  /* text-align: center; */
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: 900;
+
+  border: none;
+  cursor: pointer;
+  outline: 0;
+
+}
+
+
+
+.nav-tab {
+
   color: white;
 }
 
 .nav-icon {
-  color:white;
-  border-radius: 10px;
+  color:white;                  
 }
 
 .nav-text {
-  font-size: 50px;
-  padding: 10%;
-  object-fit: cover;
+  height: 70px;
+  bottom:0;
+  
 }

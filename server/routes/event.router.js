@@ -2,35 +2,42 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+
 // GET all events' information that are approved
 router.get('/', (req, res) => {
 
     if (req.isAuthenticated()) {
         pool
-            .query(`  select 
-            id,
-            org_id,
-            category_id,
-            status,
-            "name",
-            description,
+            .query(` 
+            select 
+            events.id,
+            events.org_id,
+            events.category_id,
+            events.status,
+            events."name",
+            events.description,
             TO_CHAR(date, 'Mon') AS "month",
             extract(
             day from date
             ) AS "day",
-            start_time,
-            end_time,
-            image,
-            address1,
-            address2,
-            city,
-            zip,
-            state,
-            feedback
-            from events
-            where status = 'approved'
-            order by date asc
-            ;`)
+            to_char(date, 'Dy') AS "dayname",
+            events.start_time,
+            events.end_time,
+            events.image,
+            events.address1,
+            events.address2,
+            events.city,
+            events.zip,
+            events. state,
+            events.feedback, 
+            organizations.name as "orgname"
+            from events 
+            join organizations
+            on
+            organizations.id = events.org_id
+            where events.status = 'approved'
+            order by date asc;
+            `)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for all events information', error);
@@ -59,6 +66,7 @@ router.get('/:id', (req, res) => {
             extract(
             day from date
             ) AS "day",
+            to_char(date, 'Day') AS "dayname",
             start_time,
             end_time,
             image,
@@ -84,7 +92,31 @@ router.get('/admin/pending', (req, res) => {
 
     if (req.isAuthenticated()) {
         pool
-            .query(`select * from events where status = 'pending';`)
+            .query(`select 
+            id,
+            org_id,
+            category_id,
+            status,
+            "name",
+            description,
+            TO_CHAR(date, 'Mon') AS "month",
+            extract(
+            day from date
+            ) AS "day",
+            to_char(date, 'Dy') AS "dayname",
+            start_time,
+            end_time,
+            image,
+            address1,
+            address2,
+            city,
+            zip,
+            state,
+            feedback
+            from events
+            where status = 'pending'
+            order by date asc
+            ;`)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for admin pending event information', error);

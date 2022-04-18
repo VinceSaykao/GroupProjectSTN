@@ -1,4 +1,4 @@
-const fetchAllOrganizations = (state = {}, action) => {
+const fetchAllOrganizations = (state = [], action) => {
   switch (action.type) {
       case 'SET_FETCH_ORGANIZATIONS':
           return action.payload;
