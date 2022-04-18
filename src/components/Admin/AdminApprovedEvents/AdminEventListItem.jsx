@@ -19,6 +19,17 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import './AdminEventListItem.scss';
 
+// Icons
+import icon_cleanup from '../../../category_icons/icon_cleanup.png'
+import icon_community_meeting from '../../../category_icons/icon_community_meeting.png'
+import icon_donations from '../../../category_icons/icon_donations.png'
+import icon_drives from '../../../category_icons/icon_drives.png'
+import icon_education from '../../../category_icons/icon_education.png'
+import icon_events from '../../../category_icons/icon_events.png'
+import icon_popups from '../../../category_icons/icon_popups.png'
+import icon_other from '../../../category_icons/icon_other.png'
+
+
 
 const Img = styled('img')({
     margin: 'auto',
@@ -32,6 +43,8 @@ const Img = styled('img')({
 
 
 export default function AdminEventListItem({ event }) {
+
+
 
 
     const dispatch = useDispatch();
@@ -58,8 +71,8 @@ export default function AdminEventListItem({ event }) {
 
 
 
+    const cat = event.category_id
 
-    console.log('event', event)
     return (
 
         <div
@@ -78,8 +91,17 @@ export default function AdminEventListItem({ event }) {
                         <Grid item>
                             <ButtonBase sx={{ width: 70, height: 1 }}>
                                 <Avatar
-                                    sx={{ width: 80, height: 80 }}
-                                    src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80" />
+                                    sx={{ width: 80, height: 80 }}>
+                                    {
+                                        cat === 1 ? <p>Nice</p> : <p>NO</p> &&
+                                            cat === 2 ? <p>Nice</p> : <p>NO</p> &&
+                                                cat === 3 ? <p>Nice</p> : <p>NO</p> &&
+                                                    cat === 4 ? <p>Nice</p> : <p>NO</p> &&
+                                                        cat === 5 ? <p>Nice</p> : <p>NO</p> &&
+                                                            cat === 6 ? <p>Nice</p> : <p>NO</p>
+                                    }
+
+                                </Avatar>
                             </ButtonBase>
                         </Grid>
                         <Grid item xs={8}>
@@ -90,7 +112,7 @@ export default function AdminEventListItem({ event }) {
                                 noWrap>{event.dayname}, {event.month} {event.day}</Typography>
 
                             <Divider />
-                    
+
                             <Typography noWrap><b>{event.name}</b></Typography>
                             <Typography noWrap>{event.orgname}</Typography>
 

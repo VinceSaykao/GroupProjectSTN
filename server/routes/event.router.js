@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     if (req.isAuthenticated()) {
         pool
             .query(` 
-             select 
+            select 
             events.id,
             events.org_id,
             events.category_id,
