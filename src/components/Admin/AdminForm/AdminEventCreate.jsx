@@ -91,7 +91,9 @@ function AdminEventCreate() {
         { value: "WY", text: "Wyoming" }
     ];
 
-    const muiVariant = 'standard'; // Global Page MUI Variant
+    // const muiVariant = 'standard'; // Global Page MUI Variant
+    // const muiVariant = 'filled'; // Global Page MUI Variant
+    const muiVariant = 'outlined'; // Global Page MUI Variant
 
     const dispatch = useDispatch();
     const newEvent = useSelector(store => store.addEvent);
@@ -258,6 +260,7 @@ function AdminEventCreate() {
                                     shrink: true,
                                 }}
                                 fullWidth
+                                required
                             />
 
                         </LocalizationProvider>
@@ -287,6 +290,7 @@ function AdminEventCreate() {
                                     shrink: true,
                                 }}
                                 fullWidth
+                                required
                             />
 
                         </LocalizationProvider>
@@ -316,6 +320,7 @@ function AdminEventCreate() {
                                     shrink: true,
                                 }}
                                 fullWidth
+                                required
                             />
 
 
@@ -346,6 +351,7 @@ function AdminEventCreate() {
                                     shrink: true,
                                 }}
                                 fullWidth
+                                required
                             />
 
                         </LocalizationProvider>
@@ -433,7 +439,6 @@ function AdminEventCreate() {
                                 variant={muiVariant}
                                 value={newEvent.state}
                                 label="State"
-                                defaultValue={newEvent.state}
                                 onChange={e => dispatch({ 
                                     type: 'SET_ADD_EVENT', 
                                     payload: { property: 'state', value: e.target.value } 
