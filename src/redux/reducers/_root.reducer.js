@@ -46,6 +46,7 @@ const rootReducer = combineReducers({
   updateProfile,
   // Organization
   fetchOrganization,
+  fetchAllOrganizations,
   fetchOrganizationEvent,
   addOrganization,
   updateOrganization,
@@ -57,7 +58,6 @@ const rootReducer = combineReducers({
   addEvent,
   updateEvent,
   fetchSavedEvents,
-  fetchAllOrganizations,
   fetchPendingEvents,
   // Categories
   categories,

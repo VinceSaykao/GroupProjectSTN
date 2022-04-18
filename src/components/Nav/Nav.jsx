@@ -137,16 +137,10 @@ function Nav() {
     history.push('/organizations-list');
   }
 
-  const handlePending = () => {
-    console.log('Send-Pending');
-    handleDrawerClose();
-    history.push('/admin-pending-list');
-  }
-
   const handleEvents = () => {
     console.log('Send Events');
     handleDrawerClose();
-    history.push('adminlist');
+    history.push('/adminlist');
   }
 
   const handleLogout = () => {
@@ -157,7 +151,7 @@ function Nav() {
   // end of event listeners
 
 
-  const nav = ['Profile', 'Calendar', 'Add Event', 'Organizations', 'Pending', 'Events'];
+  const nav = ['Profile', 'Calendar', 'Add Event', 'Organizations', 'Events'];
 
 
 
@@ -215,6 +209,7 @@ function Nav() {
 
         </Main>
         <Drawer
+          onClick={handleDrawerClose}
           className='nav-drawer'
           sx={{
             width: drawerWidth,
@@ -240,24 +235,21 @@ function Nav() {
             {nav.map((text, index) => (
               <ListItem button key={index}>
                 <ListItemIcon className='nav-tab'>
-                  {index === 0 ? <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} /> : <HomeIcon /> &&
-                    index === 1 ? <HomeIcon fontSize='large' className='nav-icon' onClick={handleHome} /> : <InboxIcon /> &&
-                      index === 2 ? <AddIcon fontSize='large' className='nav-icon' onClick={handleAdd} /> : <InboxIcon /> &&
-                        index === 3 ? <GroupIcon fontSize='large' className='nav-icon' onClick={handleOrganizations} /> : <InboxIcon /> &&
-                          index === 4 ? <PendingActionsIcon fontSize='large' className='nav-icon' onClick={handlePending} /> : <InboxIcon /> &&
-                            index === 5 ? <EventAvailableIcon fontSize='large' className='nav-icon' onClick={handleEvents} /> : <InboxIcon />
-                  }
+                  {index == 0 && <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} />}
+                  {index == 1 && <HomeIcon fontSize='large' className='nav-icon' onClick={handleHome} />}
+                  {index == 2 && <AddIcon fontSize='large' className='nav-icon' onClick={handleAdd} />}
+                  {index == 3 && <GroupIcon fontSize='large' className='nav-icon' onClick={handleOrganizations} />}
+                  {index === 4 && <EventAvailableIcon fontSize='large' className='nav-icon' onClick={handleEvents} />}
+
                 </ListItemIcon>
                 {/* <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/> */}
                 <ListItemText className='nav-text'>
-                  {index === 0 ? <h2 onClick={handleProfile}>Profile</h2> : <HomeIcon /> &&
-                    index === 1 ? <h2 onClick={handleHome}>Home</h2> : <HomeIcon /> &&
-                      index === 2 ? <h2 onClick={handleAdd}>Add Event</h2> : <HomeIcon /> &&
-                        index === 3 ? <h2 onClick={handleOrganizations} >Organizations</h2> : <HomeIcon /> &&
-                          index === 4 ? <h2 onClick={handlePending}>Pending</h2> : <HomeIcon /> &&
-                            index === 5 ? <h2 onClick={handleEvents}>Events</h2> : <HomeIcon />
-                  }
-
+                  {index === 0 && <h2 onClick={handleProfile}>Profile</h2> }
+                    {index === 1 && <h2 onClick={handleHome}>Home</h2> }
+                      {index === 2 && <h2 onClick={handleAdd}>Add Event</h2> }
+                        {index === 3 && <h2 onClick={handleOrganizations} >Organizations</h2> }
+                          {index === 4 && <h2 onClick={handleEvents}>Admin</h2> }
+                  
                 </ListItemText>
 
               </ListItem>

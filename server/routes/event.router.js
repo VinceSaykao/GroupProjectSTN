@@ -7,31 +7,36 @@ router.get('/', (req, res) => {
 
     if (req.isAuthenticated()) {
         pool
-            .query(` select 
-            id,
-            org_id,
-            category_id,
-            status,
-            "name",
-            description,
+            .query(` 
+            select 
+            events.id,
+            events.org_id,
+            events.category_id,
+            events.status,
+            events."name",
+            events.description,
             TO_CHAR(date, 'Mon') AS "month",
             extract(
             day from date
             ) AS "day",
             to_char(date, 'Dy') AS "dayname",
-            start_time,
-            end_time,
-            image,
-            address1,
-            address2,
-            city,
-            zip,
-            state,
-            feedback
-            from events
+            events.start_time,
+            events.end_time,
+            events.image,
+            events.address1,
+            events.address2,
+            events.city,
+            events.zip,
+            events. state,
+            events.feedback, 
+            organizations.name as "orgname"
+            from events 
+            join organizations
+            on
+            organizations.id = events.org_id
             where status = 'approved'
-            order by date asc
-            ;`)
+            order by date asc;
+            `)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for all events information', error);

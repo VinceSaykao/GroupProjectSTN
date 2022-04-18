@@ -77,7 +77,7 @@ function App() {
           </ProtectedRoute>
 
           {/* ADMIN START */}
-  
+   
 
           <ProtectedRoute
             exact
@@ -102,7 +102,7 @@ function App() {
             path="/admin-pending-event-details"
           >
             <AdminPendingEventDetails />
-          </ProtectedRoute>
+          </ProtectedRoute> 
           {/* ADMIN END */}
 
           <ProtectedRoute
