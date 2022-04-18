@@ -9,6 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
+import { Divider } from '@mui/material';
 
 import './AdminEventDetails.scss'
 
@@ -32,13 +33,31 @@ export default function AdminEventDetails() {
 
 
     // Styles the items mui
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
+    // const Item = styled(Paper)(({ theme }) => ({
+    //     color: theme.palette.mode === 'dark' ? '#fff' : '#fff',
+    //     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    //     ...theme.typography.body2,
+    //     padding: theme.spacing(1),
+    //     textAlign: 'center',
+    //     color: theme.palette.text.secondary,
+    // }));
+
+    const Item = styled('div')(({ theme }) => ({
+        color: 'white',
+        backgroundColor: '#88888844',
         padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
+        borderRadius: theme.shape.borderRadius,
+      }));
+
+
+
+    const StyledItem = styled('div')(({ theme }) => ({
+        color: 'white',
+        fontSize:'30px',
+        backgroundColor: '#88888844',
+        padding: theme.spacing(1),
+        borderRadius: theme.shape.borderRadius,
+      }));
 
     const handleDelete = () => {
         dispatch ({type: 'DELETE_EVENT', payload: fetchEventId[0].id})
@@ -74,6 +93,8 @@ export default function AdminEventDetails() {
         const handleClose = () => {
             setOpen(false);
         };
+
+    
 
         return (
             <React.Fragment>
@@ -115,7 +136,8 @@ export default function AdminEventDetails() {
 
 
 
-    console.log(fetchEventId)
+
+
     return (
         <div>
             <Helmet>
@@ -136,7 +158,7 @@ export default function AdminEventDetails() {
                         <div id={i}>
 
                             <Box sx={{ flexGrow: 1 }}>
-                                <Grid container spacing={2}>
+                                <Grid container spacing={1}>
                                     <Grid item xs={12}>
                                         <Paper
                                             sx={{
@@ -151,6 +173,8 @@ export default function AdminEventDetails() {
                                             />
                                         </Paper>
                                     </Grid>
+
+                
                                     <Grid item xs={12}>
                                         <Item>{detail.name}</Item>
                                         <Grid item xs={12}>
@@ -176,18 +200,21 @@ export default function AdminEventDetails() {
 
 
                                     <Grid item xs={10}>
-                                        <Item xs={300} className='event-details-item'>
+                                        <StyledItem>
                                             <b>Details</b>
                                             <br></br>
+                                           {/* <Divider sx={{ height: 15, m: 0.5 }} orientation="vertical"/> */}
                                             {detail.description}
                                             <br></br>
                                             
+                                    
                                         
-                                        
-                                        
-                                        </Item>
-                                        <Item>{detail.month}</Item>
-                                        <Item>{detail.description}</Item>
+                                        </StyledItem>
+
+
+
+                                        <StyledItem>{detail.month}</StyledItem>
+                                        <StyledItem>{detail.description}</StyledItem>
                                     </Grid>
 
                                 </Grid>
