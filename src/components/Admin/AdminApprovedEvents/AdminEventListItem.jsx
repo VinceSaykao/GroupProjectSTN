@@ -47,7 +47,7 @@ const Img = styled('img')({
 export default function AdminEventListItem({ event }) {
 
 
-
+    const categories = useSelector(store => store.categories);
     const fetchApprovedEvents = useSelector(store => store.fetchApprovedEvents);
 
     // useEffect to grab the approved events
@@ -82,7 +82,6 @@ export default function AdminEventListItem({ event }) {
 
 
 
-
     return (
 
         <div
@@ -100,28 +99,74 @@ export default function AdminEventListItem({ event }) {
                     <Grid container wrap="nowrap" spacing={3} height={90} width="100%">
                         <Grid item>
                             <ButtonBase sx={{ width: 70, height: 1 }}>
-                                {/* {fetchApprovedEvents.map((cat, i) => { */}
-
-
+                                {event.category_id == 1 &&
                                     <Avatar
-                                        // key={i}
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_cleanup}
+                                    />}
+
+
+                                {event.category_id == 2 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_community_meeting}
+                                    />}
+
+                                {event.category_id == 3 &&
+                                    <Avatar
                                         className='avatar'
                                         sx={{ width: 80, height: 80 }}
                                         src={icon_donations}
-                                        >
+                                    />}
 
-                                        {/* {cat.org_id == 1 && <img className="icon_dropdown" src={icon_cleanup} />}
-                                        {cat.org_id == 2 && <img className="icon_dropdown" src={icon_community_meeting} />}
-                                        {cat.org_id == 3 && <img className="icon_dropdown" src={icon_donations} />}
-                                        {cat.org_id == 4 && <img className="icon_dropdown" src={icon_drives} />}
-                                        {cat.org_id == 5 && <img className="icon_dropdown" src={icon_education} />}
-                                        {cat.org_id == 6 && <img className="icon_dropdown" src={icon_events} />}
-                                        {cat.id == 7 && <img className="icon_dropdown" src={icon_popups} />}
-                                        {cat.id == 8 && <img className="icon_dropdown" src={icon_other} />} */}
+                                {event.category_id == 4 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_drives}
+                                    />}
 
-                                    </Avatar>
-                                    
-                                {/* })} */}
+                                {event.category_id == 5 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_education}
+                                    />}
+
+                                       {event.category_id == 6 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_events}
+                                    />}
+
+                                     {event.category_id == 7 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_popups}
+                                    />}
+
+                                     {event.category_id == 8 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_other}
+                                    />}
+
+                                {/* {event.category_id == 1 && <img className="icon_dropdown" src={icon_cleanup} />}
+                                        {event.category_id == 2 && <img className="icon_dropdown" src={icon_community_meeting} />}
+                                        {event.category_id == 3 && <img className="icon_dropdown" src={icon_donations} />}
+                                        {event.category_id == 4 && <img className="icon_dropdown" src={icon_drives} />}
+                                        {event.category_id == 5 && <img className="icon_dropdown" src={icon_education} />}
+                                        {event.category_id == 6 && <img className="icon_dropdown" src={icon_events} />}
+                                        {event.category_id == 7 && <img className="icon_dropdown" src={icon_popups} />}
+                                        {event.category_id == 8 && <img className="icon_dropdown" src={icon_other} />}  */}
+
+
+
                             </ButtonBase>
                         </Grid>
                         <Grid item xs={8}>
