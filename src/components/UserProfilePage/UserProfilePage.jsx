@@ -5,48 +5,23 @@ import UserSavedProfileEvent from "./UserSavedProfileEvent";
 import { actionChannel } from "redux-saga/effects";
 import { useParams, Link, useHistory } from "react-router-dom";
 
+import { Container, Box, Typography, TextField, Button, FormControl, Grid } from "@mui/material";
+
 import { SettingsBrightnessOutlined } from "@mui/icons-material";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
-  const fetchProfile = useSelector((store) => store.fetchProfile);
+  const fetchProfile = useSelector((store) => store.fetchProfile[0]);
   const fetchProfileEvent = useSelector((store) => store.fetchProfileEvent);
   const user = useSelector((store) => store.user);
   const history = useHistory();
 
-
-
   useEffect(() => {
-    console.log("fetchProfile = ", fetchProfile[0]);
-    console.log(fetchProfile !== []);
-    if (user?.id !== null && user?.id !== undefined) {
-      console.log("user.id = " + user?.id);
-      console.log("user.id is of type " + typeof user?.id);
-    }
-    if (fetchProfile === []) {
-      console.log("fetchProfile contains an empty array");
-    }
-    if (fetchProfile[0] === undefined) {
-      console.log("fetchProfile[0] is undefined.");
-    } else {
-      if (fetchProfile[0]?.id === undefined) {
-        console.log("id is undefined.");
-      }
-      if (fetchProfile[0]?.id === null) {
-        console.log("id is null.");
-      }
-      if (fetchProfile[0]?.id !== null && fetchProfile[0]?.id !== undefined) {
-        console.log("id is of type." + typeof fetchProfile[0]?.id);
-      }
-    }
-    if (fetchProfile !== [] && user.id) {
-      dispatch({ type: "SET_PROFILE_SAGA", payload: user.id });
-      dispatch({ type: "SET_PROFILE_EVENT_SAGA", payload: user.id });
-    }
-   
-  }, []);
+    // dispatch({ type: "SET_PROFILE_SAGA", payload: user.id });
+    dispatch({ type: "SET_PROFILE_SAGA" });
 
-  // setTimeout(() => {}, 300);
+    // dispatch({ type: "SET_PROFILE_EVENT_SAGA", payload: user.id });
+  }, []);
 
   const handleEditClick = () => {
     history.push("/userprofileedit");
@@ -57,19 +32,36 @@ export default function UserProfile() {
   console.log("event", fetchProfileEvent);
   return (
     <div>
-      <img src="https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png" />
-      <button onClick={handleEditClick}>Edit</button>
-      <div>
+      <Grid container justifyContent="center">
         <h3>Profile</h3>
-
-        {fetchProfile[0]?.id}
-        <div>
-          <p>{fetchProfile[0]?.first_name}</p>
-          <p>{fetchProfile[0]?.last_name}</p>
-          <p>{fetchProfile[0]?.bio}</p>
-          <p>{fetchProfile[0]?.email}</p>
+        <div className="org-box">
+          <Box
+            component="img"
+            sx={{
+              height: "auto",
+              width: 350,
+              maxHeight: { xs: 233, md: 167 },
+              maxWidth: { xs: 350, md: 250 },
+            }}
+            alt=""
+            src="https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png"
+          />
+          {/* <img src="https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png" /> */}
+          {/* <button onClick={handleEditClick}>Edit</button> */}
+          <Button className="edit-button" size="small" variant="contained" onClick={handleEditClick}>
+            Edit
+          </Button>
         </div>
-      </div>
+      </Grid>
+
+      {fetchProfileEvent?.id}
+
+      <Typography gutterBottom variant="body2" component="div">
+        <p>{fetchProfile?.first_name}</p>
+        <p>{fetchProfile?.last_name}</p>
+        <p>{fetchProfile?.bio}</p>
+        <p>{fetchProfile?.email}</p>
+      </Typography>
 
       {/* {fetchProfile?.map((info, i) => {
         return (
