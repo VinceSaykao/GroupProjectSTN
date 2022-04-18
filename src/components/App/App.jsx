@@ -103,6 +103,8 @@ function App() {
           >
             <AdminPendingEventDetails />
           </ProtectedRoute>
+
+
           {/* ADMIN END */}
 
           <ProtectedRoute

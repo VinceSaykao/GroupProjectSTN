@@ -30,7 +30,7 @@ export default function OrganizationEventsList() {
                     return (
                         <div key={i}>
 
-                        
+                     
                                 <AdminEventListItem
                                 event={event}
                             />

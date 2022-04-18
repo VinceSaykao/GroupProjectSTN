@@ -1,6 +1,8 @@
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import * as React from 'react';
+import { useEffect } from "react";
+
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -19,6 +21,17 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import './AdminEventListItem.scss';
 
+// Icons
+import icon_cleanup from '../../../category_icons/icon_cleanup.png'
+import icon_community_meeting from '../../../category_icons/icon_community_meeting.png'
+import icon_donations from '../../../category_icons/icon_donations.png'
+import icon_drives from '../../../category_icons/icon_drives.png'
+import icon_education from '../../../category_icons/icon_education.png'
+import icon_events from '../../../category_icons/icon_events.png'
+import icon_popups from '../../../category_icons/icon_popups.png'
+import icon_other from '../../../category_icons/icon_other.png'
+
+
 
 const Img = styled('img')({
     margin: 'auto',
@@ -32,6 +45,16 @@ const Img = styled('img')({
 
 
 export default function AdminEventListItem({ event }) {
+
+
+    const categories = useSelector(store => store.categories);
+    const fetchApprovedEvents = useSelector(store => store.fetchApprovedEvents);
+
+    // useEffect to grab the approved events
+    useEffect(() => {
+        dispatch({ type: 'FETCH_APPROVED_EVENTS' });
+    }, []);
+
 
 
     const dispatch = useDispatch();
@@ -59,14 +82,13 @@ export default function AdminEventListItem({ event }) {
 
 
 
-
     return (
 
         <div
             className='admin-event-item'
             onClick={handleClick}>
 
-            <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
+            <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}>
                 <StyledPaper
                     sx={{
                         my: 1,
@@ -74,84 +96,92 @@ export default function AdminEventListItem({ event }) {
                         p: 2,
                     }}
                 >
-                    <Grid container wrap="nowrap" spacing={2} height={90}>
+                    <Grid container wrap="nowrap" spacing={3} height={90} width="100%">
                         <Grid item>
                             <ButtonBase sx={{ width: 70, height: 1 }}>
-                                <Avatar
-                                    sx={{ width: 80, height: 80 }}
-                                    src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80" />
+                                {event.category_id == 1 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_cleanup}
+                                    />}
+
+
+                                {event.category_id == 2 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_community_meeting}
+                                    />}
+
+                                {event.category_id == 3 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_donations}
+                                    />}
+
+                                {event.category_id == 4 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_drives}
+                                    />}
+
+                                {event.category_id == 5 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_education}
+                                    />}
+
+                                {event.category_id == 6 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_events}
+                                    />}
+
+                                {event.category_id == 7 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_popups}
+                                    />}
+
+                                {event.category_id == 8 &&
+                                    <Avatar
+                                        className='avatar'
+                                        sx={{ width: 80, height: 80 }}
+                                        src={icon_other}
+                                    />}
+
+
                             </ButtonBase>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={9}>
                             <Typography
+                                sx={{ width: '100%', height: 30 }}
                                 className='event-list-date'
-                                variant='h4'
-                                noWrap>{event.month} {event.day}</Typography>
-                        
+                                variant='h5'
+                                noWrap>{event.dayname}, {event.month} {event.day}</Typography>
+
                             <Divider />
-                            <Divider />
-                            <Divider />
-                            <Divider />
-                    
-                            <Typography noWrap>{event.name}</Typography>
-                            <Typography noWrap>{event.city}</Typography>
+                            
+                            <Typography className='event-list-name' noWrap><b>{event.name}</b></Typography>
+                            <Typography className='event-list-name' noWrap>{event.orgname} </Typography>
 
                         </Grid>
 
-                        <ArrowForwardIosIcon
-                            className='admin-arrow'
-                            fontSize='large'
-                        />
+
 
                     </Grid>
                 </StyledPaper>
+                {/* <Typography className='event-list-name' noWrap><b>{event.name}</b><ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
+                {/* <Typography className='event-list-orgname' noWrap>{event.orgname}  <ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
+                                        {/* <ArrowForwardIosIcon className='event-arrow'/> */}
 
             </Box>
-
-            {/* <Paper
-                sx={{
-                    p: 1,
-                    margin: 1,
-                    maxWidth: 500,
-                    flexGrow: 1,
-                    backgroundColor: (theme) =>
-                        theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-                }}
-            >
-                <Grid container spacing={1}>
-                    <Grid item>
-                        <ButtonBase sx={{ width: 70, height: 1 }}>
-                            <Avatar
-                                sx={{ width: 80, height: 80 }}
-                                alt="Remy Sharp" src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80" />
-                        </ButtonBase>
-                    </Grid>
-                    <Grid item xs={9.5} sm container>
-                        <Grid item xs container direction="column" spacing={5}>
-                            <Grid item xs >
-                                <Typography gutterBottom variant="subtitle1" component="div">
-                                    {event.city}
-                                    <br></br>
-                                    {event.date}
-                                    <br></br>
-                                    {event.name}
-                                </Typography>
-
-                            </Grid>
-
-                        </Grid>
-                        <Grid >
-                            <ButtonBase sx={{ width: 50, height: 1 }}
-                                align='justify'
-                                variant="subtitle1" component="div">
-                                <ArrowForwardIosIcon
-                                    fontSize='large'
-                                />
-                            </ButtonBase>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Paper> */}
 
 
 
