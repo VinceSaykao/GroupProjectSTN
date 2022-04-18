@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+
 // GET all events' information that are approved
 router.get('/', (req, res) => {
 
@@ -34,7 +35,7 @@ router.get('/', (req, res) => {
             join organizations
             on
             organizations.id = events.org_id
-            where status = 'approved'
+            where events.status = 'approved'
             order by date asc;
             `)
             .then((results) => res.send(results.rows))
@@ -115,7 +116,7 @@ router.get('/admin/pending', (req, res) => {
             from events
             where status = 'pending'
             order by date asc
-            ;;`)
+            ;`)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for admin pending event information', error);

@@ -21,7 +21,7 @@ function UserCalanderItem({event}){
         onClick={handleClick}>
 
 
-
+        {event.name}
         {event.date}
 
         </div>
