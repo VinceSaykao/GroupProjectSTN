@@ -17,7 +17,6 @@ import Paper from '@mui/material/Paper';
 import ButtonBase from '@mui/material/ButtonBase';
 import { styled } from '@mui/material/styles';
 
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import './AdminEventListItem.scss';
 
