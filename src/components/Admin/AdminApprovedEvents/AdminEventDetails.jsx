@@ -10,6 +10,8 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 
+import './AdminEventDetails.scss'
+
 
 //modal
 import Modal from '@mui/material/Modal';
@@ -173,8 +175,17 @@ export default function AdminEventDetails() {
 
 
 
-                                    <Grid item xs={12}>
-                                        <Item>{detail.description}</Item>
+                                    <Grid item xs={10}>
+                                        <Item xs={300} className='event-details-item'>
+                                            <b>Details</b>
+                                            <br></br>
+                                            {detail.description}
+                                            <br></br>
+                                            
+                                        
+                                        
+                                        
+                                        </Item>
                                         <Item>{detail.month}</Item>
                                         <Item>{detail.description}</Item>
                                     </Grid>
