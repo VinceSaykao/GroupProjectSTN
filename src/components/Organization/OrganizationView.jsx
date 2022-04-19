@@ -130,6 +130,7 @@ function OrganizationView() {
       </Typography>
       <OrganizationEventsList />
       <BottomNavigation sx={{ width: 'auto' }} style={{ backgroundColor: 'rgb(75, 75, 75)'}}>
+        
         <Link href={org.instagram}>
           <BottomNavigationAction icon={<InstagramIcon sx={{color:'white'}}/>} />
         </Link>
