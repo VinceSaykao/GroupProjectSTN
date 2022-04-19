@@ -18,7 +18,7 @@ export default function UserProfile() {
   const dispatch = useDispatch();
 
 
-  const fetchProfile = useSelector((store) => store.fetchProfile);
+  const fetchProfile = useSelector((store) => store.fetchProfile[0]);
   const fetchSave = useSelector((store) => store.fetchSave);
   const user = useSelector((store) => store.user);
 
@@ -34,7 +34,7 @@ export default function UserProfile() {
 
 
 
-console.log(fetchProfile)
+console.log(user)
   return (
     <div>
       <h3>Profile</h3>
@@ -59,25 +59,16 @@ console.log(fetchProfile)
           </Button>
         </div>
       </Grid>
-
-      {fetchProfile.map((detail, i) => {
-        return (
-          <div key={i}>
-          {detail.first_name}
-          <br></br>
-          {detail.last_name}
-          
-          </div>
-        )
-      })}
+      
 
 
-      {/* <Typography gutterBottom variant="body2" component="div">
+
+      <Typography gutterBottom variant="body2" component="div">
         <p>{fetchProfile?.first_name}</p>
         <p>{fetchProfile?.last_name}</p>
         <p>{fetchProfile?.bio}</p>
         <p>{fetchProfile?.email}</p>
-      </Typography> */}
+      </Typography>
 
 
 
