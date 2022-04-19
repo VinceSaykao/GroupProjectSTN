@@ -83,6 +83,14 @@ router.post("/", (req, res) => {
   insert into "fav_events" ("user_id", "event_id")
   values ($1, $2);  
   `;
+  let queryInserts = [req.body.user_id, req.body.event_id];
+  if (req.isAuthenticated) {
+    pool.query(queryText, queryInserts).then((results) => {
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(403);
+  }
 });
 
 // update information for specific user profile
