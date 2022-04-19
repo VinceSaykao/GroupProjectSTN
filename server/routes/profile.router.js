@@ -77,6 +77,7 @@ router.post("/", (req, res) => {
   }
 });
 
+// This POST is for the "SAVE" button that will favorite events
 router.post("/", (req, res) => {
   let queryText = `
   insert into ""  
