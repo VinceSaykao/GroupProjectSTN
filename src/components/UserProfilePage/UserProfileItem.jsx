@@ -6,20 +6,16 @@ import { useParams, Link, useHistory } from "react-router-dom";
 import { actionChannel } from "redux-saga/effects";
 import UserProfileEditForm from "./UserProfileEditForm";
 
-function UserProfileItem({ info }) {
+function UserProfileItem({ info, detail }) {
 
 
   return (
     <div>
-      <h3>Profile</h3>
       
-      {info.id}
-      <div>
-        <p>{info.first_name}</p>
-        <p>{info.last_name}</p>
-        <p>{info.bio}</p>
-        <p>{info.email}</p>
-      </div>
+
+        <p>{info.name}</p>
+    
+
     </div>
   );
 }
