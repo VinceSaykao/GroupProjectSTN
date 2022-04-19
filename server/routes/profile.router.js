@@ -84,13 +84,18 @@ router.post("/save", (req, res) => {
   values ($1, $2);  
   `;
   let queryInserts = [req.body.user_id, req.body.event_id];
-  if (req.isAuthenticated) {
+  // if (req.isAuthenticated) {
     pool.query(queryText, queryInserts).then((results) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log("Error in profile router POST", error);
       res.sendStatus(500);
     });
-  } else {
-    res.sendStatus(403);
-  }
+  // }
+  //  else {
+  //   res.sendStatus(403);
+  // }
 });
 
 // update information for specific user profile

@@ -1,5 +1,6 @@
 // Event Details
 import * as React from 'react';
+import {useEffect} from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -26,7 +27,17 @@ export default function AdminEventDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    useEffect(() => {
+        dispatch({ type: "FETCH_SAVE_EVENT"});
+        dispatch({ type: "SET_PROFILE_SAGA"});
+    }, [])
+
     const fetchEventId = useSelector(store => store.fetchEventId)
+    const fetchProfile = useSelector(store=> store.fetchProfile[0])
+    
+
+
+
 
 
     // Styles the items mui
@@ -39,11 +50,11 @@ export default function AdminEventDetails() {
     }));
 
     const handleSave = () => {
-        dispatch({type:"SET_SAVE_EVENT" , payload: action})
+        dispatch({type:"ADD_SAVE_EVENT" , payload: { user_id: fetchProfile.id, event_id: fetchEventId[0].id }})
     }
 
     const handleDelete = () => {
-        dispatch ({type: 'DELETE_EVENT', payload: fetchEventId[0].id})
+        dispatch ({type: 'DELETE_EVENT', payload: 1})
         history.push("/adminlist");
 
     }
@@ -118,7 +129,8 @@ export default function AdminEventDetails() {
 
 
 
-    console.log(fetchEventId)
+    console.log("fetchEventId = ", fetchEventId[0])
+    console.log("fetchProfile = ", fetchProfile);
     return (
         <div>
             <Helmet>

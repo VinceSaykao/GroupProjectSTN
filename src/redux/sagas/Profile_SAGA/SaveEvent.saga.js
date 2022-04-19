@@ -1,16 +1,17 @@
 import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
-function* saveEvent() {
+function* saveEvent(action) {
+  console.log("ACTION.PAYLOAD =", action.payload);
   try {
-    const selectedEvent = yield axios.post(`/api/profile/save`);
-    yield put({ type: "SET_SAVE_EVENT", payload: selectedEvent.data });
+    yield axios.post(`/api/profile/save`, action.payload);
+    yield put({ type: "SET_FETCH_SAVE_EVENT" });
   } catch (error) {
     console.log("FAILED", error);
   }
 }
 function* postSaveEventSaga() {
-  yield takeEvery("SET_SAVE_EVENT", saveEvent);
+  yield takeEvery("ADD_SAVE_EVENT", saveEvent);
 }
 
 export default postSaveEventSaga;

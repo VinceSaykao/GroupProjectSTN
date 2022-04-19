@@ -16,11 +16,11 @@ router.get('/', (req, res) => {
             events.status,
             events."name",
             events.description,
-            TO_CHAR(date, 'Mon') AS "month",
+            TO_CHAR(start_date, 'Mon') AS "month",
             extract(
-            day from date
+            day from start_date
             ) AS "day",
-            to_char(date, 'Dy') AS "dayname",
+            to_char(start_date, 'Dy') AS "dayname",
             events.start_time,
             events.end_time,
             events.image,
@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
             on
             organizations.id = events.org_id
             where events.status = 'approved'
-            order by date asc;
+            order by start_date asc;
             `)
             .then((results) => res.send(results.rows))
             .catch((error) => {
@@ -62,11 +62,11 @@ router.get('/:id', (req, res) => {
             status,
             "name",
             description,
-            TO_CHAR(date, 'Mon') AS "month",
+            TO_CHAR(start_date, 'Mon') AS "month",
             extract(
-            day from date
+            day from start_date
             ) AS "day",
-            to_char(date, 'Day') AS "dayname",
+            to_char(start_date, 'Day') AS "dayname",
             start_time,
             end_time,
             image,
@@ -99,11 +99,11 @@ router.get('/admin/pending', (req, res) => {
             status,
             "name",
             description,
-            TO_CHAR(date, 'Mon') AS "month",
+            TO_CHAR(start_date, 'Mon') AS "month",
             extract(
-            day from date
+            day from start_date
             ) AS "day",
-            to_char(date, 'Dy') AS "dayname",
+            to_char(start_date, 'Dy') AS "dayname",
             start_time,
             end_time,
             image,
