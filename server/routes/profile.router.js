@@ -3,14 +3,42 @@ const pool = require("../modules/pool");
 const router = express.Router();
 
 // This will GET all profile information for a specific profile user
-router.get("/:id", (req, res) => {
-    console.log("req.params= ", req.params.id)
-    console.log("req.body= ", req.body);
-  let id = req.params.id;
+
+// router.get("/:id", (req, res) => {
+router.get("/", (req, res) => {
+  console.log("req.user.id= ", req.user.id);
+
+  console.log("req.params= ", req.params.id);
+  console.log("req.body= ", req.body);
+  let id = req.user.id;
 
   if (req.isAuthenticated()) {
     pool
       .query(`select * from "user" where "id" = $1;`, [id])
+      .then((results) => res.send(results.rows))
+      .catch((error) => {
+        console.log("Error in profile router GET", error);
+        res.sendStatus(500);
+      });
+  }
+});
+
+//
+router.get("/:id", (req, res) => {
+  let id = req.user.id;
+
+  if (req.isAuthenticated()) {
+    pool
+      .query(
+        `select * 
+    from events 
+    join fav_events on fav_events.event_id = events.id
+    join "user" 
+    on "user".id = fav_events.user_id 
+    where 
+    fav_events.user_id = $1;`,
+        [id]
+      )
       .then((results) => res.send(results.rows))
       .catch((error) => {
         console.log("Error in profile router GET", error);
