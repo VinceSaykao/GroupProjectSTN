@@ -17,18 +17,19 @@ import Paper from '@mui/material/Paper';
 import ButtonBase from '@mui/material/ButtonBase';
 import { styled } from '@mui/material/styles';
 
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import './AdminEventListItem.scss';
+// import './AdminEventListItem.scss';
 
 // Icons
-import icon_cleanup from '../../../category_icons/icon_cleanup.png'
-import icon_community_meeting from '../../../category_icons/icon_community_meeting.png'
-import icon_donations from '../../../category_icons/icon_donations.png'
-import icon_drives from '../../../category_icons/icon_drives.png'
-import icon_education from '../../../category_icons/icon_education.png'
-import icon_events from '../../../category_icons/icon_events.png'
-import icon_popups from '../../../category_icons/icon_popups.png'
-import icon_other from '../../../category_icons/icon_other.png'
+import icon_cleanup from '../../category_icons/icon_cleanup.png'
+import icon_community_meeting from '../../category_icons/icon_community_meeting.png'
+import icon_donations from '../../category_icons/icon_donations.png'
+import icon_drives from '../../category_icons/icon_drives.png'
+import icon_education from '../../category_icons/icon_education.png'
+import icon_events from '../../category_icons/icon_events.png'
+import icon_popups from '../../category_icons/icon_popups.png'
+import icon_other from '../../category_icons/icon_other.png'
 
 
 
@@ -43,7 +44,7 @@ const Img = styled('img')({
 
 
 
-export default function AdminEventListItem({ event }) {
+export default function OrgEventListItem({ event }) {
 
 
     const categories = useSelector(store => store.categories);
@@ -81,8 +82,7 @@ export default function AdminEventListItem({ event }) {
 
     return (
 
-        <div
-            className='admin-event-item'
+        <Box
             onClick={handleClick}>
 
             <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}>
@@ -95,7 +95,7 @@ export default function AdminEventListItem({ event }) {
                 >
                     <Grid container wrap="nowrap" spacing={3} height={90} width="100%">
                         <Grid item>
-                            <ButtonBase sx={{ width: 70, height: 1 }}>
+                            <ButtonBase sx={{ width: 60, height: 1 }}>
                                 {event.category_id == 1 &&
                                     <Avatar
                                         className='avatar'
@@ -185,7 +185,7 @@ export default function AdminEventListItem({ event }) {
 
 
 
-        </div>
+        </Box>
 
     )
 }; // end of AdminEventListItem

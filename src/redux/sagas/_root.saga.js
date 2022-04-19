@@ -9,11 +9,12 @@ import fetchProfile from "./Profile_SAGA/fetchProfile.saga";
 import fetchProfileEvent from "./Profile_SAGA/fetchProfileEvent.saga";
 import addProfile from "./Profile_SAGA/addProfile.saga";
 import updateProfile from "./Profile_SAGA/updateProfile.saga";
+import fetchSaveEventSaga from "./Profile_SAGA/fetchProfileSaveEvent.saga";
 
 // Organizations
 import addOrganizationsSaga from "./Organization_SAGA/addOrganization.saga";
-import fetchAllOrganizationsSaga from './Organization_SAGA/fetchAllOrganizations.saga';
-import fetchOrganization from './Organization_SAGA/fetchOrganization.saga'
+import fetchAllOrganizationsSaga from "./Organization_SAGA/fetchAllOrganizations.saga";
+import fetchOrganization from "./Organization_SAGA/fetchOrganization.saga";
 import updateOrganization from "./Organization_SAGA/updateOrganization.saga";
 
 // Events
@@ -22,15 +23,13 @@ import deleteEvent from "./Event_SAGA/deleteEvent.saga";
 import fetchAdminEvents from "./Event_SAGA/fetchAdminEvents.saga";
 import fetchApprovedEvents from "./Event_SAGA/fetchApprovedEvents.saga";
 import fetchEventId from "./Event_SAGA/fetchEventId.saga";
-import fetchOrgEvents from "./Event_SAGA/fetchOrgEvents.saga"
+import fetchOrgEvents from "./Event_SAGA/fetchOrgEvents.saga";
 import fetchSavedEvents from "./Event_SAGA/fetchSavedEvents.saga";
 import updateEvent from "./Event_SAGA/updateEvent.saga";
 import fetchAdminPendingEvents from "./Event_SAGA/fetchAdminPendingEvents.saga";
 
 // Categories
-import categories from './categories.saga';
-
-
+import categories from "./categories.saga";
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -58,6 +57,7 @@ export default function* rootSaga() {
     fetchProfileEvent(),
     addProfile(),
     updateProfile(),
+    fetchSaveEventSaga(),
 
     // Events
     addEvent(),

@@ -13,7 +13,11 @@ import { SettingsBrightnessOutlined } from "@mui/icons-material";
 
 export default function UserProfile() {
 
+  
   const dispatch = useDispatch();
+  const fetchProfile = useSelector((store) => store.fetchProfile[0]);
+  const fetchSave = useSelector((store) => store.fetchSave);
+  const user = useSelector((store) => store.user);
   const history = useHistory();
   
     useEffect(() => {
@@ -25,51 +29,43 @@ export default function UserProfile() {
   // const user = useSelector((store) => store.user);
 
 
-
-
   const handleEditClick = () => {
     history.push("/userprofileedit");
   };
 
+  console.log(user.id);
 
-
-
-  console.log("profile", fetchProfile);
+  console.log("fetchSave =", fetchSave);
   return (
     <div>
-    <h1>HELLO</h1>
+      <Grid container justifyContent="center">
+        <h3>Profile</h3>
+        <div className="org-box">
+          <Box
+            component="img"
+            sx={{
+              height: "auto",
+              width: 350,
+              maxHeight: { xs: 233, md: 167 },
+              maxWidth: { xs: 350, md: 250 },
+            }}
+            alt=""
+            src="https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png"
+          />
 
-    
-  {fetchProfile?.map((info,i) => {
-        return (
-            <div id={i}>
-            <UserProfileItem 
-            info={info}
-            />
-            </div>
-        )
-    })}
+          <Button className="edit-button" size="small" variant="contained" onClick={handleEditClick}>
+            Edit
+          </Button>
+        </div>
+      </Grid>
 
-
-{/* 
-    {fetchProfileEvent.map((event,i) => {
-        return (
-            <div id={i}>
-                <UserSavedProfileEvent 
-                event={event}
-                />
-    
-            </div>
-        )
-    })}  */}
-
-
-
-
-
-
-
-</div>
+      <Typography gutterBottom variant="body2" component="div">
+        <p>{fetchProfile?.first_name}</p>
+        <p>{fetchProfile?.last_name}</p>
+        <p>{fetchProfile?.bio}</p>
+        <p>{fetchProfile?.email}</p>
+      </Typography>
+    </div>
   );
 }
 // end of UserProfile
