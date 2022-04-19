@@ -101,12 +101,18 @@ function App() {
             path="/adminlist"
           >
 
-            {user.access_level === 3 ?
+            {user.access_level === 1 ?
 
               <AdminEventList />
               :
               <LandingPage />
+
+
             }
+
+    
+
+            
 
 
 
