@@ -6,7 +6,7 @@ import { useParams, Link, useHistory } from "react-router-dom";
 import { actionChannel } from "redux-saga/effects";
 import UserProfileEditForm from "./UserProfileEditForm";
 
-function UserProfileItem({ info }) {
+function UserProfileItem({ info, detail }) {
 
 
   return (
