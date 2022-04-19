@@ -52,7 +52,7 @@ function App() {
     <Router>
       <div>
         <Nav />
-        
+
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -83,13 +83,34 @@ function App() {
             exact
             path="/admin-approved-event-details"
           >
-            <AdminEventDetails />
+            {user.access_level === 3 ?
+
+              <AdminEventDetails />
+
+              : <LandingPage />
+
+            }
+
+
+
+
+
           </ProtectedRoute>
           <ProtectedRoute
             exact
             path="/adminlist"
           >
-            <AdminEventList />
+
+            {user.access_level === 3 ?
+
+              <AdminEventList />
+              :
+              <LandingPage />
+            }
+
+
+
+
           </ProtectedRoute>
           <ProtectedRoute
             exact
