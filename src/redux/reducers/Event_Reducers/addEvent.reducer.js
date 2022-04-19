@@ -6,6 +6,8 @@ const addEvent = (state = [], action) => {
         // brackets represent a string of whatever value is passed (i.e. 'name', 'website', etc)
         [action.payload.property]: action.payload.value,
       }
+      case "SET_EDIT_EVENT":
+        return action.payload
     default:
       return {
         ...state,

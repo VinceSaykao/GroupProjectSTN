@@ -102,32 +102,32 @@ function AdminEventEdit() {
     const muiVariant = 'outlined';      // Global Page MUI Variant
     // ------------------------------------------------------------
 
-    const { id } = useParams();
-    const dispatch = useDispatch();
-    const user = useSelector(store => store.user);
-    const allEvents = useSelector(store => store.fetchAdminEvents);
-    const categories = useSelector(store => store.categories);
-
-    const selectedEvent = allEvents.filter(event => event.id == id);
-    console.log('selectedEvent":', selectedEvent);
-
-    // Form Submit
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'org_id', value: user.org_id }})
-        dispatch({ type: 'POST_EVENT', payload: selectedEvent })
-    }
-
     // Fetches Categories on page load
     useEffect(() => {
         dispatch({ type: 'FETCH_CATEGORIES' })
         dispatch({ type: 'FETCH_EVENT_DETAILS', payload: id })
-    }, []); 
+    }, []);
 
-    // Automatically assigns user.org_id to addEvent Reducer
-    useEffect(() => {
-        dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'org_id', value: user.org_id }})
-    }, [user]);
+
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const user = useSelector(store => store.user);
+
+    const categories = useSelector(store => store.categories);
+    const selectedEvent = useSelector(store => store.updateEvent);
+
+    console.log('selectedEvent:', selectedEvent);
+    // const selectedEvent = allEvents.filter(event => event.id == id);
+    // console.log('selectedEvent:', selectedEvent);
+
+
+    // Form Submit
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        dispatch({ type: 'UPDATE_EVENT', payload: selectedEvent })
+    }
+
+
 
     return (
         <Box
@@ -136,11 +136,11 @@ function AdminEventEdit() {
             <form onSubmit={event => handleFormSubmit(event)}>
 
                 {/*  -----------------------------------------------------------------------
-                            EVENT DETAIL
-                ------------------------------------------------------------------------- */}
+                        EVENT DETAIL
+            ------------------------------------------------------------------------- */}
 
                 <Typography variant="h5" sx={{ my: 2 }}>Event Detail</Typography>
-                
+
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <TextField
@@ -149,9 +149,10 @@ function AdminEventEdit() {
                             autoComplete="off"
                             value={selectedEvent.name}
                             onChange={e => dispatch({
-                                type: 'SET_ADD_EVENT',
+                                type: 'SET_EDIT_UPDATE_EVENT',
                                 payload: { property: 'name', value: e.target.value }
                             })}
+                            InputLabelProps={{ shrink: selectedEvent.name ? true : false }}
                             required
                             fullWidth
                         />
@@ -162,10 +163,11 @@ function AdminEventEdit() {
                             label="Sign Up Link"
                             autoComplete="off"
                             value={selectedEvent.link}
-                            onChange={e => dispatch({ 
-                                type: 'SET_ADD_EVENT', 
-                                payload: { property: 'link', value: e.target.value } 
+                            onChange={e => dispatch({
+                                type: 'SET_EDIT_UPDATE_EVENT',
+                                payload: { property: 'link', value: e.target.value }
                             })}
+                            InputLabelProps={{ shrink: selectedEvent.link ? true : false }}
                             required
                             fullWidth
                         />
@@ -176,10 +178,11 @@ function AdminEventEdit() {
                             label="Description"
                             autoComplete="off"
                             value={selectedEvent.description}
-                            onChange={e => dispatch({ 
-                                type: 'SET_ADD_EVENT', 
-                                payload: { property: 'description', value: e.target.value } 
+                            onChange={e => dispatch({
+                                type: 'SET_EDIT_UPDATE_EVENT',
+                                payload: { property: 'description', value: e.target.value }
                             })}
+                            InputLabelProps={{ shrink: selectedEvent.description ? true : false }}
                             required
                             // minRows={3}
                             multiline
@@ -192,31 +195,29 @@ function AdminEventEdit() {
                             label="Image / Flyer URL"
                             autoComplete="off"
                             value={selectedEvent.image}
-                            onChange={e => dispatch({ 
-                                type: 'SET_ADD_EVENT', 
-                                payload: { property: 'image', value: e.target.value } 
+                            onChange={e => dispatch({
+                                type: 'SET_EDIT_UPDATE_EVENT',
+                                payload: { property: 'image', value: e.target.value }
                             })}
+                            InputLabelProps={{ shrink: selectedEvent.image ? true : false }}
                             fullWidth
                         />
                     </Grid>
-                    
-
                     <Grid item xs={12}>
                         <FormControl sx={{ minWidth: "100%" }} required>
                             <InputLabel variant={muiVariant}>Category</InputLabel>
                             <Select
                                 label="Category"
                                 variant={muiVariant}
-                                value={selectedEvent.category_id}
-                                onChange={e => dispatch({ 
-                                    type: 'SET_ADD_EVENT', 
-                                    payload: { property: 'category_id', value: e.target.value } 
+                                value={selectedEvent.category_id || ''}
+                                onChange={e => dispatch({
+                                    type: 'SET_ADD_EVENT',
+                                    payload: { property: 'category_id', value: e.target.value }
                                 })}
-                                
+
                             >
                                 {categories.map(category => (
                                     <MenuItem key={category.id} value={category.id}>
-                                        {/* -------- Conditional Rendering for Icons ----------------------------------- */}
                                         {category.id == 1 && <img className="icon_dropdown" src={icon_cleanup} />}
                                         {category.id == 2 && <img className="icon_dropdown" src={icon_community_meeting} />}
                                         {category.id == 3 && <img className="icon_dropdown" src={icon_donations} />}
@@ -225,18 +226,18 @@ function AdminEventEdit() {
                                         {category.id == 6 && <img className="icon_dropdown" src={icon_events} />}
                                         {category.id == 7 && <img className="icon_dropdown" src={icon_popups} />}
                                         {category.id == 8 && <img className="icon_dropdown" src={icon_other} />}
-                                        {/* ---------------------------------------------------------------------------- */}
                                         {category.name}
                                     </MenuItem>
                                 ))};
                             </Select>
                         </FormControl>
                     </Grid>
+
                 </Grid>
 
                 {/*  -----------------------------------------------------------------------
-                            TIME & DATE
-                ------------------------------------------------------------------------- */}
+                        TIME & DATE
+            ------------------------------------------------------------------------- */}
 
                 <Typography variant="h5" sx={{ mt: 4, mb: 2 }}>Time & Date</Typography>
 
@@ -246,12 +247,12 @@ function AdminEventEdit() {
 
                             {/* -----  MUI DATE PICKER ----- */}
                             {/* <MobileDatePicker
-                            label="Start Date"
-                            inputFormat="MM/dd/yyyy"
-                            value={selectedEvent.start_date}
-                            onChange={e => dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'start_date', value: e.target.value } })}
-                            renderInput={(params) => <TextField {...params} />}
-                        /> */}
+                        label="Start Date"
+                        inputFormat="MM/dd/yyyy"
+                        value={selectedEvent.start_date}
+                        onChange={e => dispatch({ type: 'SET_EDIT_UPDATE_EVENT', payload: { property: 'start_date', value: e.target.value } })}
+                        renderInput={(params) => <TextField {...params} />}
+                    /> */}
 
                             <TextField
                                 variant={muiVariant}
@@ -259,9 +260,9 @@ function AdminEventEdit() {
                                 label="Start Date"
                                 type="date"
                                 value={selectedEvent.start_date}
-                                onChange={e => dispatch({ 
-                                    type: 'SET_ADD_EVENT', 
-                                    payload: { property: 'start_date', value: e.target.value } 
+                                onChange={e => dispatch({
+                                    type: 'SET_EDIT_UPDATE_EVENT',
+                                    payload: { property: 'start_date', value: e.target.value }
                                 })}
                                 InputLabelProps={{
                                     shrink: true,
@@ -274,14 +275,6 @@ function AdminEventEdit() {
                     </Grid>
                     <Grid item xs={6}>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
-
-                            {/* -----  MUI DATE PICKER ----- */}
-                            {/* <MobileDatePicker
-                            label="End Date"
-                            value={selectedEvent.end_date}
-                            onChange={dispatchEndDate}
-                            renderInput={(params) => <TextField {...params} />}
-                        /> */}
 
                             <TextField
                                 variant={muiVariant}
@@ -289,9 +282,9 @@ function AdminEventEdit() {
                                 label="End Date"
                                 type="date"
                                 value={selectedEvent.end_date}
-                                onChange={e => dispatch({ 
-                                    type: 'SET_ADD_EVENT', 
-                                    payload: { property: 'end_date', value: e.target.value } 
+                                onChange={e => dispatch({
+                                    type: 'SET_EDIT_UPDATE_EVENT',
+                                    payload: { property: 'end_date', value: e.target.value }
                                 })}
                                 InputLabelProps={{
                                     shrink: true,
@@ -304,14 +297,6 @@ function AdminEventEdit() {
                     </Grid>
                     <Grid item xs={6}>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
-
-                            {/* -----  MUI TIME PICKER ----- */}
-                            {/* <MobileTimePicker
-                            label="Start Time"
-                            value={startTime}
-                            onChange={dispatchStartTime}
-                            renderInput={(params) => <TextField {...params} />}
-                        /> */}
 
                             <TextField
                                 variant={muiVariant}
@@ -319,9 +304,9 @@ function AdminEventEdit() {
                                 label="Start Time"
                                 type="time"
                                 value={selectedEvent.start_time}
-                                onChange={e => dispatch({ 
-                                    type: 'SET_ADD_EVENT', 
-                                    payload: { property: 'start_time', value: e.target.value } 
+                                onChange={e => dispatch({
+                                    type: 'SET_EDIT_UPDATE_EVENT',
+                                    payload: { property: 'start_time', value: e.target.value }
                                 })}
                                 InputLabelProps={{
                                     shrink: true,
@@ -338,11 +323,11 @@ function AdminEventEdit() {
 
                             {/* -----  MUI TIME PICKER ----- */}
                             {/* <MobileTimePicker
-                            label="End Time"
-                            value={selectedEvent.end_time}
-                            onChange={dispatchEndTime}
-                            renderInput={(params) => <TextField {...params} />}
-                        /> */}
+                        label="End Time"
+                        value={selectedEvent.end_time}
+                        onChange={dispatchEndTime}
+                        renderInput={(params) => <TextField {...params} />}
+                    /> */}
 
                             <TextField
                                 variant={muiVariant}
@@ -350,9 +335,9 @@ function AdminEventEdit() {
                                 label="End Time"
                                 type="time"
                                 value={selectedEvent.end_time}
-                                onChange={e => dispatch({ 
-                                    type: 'SET_ADD_EVENT', 
-                                    payload: { property: 'end_time', value: e.target.value } 
+                                onChange={e => dispatch({
+                                    type: 'SET_EDIT_UPDATE_EVENT',
+                                    payload: { property: 'end_time', value: e.target.value }
                                 })}
                                 InputLabelProps={{
                                     shrink: true,
@@ -366,8 +351,8 @@ function AdminEventEdit() {
                 </Grid>
 
                 {/*  -----------------------------------------------------------------------
-                            CONTACT & LOCATION
-                ------------------------------------------------------------------------- */}
+                        CONTACT & LOCATION
+            ------------------------------------------------------------------------- */}
 
                 <Typography variant="h5" sx={{ mt: 4, mb: 2 }}>Contact & Location</Typography>
 
@@ -378,26 +363,27 @@ function AdminEventEdit() {
                             label="Email"
                             autoComplete="off"
                             value={selectedEvent.email}
-                            onChange={e => dispatch({ 
-                                type: 'SET_ADD_EVENT', 
-                                payload: { property: 'email', value: e.target.value } 
+                            onChange={e => dispatch({
+                                type: 'SET_EDIT_UPDATE_EVENT',
+                                payload: { property: 'email', value: e.target.value }
                             })}
+                            InputLabelProps={{ shrink: selectedEvent.email ? true : false }}
                             fullWidth
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <MuiPhoneNumber 
+                        <MuiPhoneNumber
                             fullWidth
                             variant={muiVariant}
                             value={selectedEvent.phone}
                             defaultCountry={'us'}
-                            onlyCountries={['us','ca','mx','pr']}
+                            onlyCountries={['us', 'ca', 'mx', 'pr']}
                             disableAreaCodes
                             label="Phone #"
-                            autoComplete="off"            
-                            onChange={e => dispatch({ 
-                                type: 'SET_ADD_EVENT', 
-                                payload: { property: 'phone', value: e } 
+                            autoComplete="off"
+                            onChange={e => dispatch({
+                                type: 'SET_EDIT_UPDATE_EVENT',
+                                payload: { property: 'phone', value: e }
                             })}
                         />
                     </Grid>
@@ -407,10 +393,11 @@ function AdminEventEdit() {
                             label="Address Line 1"
                             autoComplete="off"
                             value={selectedEvent.address1}
-                            onChange={e => dispatch({ 
-                                type: 'SET_ADD_EVENT', 
-                                payload: { property: 'address1', value: e.target.value } 
+                            onChange={e => dispatch({
+                                type: 'SET_EDIT_UPDATE_EVENT',
+                                payload: { property: 'address1', value: e.target.value }
                             })}
+                            InputLabelProps={{ shrink: selectedEvent.address1 ? true : false }}
                             required
                             fullWidth
                         />
@@ -421,10 +408,11 @@ function AdminEventEdit() {
                             label="Address Line 2"
                             autoComplete="off"
                             value={selectedEvent.address2}
-                            onChange={e => dispatch({ 
-                                type: 'SET_ADD_EVENT', 
-                                payload: { property: 'address2', value: e.target.value } 
+                            onChange={e => dispatch({
+                                type: 'SET_EDIT_UPDATE_EVENT',
+                                payload: { property: 'address2', value: e.target.value }
                             })}
+                            InputLabelProps={{ shrink: selectedEvent.address2 ? true : false }}
                             fullWidth
                         />
                     </Grid>
@@ -434,10 +422,11 @@ function AdminEventEdit() {
                             label="City"
                             autoComplete="off"
                             value={selectedEvent.city}
-                            onChange={e => dispatch({ 
-                                type: 'SET_ADD_EVENT', 
-                                payload: { property: 'city', value: e.target.value } 
+                            onChange={e => dispatch({
+                                type: 'SET_EDIT_UPDATE_EVENT',
+                                payload: { property: 'city', value: e.target.value }
                             })}
+                            InputLabelProps={{ shrink: selectedEvent.city ? true : false }}
                             required
                             fullWidth
                         />
@@ -447,12 +436,12 @@ function AdminEventEdit() {
                             <InputLabel id="state">State</InputLabel>
                             <Select
                                 variant={muiVariant}
-                                value={selectedEvent.state}
+                                value={selectedEvent.state || ''} // Async issues without: || ''
                                 autoComplete="off"
                                 label="State"
-                                onChange={e => dispatch({ 
-                                    type: 'SET_ADD_EVENT', 
-                                    payload: { property: 'state', value: e.target.value } 
+                                onChange={e => dispatch({
+                                    type: 'SET_EDIT_UPDATE_EVENT',
+                                    payload: { property: 'state', value: e.target.value }
                                 })}
                             >
                                 {usaStateList.map(usaState => (
@@ -466,13 +455,15 @@ function AdminEventEdit() {
                         <TextField
                             variant={muiVariant}
                             label="Zip"
-                            type='number'
+                            type='text'
                             autoComplete='off'
                             value={selectedEvent.zip}
-                            onChange={e => dispatch({ 
-                                type: 'SET_ADD_EVENT', 
-                                payload: { property: 'zip', value: e.target.value } 
+                            onChange={e => dispatch({
+                                type: 'SET_EDIT_UPDATE_EVENT',
+                                payload: { property: 'zip', value: e.target.value }
                             })}
+                            InputLabelProps={{ shrink: selectedEvent?.zip ? true : false}}
+                            inputProps={{ maxLength: 5 }}
                             fullWidth
                         />
                     </Grid>

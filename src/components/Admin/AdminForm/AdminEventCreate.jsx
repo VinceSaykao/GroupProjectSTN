@@ -110,7 +110,6 @@ function AdminEventCreate() {
     // Form Submit
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'org_id', value: user.org_id }})
         dispatch({ type: 'POST_EVENT', payload: newEvent })
         console.log('newEvent":', newEvent);
     }
@@ -462,13 +461,14 @@ function AdminEventCreate() {
                         <TextField
                             variant={muiVariant}
                             label="Zip"
-                            type='number'
+                            type='text'
                             autoComplete='off'
                             value={newEvent.zip}
                             onChange={e => dispatch({ 
                                 type: 'SET_ADD_EVENT', 
                                 payload: { property: 'zip', value: e.target.value } 
                             })}
+                            inputProps={{ maxLength: 5 }}
                             fullWidth
                         />
                     </Grid>
