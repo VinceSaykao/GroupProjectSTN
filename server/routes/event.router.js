@@ -62,11 +62,11 @@ router.get('/:id', (req, res) => {
             status,
             "name",
             description,
-            TO_CHAR(date, 'Mon') AS "month",
+            TO_CHAR(start_date, 'Mon') AS "month",
             extract(
-            day from date
+            day from start_date
             ) AS "day",
-            to_char(date, 'Day') AS "dayname",
+            to_char(start_date, 'Day') AS "dayname",
             start_time,
             end_time,
             image,
