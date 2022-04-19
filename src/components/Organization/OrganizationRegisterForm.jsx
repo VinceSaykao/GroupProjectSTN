@@ -19,6 +19,8 @@ function AddOrganization() {
   const user = useSelector((store) => store.user);
   const user_org_id = useSelector((store => store.fetchUserOrgID))
 
+  console.log('user_org_id is', user_org_id);
+
   const orgState = {
     user_id: user.id,
     name: '',
@@ -58,11 +60,11 @@ function AddOrganization() {
       newOrg.zip)
     ) {
       event.preventDefault();
-      dispatch({ type: 'ADD_ORGANIZATION', payload: newOrg });
+      dispatch({ type: 'ADD_ORGANIZATION', payload: {newOrg, history} });
       setNewOrg(orgState);
-      setTimeout(() => {
-        history.push(`/organization-view/${user.org_id}`); // Go to profile page after entering org info
-      }, 1000)
+      // setTimeout(() => {
+      //   history.push(`/organization-view/${user.org_id}`); // Go to profile page after entering org info
+      // }, 1000)
     } else {
       // If a field is not filled out
       alert('Please fill out all required* input fields');

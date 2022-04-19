@@ -59,7 +59,7 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <Box component="form" container onSubmit={registerUser} textAlign="center">
+    <Box component="form" container onSubmit={registerUser} textAlign="center" sx={{mt: 20}}>
       <h2>Register</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
