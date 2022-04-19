@@ -11,15 +11,11 @@ function UserProfileItem({ info }) {
 
   return (
     <div>
-      <h3>Profile</h3>
       
-      {info.id}
-      <div>
-        <p>{info.first_name}</p>
-        <p>{info.last_name}</p>
-        <p>{info.bio}</p>
-        <p>{info.email}</p>
-      </div>
+
+        <p>{info.name}</p>
+    
+
     </div>
   );
 }

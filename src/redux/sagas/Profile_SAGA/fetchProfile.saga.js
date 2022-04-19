@@ -4,7 +4,7 @@ import axios from "axios";
 function* getProfileSaga(action) {
   
   try {
-    // const profiles = yield axios.get(`/api/profile/${action.payload}`);
+
     const profiles = yield axios.get(`/api/profile`);
 
     yield put({ type: "SET_PROFILE", payload: profiles.data });
