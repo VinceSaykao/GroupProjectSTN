@@ -82,6 +82,27 @@ router.post("/", (req, res) => {
   }
 });
 
+// This POST is for the "SAVE" button that will favorite events
+router.post("/save", (req, res) => {
+  let queryText = `
+  insert into "fav_events" ("user_id", "event_id")
+  values ($1, $2);  
+  `;
+  let queryInserts = [req.body.user_id, req.body.event_id];
+  // if (req.isAuthenticated) {
+    pool.query(queryText, queryInserts).then((results) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log("Error in profile router POST", error);
+      res.sendStatus(500);
+    });
+  // }
+  //  else {
+  //   res.sendStatus(403);
+  // }
+});
+
 // update information for specific user profile
 router.put("/:id", (req, res) => {
   console.log("req.body= ", req.body);

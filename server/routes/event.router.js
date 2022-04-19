@@ -92,7 +92,7 @@ router.get('/admin/pending', (req, res) => {
 
     if (req.isAuthenticated()) {
         pool
-            .query(` select 
+            .query(`select 
             events.id,
             events.org_id,
             events.category_id,

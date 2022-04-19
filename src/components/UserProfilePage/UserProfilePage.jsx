@@ -40,7 +40,6 @@ console.log(user)
       <h3>Profile</h3>
 
       <Grid container justifyContent="center">
-
         <div className="org-box">
           <Box
             component="img"
@@ -55,6 +54,7 @@ console.log(user)
           />
 
           <Button className="edit-button" size="small" variant="contained" onClick={handleEditClick}>
+            
             Edit
           </Button>
         </div>
