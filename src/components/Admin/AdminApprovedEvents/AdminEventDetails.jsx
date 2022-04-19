@@ -1,6 +1,6 @@
 // Event Details
 import * as React from 'react';
-import { useEffect } from "react";
+import {useEffect} from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -30,14 +30,17 @@ export default function AdminEventDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-
     useEffect(() => {
-        dispatch({ type: "FETCH_SAVE_EVENT" });
-        dispatch({ type: "SET_PROFILE_SAGA" });
-    }, []);
+        dispatch({ type: "FETCH_SAVE_EVENT"});
+        dispatch({ type: "SET_PROFILE_SAGA"});
+    }, [])
 
-    const fetchEventId = useSelector(store => store.fetchEventId);
-    const fetchProfile = useSelector(store => store.fetchProfile[0]);
+    const fetchEventId = useSelector(store => store.fetchEventId)
+    const fetchProfile = useSelector(store=> store.fetchProfile[0])
+    
+
+
+
 
 
     // Styles the items mui
@@ -66,6 +69,10 @@ export default function AdminEventDetails() {
         padding: theme.spacing(1),
         borderRadius: theme.shape.borderRadius,
     }));
+
+    const handleSave = () => {
+        dispatch({type:"ADD_SAVE_EVENT" , payload: { user_id: fetchProfile.id, event_id: fetchEventId[0].id }})
+    }
 
     const handleDelete = () => {
         dispatch({ type: 'DELETE_EVENT', payload: fetchEventId[0].id })
@@ -108,6 +115,7 @@ export default function AdminEventDetails() {
             <React.Fragment>
                 <Button onClick={handleDelete}>Delete</Button>
                 <Button onClick={handleCancel}>Cancel</Button>
+                <Button onClick={handleSave}>Save</Button>
                 {/* <Modal
                     hideBackdrop
                     open={open}
@@ -190,6 +198,11 @@ export default function AdminEventDetails() {
                                         <Grid item xs={12}>
 
                                             <Item>
+                                            <Button
+                                                    onClick={handleSave}
+                                                    variant="contained"
+                                                    startIcon={<EditIcon />}
+                                                >Save</Button>
                                                 <Button
                                                     variant="contained"
                                                     startIcon={<EditIcon />}

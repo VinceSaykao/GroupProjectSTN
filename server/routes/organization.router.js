@@ -91,7 +91,7 @@ router.post('/', (req, res) => {
       
 
       pool.query(orgUserQuery, [createdOrgID, req.user.id])  
-      res.sendStatus(201);
+      res.send({createdOrgID});
     })
     .catch((error) => {
       console.log('Error with new organization post', error);
