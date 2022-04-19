@@ -3,7 +3,7 @@ import axios from "axios";
 
 function* saveEvent() {
   try {
-    const selectedEvent = yield axios.post(`/api/profile`);
+    const selectedEvent = yield axios.post(`/api/profile/save`);
     yield put({ type: "SET_SAVE_EVENT", payload: selectedEvent.data });
   } catch (error) {
     console.log("FAILED", error);

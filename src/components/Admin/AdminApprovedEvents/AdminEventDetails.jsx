@@ -38,9 +38,9 @@ export default function AdminEventDetails() {
         color: theme.palette.text.secondary,
     }));
 
-    // const handleSave = () => {
-    //     dispatch({type: , payload:})
-    // }
+    const handleSave = () => {
+        dispatch({type:"SET_SAVE_EVENT" , payload: action})
+    }
 
     const handleDelete = () => {
         dispatch ({type: 'DELETE_EVENT', payload: fetchEventId[0].id})
@@ -81,6 +81,7 @@ export default function AdminEventDetails() {
             <React.Fragment>
                 <Button onClick={handleDelete}>Delete</Button>
                 <Button onClick={handleCancel}>Cancel</Button>
+                <Button onClick={handleSave}>Save</Button>
                 {/* <Modal
                     hideBackdrop
                     open={open}
@@ -159,6 +160,7 @@ export default function AdminEventDetails() {
 
                                             <Item>
                                             <Button
+                                                    onClick={handleSave}
                                                     variant="contained"
                                                     startIcon={<EditIcon />}
                                                 >Save</Button>
