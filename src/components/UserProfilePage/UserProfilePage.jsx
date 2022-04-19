@@ -24,13 +24,14 @@ export default function UserProfile() {
     history.push("/userprofileedit");
   };
 
-  console.log(user.id);
+  // console.log(user.id);
 
   console.log("fetchSave =", fetchSave);
   return (
     <div>
       <Grid container justifyContent="center">
         <h3>Profile</h3>
+        
         <div className="org-box">
           <Box
             component="img"
@@ -45,6 +46,7 @@ export default function UserProfile() {
           />
 
           <Button className="edit-button" size="small" variant="contained" onClick={handleEditClick}>
+            
             Edit
           </Button>
         </div>

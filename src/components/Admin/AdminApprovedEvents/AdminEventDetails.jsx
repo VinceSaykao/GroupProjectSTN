@@ -38,6 +38,10 @@ export default function AdminEventDetails() {
         color: theme.palette.text.secondary,
     }));
 
+    // const handleSave = () => {
+    //     dispatch({type: , payload:})
+    // }
+
     const handleDelete = () => {
         dispatch ({type: 'DELETE_EVENT', payload: fetchEventId[0].id})
         history.push("/adminlist");
@@ -154,6 +158,10 @@ export default function AdminEventDetails() {
                                         <Grid item xs={12}>
 
                                             <Item>
+                                            <Button
+                                                    variant="contained"
+                                                    startIcon={<EditIcon />}
+                                                >Save</Button>
                                                 <Button
                                                     variant="contained"
                                                     startIcon={<EditIcon />}
