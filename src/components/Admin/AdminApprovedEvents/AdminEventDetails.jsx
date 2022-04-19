@@ -153,9 +153,6 @@ export default function AdminEventDetails() {
 
 
 
-    console.log('this is fetch profile', fetchProfile.id);
-    console.log('this is fetch event', fetchEventId[0]);
-
     return (
         <div>
             <Helmet>
