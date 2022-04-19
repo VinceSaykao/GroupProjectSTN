@@ -1,5 +1,6 @@
 // Event Details
 import * as React from 'react';
+import { useEffect } from "react";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -28,6 +29,12 @@ export default function AdminEventDetails() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+
+    useEffect(() => {
+        dispatch({ type: "FETCH_SAVE_EVENT" });
+        dispatch({ type: "SET_PROFILE_SAGA" });
+    }, []);
 
     const fetchEventId = useSelector(store => store.fetchEventId);
     const fetchProfile = useSelector(store => store.fetchProfile[0]);
@@ -96,7 +103,6 @@ export default function AdminEventDetails() {
         };
 
 
-        console.log('this is fetch pro dfsdffddsjfkdlsfjdklfjfjkfajskfdjfsfsfsdfsf', fetchProfile.id);
 
         return (
             <React.Fragment>
@@ -139,6 +145,8 @@ export default function AdminEventDetails() {
 
 
 
+    console.log('this is fetch profile', fetchProfile.id);
+    console.log('this is fetch event', fetchEventId[0]);
 
     return (
         <div>
