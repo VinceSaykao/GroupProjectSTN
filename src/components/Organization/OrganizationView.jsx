@@ -43,7 +43,7 @@ function OrganizationView() {
   };
 
   return (
-    <div className='org-view'>
+    <div className="org-view">
       <Grid container justifyContent="center">
         <div className="org-box">
           <Box
@@ -82,7 +82,12 @@ function OrganizationView() {
         </Button>
       </Box>
 
-      <Typography gutterBottom variant="subtitle1" component="div" color="white">
+      <Typography
+        gutterBottom
+        variant="subtitle1"
+        component="div"
+        color="white"
+      >
         Description:
       </Typography>
       <Typography gutterBottom variant="body1" component="div" color="white">
@@ -98,20 +103,16 @@ function OrganizationView() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography gutterBottom variant="body1" component="div">
-            Website: {org.website}
+            {org.website}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
-            Email: {org.email}
+            {org.email}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
-            Phone: {org.phone}
+            {org.phone}
           </Typography>
-          <Typography gutterBottom variant="body2" component="div">
-            {org.housing}
-          </Typography>
-          <Typography gutterBottom variant="subtitle2" component="div">
-            Location: {org.address1} {org.address2} {org.city}, {org.state}{' '}
-            {org.zip}
+          <Typography gutterBottom variant="body1" component="div">
+            {org.address1} {org.address2} {org.city}, {org.state} {org.zip}
           </Typography>
           <Grid container justifyContent="center">
             <iframe
@@ -125,20 +126,50 @@ function OrganizationView() {
           </Grid>
         </AccordionDetails>
       </Accordion>
-      <Typography gutterBottom variant="header1" component="div" color="white">
-        Events
-      </Typography>
       <OrganizationEventsList />
-      <BottomNavigation sx={{ width: 'auto' }} style={{ backgroundColor: 'rgb(75, 75, 75)'}}>
-        <Link href={org.instagram}>
-          <BottomNavigationAction icon={<InstagramIcon sx={{color:'white'}}/>} />
-        </Link>
-        <Link href={org.twitter}>
-          <BottomNavigationAction icon={<TwitterIcon sx={{color:'white'}}/>} />
-        </Link>
-        <Link href={org.facebook}>
-          <BottomNavigationAction icon={<FacebookIcon sx={{color:'white'}}/>} />
-        </Link>
+      <BottomNavigation
+        sx={{ width: 'auto' }}
+        style={{ backgroundColor: 'rgb(75, 75, 75)' }}
+      >
+        {org.instagram === '' ? (
+          <div></div>
+        ) : (
+          <div>
+            {
+              <Link href={org.instagram}>
+                <BottomNavigationAction
+                  icon={<InstagramIcon sx={{ color: 'white' }} />}
+                />
+              </Link>
+            }
+          </div>
+        )}
+        {org.twitter === '' ? (
+          <div></div>
+        ) : (
+          <div>
+            {
+              <Link href={org.twitter}>
+                <BottomNavigationAction
+                  icon={<TwitterIcon sx={{ color: 'white' }} />}
+                />
+              </Link>
+            }
+          </div>
+        )}
+        {org.facebook === '' ? (
+          <div></div>
+        ) : (
+          <div>
+            {
+              <Link href={org.facebook}>
+                <BottomNavigationAction
+                  icon={<FacebookIcon sx={{ color: 'white' }} />}
+                />
+              </Link>
+            }
+          </div>
+        )}
       </BottomNavigation>
     </div>
   );

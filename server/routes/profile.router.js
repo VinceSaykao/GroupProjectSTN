@@ -4,12 +4,9 @@ const router = express.Router();
 
 // This will GET all profile information for a specific profile user
 
-// router.get("/:id", (req, res) => {
-router.get("/", (req, res) => {
-  console.log("req.user.id= ", req.user.id);
 
-  console.log("req.params= ", req.params.id);
-  console.log("req.body= ", req.body);
+router.get("/", (req, res) => {
+
   let id = req.user.id;
 
   if (req.isAuthenticated()) {
@@ -23,23 +20,31 @@ router.get("/", (req, res) => {
   }
 });
 
-//
-router.get("/:id", (req, res) => {
+
+
+
+// grabs user saved events in profile page 
+
+router.get("/save", (req, res) => {
+
   let id = req.user.id;
+
+  console.log('id is :', req.user.id)
 
   if (req.isAuthenticated()) {
     pool
       .query(
         `select * 
-    from events 
-    join fav_events on fav_events.event_id = events.id
-    join "user" 
-    on "user".id = fav_events.user_id 
-    where 
-    fav_events.user_id = $1;`,
-        [id]
-      )
-      .then((results) => res.send(results.rows))
+        from events 
+        join fav_events on fav_events.event_id = events.id
+        join "user" 
+        on "user".id = fav_events.user_id 
+        where 
+        fav_events.user_id = $1;`, [id])
+      .then((result) => {
+        console.log('saved router', result.rows);
+        res.send(result.rows)})
+
       .catch((error) => {
         console.log("Error in profile router GET", error);
         res.sendStatus(500);
@@ -75,6 +80,27 @@ router.post("/", (req, res) => {
   } else {
     res.sendStatus(403);
   }
+});
+
+// This POST is for the "SAVE" button that will favorite events
+router.post("/save", (req, res) => {
+  let queryText = `
+  insert into "fav_events" ("user_id", "event_id")
+  values ($1, $2);  
+  `;
+  let queryInserts = [req.body.user_id, req.body.event_id];
+  // if (req.isAuthenticated) {
+    pool.query(queryText, queryInserts).then((results) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log("Error in profile router POST", error);
+      res.sendStatus(500);
+    });
+  // }
+  //  else {
+  //   res.sendStatus(403);
+  // }
 });
 
 // update information for specific user profile
