@@ -29,7 +29,6 @@ import icon_popups from '../../../category_icons/icon_popups.png'
 import icon_other from '../../../category_icons/icon_other.png'
 
 import './CategoryItem.css' // Used for icon spacing
-import { EventAvailable, SettingsPhone } from '@mui/icons-material';
 import MuiPhoneNumber from 'material-ui-phone-number';
 
 function AdminEventCreate() {
@@ -98,6 +97,7 @@ function AdminEventCreate() {
     const muiVariant = 'outlined'; // Global Page MUI Variant
 
     const dispatch = useDispatch();
+    const user = useSelector(store => store.user);
     const newEvent = useSelector(store => store.addEvent);
     const categories = useSelector(store => store.categories);
 
@@ -123,18 +123,15 @@ function AdminEventCreate() {
         console.log('newEvent":', newEvent);
     }
 
-    const handleOnChange = (value) => {
-        this.setState({
-            phone: value
-         });
-    }
-
-    const [phone, setPhone] = useState('')
-    console.log('phone:', phone);
-
     useEffect(() => {
         dispatch({ type: 'FETCH_CATEGORIES' })
     }, [])
+
+    useEffect (() => {
+        dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'org_id', value: user.org_id }})
+    }, [user])
+
+    console.log('user.org_id', user.org_id);
 
     return (
         <Box
@@ -147,7 +144,7 @@ function AdminEventCreate() {
                 ------------------------------------------------------------------------- */}
 
                 <Typography variant="h5" sx={{ my: 2 }}>Event Detail</Typography>
-
+                
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <TextField
@@ -206,6 +203,7 @@ function AdminEventCreate() {
                             fullWidth
                         />
                     </Grid>
+                    
 
                     <Grid item xs={12}>
                         <FormControl sx={{ minWidth: "100%" }} required>
@@ -471,6 +469,7 @@ function AdminEventCreate() {
                         <TextField
                             variant={muiVariant}
                             label="Zip"
+                            type='number'
                             autoComplete="off"
                             value={newEvent.zip}
                             onChange={e => dispatch({ 

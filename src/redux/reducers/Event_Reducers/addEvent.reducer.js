@@ -9,7 +9,7 @@ const addEvent = (state = [], action) => {
     default:
       return {
         ...state,
-        org_id: '',
+        org_id: null,
         category_id: '',
         name: '',
         description: '',
@@ -22,10 +22,10 @@ const addEvent = (state = [], action) => {
         address1: '',
         address2: '',
         city: '',
-        zip: '',
+        zip: null,
         state: '',
         email: '',
-        phone: '',
+        phone: null,
         link: '',
       }
   }
