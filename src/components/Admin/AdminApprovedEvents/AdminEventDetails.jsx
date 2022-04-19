@@ -29,7 +29,8 @@ export default function AdminEventDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const fetchEventId = useSelector(store => store.fetchEventId)
+    const fetchEventId = useSelector(store => store.fetchEventId);
+    const fetchProfile = useSelector(store => store.fetchProfile[0]);
 
 
     // Styles the items mui
@@ -95,6 +96,7 @@ export default function AdminEventDetails() {
         };
 
 
+        console.log('this is fetch pro dfsdffddsjfkdlsfjdklfjfjkfajskfdjfsfsfsdfsf', fetchProfile.id);
 
         return (
             <React.Fragment>

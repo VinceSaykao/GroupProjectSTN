@@ -101,7 +101,7 @@ function App() {
             path="/adminlist"
           >
 
-            {user.access_level === 1 ?
+            {user.access_level === 3 ?
 
               <AdminEventList />
               :
