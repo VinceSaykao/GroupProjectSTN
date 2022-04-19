@@ -79,28 +79,20 @@ function App() {
 
           {/* ADMIN START */}
 
-          <ProtectedRoute
+          <Route
             exact
             path="/admin-approved-event-details"
           >
-            {user.access_level === 3 ?
 
-              <AdminEventDetails />
-
-              : <LandingPage />
-
-            }
+            <AdminEventDetails />
+          </Route>
 
 
 
-
-
-          </ProtectedRoute>
           <ProtectedRoute
             exact
             path="/adminlist"
           >
-
             {user.access_level === 3 ?
 
               <AdminEventList />
@@ -110,11 +102,6 @@ function App() {
 
             }
 
-    
-
-            
-
-
 
 
           </ProtectedRoute>
@@ -122,13 +109,28 @@ function App() {
             exact
             path="/admin-pending-list"
           >
-            <AdminPendingEventList />
+
+            {user.access_level === 3 ?
+
+              <AdminPendingEventList />
+              :
+
+              <LandingPage />
+            }
           </ProtectedRoute>
+
+
+
           <ProtectedRoute
             exact
             path="/admin-pending-event-details"
           >
-            <AdminPendingEventDetails />
+
+            {user.access_level === 3 ?
+              <AdminPendingEventDetails />
+              :
+              <LandingPage />
+            }
           </ProtectedRoute>
 
 
