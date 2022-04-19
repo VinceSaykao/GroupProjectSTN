@@ -93,30 +93,33 @@ router.get('/admin/pending', (req, res) => {
     if (req.isAuthenticated()) {
         pool
             .query(`select 
-            id,
-            org_id,
-            category_id,
-            status,
-            "name",
-            description,
+            events.id,
+            events.org_id,
+            events.category_id,
+            events.status,
+            events."name",
+            events.description,
             TO_CHAR(start_date, 'Mon') AS "month",
             extract(
             day from start_date
             ) AS "day",
             to_char(start_date, 'Dy') AS "dayname",
-            start_time,
-            end_time,
-            image,
-            address1,
-            address2,
-            city,
-            zip,
-            state,
-            feedback
-            from events
-            where status = 'pending'
-            order by date asc
-            ;`)
+            events.start_time,
+            events.end_time,
+            events.image,
+            events.address1,
+            events.address2,
+            events.city,
+            events.zip,
+            events. state,
+            events.feedback, 
+            organizations.name as "orgname"
+            from events 
+            join organizations
+            on
+            organizations.id = events.org_id
+            where events.status = 'pending'
+            order by start_date asc;`)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for admin pending event information', error);

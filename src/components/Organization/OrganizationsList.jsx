@@ -10,9 +10,9 @@ function OrganizationsList() {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch({ type: 'FETCH_ORGANIZATIONS' });
-  // }, []);
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ORGANIZATIONS' });
+  }, []);
 
   console.log(orgs);
 

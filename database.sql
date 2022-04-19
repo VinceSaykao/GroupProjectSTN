@@ -53,6 +53,7 @@ VALUES
 ('Philanthropy & Donations'),
 ('Other');
 
+
 CREATE TABLE "events" (
 "id" SERIAL PRIMARY KEY,
 "org_id" int,
@@ -75,6 +76,7 @@ CREATE TABLE "events" (
 "state" VARCHAR (50),
 "feedback" VARCHAR (300)
 );
+
 
 INSERT INTO organizations (name, email, phone, website, twitter, facebook, instagram, description, image, address1, address2, city, state, zip)
 VALUES (

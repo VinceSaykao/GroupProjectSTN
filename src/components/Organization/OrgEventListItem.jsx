@@ -17,6 +17,9 @@ import Paper from '@mui/material/Paper';
 import ButtonBase from '@mui/material/ButtonBase';
 import { styled } from '@mui/material/styles';
 
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
+// import './AdminEventListItem.scss';
 
 // Icons
 import icon_cleanup from '../../category_icons/icon_cleanup.png'
@@ -30,16 +33,42 @@ import icon_other from '../../category_icons/icon_other.png'
 
 
 
-function UserCalanderItem({event}){
+const Img = styled('img')({
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
+});
+
+
+
+
+
+export default function OrgEventListItem({ event }) {
+
+
+    const categories = useSelector(store => store.categories);
+    const fetchApprovedEvents = useSelector(store => store.fetchApprovedEvents);
+
+    // useEffect to grab the approved events
+    useEffect(() => {
+        dispatch({ type: 'FETCH_APPROVED_EVENTS' });
+    }, []);
+
+
 
     const dispatch = useDispatch();
     const history = useHistory();
 
+    // when user clicks on event, it will push to event details
     const handleClick = () => {
 
-        console.log('clicking on event');
-        dispatch({type: 'FETCH_EVENT_DETAILS', payload: event.id})
-    }
+        // will dispatch the event id that grabs that specific event 
+        dispatch({ type: 'FETCH_EVENT_DETAILS', payload: event.id })
+
+        // push to this url
+        history.push('/admin-approved-event-details')
+    }; // end of handleClick
 
 
     const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -53,8 +82,7 @@ function UserCalanderItem({event}){
 
     return (
 
-        <div
-            className='admin-event-item'
+        <Box
             onClick={handleClick}>
 
             <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}>
@@ -67,7 +95,7 @@ function UserCalanderItem({event}){
                 >
                     <Grid container wrap="nowrap" spacing={3} height={90} width="100%">
                         <Grid item>
-                            <ButtonBase sx={{ width: 70, height: 1 }}>
+                            <ButtonBase sx={{ width: 60, height: 1 }}>
                                 {event.category_id == 1 &&
                                     <Avatar
                                         className='avatar'
@@ -157,9 +185,7 @@ function UserCalanderItem({event}){
 
 
 
-        </div>
+        </Box>
 
     )
-}
-
-export default UserCalanderItem; 
+}; // end of AdminEventListItem

@@ -11,6 +11,7 @@ import addSaveEvent from "./Profile_Reducer/saveEvent.reducer";
 // Organizations
 import fetchOrganization from "./Organization_Reducer/fetchOrganization.reducer";
 import fetchAllOrganizations from "./Organization_Reducer/fetchAllOrganizations.reducer";
+import fetchUserOrgID from "./Organization_Reducer/fetchUserOrgID.reducer"
 // Events
 import fetchApprovedEvents from "./Event_Reducers/fetchApprovedEvents.reducer";
 import fetchAdminEvents from "./Event_Reducers/fetchAdminEvents.reducer";
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
   // Organization
   fetchOrganization,
   fetchAllOrganizations,
+  fetchUserOrgID,
   // Event
   fetchApprovedEvents,
   fetchAdminEvents,
