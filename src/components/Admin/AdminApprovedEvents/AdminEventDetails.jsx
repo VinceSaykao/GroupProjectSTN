@@ -153,7 +153,6 @@ export default function AdminEventDetails() {
 
 
 
-
     return (
         <div>
             <Helmet>
