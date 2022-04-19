@@ -8,11 +8,8 @@ const router = express.Router();
 router.get("/", (req, res) => {
   console.log("req.user.id= ", req.user.id);
 
-<<<<<<< HEAD
-=======
   console.log("req.params= ", req.params.id);
   console.log("req.body= ", req.body);
->>>>>>> 0e64f88ea54c0156e2012e1d574ce1504364b691
   let id = req.user.id;
 
   if (req.isAuthenticated()) {
