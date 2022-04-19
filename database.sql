@@ -68,7 +68,7 @@ CREATE TABLE "events" (
 "end_time" TIME,
 "image" VARCHAR (1000),
 "email" VARCHAR (50),
-"phone" bigint,
+"phone" VARCHAR,
 "address1" VARCHAR (50),
 "address2" VARCHAR (50),
 "city" VARCHAR (60),
