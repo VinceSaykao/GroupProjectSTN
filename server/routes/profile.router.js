@@ -7,10 +7,6 @@ const router = express.Router();
 // router.get("/:id", (req, res) => {
 router.get("/", (req, res) => {
 
-    console.log("req.user.id= ", req.user.id)
-
-    console.log("req.params= ", req.params.id)
-    console.log("req.body= ", req.body);
   let id = req.user.id;
 
   if (req.isAuthenticated()) {
