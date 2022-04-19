@@ -157,7 +157,7 @@ function App() {
             <AdminEventCreate />
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/admin-event-edit">
+          <ProtectedRoute exact path="/admin-event-edit/:id">
             <AdminEventEdit />
           </ProtectedRoute>
 

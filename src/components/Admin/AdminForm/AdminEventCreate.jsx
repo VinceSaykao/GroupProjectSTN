@@ -1,17 +1,14 @@
-import { useState, useEffect } from 'react';
+// REACT IMPORTS
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+// MUI IMPORTS
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
-import MobileDatePicker from '@mui/lab/MobileDatePicker';
-import MobileTimePicker from '@mui/lab/MobileTimePicker';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -19,16 +16,23 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import icon_cleanup from '../../../category_icons/icon_cleanup.png'
-import icon_community_meeting from '../../../category_icons/icon_community_meeting.png'
-import icon_donations from '../../../category_icons/icon_donations.png'
-import icon_drives from '../../../category_icons/icon_drives.png'
-import icon_education from '../../../category_icons/icon_education.png'
-import icon_events from '../../../category_icons/icon_events.png'
-import icon_popups from '../../../category_icons/icon_popups.png'
-import icon_other from '../../../category_icons/icon_other.png'
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns'; // Time Library
 
-import './CategoryItem.css' // Used for icon spacing
+// ICON IMPORT
+import icon_cleanup from '../../../category_icons/icon_cleanup.png';
+import icon_community_meeting from '../../../category_icons/icon_community_meeting.png';
+import icon_donations from '../../../category_icons/icon_donations.png';
+import icon_drives from '../../../category_icons/icon_drives.png';
+import icon_education from '../../../category_icons/icon_education.png';
+import icon_events from '../../../category_icons/icon_events.png';
+import icon_popups from '../../../category_icons/icon_popups.png';
+import icon_other from '../../../category_icons/icon_other.png';
+
+// CSS for Icons
+import './CategoryItem.css';
+
+// CUSTOM MUI Phone TextField
 import MuiPhoneNumber from 'material-ui-phone-number';
 
 function AdminEventCreate() {
@@ -92,46 +96,34 @@ function AdminEventCreate() {
         { value: "WY", text: "Wyoming" }
     ];
 
-    // const muiVariant = 'standard'; // Global Page MUI Variant
-    // const muiVariant = 'filled'; // Global Page MUI Variant
-    const muiVariant = 'outlined'; // Global Page MUI Variant
+    // --- MUI VARIANT TOGGLE ---------------------------------------- 
+    // const muiVariant = 'standard';   // Global Page MUI Variant
+    // const muiVariant = 'filled';     // Global Page MUI Variant
+    const muiVariant = 'outlined';      // Global Page MUI Variant
+    // ------------------------------------------------------------
 
     const dispatch = useDispatch();
     const user = useSelector(store => store.user);
     const newEvent = useSelector(store => store.addEvent);
     const categories = useSelector(store => store.categories);
 
-    // // ------- Date Time Dispatches -------------------------------------------------------------- //
-
-    // const dispatchStartDate = (startDate) => {
-    //     dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'start_date', value: startDate } })
-    // }
-    // const dispatchEndDate = (endDate) => {
-    //     dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'end_date', value: endDate } })
-    // }
-    // const dispatchStartTime = (startTime) => {
-    //     dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'start_time', value: startTime } })
-    // }
-    // const dispatchEndTime = (endTime) => {
-    //     dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'end_time', value: endTime } })
-    // }
-    // // ------------------------------------------------------------------------------------------ //
-
+    // Form Submit
     const handleFormSubmit = (event) => {
         event.preventDefault();
+        dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'org_id', value: user.org_id }})
         dispatch({ type: 'POST_EVENT', payload: newEvent })
         console.log('newEvent":', newEvent);
     }
 
+    // Fetches Categories on page load
     useEffect(() => {
         dispatch({ type: 'FETCH_CATEGORIES' })
-    }, [])
+    }, []); 
 
-    useEffect (() => {
+    // Automatically assigns user.org_id to addEvent Reducer
+    useEffect(() => {
         dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'org_id', value: user.org_id }})
-    }, [user])
-
-    console.log('user.org_id', user.org_id);
+    }, [user]);
 
     return (
         <Box
@@ -193,7 +185,7 @@ function AdminEventCreate() {
                     <Grid item xs={12}>
                         <TextField
                             variant={muiVariant}
-                            label="Image / Flyer"
+                            label="Image / Flyer URL"
                             autoComplete="off"
                             value={newEvent.image}
                             onChange={e => dispatch({ 
@@ -209,6 +201,7 @@ function AdminEventCreate() {
                         <FormControl sx={{ minWidth: "100%" }} required>
                             <InputLabel variant={muiVariant}>Category</InputLabel>
                             <Select
+                                label="Category"
                                 variant={muiVariant}
                                 value={newEvent.category_id}
                                 onChange={e => dispatch({ 
@@ -470,7 +463,7 @@ function AdminEventCreate() {
                             variant={muiVariant}
                             label="Zip"
                             type='number'
-                            autoComplete="off"
+                            autoComplete='off'
                             value={newEvent.zip}
                             onChange={e => dispatch({ 
                                 type: 'SET_ADD_EVENT', 

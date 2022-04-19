@@ -9,7 +9,6 @@ const addEvent = (state = [], action) => {
     default:
       return {
         ...state,
-        org_id: null,
         category_id: '',
         name: '',
         description: '',
