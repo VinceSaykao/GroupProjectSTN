@@ -77,6 +77,12 @@ router.post("/", (req, res) => {
   }
 });
 
+router.post("/", (req, res) => {
+  let queryText = `
+  insert into ""  
+  `
+})
+
 // update information for specific user profile
 router.put("/:id", (req, res) => {
   console.log("req.body= ", req.body);
