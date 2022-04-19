@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import UserProfileItem from "./UserProfileItem";
 import UserSavedProfileEvent from "./UserSavedProfileEvent";
 import { actionChannel } from "redux-saga/effects";
@@ -13,32 +13,34 @@ import { SettingsBrightnessOutlined } from "@mui/icons-material";
 
 export default function UserProfile() {
 
-  
+
+  const history = useHistory();
   const dispatch = useDispatch();
+
+
   const fetchProfile = useSelector((store) => store.fetchProfile[0]);
   const fetchSave = useSelector((store) => store.fetchSave);
   const user = useSelector((store) => store.user);
-  const history = useHistory();
-  
-    useEffect(() => {
-      dispatch({ type: "SET_PROFILE_SAGA" });
-    }, []);
 
-  // const fetchProfileEvent = useSelector((store) => store.fetchProfileEvent);
-  // const user = useSelector((store) => store.user);
+  useEffect(() => {
+    dispatch({ type: "FETCH_SAVE_EVENT" });
+    dispatch({ type: "SET_PROFILE_SAGA" });
+  }, []);
 
 
   const handleEditClick = () => {
     history.push("/userprofileedit");
   };
 
-  console.log(user.id);
 
-  console.log("fetchSave =", fetchSave);
+
+console.log(user)
   return (
     <div>
+      <h3>Profile</h3>
+
       <Grid container justifyContent="center">
-        <h3>Profile</h3>
+
         <div className="org-box">
           <Box
             component="img"
@@ -57,6 +59,9 @@ export default function UserProfile() {
           </Button>
         </div>
       </Grid>
+      
+
+
 
       <Typography gutterBottom variant="body2" component="div">
         <p>{fetchProfile?.first_name}</p>
@@ -64,6 +69,19 @@ export default function UserProfile() {
         <p>{fetchProfile?.bio}</p>
         <p>{fetchProfile?.email}</p>
       </Typography>
+
+
+
+
+      {fetchSave.map((info, i) => {
+        return (
+          <div key={i}>
+          <UserProfileItem
+            info={info}
+          />
+          </div>
+        )
+      })}
     </div>
   );
 }
