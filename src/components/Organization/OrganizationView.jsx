@@ -103,20 +103,16 @@ function OrganizationView() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography gutterBottom variant="body1" component="div">
-            Website: {org.website}
+            {org.website}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
-            Email: {org.email}
+            {org.email}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
-            Phone: {org.phone}
+            {org.phone}
           </Typography>
-          <Typography gutterBottom variant="body2" component="div">
-            {org.housing}
-          </Typography>
-          <Typography gutterBottom variant="subtitle2" component="div">
-            Location: {org.address1} {org.address2} {org.city}, {org.state}{' '}
-            {org.zip}
+          <Typography gutterBottom variant="body1" component="div">
+            {org.address1} {org.address2} {org.city}, {org.state} {org.zip}
           </Typography>
           <Grid container justifyContent="center">
             <iframe
@@ -130,9 +126,6 @@ function OrganizationView() {
           </Grid>
         </AccordionDetails>
       </Accordion>
-      <Typography gutterBottom variant="header1" component="div" color="white">
-        Events
-      </Typography>
       <OrganizationEventsList />
       <BottomNavigation
         sx={{ width: 'auto' }}
