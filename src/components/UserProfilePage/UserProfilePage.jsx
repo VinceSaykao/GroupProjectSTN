@@ -24,7 +24,6 @@ export default function UserProfile() {
       dispatch({ type: "SET_PROFILE_SAGA" });
     }, []);
 
-  const fetchProfile = useSelector((store) => store.fetchProfile);
   // const fetchProfileEvent = useSelector((store) => store.fetchProfileEvent);
   // const user = useSelector((store) => store.user);
 
