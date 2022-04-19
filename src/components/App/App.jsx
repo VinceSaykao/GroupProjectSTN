@@ -45,14 +45,14 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-    dispatch({ type: 'FETCH_ORGANIZATIONS'})
+    // dispatch({ type: 'FETCH_ORGANIZATIONS'})
   }, [dispatch]);
 
   return (
     <Router>
       <div>
         <Nav />
-        
+
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -83,13 +83,40 @@ function App() {
             exact
             path="/admin-approved-event-details"
           >
-            <AdminEventDetails />
+            {user.access_level === 3 ?
+
+              <AdminEventDetails />
+
+              : <LandingPage />
+
+            }
+
+
+
+
+
           </ProtectedRoute>
           <ProtectedRoute
             exact
             path="/adminlist"
           >
-            <AdminEventList />
+
+            {user.access_level === 3 ?
+
+              <AdminEventList />
+              :
+              <LandingPage />
+
+
+            }
+
+    
+
+            
+
+
+
+
           </ProtectedRoute>
           <ProtectedRoute
             exact
@@ -189,18 +216,28 @@ function App() {
             }
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the registration page
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
+              // redirect to the /user2 page
+
+              <Redirect to="/user2" />
+            ) : (
+              // Otherwise, show the login page
               <RegisterPage />
-            }
+            )}
+          </Route>
+
+          <Route exact path="/user2">
+            {user.access_level === 1 ? (
+              // If the user is an volunteer,
+              // redirect them to the calender view
+              <Redirect to="/calanderview" />
+            ) : (
+              // Otherwise, they are an organization
+              // redirect them to their the organization creation form
+              <Redirect to="/organization-register-form" />
+            )}
           </Route>
 
           <Route

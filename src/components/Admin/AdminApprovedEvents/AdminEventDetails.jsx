@@ -1,5 +1,6 @@
 // Event Details
 import * as React from 'react';
+import {useEffect} from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -9,15 +10,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
+import { Divider } from '@mui/material';
+
+import './AdminEventDetails.scss'
 
 
 //modal
 import Modal from '@mui/material/Modal';
 
 
-import { useSelector,  useDispatch  } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./AdminEventDetails.scss";
-import { useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet';
 
@@ -26,20 +30,52 @@ export default function AdminEventDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    useEffect(() => {
+        dispatch({ type: "FETCH_SAVE_EVENT"});
+        dispatch({ type: "SET_PROFILE_SAGA"});
+    }, [])
+
     const fetchEventId = useSelector(store => store.fetchEventId)
+    const fetchProfile = useSelector(store=> store.fetchProfile[0])
+    
+
+
+
 
 
     // Styles the items mui
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
+    // const Item = styled(Paper)(({ theme }) => ({
+    //     color: theme.palette.mode === 'dark' ? '#fff' : '#fff',
+    //     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    //     ...theme.typography.body2,
+    //     padding: theme.spacing(1),
+    //     textAlign: 'center',
+    //     color: theme.palette.text.secondary,
+    // }));
+
+    const Item = styled('div')(({ theme }) => ({
+        color: 'white',
+        backgroundColor: '#88888844',
         padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
+        borderRadius: theme.shape.borderRadius,
     }));
 
+
+
+    const StyledItem = styled('div')(({ theme }) => ({
+        color: 'white',
+        fontSize: '30px',
+        backgroundColor: '#88888844',
+        padding: theme.spacing(1),
+        borderRadius: theme.shape.borderRadius,
+    }));
+
+    const handleSave = () => {
+        dispatch({type:"ADD_SAVE_EVENT" , payload: { user_id: fetchProfile.id, event_id: fetchEventId[0].id }})
+    }
+
     const handleDelete = () => {
-        dispatch ({type: 'DELETE_EVENT', payload: fetchEventId[0].id})
+        dispatch({ type: 'DELETE_EVENT', payload: fetchEventId[0].id })
         history.push("/adminlist");
 
     }
@@ -73,10 +109,13 @@ export default function AdminEventDetails() {
             setOpen(false);
         };
 
+
+
         return (
             <React.Fragment>
                 <Button onClick={handleDelete}>Delete</Button>
                 <Button onClick={handleCancel}>Cancel</Button>
+                <Button onClick={handleSave}>Save</Button>
                 {/* <Modal
                     hideBackdrop
                     open={open}
@@ -113,7 +152,7 @@ export default function AdminEventDetails() {
 
 
 
-    console.log(fetchEventId)
+
     return (
         <div>
             <Helmet>
@@ -122,10 +161,10 @@ export default function AdminEventDetails() {
                 </style>
             </Helmet>
 
-            <CloseIcon 
-            className='exit-icon'
-            fontSize='large'
-            onClick={handleExit}
+            <CloseIcon
+                className='exit-icon'
+                fontSize='large'
+                onClick={handleExit}
             />
 
             <div className="event-approved-list-container">
@@ -134,7 +173,7 @@ export default function AdminEventDetails() {
                         <div id={i}>
 
                             <Box sx={{ flexGrow: 1 }}>
-                                <Grid container spacing={2}>
+                                <Grid container spacing={1}>
                                     <Grid item xs={12}>
                                         <Paper
                                             sx={{
@@ -149,11 +188,18 @@ export default function AdminEventDetails() {
                                             />
                                         </Paper>
                                     </Grid>
+
+
                                     <Grid item xs={12}>
                                         <Item>{detail.name}</Item>
                                         <Grid item xs={12}>
 
                                             <Item>
+                                            <Button
+                                                    onClick={handleSave}
+                                                    variant="contained"
+                                                    startIcon={<EditIcon />}
+                                                >Save</Button>
                                                 <Button
                                                     variant="contained"
                                                     startIcon={<EditIcon />}
@@ -165,7 +211,7 @@ export default function AdminEventDetails() {
                                                 <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
                                                     Delete
                                                 </Button>
-                                                
+
                                             </Item>
                                         </Grid>
                                     </Grid>
@@ -173,29 +219,41 @@ export default function AdminEventDetails() {
 
 
 
-                                    <Grid item xs={12}>
-                                        <Item>{detail.description}</Item>
-                                        <Item>{detail.month}</Item>
-                                        <Item>{detail.description}</Item>
+                                    <Grid item xs={10}>
+                                        <StyledItem>
+                                            <b>Details</b>
+                                            <br></br>
+                                            {/* <Divider sx={{ height: 15, m: 0.5 }} orientation="vertical"/> */}
+                                            {detail.description}
+                                            <br></br>
+
+
+
+                                        </StyledItem>
+
+
+
+                                        <StyledItem>{detail.month}</StyledItem>
+                                        <StyledItem>{detail.description}</StyledItem>
                                     </Grid>
 
                                 </Grid>
                             </Box>
 
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="parent-modal-title"
-                aria-describedby="parent-modal-description"
-            >
-                <Box sx={{ ...style, width: 400 }}>
-                    <h2 id="parent-modal-title">Deleting</h2>
-                    <p id="parent-modal-description">
-                        You Are Deleting "{detail.name}". Are You Sure?
-                    </p>
-                    <ChildModal />
-                </Box>
-            </Modal>
+                            <Modal
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="parent-modal-title"
+                                aria-describedby="parent-modal-description"
+                            >
+                                <Box sx={{ ...style, width: 400 }}>
+                                    <h2 id="parent-modal-title">Deleting</h2>
+                                    <p id="parent-modal-description">
+                                        You Are Deleting "{detail.name}". Are You Sure?
+                                    </p>
+                                    <ChildModal />
+                                </Box>
+                            </Modal>
                         </div>
                     )
                 })}

@@ -3,8 +3,8 @@ import axios from "axios";
 
 function* fetchSaveEvent() {
   try {
-    const selectedEvent = yield axios.get(`/api/profile`);
-    yield put({ type: "SET_FETCH_SAVE_EVENT", payload: selectedEvent.data });
+    const save = yield axios.get('/api/profile/save');
+    yield put({ type: "SET_FETCH_SAVE_EVENT", payload: save.data });
   } catch (error) {
     console.log("FAILED", error);
   }
