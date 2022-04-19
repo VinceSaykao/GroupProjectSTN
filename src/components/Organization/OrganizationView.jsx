@@ -43,7 +43,7 @@ function OrganizationView() {
   };
 
   return (
-    <div className='org-view'>
+    <div className="org-view">
       <Grid container justifyContent="center">
         <div className="org-box">
           <Box
@@ -82,7 +82,12 @@ function OrganizationView() {
         </Button>
       </Box>
 
-      <Typography gutterBottom variant="subtitle1" component="div" color="white">
+      <Typography
+        gutterBottom
+        variant="subtitle1"
+        component="div"
+        color="white"
+      >
         Description:
       </Typography>
       <Typography gutterBottom variant="body1" component="div" color="white">
@@ -129,17 +134,49 @@ function OrganizationView() {
         Events
       </Typography>
       <OrganizationEventsList />
-      <BottomNavigation sx={{ width: 'auto' }} style={{ backgroundColor: 'rgb(75, 75, 75)'}}>
-        
-        <Link href={org.instagram}>
-          <BottomNavigationAction icon={<InstagramIcon sx={{color:'white'}}/>} />
-        </Link>
-        <Link href={org.twitter}>
-          <BottomNavigationAction icon={<TwitterIcon sx={{color:'white'}}/>} />
-        </Link>
-        <Link href={org.facebook}>
-          <BottomNavigationAction icon={<FacebookIcon sx={{color:'white'}}/>} />
-        </Link>
+      <BottomNavigation
+        sx={{ width: 'auto' }}
+        style={{ backgroundColor: 'rgb(75, 75, 75)' }}
+      >
+        {org.instagram === '' ? (
+          <div></div>
+        ) : (
+          <div>
+            {
+              <Link href={org.instagram}>
+                <BottomNavigationAction
+                  icon={<InstagramIcon sx={{ color: 'white' }} />}
+                />
+              </Link>
+            }
+          </div>
+        )}
+        {org.twitter === '' ? (
+          <div></div>
+        ) : (
+          <div>
+            {
+              <Link href={org.twitter}>
+                <BottomNavigationAction
+                  icon={<TwitterIcon sx={{ color: 'white' }} />}
+                />
+              </Link>
+            }
+          </div>
+        )}
+        {org.facebook === '' ? (
+          <div></div>
+        ) : (
+          <div>
+            {
+              <Link href={org.facebook}>
+                <BottomNavigationAction
+                  icon={<FacebookIcon sx={{ color: 'white' }} />}
+                />
+              </Link>
+            }
+          </div>
+        )}
       </BottomNavigation>
     </div>
   );
