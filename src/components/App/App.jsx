@@ -79,28 +79,20 @@ function App() {
 
           {/* ADMIN START */}
 
-          <ProtectedRoute
+          <Route
             exact
-            path="/admin-approved-event-details"
+            path="/approved-events"
           >
-            {user.access_level === 3 ?
 
-              <AdminEventDetails />
-
-              : <LandingPage />
-
-            }
+            <AdminEventDetails />
+          </Route>
 
 
 
-
-
-          </ProtectedRoute>
           <ProtectedRoute
             exact
             path="/adminlist"
           >
-
             {user.access_level === 3 ?
 
               <AdminEventList />
@@ -110,11 +102,6 @@ function App() {
 
             }
 
-    
-
-            
-
-
 
 
           </ProtectedRoute>
@@ -122,13 +109,28 @@ function App() {
             exact
             path="/admin-pending-list"
           >
-            <AdminPendingEventList />
+
+            {user.access_level === 3 ?
+
+              <AdminPendingEventList />
+              :
+
+              <LandingPage />
+            }
           </ProtectedRoute>
+
+
+
           <ProtectedRoute
             exact
             path="/admin-pending-event-details"
           >
-            <AdminPendingEventDetails />
+
+            {user.access_level === 3 ?
+              <AdminPendingEventDetails />
+              :
+              <LandingPage />
+            }
           </ProtectedRoute>
 
 
@@ -141,6 +143,10 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+
+
+
+
 
           {/* Organization Start */}
           <Route
@@ -172,13 +178,22 @@ function App() {
           </Route>
 
           {/* Organization End */}
-          <ProtectedRoute
+
+
+
+
+
+
+
+          <Route
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/calanderview"
           >
             <UserCalanderView />
-          </ProtectedRoute>
+          </Route>
+
+
 
           <ProtectedRoute exact path="/admin-event-create">
             <AdminEventCreate />
@@ -228,17 +243,7 @@ function App() {
             )}
           </Route>
 
-          <Route exact path="/user2">
-            {user.access_level === 1 ? (
-              // If the user is an volunteer,
-              // redirect them to the calender view
-              <Redirect to="/calanderview" />
-            ) : (
-              // Otherwise, they are an organization
-              // redirect them to their the organization creation form
-              <Redirect to="/organization-register-form" />
-            )}
-          </Route>
+
 
           <Route
             exact

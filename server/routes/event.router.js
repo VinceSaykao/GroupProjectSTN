@@ -6,7 +6,7 @@ const router = express.Router();
 // GET all events' information that are approved
 router.get('/', (req, res) => {
 
-    if (req.isAuthenticated()) {
+
         pool
             .query(` 
             select 
@@ -48,9 +48,6 @@ router.get('/', (req, res) => {
                 console.log('Error in GET for all events information', error);
                 res.sendStatus(500);
             });
-    } else {
-        res.sendStatus(403); // Forbidden
-    };
 });
 
 // GET specific event information
@@ -58,7 +55,7 @@ router.get('/:id', (req, res) => {
 
     let id = req.params.id;
 
-    if (req.isAuthenticated()) {
+
         pool
             .query(`select 
             id,
@@ -94,9 +91,7 @@ router.get('/:id', (req, res) => {
                 console.log('Error in GET for specific event information', error);
                 res.sendStatus(500);
             });
-    } else {
-        res.sendStatus(403); // Forbidden
-    };
+
 });
 
 // GET all pending admin event information

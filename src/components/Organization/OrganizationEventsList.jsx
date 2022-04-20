@@ -8,7 +8,7 @@ import './OrganizationView.css';
 export default function OrganizationEventsList() {
   // store that grabs approved events, although fetchApprovedEvents brings in more data...??
   const approvedEvents = useSelector((store) => store.fetchApprovedEvents);
-  const user = useSelector((store) => store.user);
+  const org = useSelector((store) => store.fetchOrganization);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -19,7 +19,7 @@ export default function OrganizationEventsList() {
   }, []);
 
   const orgEvents = approvedEvents.filter(
-    (approvedEvents) => approvedEvents.org_id === user.org_id
+    (approvedEvents) => approvedEvents.org_id === org.id // uh oh, big flaw with using user.org_id
   );
 
   return (
