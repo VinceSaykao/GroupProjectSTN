@@ -7,8 +7,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
 
 
-        pool
-            .query(` 
+    pool
+        .query(` 
             select 
             events.id,
             events.org_id,
@@ -43,11 +43,11 @@ router.get('/', (req, res) => {
             where events.status = 'approved'
             order by start_date asc;
             `)
-            .then((results) => res.send(results.rows))
-            .catch((error) => {
-                console.log('Error in GET for all events information', error);
-                res.sendStatus(500);
-            });
+        .then((results) => res.send(results.rows))
+        .catch((error) => {
+            console.log('Error in GET for all events information', error);
+            res.sendStatus(500);
+        });
 });
 
 // GET specific event information
@@ -56,8 +56,8 @@ router.get('/:id', (req, res) => {
     let id = req.params.id;
 
 
-        pool
-            .query(`select 
+    pool
+        .query(`select 
             id,
             org_id,
             category_id,
@@ -84,13 +84,13 @@ router.get('/:id', (req, res) => {
             events.link,
             feedback    
             from events where id = $1;`, [id])
-            .then((results) => {
-                res.send(results.rows)
-            })
-            .catch((error) => {
-                console.log('Error in GET for specific event information', error);
-                res.sendStatus(500);
-            });
+        .then((results) => {
+            res.send(results.rows)
+        })
+        .catch((error) => {
+            console.log('Error in GET for specific event information', error);
+            res.sendStatus(500);
+        });
 
 });
 
@@ -251,8 +251,8 @@ router.put('/:id', (req, res) => {
     `;
 
     const queryValues = [req.body.org_id, req.body.category_id, req.body.status, req.body.name,
-    req.body.description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time, 
-    req.body.image, req.body.address1, req.body.address2, req.body.city, req.body.zip, req.body.state, 
+    req.body.description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time,
+    req.body.image, req.body.address1, req.body.address2, req.body.city, req.body.zip, req.body.state,
     req.body.phone, req.body.email, req.body.link, req.body.feedback, req.params.id];
 
     pool.query(queryText, queryValues).then(() => {
@@ -282,6 +282,27 @@ router.delete("/:id", (req, res) => {
     } else {
         res.sendStatus(403);
     }
+});
+
+// Delete Favorite Event
+router.delete("/delete/fave", (req, res) => {
+    let queryText = `delete from fav_events where "event_id" = $1 AND "user_id" = $2;`;
+    let queryInsert = [req.body.event_id, req.body.user_id]
+
+    // if (req.isAuthenticated()) {
+        pool
+            .query(queryText, queryInsert)
+            .then((results) => {
+                console.log("Success on delete fav_events", results);
+                res.sendStatus(200);
+            })
+            .catch((err) => {
+                console.log("Error on delete fav_events,", err);
+                res.sendStatus(500);
+            });
+    // } else {
+    //     res.sendStatus(403);
+    // }
 });
 
 

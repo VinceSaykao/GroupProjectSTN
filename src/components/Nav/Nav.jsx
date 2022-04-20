@@ -96,6 +96,12 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 
+
+
+
+
+
+
 export default function Nav() {
   const user = useSelector((store) => store.user);
 
@@ -139,7 +145,7 @@ export default function Nav() {
   const handleOrganizations = () => {
     console.log('Send-Org');
     handleDrawerClose();
-    history.push('/organizations-list');
+    history.push(`/organizations-list/`);
   }
 
   const handleEvents = () => {
@@ -165,7 +171,7 @@ export default function Nav() {
 
 
 
-
+console.log('this is user', user)
 
 
   switch (user.access_level) {
@@ -189,7 +195,6 @@ export default function Nav() {
                     color="inherit"
                     aria-label="open drawer"
                     edge="end"
-
                   >
 
 
