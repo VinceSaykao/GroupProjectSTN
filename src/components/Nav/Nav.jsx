@@ -148,6 +148,7 @@ function Nav() {
   const handleLogout = () => {
     console.log('Logout');
     LogOutButton();
+    history.push('/home');
   }
 
   // end of event listeners
