@@ -45,7 +45,7 @@ function UserCalanderItem({event}){
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
         padding: theme.spacing(2),
-        maxWidth: 400,
+        maxWidth: '100%',
         color: theme.palette.text.primary,
     }));
 
