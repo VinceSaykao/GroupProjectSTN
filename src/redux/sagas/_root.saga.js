@@ -32,6 +32,10 @@ import fetchAdminPendingEvents from "./Event_SAGA/fetchAdminPendingEvents.saga";
 // Categories
 import categories from "./categories.saga";
 
+// Filters
+import fetchApprovedSearch from './Filter_SAGA/fetchApprovedSearch.saga'
+import fetchPendingSearch from './Filter_SAGA/fetchPendingSearch.saga'
+
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -74,5 +78,9 @@ export default function* rootSaga() {
 
     // Categories
     categories(),
+
+    // Filters
+    fetchApprovedSearch(),
+    fetchPendingSearch(),
   ]);
 }
