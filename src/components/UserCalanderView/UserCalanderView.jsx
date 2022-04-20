@@ -11,6 +11,8 @@ import {Divider} from '@mui/material';
 
 import UserCalanderItem from './UserCalanderItem';
 
+import './UserCalendarView.scss';
+
 
 function UserCalanderView(){
     // store that grabs approved events, although fetchApprovedEvents brings in more data...??
@@ -27,7 +29,7 @@ function UserCalanderView(){
 
 
 
-console.log('fetchAppEvent', fetchApprovedEvents);
+
 return (
     <div>
 
@@ -46,7 +48,7 @@ return (
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
     </div>
 
-    <div className="approved-event-list">
+    <div className="home-approved-event-list">
         {fetchApprovedEvents?.map((event, i) => {
             return (
                 <div key={i}>
