@@ -25,7 +25,6 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
-  const history = useHistory();
   
   const [values, setValues] = React.useState({
     password: '',
