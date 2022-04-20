@@ -174,13 +174,15 @@ function App() {
           </Route>
 
           {/* Organization End */}
-          <ProtectedRoute
+          <Route
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/calanderview"
           >
             <UserCalanderView />
-          </ProtectedRoute>
+          </Route>
+
+          
 
           <ProtectedRoute exact path="/admin-event-create">
             <AdminEventCreate />
@@ -230,17 +232,7 @@ function App() {
             )}
           </Route>
 
-          <Route exact path="/user2">
-            {user.access_level === 1 ? (
-              // If the user is an volunteer,
-              // redirect them to the calender view
-              <Redirect to="/calanderview" />
-            ) : (
-              // Otherwise, they are an organization
-              // redirect them to their the organization creation form
-              <Redirect to="/organization-register-form" />
-            )}
-          </Route>
+
 
           <Route
             exact
