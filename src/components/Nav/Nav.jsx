@@ -130,6 +130,12 @@ export default function Nav() {
     history.push('/userprofile');
   }
 
+  const handleOrgProfile = () => {
+    console.log('Send-Org-Profile');
+    handleDrawerClose();
+    history.push(`/organization-view/${user.org_id}`)
+  }
+
   const handleHome = () => {
     console.log('Send-Home');
     handleDrawerClose();
@@ -416,7 +422,7 @@ console.log('this is user', user)
                     </ListItemIcon>
                     {/* <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/> */}
                     <ListItemText className='nav-text'>
-                      {index === 0 && <h2 onClick={handleProfile}>Profile</h2>}
+                      {index === 0 && <h2 onClick={handleOrgProfile}>Profile</h2>}
                       {index === 1 && <h2 onClick={handleHome}>Home</h2>}
                       {index === 2 && <h2 onClick={handleAdd}>Add Event</h2>}
                       {index === 3 && <h2 onClick={handleOrganizations} >Organizations</h2>}
