@@ -34,7 +34,7 @@ export default function UserProfile() {
 
 
 
-console.log(user)
+
   return (
     <div>
       <h3>Profile</h3>
