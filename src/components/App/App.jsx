@@ -18,6 +18,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
+
 // User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import UserProfileEditForm from '../UserProfilePage/UserProfileEditForm';
@@ -104,7 +105,10 @@ function App() {
               ORGANIZATION COMPONENTS
           ---------------------------------------------------*/}
 
-          <ProtectedRoute exact path="/organization-register-form">
+          <ProtectedRoute
+            exact
+            path="/organization-register-form"
+          >
             <OrganizationRegisterForm />
           </ProtectedRoute>
 
@@ -141,6 +145,28 @@ function App() {
               GENERAL COMPONENTS
           ---------------------------------------------------*/}
 
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
+              // redirect to the /user2 page
+              <Redirect to="/user2" />
+            ) : (
+              // Otherwise, show the login page
+              <RegisterForm />
+            )}
+          </Route>
+          <Route exact path="/user2">
+            {user.access_level === 1 ? (
+              // If the user is an volunteer,
+              // redirect them to the calender view
+              <Redirect to="/calanderview" />
+            ) : (
+              // Otherwise, they are an organization
+              // redirect them to their the organization creation form
+              <Redirect to="/organization-register-form" />
+            )}
+          </Route>
+
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
           {/* Visiting localhost:3000/about will show the about page. */}
@@ -173,17 +199,6 @@ function App() {
               // Otherwise, show the login page
               <LoginPage />
             }
-          </Route>
-
-          <Route exact path="/registration">
-            {user.id ? (
-              // If the user is already logged in,
-              // redirect to the /user2 page
-              <Redirect to="/user2" />
-            ) : (
-              // Otherwise, show the login page
-              <RegisterForm />
-            )}
           </Route>
 
           <Route exact path="/home">
