@@ -16,7 +16,7 @@ CREATE TABLE "organizations" (
 "id" SERIAL PRIMARY KEY,
 "name" VARCHAR (50),
 "email" VARCHAR (50),
-"phone" bigint,
+"phone" VARCHAR,
 "website" VARCHAR (100),
 "twitter" VARCHAR (100),
 "facebook" VARCHAR (100),

@@ -36,6 +36,7 @@ import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEv
 
 import AdminEventCreate from '../Admin/AdminForm/AdminEventCreate';
 import AdminEventEdit from '../Admin/AdminForm/AdminEventEdit';
+import AdminEventCopy from '../Admin/AdminForm/AdminEventCopy';
 
 import './App.css';
 
@@ -55,78 +56,32 @@ function App() {
         <Nav />
 
         <Switch>
-          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
-          {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
-          >
-            <AboutPage />
-          </Route>
 
-          {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/user will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
-          >
-            <UserPage />
-          </ProtectedRoute>
+          {/* --------------------------------------------------
+              ADMIN COMPONENTS 
+          ---------------------------------------------------*/}
 
-          {/* ADMIN START */}
-
-          <Route
-            exact
-            path="/approved-events"
-          >
-
+          <Route exact path="/approved-events">
             <AdminEventDetails />
           </Route>
 
-
-
-          <ProtectedRoute
-            exact
-            path="/adminlist"
-          >
+          <ProtectedRoute exact path="/adminlist">
             {user.access_level === 3 ?
-
               <AdminEventList />
               :
               <LandingPage />
-
-
             }
-
-
-
           </ProtectedRoute>
-          <ProtectedRoute
-            exact
-            path="/admin-pending-list"
-          >
 
+          <ProtectedRoute exact path="/admin-pending-list">
             {user.access_level === 3 ?
-
               <AdminPendingEventList />
               :
-
               <LandingPage />
             }
           </ProtectedRoute>
 
-
-
-          <ProtectedRoute
-            exact
-            path="/admin-pending-event-details"
-          >
-
+          <ProtectedRoute exact path="/admin-pending-event-details">
             {user.access_level === 3 ?
               <AdminPendingEventDetails />
               :
@@ -134,24 +89,61 @@ function App() {
             }
           </ProtectedRoute>
 
-
-          {/* ADMIN END */}
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
+          <ProtectedRoute exact path="/admin-event-create">
+            <AdminEventCreate />
           </ProtectedRoute>
 
+          <ProtectedRoute exact path="/admin-event-edit/:id">
+            <AdminEventEdit />
+          </ProtectedRoute>
 
+          <ProtectedRoute exact path="/admin-event-copy/:id">
+            <AdminEventCopy />
+          </ProtectedRoute>
 
+          {/* --------------------------------------------------
+              ORGANIZATION COMPONENTS
+          ---------------------------------------------------*/}
 
+          <ProtectedRoute
+            exact
+            path="/organization-register-form"
+          >
+            <OrganizationRegisterForm />
+          </ProtectedRoute>
 
-          {/* Organization Start */}
+          <Route exact path="/organization-view/:id">
+            <OrganizationView />
+          </Route>
 
+          <ProtectedRoute exact path="/organization-edit-form/:id">
+            <OrganizationEditForm />
+          </ProtectedRoute>
 
+          <Route exact path="/organizations-list">
+            <OrganizationsList />
+          </Route>
+
+          {/* --------------------------------------------------
+              USER / PROFILE COMPONENTS
+          ---------------------------------------------------*/}
+
+          {/* logged in shows InfoPage else shows LoginPage */}
+          <Route exact path="/calanderview">
+            <UserCalanderView />
+          </Route>
+
+          <Route exact path="/userprofile">
+            <UserProfilePage />
+          </Route>
+
+          <Route exact path="/userprofileedit">
+            <UserProfileEditForm />
+          </Route>
+
+          {/* --------------------------------------------------
+              GENERAL COMPONENTS
+          ---------------------------------------------------*/}
 
           <Route exact path="/registration">
             {user.id ? (
@@ -175,82 +167,30 @@ function App() {
             )}
           </Route>
 
+          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
+          <Redirect exact from="/" to="/home" />
+          {/* Visiting localhost:3000/about will show the about page. */}
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/about"
+          >
+            <AboutPage />
+          </Route>
 
-
-
-    
+          {/* For protected routes, the view could show one of several things on the same route.
+            Visiting localhost:3000/user will show the UserPage if the user is logged in.
+            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
+            Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
             exact
-            path="/organization-register-form"
+            path="/user"
           >
-            <OrganizationRegisterForm />
+            <UserPage />
           </ProtectedRoute>
 
-          <Route
-            exact
-            path="/organization-view/:id"
-          >
-            <OrganizationView />
-          </Route>
-
-          <ProtectedRoute
-            exact
-            path="/organization-edit-form/:id"
-          >
-            <OrganizationEditForm />
-          </ProtectedRoute>
-
-          <Route
-            exact
-            path="/organizations-list"
-          >
-            <OrganizationsList />
-          </Route>
-
-          {/* Organization End */}
-
-
-
-
-
-
-
-          <Route
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/calanderview"
-          >
-            <UserCalanderView />
-          </Route>
-
-
-
-          <ProtectedRoute exact path="/admin-event-create">
-            <AdminEventCreate />
-          </ProtectedRoute>
-
-          <ProtectedRoute exact path="/admin-event-edit/:id">
-            <AdminEventEdit />
-          </ProtectedRoute>
-
-          <Route
-            exact
-            path="/userprofile"
-          >
-            <UserProfilePage />
-          </Route>
-
-          <Route
-            exact
-            path="/userprofileedit"
-          >
-            <UserProfileEditForm />
-          </Route>
-
-          <Route
-            exact
-            path="/login"
-          >
+          <Route exact path="/login">
             {user.id ?
               // If the user is already logged in, 
               // redirect to the /user page
@@ -261,22 +201,7 @@ function App() {
             }
           </Route>
 
-          {/* <Route exact path="/registration">
-//           <Route exact path="/registration">
-
-    
-//               <RegisterPage />
-
-          </Route> */}
-
-
-
-
-
-          <Route
-            exact
-            path="/home"
-          >
+          <Route exact path="/home">
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
@@ -286,6 +211,11 @@ function App() {
               <LandingPage />
             }
           </Route>
+
+          {/* logged in shows InfoPage else shows LoginPage */}
+          <ProtectedRoute exact path="/info">
+            <InfoPage />
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
