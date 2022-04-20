@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
@@ -14,6 +14,8 @@ import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 
 import LandingPage from '../LandingPage/LandingPage.jsx';
+
+
 
 
 
@@ -94,9 +96,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 
-function Nav() {
+export default function Nav() {
   const user = useSelector((store) => store.user);
-
+  
+  const dispatch = useDispatch();
   const history = useHistory();
 
 
@@ -280,7 +283,7 @@ case 3:
           <List className='nav-logout'>
             {['Logout'].map((text, index) => (
               <ListItem button key={text}>
-                <ListItemIcon>
+                <ListItemIcon onClick={handleLogout}>
                   {index % 2 === 0 ? <ExitToAppIcon fontSize='large' className='nav-icon' /> : <MailIcon />}
                 </ListItemIcon>
                 <ListItemText onClick={handleLogout}>
@@ -430,7 +433,7 @@ case 2:
           <List className='nav-logout'>
             {['Logout'].map((text, index) => (
               <ListItem button key={text}>
-                <ListItemIcon>
+                <ListItemIcon onClick={handleLogout}>
                   {index % 2 === 0 ? <ExitToAppIcon fontSize='large' className='nav-icon' /> : <MailIcon />}
                 </ListItemIcon>
                 <ListItemText onClick={handleLogout}>
@@ -570,7 +573,7 @@ case 2:
           <List className='nav-logout'>
             {['Logout'].map((text, index) => (
               <ListItem button key={text}>
-                <ListItemIcon>
+                <ListItemIcon onClick={handleLogout}>
                   {index % 2 === 0 ? <ExitToAppIcon fontSize='large' className='nav-icon' /> : <MailIcon />}
                 </ListItemIcon>
                 <ListItemText onClick={handleLogout}>
@@ -612,6 +615,5 @@ case 2:
 
 } // end of switch
 
-}
+} // end of Nav
 
-export default Nav;
