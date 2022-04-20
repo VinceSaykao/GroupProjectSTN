@@ -42,6 +42,20 @@ function OrganizationView() {
     history.push(`/organization-edit-form/${org.id}`);
   };
 
+  let formatPhoneNumber = (str) => {
+    //Filter only numbers from the input
+    let cleaned = ('' + str).replace(/\D/g, '');
+    
+    //Check if the input is of correct length
+    let match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/);
+  
+    if (match) {
+      return '+' + match[1] + ' (' + match[2] + ') ' + match[3] + '-' + match[4]
+    };
+  
+    return null
+  };
+
   return (
     <Box className="org-view">
       <Grid container justifyContent="center">
@@ -114,7 +128,7 @@ function OrganizationView() {
             {org.email}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
-            {org.phone}
+            {formatPhoneNumber(org.phone)}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
             {org.address1} {org.address2} {org.city}, {org.state} {org.zip}
