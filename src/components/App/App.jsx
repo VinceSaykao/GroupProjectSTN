@@ -144,6 +144,10 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+
+
+
+
           {/* Organization Start */}
           <Route
             exact
@@ -174,6 +178,13 @@ function App() {
           </Route>
 
           {/* Organization End */}
+
+
+
+          
+
+
+
           <Route
             // logged in shows InfoPage else shows LoginPage
             exact
@@ -182,7 +193,7 @@ function App() {
             <UserCalanderView />
           </Route>
 
-          
+
 
           <ProtectedRoute exact path="/admin-event-create">
             <AdminEventCreate />
