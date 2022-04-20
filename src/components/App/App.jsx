@@ -35,6 +35,7 @@ import AdminPendingEventDetails from '../Admin/AdminPendingEvents/AdminPendingEv
 
 import AdminEventCreate from '../Admin/AdminForm/AdminEventCreate';
 import AdminEventEdit from '../Admin/AdminForm/AdminEventEdit';
+import AdminEventCopy from '../Admin/AdminForm/AdminEventCopy';
 
 import './App.css';
 
@@ -201,6 +202,10 @@ function App() {
 
           <ProtectedRoute exact path="/admin-event-edit/:id">
             <AdminEventEdit />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/admin-event-copy/:id">
+            <AdminEventCopy />
           </ProtectedRoute>
 
           <Route
