@@ -20,6 +20,7 @@
     "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "helmet": "^5.0.2",
+    "material-ui-phone-number": "^3.0.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pg": "^8.5.1",

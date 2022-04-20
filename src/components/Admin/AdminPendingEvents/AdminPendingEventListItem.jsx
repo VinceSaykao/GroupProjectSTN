@@ -41,7 +41,7 @@ export default function AdminPendingEventListItem({ event }) {
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
         padding: theme.spacing(2),
-        maxWidth: 400,
+        maxWidth: '100%',
         color: theme.palette.text.primary,
     }));
 
@@ -66,7 +66,7 @@ export default function AdminPendingEventListItem({ event }) {
         className='admin-event-item'
         onClick={handleClick}>
 
-        <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}>
+        {/* <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}> */}
             <StyledPaper
                 sx={{
                     my: 1,
@@ -159,7 +159,7 @@ export default function AdminPendingEventListItem({ event }) {
             {/* <Typography className='event-list-orgname' noWrap>{event.orgname}  <ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
                                     {/* <ArrowForwardIosIcon className='event-arrow'/> */}
 
-        </Box>
+        {/* </Box> */}
 
 
 
