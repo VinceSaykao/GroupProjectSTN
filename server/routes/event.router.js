@@ -256,7 +256,7 @@ router.delete("/:id", (req, res) => {
 
 // Delete Favorite Event
 router.delete("/fave", (req, res) => {
-    let queryText = `delete from fav_events where event_id = $1;`;
+    let queryText = `delete from fav_events where event_id = $1 AND "user_id" = $2;`;
     let queryInsert = req.body.event_id;
 
     if (req.isAuthenticated()) {
