@@ -16,7 +16,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
+import RegisterForm from '../RegisterForm/RegisterForm';
 
 // User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
@@ -149,12 +149,12 @@ function App() {
 
 
           {/* Organization Start */}
-          <Route
+          <ProtectedRoute
             exact
             path="/organization-register-form"
           >
             <OrganizationRegisterForm />
-          </Route>
+          </ProtectedRoute>
 
           <Route
             exact
@@ -163,12 +163,12 @@ function App() {
             <OrganizationView />
           </Route>
 
-          <Route
+          <ProtectedRoute
             exact
             path="/organization-edit-form/:id"
           >
             <OrganizationEditForm />
-          </Route>
+          </ProtectedRoute>
 
           <Route
             exact
@@ -231,11 +231,23 @@ function App() {
             }
           </Route>
 
-          <Route exact path="/registration">
-    
-              <RegisterPage />
+//           <Route exact path="/registration">
 
-          </Route>
+    
+//               <RegisterPage />
+
+
+//             {user.id ? (
+//               // If the user is already logged in,
+//               // redirect to the /user2 page
+
+//               <Redirect to="/user2" />
+//             ) : (
+//               // Otherwise, show the login page
+//               <RegisterForm />
+//             )}
+
+//           </Route>
 
 
 
