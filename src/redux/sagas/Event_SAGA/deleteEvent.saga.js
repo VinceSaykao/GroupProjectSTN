@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
 function* deleteEvent(action) {
-
+    console.log('deleted event', action.payload);
     try {
         axios.delete(`/api/event/${action.payload}`);  // Deletes Specified Listing
         yield put({ type: 'FETCH_APPROVED_EVENTS' });            // Re-Fetch ALL Listings
