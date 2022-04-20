@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import UserProfileItem from "./UserProfileItem";
 import UserSavedProfileEvent from "./UserSavedProfileEvent";
 import { actionChannel } from "redux-saga/effects";
@@ -34,7 +34,7 @@ export default function UserProfile() {
 
 
 
-console.log(user)
+
   return (
     <div>
       <h3>Profile</h3>

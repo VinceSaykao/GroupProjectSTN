@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { TextField, Button } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -16,12 +17,15 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
+
+
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [value, setValue] = React.useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [values, setValues] = React.useState({
     password: '',
@@ -54,12 +58,14 @@ function RegisterForm() {
         username: username,
         password: password,
         access_level: value,
+
       },
     });
+    history.push('/organization-register-form');
   }; // end registerUser
 
   return (
-    <Box component="form" container onSubmit={registerUser} textAlign="center" sx={{mt: 20}}>
+    <Box component="form" container onSubmit={registerUser} textAlign="center" sx={{ mt:"33.33%"}}>
       <h2>Register</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
@@ -119,6 +125,9 @@ function RegisterForm() {
         <Button variant="outlined" type="submit" name="submit" value="Register">
           Register
         </Button>
+      </div>
+      <div>
+      <Button variant="filled" value="Login" onClick={() => { history.push('/login') }}>Login</Button>
       </div>
     </Box>
   );

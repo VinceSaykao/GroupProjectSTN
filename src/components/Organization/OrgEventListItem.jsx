@@ -67,7 +67,7 @@ export default function OrgEventListItem({ event }) {
         dispatch({ type: 'FETCH_EVENT_DETAILS', payload: event.id })
 
         // push to this url
-        history.push('/admin-approved-event-details')
+        history.push('/approved-events')
     }; // end of handleClick
 
 
@@ -174,9 +174,6 @@ export default function OrgEventListItem({ event }) {
 
                     </Grid>
                 </StyledPaper>
-                {/* <Typography className='event-list-name' noWrap><b>{event.name}</b><ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
-                {/* <Typography className='event-list-orgname' noWrap>{event.orgname}  <ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
-                                        {/* <ArrowForwardIosIcon className='event-arrow'/> */}
 
             </Box>
 

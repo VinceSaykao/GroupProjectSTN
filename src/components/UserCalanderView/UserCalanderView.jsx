@@ -8,8 +8,12 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from "@mui/material";
 import {Divider} from '@mui/material';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 
 import UserCalanderItem from './UserCalanderItem';
+
+import './UserCalendarView.scss';
 
 
 function UserCalanderView(){
@@ -26,15 +30,22 @@ function UserCalanderView(){
     }, []);
 
 
+    const StyledBox = styled(Box)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : 'transparent',
+        ...theme.typography.body2,
+        padding: theme.spacing(2),
+        position: 'absolute',
+        minWidth: '100%',
+        maxWidth: '100%',
+        color: theme.palette.text.primary,
+    }));
 
 
-
-console.log('fetchAppEvent', fetchApprovedEvents);
 return (
-    <div>
+    <div className="calendar-view">
 
     <Helmet>
-        <style>{`body { background-color: #090909ee;); 
+        <style>{`body,html { background-color: #090909ee; overflow: hidden;); 
     
     }`}
 
@@ -48,7 +59,13 @@ return (
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
     </div>
 
-    <div className="approved-event-list">
+
+    <StyledBox
+    sx={{
+        bottom: '0',
+    }}
+    >
+    <div className="home-approved-event-list">
         {fetchApprovedEvents?.map((event, i) => {
             return (
                 <div key={i}>
@@ -57,6 +74,7 @@ return (
             )
         })}
     </div>
+    </StyledBox>
 
 </div>
 )
