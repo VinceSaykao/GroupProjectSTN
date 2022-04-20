@@ -43,6 +43,7 @@ function OrganizationView() {
   };
 
   return (
+    <div>
     <Box className="org-view">
       <Grid container justifyContent="center">
         <div className="org-box">
@@ -132,7 +133,11 @@ function OrganizationView() {
         </AccordionDetails>
       </Accordion>
       <OrganizationEventsList />
-      <BottomNavigation
+    </Box>
+
+
+
+    {/* <BottomNavigation
         sx={{ width: 'auto' }}
         style={{ backgroundColor: 'rgb(75, 75, 75)' }}
       >
@@ -175,8 +180,8 @@ function OrganizationView() {
             }
           </div>
         )}
-      </BottomNavigation>
-    </Box>
+      </BottomNavigation> */}
+    </div>
   );
 }
 
