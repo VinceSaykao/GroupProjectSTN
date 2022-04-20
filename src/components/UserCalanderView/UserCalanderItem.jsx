@@ -54,110 +54,110 @@ function UserCalanderItem({event}){
     return (
 
         <div
-            className='admin-event-item'
-            onClick={handleClick}>
+        className='admin-event-item'
+        onClick={handleClick}>
 
-            <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}>
-                <StyledPaper
-                    sx={{
-                        my: 1,
-                        mx: 'auto',
-                        p: 2,
-                    }}
-                >
-                    <Grid container wrap="nowrap" spacing={3} height={90} width="100%">
-                        <Grid item>
-                            <ButtonBase sx={{ width: 70, height: 1 }}>
-                                {event.category_id == 1 &&
-                                    <Avatar
-                                        className='avatar'
-                                        sx={{ width: 80, height: 80 }}
-                                        src={icon_cleanup}
-                                    />}
-
-
-                                {event.category_id == 2 &&
-                                    <Avatar
-                                        className='avatar'
-                                        sx={{ width: 80, height: 80 }}
-                                        src={icon_community_meeting}
-                                    />}
-
-                                {event.category_id == 3 &&
-                                    <Avatar
-                                        className='avatar'
-                                        sx={{ width: 80, height: 80 }}
-                                        src={icon_donations}
-                                    />}
-
-                                {event.category_id == 4 &&
-                                    <Avatar
-                                        className='avatar'
-                                        sx={{ width: 80, height: 80 }}
-                                        src={icon_drives}
-                                    />}
-
-                                {event.category_id == 5 &&
-                                    <Avatar
-                                        className='avatar'
-                                        sx={{ width: 80, height: 80 }}
-                                        src={icon_education}
-                                    />}
-
-                                {event.category_id == 6 &&
-                                    <Avatar
-                                        className='avatar'
-                                        sx={{ width: 80, height: 80 }}
-                                        src={icon_events}
-                                    />}
-
-                                {event.category_id == 7 &&
-                                    <Avatar
-                                        className='avatar'
-                                        sx={{ width: 80, height: 80 }}
-                                        src={icon_popups}
-                                    />}
-
-                                {event.category_id == 8 &&
-                                    <Avatar
-                                        className='avatar'
-                                        sx={{ width: 80, height: 80 }}
-                                        src={icon_other}
-                                    />}
+        {/* <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}> */}
+            <StyledPaper
+                sx={{
+                    my: 1,
+                    mx: 'auto',
+                    p: 2,
+                }}
+            >
+                <Grid container wrap="nowrap" spacing={3} height={90} width="100%">
+                    <Grid item>
+                        <ButtonBase sx={{ width: 70, height: 1 }}>
+                            {event.category_id == 1 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_cleanup}
+                                />}
 
 
-                            </ButtonBase>
-                        </Grid>
-                        <Grid item xs={9}>
-                            <Typography
-                                sx={{ width: '100%', height: 30 }}
-                                className='event-list-date'
-                                variant='h5'
-                                noWrap>{event.dayname}, {event.month} {event.day}</Typography>
+                            {event.category_id == 2 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_community_meeting}
+                                />}
 
-                            <Divider />
-                            
-                            <Typography className='event-list-name' noWrap><b>{event.name}</b></Typography>
-                            <Typography className='event-list-name' noWrap>{event.orgname} </Typography>
+                            {event.category_id == 3 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_donations}
+                                />}
 
-                        </Grid>
+                            {event.category_id == 4 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_drives}
+                                />}
+
+                            {event.category_id == 5 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_education}
+                                />}
+
+                            {event.category_id == 6 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_events}
+                                />}
+
+                            {event.category_id == 7 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_popups}
+                                />}
+
+                            {event.category_id == 8 &&
+                                <Avatar
+                                    className='avatar'
+                                    sx={{ width: 80, height: 80 }}
+                                    src={icon_other}
+                                />}
 
 
+                        </ButtonBase>
+                    </Grid>
+                    <Grid item xs={9}>
+                        <Typography
+                            sx={{ width: '100%', height: 30 }}
+                            className='event-list-date'
+                            variant='h5'
+                            noWrap>{event.dayname}, {event.month} {event.day}</Typography>
+
+                        <Divider />
+                        
+                        <Typography className='event-list-name' noWrap><b>{event.name}</b></Typography>
+                        <Typography className='event-list-name' noWrap>{event.orgname} </Typography>
 
                     </Grid>
-                </StyledPaper>
-                {/* <Typography className='event-list-name' noWrap><b>{event.name}</b><ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
-                {/* <Typography className='event-list-orgname' noWrap>{event.orgname}  <ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
-                                        {/* <ArrowForwardIosIcon className='event-arrow'/> */}
-
-            </Box>
 
 
 
+                </Grid>
+            </StyledPaper>
+            {/* <Typography className='event-list-name' noWrap><b>{event.name}</b><ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
+            {/* <Typography className='event-list-orgname' noWrap>{event.orgname}  <ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
+                                    {/* <ArrowForwardIosIcon className='event-arrow'/> */}
+
+        {/* </Box> */}
 
 
 
-        </div>
+
+
+
+    </div>
 
     )
 }
