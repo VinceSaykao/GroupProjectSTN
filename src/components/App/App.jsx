@@ -16,7 +16,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
+import RegisterForm from '../RegisterForm/RegisterForm';
 
 // User Profile
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
@@ -79,28 +79,20 @@ function App() {
 
           {/* ADMIN START */}
 
-          <ProtectedRoute
+          <Route
             exact
-            path="/admin-approved-event-details"
+            path="/approved-events"
           >
-            {user.access_level === 3 ?
 
-              <AdminEventDetails />
-
-              : <LandingPage />
-
-            }
+            <AdminEventDetails />
+          </Route>
 
 
 
-
-
-          </ProtectedRoute>
           <ProtectedRoute
             exact
             path="/adminlist"
           >
-
             {user.access_level === 3 ?
 
               <AdminEventList />
@@ -110,11 +102,6 @@ function App() {
 
             }
 
-    
-
-            
-
-
 
 
           </ProtectedRoute>
@@ -122,13 +109,28 @@ function App() {
             exact
             path="/admin-pending-list"
           >
-            <AdminPendingEventList />
+
+            {user.access_level === 3 ?
+
+              <AdminPendingEventList />
+              :
+
+              <LandingPage />
+            }
           </ProtectedRoute>
+
+
+
           <ProtectedRoute
             exact
             path="/admin-pending-event-details"
           >
-            <AdminPendingEventDetails />
+
+            {user.access_level === 3 ?
+              <AdminPendingEventDetails />
+              :
+              <LandingPage />
+            }
           </ProtectedRoute>
 
 
@@ -142,13 +144,17 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+
+
+
+
           {/* Organization Start */}
-          <Route
+          <ProtectedRoute
             exact
             path="/organization-register-form"
           >
             <OrganizationRegisterForm />
-          </Route>
+          </ProtectedRoute>
 
           <Route
             exact
@@ -157,12 +163,12 @@ function App() {
             <OrganizationView />
           </Route>
 
-          <Route
+          <ProtectedRoute
             exact
             path="/organization-edit-form/:id"
           >
             <OrganizationEditForm />
-          </Route>
+          </ProtectedRoute>
 
           <Route
             exact
@@ -172,13 +178,22 @@ function App() {
           </Route>
 
           {/* Organization End */}
-          <ProtectedRoute
+
+
+
+
+
+
+
+          <Route
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/calanderview"
           >
             <UserCalanderView />
-          </ProtectedRoute>
+          </Route>
+
+
 
           <ProtectedRoute exact path="/admin-event-create">
             <AdminEventCreate />
@@ -224,21 +239,11 @@ function App() {
               <Redirect to="/user2" />
             ) : (
               // Otherwise, show the login page
-              <RegisterPage />
+              <RegisterForm />
             )}
           </Route>
 
-          <Route exact path="/user2">
-            {user.access_level === 1 ? (
-              // If the user is an volunteer,
-              // redirect them to the calender view
-              <Redirect to="/calanderview" />
-            ) : (
-              // Otherwise, they are an organization
-              // redirect them to their the organization creation form
-              <Redirect to="/organization-register-form" />
-            )}
-          </Route>
+
 
           <Route
             exact
