@@ -28,6 +28,7 @@ import fetchOrgEvents from "./Event_SAGA/fetchOrgEvents.saga";
 import fetchSavedEvents from "./Event_SAGA/fetchSavedEvents.saga";
 import updateEvent from "./Event_SAGA/updateEvent.saga";
 import fetchAdminPendingEvents from "./Event_SAGA/fetchAdminPendingEvents.saga";
+import deleteFaveEventSaga from "./Event_SAGA/deleteFaveEvent.saga";
 
 // Categories
 import categories from "./categories.saga";
@@ -71,6 +72,7 @@ export default function* rootSaga() {
     fetchSavedEvents(),
     updateEvent(),
     fetchAdminPendingEvents(),
+    deleteFaveEventSaga(),
 
     // Categories
     categories(),
