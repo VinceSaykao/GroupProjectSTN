@@ -60,7 +60,7 @@ function RegisterForm() {
 
       },
     });
-    history.push('/organization-register-form')
+    history.push('/organization-register-form');
   }; // end registerUser
 
   return (
