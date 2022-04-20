@@ -1,10 +1,11 @@
 import axios from "axios";
 import { put, takeEvery } from "redux-saga/effects";
 
-function* deleteFaveEvent() {
+function* deleteFaveEvent(action) {
+  console.log("action.payload =", action.payload);
   try {
-    axios.delete(`/api/event/fave/${action.payload}`);
-    yield put({ type: "FETCH_SAVED_EVENTS" });
+    axios.delete(`/api/event/delete/fave`, action.payload);
+    // yield put({ type: "FETCH_SAVED_EVENTS" });
   } catch (error) {
     console.log("deleteEvent Failed", error);
   }
