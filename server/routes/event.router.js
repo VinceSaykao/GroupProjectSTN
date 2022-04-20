@@ -255,13 +255,13 @@ router.delete("/:id", (req, res) => {
 });
 
 // Delete Favorite Event
-router.delete("/fave", (req, res) => {
-    let queryText = `delete from fav_events where event_id = $1 AND "user_id" = $2;`;
-    let queryInsert = req.body.event_id;
+router.delete("/delete/fave", (req, res) => {
+    let queryText = `delete from fav_events where event_id = $1 AND user_id = $2;`;
+    let queryInsert = [req.body.event_id, req.body.user_id];
 
     if (req.isAuthenticated()) {
         pool
-            .query(queryText, [queryInsert])
+            .query(queryText, queryInsert)
             .then((results) => {
                 console.log("Success on delete fav_events", results);
                 res.sendStatus(200);
