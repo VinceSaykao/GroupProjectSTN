@@ -14,10 +14,11 @@ function UserProfileItem({ info, detail }) {
   console.log("info = ", info);
 
   const handleFaveEventClick = () => {
-    dispatch({type:"DELETE_FAVE_EVENT", payload: {event_id: info.event_id, user_id: info.user_id}});
+    dispatch({type:"DELETE_FAVE_EVENT", payload: {user_id: info.user_id, event_id: info.event_id}});
   }
 
 
+  console.log('info', info);
   return (
     <div>
       
