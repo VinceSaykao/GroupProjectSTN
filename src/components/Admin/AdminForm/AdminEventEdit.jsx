@@ -124,7 +124,7 @@ function AdminEventEdit() {
     // Form Submit
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        dispatch({ type: 'UPDATE_EVENT', payload: selectedEvent })
+        dispatch({ type: 'POST_EVENT', payload: newEvent })
     }
 
 
@@ -473,7 +473,7 @@ function AdminEventEdit() {
                             type="submit"
                             fullWidth
                         >
-                            Submit
+                            Update
                         </Button>
                     </Grid>
                 </Grid>

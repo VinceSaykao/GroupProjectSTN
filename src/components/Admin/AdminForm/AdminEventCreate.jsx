@@ -111,7 +111,6 @@ function AdminEventCreate() {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         dispatch({ type: 'POST_EVENT', payload: newEvent })
-        console.log('newEvent":', newEvent);
     }
 
     // Fetches Categories on page load
