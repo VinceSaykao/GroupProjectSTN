@@ -16,12 +16,15 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
+import { useHistory } from 'react-router-dom';
+
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [value, setValue] = React.useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [values, setValues] = React.useState({
     password: '',
@@ -54,8 +57,10 @@ function RegisterForm() {
         username: username,
         password: password,
         access_level: value,
+
       },
     });
+    history.push('/organization-register-form')
   }; // end registerUser
 
   return (

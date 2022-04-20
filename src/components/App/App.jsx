@@ -232,15 +232,9 @@ function App() {
           </Route>
 
           <Route exact path="/registration">
-            {user.id ? (
-              // If the user is already logged in,
-              // redirect to the /user2 page
-
-              <Redirect to="/user2" />
-            ) : (
-              // Otherwise, show the login page
+    
               <RegisterPage />
-            )}
+
           </Route>
 
 
