@@ -10,6 +10,7 @@ import fetchProfileEvent from "./Profile_SAGA/fetchProfileEvent.saga";
 import addProfile from "./Profile_SAGA/addProfile.saga";
 import updateProfile from "./Profile_SAGA/updateProfile.saga";
 import fetchSaveEventSaga from "./Profile_SAGA/fetchProfileSaveEvent.saga";
+import postSaveEventSaga from "./Profile_SAGA/SaveEvent.saga";
 
 // Organizations
 import addOrganizationsSaga from "./Organization_SAGA/addOrganization.saga";
@@ -58,6 +59,7 @@ export default function* rootSaga() {
     addProfile(),
     updateProfile(),
     fetchSaveEventSaga(),
+    postSaveEventSaga(),
 
     // Events
     addEvent(),
