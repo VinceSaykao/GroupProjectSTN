@@ -149,6 +149,34 @@ function App() {
 
 
           {/* Organization Start */}
+
+
+
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
+              // redirect to the /user2 page
+              <Redirect to="/user2" />
+            ) : (
+              // Otherwise, show the login page
+              <RegisterPage />
+            )}
+          </Route>
+          <Route exact path="/user2">
+            {user.access_level === 1 ? (
+              // If the user is an volunteer,
+              // redirect them to the calender view
+              <Redirect to="/calanderview" />
+            ) : (
+              // Otherwise, they are an organization
+              // redirect them to their the organization creation form
+              <Redirect to="/organization-register-form" />
+            )}
+          </Route>
+
+
+
+
           <Route
             exact
             path="/organization-register-form"
@@ -231,11 +259,11 @@ function App() {
             }
           </Route>
 
-          <Route exact path="/registration">
+          {/* <Route exact path="/registration">
     
               <RegisterPage />
 
-          </Route>
+          </Route> */}
 
 
 
