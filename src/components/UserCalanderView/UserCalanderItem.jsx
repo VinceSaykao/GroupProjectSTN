@@ -36,9 +36,8 @@ function UserCalanderItem({event}){
     const history = useHistory();
 
     const handleClick = () => {
-
-        console.log('clicking on event');
-        dispatch({type: 'FETCH_EVENT_DETAILS', payload: event.id})
+        dispatch({type: 'FETCH_EVENT_DETAILS', payload: event.id});
+        history.push('/approved-events');
     }
 
 
@@ -51,6 +50,7 @@ function UserCalanderItem({event}){
     }));
 
 
+    console.log('this is event', event);
     return (
 
         <div

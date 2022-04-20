@@ -81,7 +81,7 @@ function App() {
 
           <Route
             exact
-            path="/admin-approved-event-details"
+            path="/approved-events"
           >
 
             <AdminEventDetails />
@@ -181,7 +181,7 @@ function App() {
 
 
 
-          
+
 
 
 

@@ -66,7 +66,7 @@ export default function AdminEventListItem({ event }) {
         dispatch({ type: 'FETCH_EVENT_DETAILS', payload: event.id })
 
         // push to this url
-        history.push('/admin-approved-event-details')
+        history.push('/approved-events')
     }; // end of handleClick
 
 

@@ -27,8 +27,6 @@ function UserCalanderView(){
 
 
 
-
-
 console.log('fetchAppEvent', fetchApprovedEvents);
 return (
     <div>
