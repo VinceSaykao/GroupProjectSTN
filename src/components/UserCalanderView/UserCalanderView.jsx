@@ -8,6 +8,8 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from "@mui/material";
 import {Divider} from '@mui/material';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 
 import UserCalanderItem from './UserCalanderItem';
 
@@ -28,6 +30,14 @@ function UserCalanderView(){
     }, []);
 
 
+    const StyledBox = styled(Box)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : 'transparent',
+        ...theme.typography.body2,
+        padding: theme.spacing(2),
+        position: 'absolute',
+        maxWidth: '100%',
+        color: theme.palette.text.primary,
+    }));
 
 
 return (
@@ -48,6 +58,12 @@ return (
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
     </div>
 
+
+    <StyledBox
+    sx={{
+        bottom: '0',
+    }}
+    >
     <div className="home-approved-event-list">
         {fetchApprovedEvents?.map((event, i) => {
             return (
@@ -57,6 +73,7 @@ return (
             )
         })}
     </div>
+    </StyledBox>
 
 </div>
 )

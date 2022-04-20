@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import * as React from 'react';
 import { useEffect } from "react";
 
+import './UserCalendarItem.scss';
+
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -49,12 +51,13 @@ function UserCalanderItem({event}){
         color: theme.palette.text.primary,
     }));
 
+    
 
-    console.log('this is event', event);
+
     return (
 
         <div
-        className='admin-event-item'
+        className='home-admin-event-item'
         onClick={handleClick}>
 
         {/* <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}> */}

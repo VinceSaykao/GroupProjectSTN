@@ -74,6 +74,7 @@ export default function AdminEventListItem({ event }) {
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
         padding: theme.spacing(2),
+        marginBottom: '30px',
         maxWidth: '100%',
         color: theme.palette.text.primary,
     }));
