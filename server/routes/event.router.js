@@ -254,7 +254,26 @@ router.delete("/:id", (req, res) => {
     }
 });
 
+// Delete Favorite Event
+router.delete("/fave", (req, res) => {
+    let queryText = `delete from fav_events where event_id = $1;`;
+    let queryInsert = req.body.event_id;
 
+    if (req.isAuthenticated()) {
+        pool
+            .query(queryText, [queryInsert])
+            .then((results) => {
+                console.log("Success on delete fav_events", results);
+                res.sendStatus(200);
+            })
+            .catch((err) => {
+                console.log("Error on delete fav_events,", err);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
+});
 
 
 module.exports = router;
