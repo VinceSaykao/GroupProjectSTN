@@ -19,6 +19,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 
+
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -52,6 +53,8 @@ function LoginForm() {
     setPassword('highpoint1234')
   } 
 
+  const history = useHistory();
+
   const login = (event) => {
     event.preventDefault();
 
@@ -63,6 +66,7 @@ function LoginForm() {
           password: password,
         },
       });
+      history.push('/calanderview');
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }

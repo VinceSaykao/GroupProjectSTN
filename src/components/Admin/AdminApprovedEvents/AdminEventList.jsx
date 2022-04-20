@@ -171,6 +171,9 @@ export default function AdminEventList() {
                         <TabPanel value={value} index={0} dir={theme.direction}>
 
 
+
+
+
             <div className="approved-event-list">
                 {fetchApprovedEvents?.map((event, i) => {
                     return (
@@ -185,6 +188,7 @@ export default function AdminEventList() {
                     )
                 })}
             </div>
+
                         </TabPanel>
                         <TabPanel value={value} index={1} dir={theme.direction}>
                             <AdminPendingEventList />

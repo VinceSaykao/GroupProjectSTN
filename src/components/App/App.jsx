@@ -52,7 +52,7 @@ function App() {
     <Router>
       <div>
         <Nav />
-        
+
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -79,29 +79,58 @@ function App() {
 
           {/* ADMIN START */}
 
-          <ProtectedRoute
+          <Route
             exact
-            path="/admin-approved-event-details"
+            path="/approved-events"
           >
+
             <AdminEventDetails />
-          </ProtectedRoute>
+          </Route>
+
+
+
           <ProtectedRoute
             exact
             path="/adminlist"
           >
-            <AdminEventList />
+            {user.access_level === 3 ?
+
+              <AdminEventList />
+              :
+              <LandingPage />
+
+
+            }
+
+
+
           </ProtectedRoute>
           <ProtectedRoute
             exact
             path="/admin-pending-list"
           >
-            <AdminPendingEventList />
+
+            {user.access_level === 3 ?
+
+              <AdminPendingEventList />
+              :
+
+              <LandingPage />
+            }
           </ProtectedRoute>
+
+
+
           <ProtectedRoute
             exact
             path="/admin-pending-event-details"
           >
-            <AdminPendingEventDetails />
+
+            {user.access_level === 3 ?
+              <AdminPendingEventDetails />
+              :
+              <LandingPage />
+            }
           </ProtectedRoute>
 
 
@@ -114,6 +143,10 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+
+
+
+
 
           {/* Organization Start */}
           <ProtectedRoute
@@ -145,19 +178,28 @@ function App() {
           </Route>
 
           {/* Organization End */}
-          <ProtectedRoute
+
+
+
+
+
+
+
+          <Route
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/calanderview"
           >
             <UserCalanderView />
-          </ProtectedRoute>
+          </Route>
+
+
 
           <ProtectedRoute exact path="/admin-event-create">
             <AdminEventCreate />
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/admin-event-edit">
+          <ProtectedRoute exact path="/admin-event-edit/:id">
             <AdminEventEdit />
           </ProtectedRoute>
 
@@ -201,17 +243,7 @@ function App() {
             )}
           </Route>
 
-          <Route exact path="/user2">
-            {user.access_level === 1 ? (
-              // If the user is an volunteer,
-              // redirect them to the calender view
-              <Redirect to="/calanderview" />
-            ) : (
-              // Otherwise, they are an organization
-              // redirect them to their the organization creation form
-              <Redirect to="/organization-register-form" />
-            )}
-          </Route>
+
 
           <Route
             exact
