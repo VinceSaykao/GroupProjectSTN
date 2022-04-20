@@ -55,7 +55,7 @@ router.get('/:id', (req, res) => {
 
     let id = req.params.id;
 
-    if (req.isAuthenticated()) {
+
         pool
             .query(`select 
             id,
@@ -91,9 +91,7 @@ router.get('/:id', (req, res) => {
                 console.log('Error in GET for specific event information', error);
                 res.sendStatus(500);
             });
-    } else {
-        res.sendStatus(403); // Forbidden
-    };
+
 });
 
 // GET all pending admin event information

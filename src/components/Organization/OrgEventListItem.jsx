@@ -174,9 +174,6 @@ export default function OrgEventListItem({ event }) {
 
                     </Grid>
                 </StyledPaper>
-                {/* <Typography className='event-list-name' noWrap><b>{event.name}</b><ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
-                {/* <Typography className='event-list-orgname' noWrap>{event.orgname}  <ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
-                                        {/* <ArrowForwardIosIcon className='event-arrow'/> */}
 
             </Box>
 
