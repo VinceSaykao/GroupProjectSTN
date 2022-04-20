@@ -6,16 +6,15 @@ const addEvent = (state = [], action) => {
         // brackets represent a string of whatever value is passed (i.e. 'name', 'website', etc)
         [action.payload.property]: action.payload.value,
       }
+      case "SET_EDIT_EVENT":
+        return action.payload
     default:
       return {
         ...state,
-        name: '',
-        org_id: '',
         category_id: '',
-        status: 'pending',
         name: '',
         description: '',
-        link: '',
+        status: 'pending',
         start_date: '',
         end_date: '',
         start_time: '',
@@ -24,9 +23,11 @@ const addEvent = (state = [], action) => {
         address1: '',
         address2: '',
         city: '',
-        zip: '',
+        zip: null,
         state: '',
-        feedback: '',
+        email: '',
+        phone: null,
+        link: '',
       }
   }
 };

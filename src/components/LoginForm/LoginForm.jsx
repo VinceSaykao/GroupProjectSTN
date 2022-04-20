@@ -1,23 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
-import { useHistory } from 'react-router-dom';
-
-import { TextField, Button } from '@mui/material';
-import Box from '@mui/material/Box';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import Typography from '@mui/material/Typography';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/IconButton';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import { useHistory } from "react-router-dom";
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -52,6 +36,8 @@ function LoginForm() {
     setPassword('highpoint1234')
   } 
 
+  const history = useHistory();
+
   const login = (event) => {
     event.preventDefault();
 
@@ -63,6 +49,7 @@ function LoginForm() {
           password: password,
         },
       });
+      history.push('/calanderview');
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }

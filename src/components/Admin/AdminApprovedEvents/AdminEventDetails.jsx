@@ -81,7 +81,8 @@ export default function AdminEventDetails() {
     }
 
     const handleCancel = () => {
-        history.goBack();
+        handleClose();
+        // history.goBack();
     }
 
 
@@ -115,7 +116,6 @@ export default function AdminEventDetails() {
             <React.Fragment>
                 <Button onClick={handleDelete}>Delete</Button>
                 <Button onClick={handleCancel}>Cancel</Button>
-                <Button onClick={handleSave}>Save</Button>
                 {/* <Modal
                     hideBackdrop
                     open={open}
@@ -148,7 +148,6 @@ export default function AdminEventDetails() {
     const handleExit = () => {
         history.goBack();
     }
-
 
 
 

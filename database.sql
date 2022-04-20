@@ -68,14 +68,16 @@ CREATE TABLE "events" (
 "end_time" TIME,
 "image" VARCHAR (1000),
 "email" VARCHAR (50),
-"phone" bigint,
-"address1" VARCHAR (50),
-"address2" VARCHAR (50),
+"phone" VARCHAR,
+"address1" VARCHAR (1000),
+"address2" VARCHAR (1000),
 "city" VARCHAR (60),
 "zip" int,
 "state" VARCHAR (50),
 "feedback" VARCHAR (300)
 );
+
+
 
 
 INSERT INTO organizations (name, email, phone, website, twitter, facebook, instagram, description, image, address1, address2, city, state, zip)
