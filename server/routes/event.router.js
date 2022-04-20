@@ -6,7 +6,7 @@ const router = express.Router();
 // GET all events' information that are approved
 router.get('/', (req, res) => {
 
-    if (req.isAuthenticated()) {
+
         pool
             .query(` 
             select 
@@ -48,9 +48,6 @@ router.get('/', (req, res) => {
                 console.log('Error in GET for all events information', error);
                 res.sendStatus(500);
             });
-    } else {
-        res.sendStatus(403); // Forbidden
-    };
 });
 
 // GET specific event information
