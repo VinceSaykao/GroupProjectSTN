@@ -47,11 +47,6 @@ function LoginForm() {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const addLogin = () => {
-    setUsername('highpoint@gmail.com')
-    setPassword('highpoint1234')
-  } 
-
   const history = useHistory();
 
   const login = (event) => {
@@ -124,7 +119,6 @@ function LoginForm() {
         >
           Register
         </Button>
-        <Typography style={{color:'white'}} onClick={addLogin}>Secret</Typography>
     </Box>
   );
 }
