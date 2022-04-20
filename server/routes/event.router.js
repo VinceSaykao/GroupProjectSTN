@@ -286,10 +286,10 @@ router.delete("/:id", (req, res) => {
 
 // Delete Favorite Event
 router.delete("/delete/fave", (req, res) => {
-    let queryText = `delete from fav_events where "event_id" = $1 AND "user_id" = $2;`;
+    let queryText = `delete from fav_events where event_id = $1 AND user_id = $2;`;
     let queryInsert = [req.body.event_id, req.body.user_id]
-
-    // if (req.isAuthenticated()) {
+    
+    if (req.isAuthenticated()) {
         pool
             .query(queryText, queryInsert)
             .then((results) => {
@@ -300,12 +300,10 @@ router.delete("/delete/fave", (req, res) => {
                 console.log("Error on delete fav_events,", err);
                 res.sendStatus(500);
             });
-    // } else {
-    //     res.sendStatus(403);
-    // }
+    } else {
+        res.sendStatus(403);
+    }
 });
-
-
 
 
 module.exports = router;

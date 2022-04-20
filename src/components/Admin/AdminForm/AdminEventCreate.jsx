@@ -111,7 +111,6 @@ function AdminEventCreate() {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         dispatch({ type: 'POST_EVENT', payload: newEvent })
-        console.log('newEvent":', newEvent);
     }
 
     // Fetches Categories on page load
@@ -123,6 +122,11 @@ function AdminEventCreate() {
     useEffect(() => {
         dispatch({ type: 'SET_ADD_EVENT', payload: { property: 'org_id', value: user.org_id }})
     }, [user]);
+
+    let today = new Date().toISOString()
+    console.log('today:', today)
+    let today2 = new Date().toISOString().slice(11, 16);
+    console.log('today2:', today2);
 
     return (
         <Box
