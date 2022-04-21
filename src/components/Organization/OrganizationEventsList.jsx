@@ -117,11 +117,15 @@ export default function OrganizationEventsList() {
 
 
   const orgEvents = approvedEvents.filter(
-    (approvedEvents) => approvedEvents.org_id === org.id // uh oh, big flaw with using user.org_id
+    (approvedEvents) => approvedEvents.org_id === org.id 
   );
 
   const pendingOrgEvents = fetchPendingEvents.filter(
-    (fetchPendingEvents) => fetchPendingEvents.org_id === org.id // uh oh, big flaw with using user.org_id
+    (fetchPendingEvents) => fetchPendingEvents.org_id === org.id
+);
+
+const expiredOrgEvents = fetchPendingEvents.filter(
+  (fetchPendingEvents) => fetchPendingEvents.org_id === org.id 
 );
 
 
@@ -170,6 +174,7 @@ export default function OrganizationEventsList() {
             >
               <Tab label="Approved" {...a11yProps(0)} />
               <Tab label="Pending" {...a11yProps(1)} />
+              <Tab label="Expired" {...a11yProps(2)} />
 
             </Tabs>
           </AppBar>
