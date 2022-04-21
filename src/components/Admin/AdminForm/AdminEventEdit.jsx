@@ -109,6 +109,7 @@ function AdminEventEdit() {
     }, []);
 
 
+    const history = useHistory();
     const { id } = useParams();
     const dispatch = useDispatch();
     const user = useSelector(store => store.user);
@@ -124,7 +125,8 @@ function AdminEventEdit() {
     // Form Submit
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        dispatch({ type: 'POST_EVENT', payload: newEvent })
+        dispatch({ type: 'UPDATE_EVENT', payload: selectedEvent })
+        history.push('/calanderview');
     }
 
     console.log('event cat id:', selectedEvent.id);

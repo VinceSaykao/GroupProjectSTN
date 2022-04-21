@@ -37,6 +37,7 @@ import categories from "./categories.saga";
 import fetchApprovedSearch from './Filter_SAGA/fetchApprovedSearch.saga'
 import fetchPendingSearch from './Filter_SAGA/fetchPendingSearch.saga'
 import fetchOrganizationSearchSaga from './Filter_SAGA/fetchOrganizationSearch.saga'
+import fetchFilteredEventsAdmin from './Filter_SAGA/fetchFilteredEventsAdmin.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -86,5 +87,6 @@ export default function* rootSaga() {
     fetchApprovedSearch(),
     fetchPendingSearch(),
     fetchOrganizationSearchSaga(),
+    fetchFilteredEventsAdmin(),
   ]);
 }

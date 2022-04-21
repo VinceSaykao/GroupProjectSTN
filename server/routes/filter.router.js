@@ -126,4 +126,33 @@ router.get('/org/:search', (req, res) => {
         });
 });
 
+// --- Filter by Category Results ----------------------------------------
+
+router.post('/category', (req, res) => {
+    const filters = req.body
+    console.log('req.body', req.body);
+    
+
+    // const query = `
+    //     SELECT 
+    //         *
+    //     FROM 
+    //         organizations
+    //     WHERE 
+    //         "name" ILIKE ('%' || $1 || '%')
+    //     GROUP BY 
+    //         organizations.id
+    //     ;`;
+
+    // pool
+    //     .query(query, [search])
+    //     .then((result) => {
+    //         res.send(result.rows);
+    //     })
+    //     .catch((err) => {
+    //         console.log('ERROR: Getting organization details', err);
+    //         res.sendStatus(500);
+    //     });
+});
+
 module.exports = router;
