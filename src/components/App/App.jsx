@@ -69,7 +69,7 @@ function App() {
     if (exp.end_date < dateNow) {
       console.log('expired!!!!!!!!!!!!!!!!')
       // dispatch({
-      //     type: 'UPDATE_EVENT',
+      //     type: 'UPDATE_EXPIRED_EVENTS',
       //     payload:
       //     {
       //         id: exp.id,

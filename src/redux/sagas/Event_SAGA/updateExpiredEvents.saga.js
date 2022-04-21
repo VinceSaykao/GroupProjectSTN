@@ -1,20 +1,20 @@
 import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
-function* updateEvent(action) {
+function* updateExpiredEvents (action) {
 
-    console.log('inside update even saga: ', action.payload);
+    console.log('Saga EXPIRED: ', action.payload);
     try {
-        axios.put(`/api/event/${action.payload.id}`, action.payload);   // Updates Specified Event
-        yield put({ type: 'FETCH_EVENT' });                             // Re-Fetch ALL Events
+        axios.put(`/api/event/expired`, action.payload);   // Updates Events to Expired Status
+        // yield put({ type: 'FETCH_EVENT' });             // Re-Fetch Expired Events
 
     } catch (error) {
-        console.log('updateEvent Failed:', error);
+        console.log('update Expired Event Failed:', error);
     }
 }
 
 function* fetchSavedEventsSaga() {
-    yield takeEvery('UPDATE_EVENT', updateEvent);
+    yield takeEvery('UPDATE_EXPIRED_EVENTS', updateExpiredEvents);
 }
 
 export default fetchSavedEventsSaga;

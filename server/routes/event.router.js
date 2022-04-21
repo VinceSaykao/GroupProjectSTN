@@ -262,7 +262,50 @@ router.put('/:id', (req, res) => {
     pool.query(queryText, queryValues).then(() => {
         res.sendStatus(200)
     }).catch((error) => {
-        console.log('Error updating specific profile user', error);
+        console.log('Error updating specific profile event', error);
+        res.sendStatus(500);
+    })
+});
+
+
+
+// update approved events to status expired
+
+router.put('/expired', (req, res) => {
+    const queryText = `
+    update "events" set
+    "org_id" = $1,
+    "category_id" = $2,
+    "status" = case when ($7 < NOW()) then 'expired' else 'approved' end,
+    "name" = $4,
+    "description" = $5,
+    "start_date" = $6,
+    "end_date" = $7,
+    "start_time" = $8,
+    "end_time" = $9,
+    "image" = $10,
+    "address1" = $11,
+    "address2" = $12,
+    "city" = $13,
+    "zip" = $14,
+    "state" = $15,
+    "phone" = $16,
+    "email" = $17,
+    "link" = $18,
+    "feedback" = $19
+    where "id" = $20
+    ;
+    `;
+
+    const queryValues = [req.body.org_id, req.body.category_id, req.body.status, req.body.name,
+    req.body.description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time,
+    req.body.image, req.body.address1, req.body.address2, req.body.city, req.body.zip, req.body.state,
+    req.body.phone, req.body.email, req.body.link, req.body.feedback, req.params.id];
+
+    pool.query(queryText, queryValues).then(() => {
+        res.sendStatus(200)
+    }).catch((error) => {
+        console.log('Error updating expired users', error);
         res.sendStatus(500);
     })
 });
