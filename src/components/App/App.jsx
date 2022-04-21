@@ -52,9 +52,9 @@ function App() {
   const dateNow = format(new Date(), 'yyyy/MM/dd')
 
   // fetch approved events
-  const events = useSelector(store => store.fetchApprovedEvents);
+  const events = useSelector(store => store.fetchAdminEvents);
 
-  // console.log('this is events: ', events)
+  console.log('this is events: ', events)
 
 //     const expiredEvents = events.filter(
 //     (events) => events.stop_date < dateNow

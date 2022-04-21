@@ -172,11 +172,7 @@ export default function Nav() {
 
   const nav = ['Profile', 'Calendar', 'Add Event', 'Organizations', 'Events'];
   const navOrg = ['Profile', 'Calendar', 'Add Event', 'Organizations'];
-  const navUser = ['Calendar', 'Organizations'];
-
-
-
-
+  const navUser = ['Profile','Calendar', 'Organizations'];
 
 
 
@@ -561,15 +557,17 @@ export default function Nav() {
                 {navUser.map((text, index) => (
                   <ListItem button key={index}>
                     <ListItemIcon className='nav-tab'>
-                      {index == 0 && <HomeIcon fontSize='large' className='nav-icon' onClick={handleHome} />}
-                      {index == 1 && <GroupIcon fontSize='large' className='nav-icon' onClick={handleOrganizations} />}
+                    {index == 0 && <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} />}
+                      {index == 1 && <HomeIcon fontSize='large' className='nav-icon' onClick={handleHome} />}
+                      {index == 2 && <GroupIcon fontSize='large' className='nav-icon' onClick={handleOrganizations} />}
 
 
                     </ListItemIcon>
                     {/* <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/> */}
                     <ListItemText className='nav-text'>
-                      {index === 0 && <h2 onClick={handleHome}>Home</h2>}
-                      {index === 1 && <h2 onClick={handleOrganizations} >Organizations</h2>}
+                    {index === 0 && <h2 onClick={handleOrgProfile}>Profile</h2>}
+                      {index === 1 && <h2 onClick={handleHome}>Home</h2>}
+                      {index === 2 && <h2 onClick={handleOrganizations} >Organizations</h2>}
 
                     </ListItemText>
 
