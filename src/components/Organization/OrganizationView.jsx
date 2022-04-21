@@ -45,14 +45,14 @@ function OrganizationView() {
   let formatPhoneNumber = (str) => {
     //Filter only numbers from the input
     let cleaned = ('' + str).replace(/\D/g, '');
-    
+
     //Check if the input is of correct length
     let match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/);
-  
+
     if (match) {
       return '+' + match[1] + ' (' + match[2] + ') ' + match[3] + '-' + match[4]
     };
-  
+
     return null
   };
 
@@ -121,9 +121,9 @@ function OrganizationView() {
             {org.name}
           </Typography>
         </Grid>
-        {user.access_level === 1 ? (
-          <div></div>
-        ) : (
+
+
+        {user.access_level >= 2 ? (
           <div>
             {
               <Box
@@ -148,7 +148,14 @@ function OrganizationView() {
               </Box>
             }
           </div>
+        ) : (
+          <div></div>
+
         )}
+
+
+
+
 
         <Typography gutterBottom variant="body1" component="div" color="white" sx={{ m: 2 }}>
           {org.description}
@@ -191,7 +198,7 @@ function OrganizationView() {
           </AccordionDetails>
         </Accordion>
         <h1
-        className='organization-event-header'
+          className='organization-event-header'
         >Events</h1>
         <OrganizationEventsList />
 
