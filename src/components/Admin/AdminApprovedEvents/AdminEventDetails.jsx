@@ -197,7 +197,7 @@ export default function AdminEventDetails() {
 
                                             <Item>
 
-                                                {user.access_level >= 2 ?
+                                                {user.access_level != 2  ?
 
 
                                                     <Button
