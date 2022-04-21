@@ -46,6 +46,14 @@ function UserCalanderView(){
     }));
 
 
+    const onClickDay = (value, event)=>{
+
+        dispatch({type:"FETCH_SAVED_EVENTS", payload: calendarValue})
+        
+    }
+
+
+
 return (
     <div className="calendar-view">
 
@@ -57,12 +65,11 @@ return (
         </style>
     </Helmet>
 
-    <h1>Calendar Goes Here =-) (hopefully)</h1>
     <div className="react-calendar">
       <header>
         {/* <Typography variant="h2">Hello World.</Typography> */}
         <br />
-        <Calendar onChange={setCalendarValue} value={calendarValue} />
+        <Calendar onChange={setCalendarValue} value={calendarValue} onClickDay={onClickDay} />
         <br />
         <Typography variant="h5">{calendarValue.toString()}</Typography>
       </header>
