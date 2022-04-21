@@ -1,86 +1,124 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import UserProfileItem from "./UserProfileItem";
-import UserSavedProfileEvent from "./UserSavedProfileEvent";
-import { actionChannel } from "redux-saga/effects";
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import UserProfileItem from './UserProfileItem';
+import UserSavedProfileEvent from './UserSavedProfileEvent';
+import { actionChannel } from 'redux-saga/effects';
+import { useParams, Link, useHistory } from 'react-router-dom';
 
-import { Container, Box, Typography, TextField, Button, FormControl, Grid } from "@mui/material";
+import './UserProfilePage.css';
 
-import { SettingsBrightnessOutlined } from "@mui/icons-material";
+import {
+  Container,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  FormControl,
+  Grid,
+  Avatar,
+} from '@mui/material';
 
+import { Helmet } from 'react-helmet';
 
+import EditIcon from '@mui/icons-material/Edit';
+
+import { SettingsBrightnessOutlined } from '@mui/icons-material';
 
 export default function UserProfile() {
-
-
   const history = useHistory();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch({ type: 'FETCH_SAVE_EVENT' });
+    dispatch({ type: 'SET_PROFILE_SAGA' });
+  }, []);
+
+  const handleEditClick = () => {
+    history.push('/userprofileedit');
+  };
 
   const fetchProfile = useSelector((store) => store.fetchProfile[0]);
   const fetchSave = useSelector((store) => store.fetchSave);
-  const user = useSelector((store) => store.user);
-
-  useEffect(() => {
-    dispatch({ type: "FETCH_SAVE_EVENT" });
-    dispatch({ type: "SET_PROFILE_SAGA" });
-  }, []);
-
-
-  const handleEditClick = () => {
-    history.push("/userprofileedit");
-  };
-
-
-
 
   return (
-    <div>
-      <h3>Profile</h3>
-
+    <div className="profile-container">
+      <Helmet>
+        <style>
+          {`body { background-color: rgb(75, 75, 75);); 
+            }`}
+        </style>
+      </Helmet>
       <Grid container justifyContent="center">
-        <div className="org-box">
-          <Box
-            component="img"
-            sx={{
-              height: "auto",
-              width: 350,
-              maxHeight: { xs: 233, md: 167 },
-              maxWidth: { xs: 350, md: 250 },
-            }}
-            alt=""
-            src="https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png"
+        <Typography
+          color="white"
+          variant="h4"
+          sx={{ width: '100%', textAlign: 'center' }}
+        >
+          Profile
+        </Typography>
+        <div>
+          <Avatar
+            className="avatar"
+            sx={{ width: 200, height: 200 }}
+            src={fetchProfile?.image}
           />
 
-          <Button className="edit-button" size="small" variant="contained" onClick={handleEditClick}>
-            
-            Edit
-          </Button>
+          <Box
+            sx={{
+              height: 25,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              mb: 1,
+              mt: 2,
+            }}
+          >
+            <Button
+              className="edit-button"
+              size="small"
+              variant="contained"
+              onClick={handleEditClick}
+            >
+              <EditIcon fontSize="small" />
+              Edit
+            </Button>
+          </Box>
         </div>
       </Grid>
-      
 
-
-
-      <Typography gutterBottom variant="body2" component="div">
-        <p>{fetchProfile?.first_name}</p>
-        <p>{fetchProfile?.last_name}</p>
-        <p>{fetchProfile?.bio}</p>
-        <p>{fetchProfile?.email}</p>
+      <Typography gutterBottom variant="body1" sx={{ ml: 2 }}>
+        <Typography color="white">
+          {fetchProfile?.first_name} {fetchProfile?.last_name}
+        </Typography>
+        <Typography color="white">{fetchProfile?.email}</Typography>
+        <Typography color="white" sx={{ mt: 2 }}>
+          About Me:
+        </Typography>
+        <Typography color="white" sx={{ mb: 2 }}>
+          {fetchProfile?.bio}
+        </Typography>
       </Typography>
-
-
-
+      <Box
+        sx={{
+          height: 30,
+          display: 'flex',
+          pr: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          mb: 1,
+        }}
+      >
+        <Typography variant="h5" color="white">
+          Saved Events
+        </Typography>
+      </Box>
 
       {fetchSave.map((info, i) => {
         return (
           <div key={i}>
-          <UserProfileItem
-            info={info}
-          />
+            <UserProfileItem info={info} />
           </div>
-        )
+        );
       })}
     </div>
   );
