@@ -29,7 +29,7 @@ import Box from '@mui/material/Box';
 import TabList from '@mui/lab/TabList';
 
 import './OrganizationView.css';
-import OrganizationPendingEventsList from './OrganizationPendingEventsList';
+import OrganizationPendingEventsListItem from './OrganizationPendingEventsListItem';
 
 
 
@@ -83,6 +83,7 @@ function a11yProps(index) {
 export default function OrganizationEventsList() {
   // store that grabs approved events, although fetchApprovedEvents brings in more data...??
   const approvedEvents = useSelector((store) => store.fetchApprovedEvents);
+  const fetchPendingEvents = useSelector(store => store.fetchPendingEvents);
   const org = useSelector((store) => store.fetchOrganization);
 
   const dispatch = useDispatch();
@@ -91,7 +92,11 @@ export default function OrganizationEventsList() {
   // useEffect to grab the approved events
   useEffect(() => {
     dispatch({ type: 'FETCH_APPROVED_EVENTS' });
+    dispatch({ type: 'FETCH_PENDING_EVENT_ADMIN' });
   }, []);
+
+
+
 
 
 
@@ -113,6 +118,12 @@ export default function OrganizationEventsList() {
   const orgEvents = approvedEvents.filter(
     (approvedEvents) => approvedEvents.org_id === org.id // uh oh, big flaw with using user.org_id
   );
+
+  const pendingOrgEvents = fetchPendingEvents.filter(
+    (fetchPendingEvents) => fetchPendingEvents.org_id === org.id // uh oh, big flaw with using user.org_id
+);
+
+
 
   return (
     <div className="admin-event-view">
@@ -175,9 +186,28 @@ export default function OrganizationEventsList() {
                 </div>
               </div>
 
+
+
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              <OrganizationPendingEventsList />
+
+
+
+            <div className="org-event-view">
+                <div className="org-event-list">
+                  {pendingOrgEvents?.map((events, i) => {
+                    return (
+                      <div key={i}>
+                        <OrganizationPendingEventsListItem events={events} />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+
+
+
             </TabPanel>
 
           </SwipeableViews>
