@@ -31,7 +31,7 @@ function LoginForm() {
     showPassword: false,
   });
 
-
+  
   const handleClickShowPassword = () => {
     setValues({
       ...values,
@@ -46,11 +46,6 @@ function LoginForm() {
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
-
-  const addLogin = () => {
-    setUsername('highpoint@gmail.com')
-    setPassword('highpoint1234')
-  } 
 
   const history = useHistory();
 
@@ -124,7 +119,6 @@ function LoginForm() {
         >
           Register
         </Button>
-        <Typography style={{color:'white'}} onClick={addLogin}>Secret</Typography>
     </Box>
   );
 }

@@ -42,8 +42,22 @@ function OrganizationView() {
     history.push(`/organization-edit-form/${org.id}`);
   };
 
+  let formatPhoneNumber = (str) => {
+    //Filter only numbers from the input
+    let cleaned = ('' + str).replace(/\D/g, '');
+    
+    //Check if the input is of correct length
+    let match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/);
+  
+    if (match) {
+      return '+' + match[1] + ' (' + match[2] + ') ' + match[3] + '-' + match[4]
+    };
+  
+    return null
+  };
+
   return (
-    <div className="org-view">
+    <Box className="org-view">
       <Grid container justifyContent="center">
         <div className="org-box">
           <Box
@@ -62,35 +76,36 @@ function OrganizationView() {
           {org.name}
         </Typography>
       </Grid>
-      <Box
-        sx={{
-          height: 25,
-          display: 'flex',
-          pr: 1,
-          justifyContent: 'flex-end',
-          alignItems: 'flex-end',
-        }}
-      >
-        <Button
-          className="edit-button"
-          size="small"
-          variant="contained"
-          onClick={handleEditClick}
-        >
-          <EditIcon fontSize="small" />
-          Edit
-        </Button>
-      </Box>
+      {user.access_level === 1 ? (
+        <div></div>
+      ) : (
+        <div>
+          {
+            <Box
+              sx={{
+                height: 25,
+                display: 'flex',
+                pr: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                mb: 1
+              }}
+            >
+              <Button
+                className="edit-button"
+                size="small"
+                variant="contained"
+                onClick={handleEditClick}
+              >
+                <EditIcon fontSize="small" />
+                Edit
+              </Button>
+            </Box>
+          }
+        </div>
+      )}
 
-      <Typography
-        gutterBottom
-        variant="subtitle1"
-        component="div"
-        color="white"
-      >
-        Description:
-      </Typography>
-      <Typography gutterBottom variant="body1" component="div" color="white">
+      <Typography gutterBottom variant="body1" component="div" color="white" sx={{ m:2 }}>
         {org.description}
       </Typography>
       <Accordion>
@@ -98,6 +113,10 @@ function OrganizationView() {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          sx={{
+            backgroundColor: "rgb(101, 101, 101)",
+            color: "white"
+        }}
         >
           <Typography>Contact Info & Location</Typography>
         </AccordionSummary>
@@ -109,7 +128,7 @@ function OrganizationView() {
             {org.email}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
-            {org.phone}
+            {formatPhoneNumber(org.phone)}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
             {org.address1} {org.address2} {org.city}, {org.state} {org.zip}
@@ -171,7 +190,7 @@ function OrganizationView() {
           </div>
         )}
       </BottomNavigation>
-    </div>
+    </Box>
   );
 }
 
