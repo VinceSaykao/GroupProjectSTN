@@ -127,7 +127,7 @@ function AdminEventEdit() {
         dispatch({ type: 'POST_EVENT', payload: newEvent })
     }
 
-
+    console.log('event cat id:', selectedEvent.id);
 
     return (
         <Box
@@ -209,12 +209,11 @@ function AdminEventEdit() {
                             <Select
                                 label="Category"
                                 variant={muiVariant}
-                                value={selectedEvent.category_id || ''}
+                                value={selectedEvent?.category_id || ''}
                                 onChange={e => dispatch({
-                                    type: 'SET_ADD_EVENT',
+                                    type: 'SET_EDIT_UPDATE_EVENT',
                                     payload: { property: 'category_id', value: e.target.value }
                                 })}
-
                             >
                                 {categories.map(category => (
                                     <MenuItem key={category.id} value={category.id}>
