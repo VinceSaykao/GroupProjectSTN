@@ -5,3 +5,10 @@
 .org-event-view {
   background-color: rgb(75, 75, 75);
 }
+
+.organization-event-header {
+  text-align: center;
+  color: white;
+  height: 30px;
+  margin-top: -5px;
+}

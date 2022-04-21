@@ -17,9 +17,7 @@ import Paper from '@mui/material/Paper';
 import ButtonBase from '@mui/material/ButtonBase';
 import { styled } from '@mui/material/styles';
 
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-// import './AdminEventListItem.scss';
 
 // Icons
 import icon_cleanup from '../../category_icons/icon_cleanup.png'
@@ -44,8 +42,7 @@ const Img = styled('img')({
 
 
 
-export default function OrgEventListItem({ event }) {
-
+export default function OrganizationPendingEventsListItem({ events }) {
 
 
 
@@ -60,7 +57,7 @@ export default function OrgEventListItem({ event }) {
     const handleClick = () => {
 
         // will dispatch the event id that grabs that specific event 
-        dispatch({ type: 'FETCH_EVENT_DETAILS', payload: event.id })
+        // dispatch({ type: 'FETCH_EVENT_DETAILS', payload: event.id })
 
         // push to this url
         history.push('/approved-events')
@@ -92,7 +89,7 @@ export default function OrgEventListItem({ event }) {
                     <Grid container wrap="nowrap" spacing={3} height={90} width="100%">
                         <Grid item>
                             <ButtonBase sx={{ width: 60, height: 1 }}>
-                                {event.category_id == 1 &&
+                                {events.category_id == 1 &&
                                     <Avatar
                                         className='avatar'
                                         sx={{ width: 80, height: 80 }}
@@ -100,49 +97,49 @@ export default function OrgEventListItem({ event }) {
                                     />}
 
 
-                                {event.category_id == 2 &&
+                                {events.category_id == 2 &&
                                     <Avatar
                                         className='avatar'
                                         sx={{ width: 80, height: 80 }}
                                         src={icon_community_meeting}
                                     />}
 
-                                {event.category_id == 3 &&
+                                {events.category_id == 3 &&
                                     <Avatar
                                         className='avatar'
                                         sx={{ width: 80, height: 80 }}
                                         src={icon_donations}
                                     />}
 
-                                {event.category_id == 4 &&
+                                {events.category_id == 4 &&
                                     <Avatar
                                         className='avatar'
                                         sx={{ width: 80, height: 80 }}
                                         src={icon_drives}
                                     />}
 
-                                {event.category_id == 5 &&
+                                {events.category_id == 5 &&
                                     <Avatar
                                         className='avatar'
                                         sx={{ width: 80, height: 80 }}
                                         src={icon_education}
                                     />}
 
-                                {event.category_id == 6 &&
+                                {events.category_id == 6 &&
                                     <Avatar
                                         className='avatar'
                                         sx={{ width: 80, height: 80 }}
                                         src={icon_events}
                                     />}
 
-                                {event.category_id == 7 &&
+                                {events.category_id == 7 &&
                                     <Avatar
                                         className='avatar'
                                         sx={{ width: 80, height: 80 }}
                                         src={icon_popups}
                                     />}
 
-                                {event.category_id == 8 &&
+                                {events.category_id == 8 &&
                                     <Avatar
                                         className='avatar'
                                         sx={{ width: 80, height: 80 }}
@@ -157,12 +154,12 @@ export default function OrgEventListItem({ event }) {
                                 sx={{ width: '100%', height: 30 }}
                                 className='event-list-date'
                                 variant='h5'
-                                noWrap>{event.dayname}, {event.month} {event.day}</Typography>
+                                noWrap>{events.dayname}, {events.month} {events.day}</Typography>
 
                             <Divider />
                             
-                            <Typography className='event-list-name' noWrap><b>{event.name}</b></Typography>
-                            <Typography className='event-list-name' noWrap>{event.orgname} </Typography>
+                            <Typography className='event-list-name' noWrap><b>{events.name}</b></Typography>
+                            <Typography className='event-list-name' noWrap>{events.orgname} </Typography>
 
                         </Grid>
 
@@ -181,4 +178,4 @@ export default function OrgEventListItem({ event }) {
         </Box>
 
     )
-}; // end of AdminEventListItem
+}; // end of function
