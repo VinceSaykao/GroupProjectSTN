@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
+import Calendar from 'react-calendar'
 
 // ----material ui imports----
 import InputBase from '@mui/material/InputBase';
@@ -10,6 +11,7 @@ import { IconButton } from "@mui/material";
 import {Divider} from '@mui/material';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography'
 
 import UserCalanderItem from './UserCalanderItem';
 
@@ -23,6 +25,9 @@ function UserCalanderView(){
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+
+    const [calendarValue, setCalendarValue] = useState(new Date());
 
     // useEffect to grab the approved events
     useEffect(() => {
@@ -52,7 +57,16 @@ return (
         </style>
     </Helmet>
 
-    <h1>Calander Goes Here =-) (hopefully)</h1>
+    <h1>Calendar Goes Here =-) (hopefully)</h1>
+    <div className="react-calendar">
+      <header>
+        {/* <Typography variant="h2">Hello World.</Typography> */}
+        <br />
+        <Calendar onChange={setCalendarValue} value={calendarValue} />
+        <br />
+        <Typography variant="h5">{calendarValue.toString()}</Typography>
+      </header>
+    </div>
     <div>
 
 
