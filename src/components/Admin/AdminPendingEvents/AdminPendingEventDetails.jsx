@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 
-import { format } from 'date-fns'
+import { format } from 'date-fns';
 
 import "./AdminPendingEventDetails.scss";
 
@@ -19,33 +19,33 @@ export default function AdminPendingEventDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [status, setStatus] = useState('approved');
-    const [expired, setExpired] = useState('expired');
+
+    // const [expired, setExpired] = useState('expired');
 
 
     // store that has the specific event I want by id
     const fetchEventId = useSelector(store => store.fetchEventId);
-    const exp = useSelector(store => store.fetchEventId[0]);
+//     const exp = useSelector(store => store.fetchEventId[0]);
 
-// console.log(exp)
-
-
-useEffect(() => {
-    handleExpired()
-}, [])
+// // console.log(exp)
 
 
+// useEffect(() => {
+//     handleExpired()
+// }, [])
 
 
 
 
 
 
-    const handleExpired = () => {
 
-        const dateNow = format(new Date(), 'yyyy/MM/dd')
 
-        const exp = fetchEventId[0];
+    // const handleExpired = () => {
+
+    //     const dateNow = format(new Date(), 'yyyy/MM/dd')
+
+    //     const exp = fetchEventId[0];
 
         // console.log('this is fetch', fetchEventId);
 
@@ -54,42 +54,42 @@ useEffect(() => {
         // console.log(dateNow);
 
 
-        if (exp.end_date < dateNow) {
-            console.log('expired')
+        // if (exp.end_date < dateNow) {
+        //     console.log('expired')
 
-            // dispatch({
-            //     type: 'UPDATE_EVENT',
-            //     payload:
-            //     {
-            //         id: exp.id,
-            //         org_id: exp.org_id,
-            //         category_id: exp.category_id,
-            //         status: expired,
-            //         name: exp.name,
-            //         description: exp.description,
-            //         date: exp.date,
-            //         link: exp.link,
-            //         start_date: exp.start_date,
-            //         end_date: exp.end_date,
-            //         start_time: exp.start_time,
-            //         end_time: exp.end_time,
-            //         image: exp.image,
-            //         email: exp.email,
-            //         phone: exp.phone,
-            //         address1: exp.address1,
-            //         address2: exp.address2,
-            //         city: exp.city,
-            //         zip: exp.zip,
-            //         state: exp.state,
-            //         feedback: exp.feedback,
-            //     }
-            // });
-        } else {
-            console.log('not expired');
-        }
+        //     // dispatch({
+        //     //     type: 'UPDATE_EVENT',
+        //     //     payload:
+        //     //     {
+        //     //         id: exp.id,
+        //     //         org_id: exp.org_id,
+        //     //         category_id: exp.category_id,
+        //     //         status: expired,
+        //     //         name: exp.name,
+        //     //         description: exp.description,
+        //     //         date: exp.date,
+        //     //         link: exp.link,
+        //     //         start_date: exp.start_date,
+        //     //         end_date: exp.end_date,
+        //     //         start_time: exp.start_time,
+        //     //         end_time: exp.end_time,
+        //     //         image: exp.image,
+        //     //         email: exp.email,
+        //     //         phone: exp.phone,
+        //     //         address1: exp.address1,
+        //     //         address2: exp.address2,
+        //     //         city: exp.city,
+        //     //         zip: exp.zip,
+        //     //         state: exp.state,
+        //     //         feedback: exp.feedback,
+        //     //     }
+        //     // });
+        // } else {
+        //     console.log('not expired');
+        // }
 
 
-    }; // end of handleExpired
+    // }; // end of handleExpired
 
 
 
@@ -110,7 +110,7 @@ useEffect(() => {
                 id: event.id,
                 org_id: event.org_id,
                 category_id: event.category_id,
-                status: status,
+                status: 'approved',
                 name: event.name,
                 description: event.description,
                 start_date: event.start_date,

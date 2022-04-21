@@ -7,6 +7,9 @@ import {
   Switch,
 } from 'react-router-dom';
 
+
+import { format } from 'date-fns'
+
 import { useDispatch, useSelector } from 'react-redux';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
@@ -44,10 +47,62 @@ function App() {
 
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
-  // fetch approved events
-  const events = useSelector(store => store.fetchAdminEvents);
 
-console.log('kdfjasldkfjkfsf', events);
+
+  const dateNow = format(new Date(), 'yyyy/MM/dd')
+
+  // fetch approved events
+  const events = useSelector(store => store.fetchApprovedEvents);
+
+  console.log('this is events: ', events)
+
+    const expiredEvents = events.filter(
+    (events) => events.stop_date < dateNow
+  );
+
+  console.log('this filters: ', expiredEvents );
+
+
+  {expiredEvents.map((exp) => {
+
+    const dateNow = format(new Date(), 'yyyy/MM/dd')
+    if (exp.end_date < dateNow) {
+      console.log('expired!!!!!!!!!!!!!!!!')
+      // dispatch({
+      //     type: 'UPDATE_EVENT',
+      //     payload:
+      //     {
+      //         id: exp.id,
+      //         org_id: exp.org_id,
+      //         category_id: exp.category_id,
+      //         status: 'expired',
+      //         name: exp.name,
+      //         description: exp.description,
+      //         date: exp.date,
+      //         link: exp.link,
+      //         start_date: exp.start_date,
+      //         end_date: exp.end_date,
+      //         start_time: exp.start_time,
+      //         end_time: exp.end_time,
+      //         image: exp.image,
+      //         email: exp.email,
+      //         phone: exp.phone,
+      //         address1: exp.address1,
+      //         address2: exp.address2,
+      //         city: exp.city,
+      //         zip: exp.zip,
+      //         state: exp.state,
+      //         feedback: exp.feedback,
+      //     }
+      // });
+  } else {
+      console.log('not expired');
+  }
+  })}
+
+
+  // dispatch saga -> loop for each event.id axios.put /:id ,  run the put
+
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -62,55 +117,55 @@ console.log('kdfjasldkfjkfsf', events);
 
 
 
-  const handleExpired = () => {
+  //   const handleExpired = () => {
 
-    const dateNow = format(new Date(), 'yyyy/MM/dd')
+  //     const dateNow = format(new Date(), 'yyyy/MM/dd')
 
-    const exp = fetchEventId[0];
+  //     const exp = fetchEventId[0];
 
-    // console.log('this is fetch', fetchEventId);
-
-
-    // console.log(exp.end_date);
-    // console.log(dateNow);
+  //     // console.log('this is fetch', fetchEventId);
 
 
-    if (exp.end_date < dateNow) {
-        console.log('expired')
-
-        // dispatch({
-        //     type: 'UPDATE_EVENT',
-        //     payload:
-        //     {
-        //         id: exp.id,
-        //         org_id: exp.org_id,
-        //         category_id: exp.category_id,
-        //         status: expired,
-        //         name: exp.name,
-        //         description: exp.description,
-        //         date: exp.date,
-        //         link: exp.link,
-        //         start_date: exp.start_date,
-        //         end_date: exp.end_date,
-        //         start_time: exp.start_time,
-        //         end_time: exp.end_time,
-        //         image: exp.image,
-        //         email: exp.email,
-        //         phone: exp.phone,
-        //         address1: exp.address1,
-        //         address2: exp.address2,
-        //         city: exp.city,
-        //         zip: exp.zip,
-        //         state: exp.state,
-        //         feedback: exp.feedback,
-        //     }
-        // });
-    } else {
-        console.log('not expired');
-    }
+  //     // console.log(exp.end_date);
+  //     // console.log(dateNow);
 
 
-}; // end of handleExpired
+  //     if (exp.end_date < dateNow) {
+  //         console.log('expired')
+
+  //         // dispatch({
+  //         //     type: 'UPDATE_EVENT',
+  //         //     payload:
+  //         //     {
+  //         //         id: exp.id,
+  //         //         org_id: exp.org_id,
+  //         //         category_id: exp.category_id,
+  //         //         status: expired,
+  //         //         name: exp.name,
+  //         //         description: exp.description,
+  //         //         date: exp.date,
+  //         //         link: exp.link,
+  //         //         start_date: exp.start_date,
+  //         //         end_date: exp.end_date,
+  //         //         start_time: exp.start_time,
+  //         //         end_time: exp.end_time,
+  //         //         image: exp.image,
+  //         //         email: exp.email,
+  //         //         phone: exp.phone,
+  //         //         address1: exp.address1,
+  //         //         address2: exp.address2,
+  //         //         city: exp.city,
+  //         //         zip: exp.zip,
+  //         //         state: exp.state,
+  //         //         feedback: exp.feedback,
+  //         //     }
+  //         // });
+  //     } else {
+  //         console.log('not expired');
+  //     }
+
+
+  // }; // end of handleExpired
 
   return (
     <Router>
