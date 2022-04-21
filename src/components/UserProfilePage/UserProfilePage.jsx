@@ -15,17 +15,18 @@ import {
   Button,
   FormControl,
   Grid,
+  Avatar,
 } from '@mui/material';
+
+import { Helmet } from 'react-helmet';
+
+import EditIcon from '@mui/icons-material/Edit';
 
 import { SettingsBrightnessOutlined } from '@mui/icons-material';
 
 export default function UserProfile() {
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const fetchProfile = useSelector((store) => store.fetchProfile[0]);
-  const fetchSave = useSelector((store) => store.fetchSave);
-  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_SAVE_EVENT' });
@@ -36,29 +37,40 @@ export default function UserProfile() {
     history.push('/userprofileedit');
   };
 
+  const fetchProfile = useSelector((store) => store.fetchProfile[0]);
+  const fetchSave = useSelector((store) => store.fetchSave);
+
   return (
-    <div className='profile-container'>
+    <div className="profile-container">
+      <Helmet>
+        <style>
+          {`body { background-color: rgb(75, 75, 75);); 
+            }`}
+        </style>
+      </Helmet>
       <Grid container justifyContent="center">
-        <Typography color="white" variant="h4">Profile</Typography>
-        <div >
-          <Box
-            component="img"
-            sx={{
-              height: 'auto',
-              width: '400px',
-              maxHeight: { xs: 233, md: 167 },
-              maxWidth: { xs: 350, md: 250 },
-            }}
+        <Typography
+          color="white"
+          variant="h4"
+          sx={{ width: '100%', textAlign: 'center' }}
+        >
+          Profile
+        </Typography>
+        <div>
+          <Avatar
+            className="avatar"
+            sx={{ width: 200, height: 200 }}
             src={fetchProfile?.image}
           />
+
           <Box
             sx={{
               height: 25,
               display: 'flex',
-              pr: 1,
               justifyContent: 'center',
               alignItems: 'center',
               mb: 1,
+              mt: 2,
             }}
           >
             <Button
@@ -67,6 +79,7 @@ export default function UserProfile() {
               variant="contained"
               onClick={handleEditClick}
             >
+              <EditIcon fontSize="small" />
               Edit
             </Button>
           </Box>
@@ -81,8 +94,24 @@ export default function UserProfile() {
         <Typography color="white" sx={{ mt: 2 }}>
           About Me:
         </Typography>
-        <Typography color="white" sx={{ mb: 2 }}>{fetchProfile?.bio}</Typography>
+        <Typography color="white" sx={{ mb: 2 }}>
+          {fetchProfile?.bio}
+        </Typography>
       </Typography>
+      <Box
+        sx={{
+          height: 30,
+          display: 'flex',
+          pr: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          mb: 1,
+        }}
+      >
+        <Typography variant="h5" color="white">
+          Saved Events
+        </Typography>
+      </Box>
 
       {fetchSave.map((info, i) => {
         return (

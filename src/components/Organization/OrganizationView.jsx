@@ -129,10 +129,9 @@ function OrganizationView() {
                 sx={{
                   height: 25,
                   display: 'flex',
-                  pr: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  mb: 1
+                  justifyContent: 'flex-end',
+                  alignItems: 'flex-end',
+                  mr: 2
                 }}
               >
                 <Button
@@ -149,7 +148,7 @@ function OrganizationView() {
           </div>
         )}
 
-        <Typography gutterBottom variant="body1" component="div" color="white" sx={{ m: 2 }}>
+        <Typography gutterBottom variant="body1" component="div" color="white" sx={{ mr: 2, ml:2, mt:1 }}>
           {org.description}
         </Typography>
         <Accordion>
