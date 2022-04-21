@@ -113,7 +113,6 @@ function OrganizationView() {
                 maxHeight: { xs: 233, md: 167 },
                 maxWidth: { xs: 350, md: 250 },
               }}
-              alt=""
               src={org.image}
             />
           </div>
