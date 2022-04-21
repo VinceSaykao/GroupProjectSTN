@@ -101,4 +101,29 @@ router.get('/pending/:search', (req, res) => {
         })
 });
 
+// --- Organization Search Results ----------------------------------------
+router.get('/org/:search', (req, res) => {
+    const search = req.params.search;
+
+    const query = `
+        SELECT 
+            *
+        FROM 
+            organizations
+        WHERE 
+            "name" ILIKE ('%' || $1 || '%')
+        GROUP BY 
+            organizations.id
+        ;`;
+    pool
+        .query(query, [search])
+        .then((result) => {
+            res.send(result.rows);
+        })
+        .catch((err) => {
+            console.log('ERROR: Getting organization details', err);
+            res.sendStatus(500);
+        });
+});
+
 module.exports = router;

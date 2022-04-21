@@ -1,8 +1,18 @@
+// ---- react imports ---------
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import OrganizationListItem from './OrganizationListItem';
 
+// ---- material ui imports ----
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
+import { IconButton } from "@mui/material";
+import { Divider } from '@mui/material';
+
+// ---- CSS imports -------------
+import '../Admin/AdminApprovedEvents/AdminEventList.scss';
 
 function OrganizationsList() {
 
@@ -14,10 +24,31 @@ function OrganizationsList() {
     dispatch({ type: 'FETCH_ORGANIZATIONS' });
   }, []);
 
-  console.log(orgs);
+  const handleSearch = (event) => {
+    event.preventDefault();
+        // if user enters search
+        if (event.target.value.length > 0) {
+            dispatch({ type: 'FETCH_ORGANIZATION_SEARCH', payload: { search: event.target.value } })
+        } 
+        // if search is left blank
+        else {
+            dispatch({ type: 'FETCH_ORGANIZATIONS' })
+        }
+
+}
 
   return (
     <>
+      <Box className="admin-search-div">
+        <InputBase
+          sx={{ ml: 5, flex: 1, bgcolor: 'white' }}
+          placeholder="Search"
+          onChange={event => handleSearch(event)}
+        />
+        <IconButton>
+          <SearchIcon />
+        </IconButton>
+      </Box>
       <div className="org-list-container">
         <Grid
           container
