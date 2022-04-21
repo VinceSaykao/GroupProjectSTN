@@ -85,6 +85,7 @@ export default function OrganizationEventsList() {
   const approvedEvents = useSelector((store) => store.fetchApprovedEvents);
   const fetchPendingEvents = useSelector(store => store.fetchPendingEvents);
   const org = useSelector((store) => store.fetchOrganization);
+  const user = useSelector(store => store.user);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -126,7 +127,13 @@ export default function OrganizationEventsList() {
 
 
   return (
+
+    
     <div className="admin-event-view">
+
+
+
+
 
       <Helmet>
         <style>{`body { background-color: #090909ee;); 
@@ -141,9 +148,11 @@ export default function OrganizationEventsList() {
 
 
 
-  
+        
 
-        <Divider sx={{ height: 10, m: 0.5 }} orientation="vertical" />
+        {/* <Divider sx={{ height: 10, m: 0.5 }} orientation="vertical" /> */}
+
+        {user.access_level >= 2 ?
 
 
         <Box
@@ -151,6 +160,7 @@ export default function OrganizationEventsList() {
           sx={{ bgcolor: 'background.paper', height: '0px', width: '100%', textAlign: 'center', }}>
           <AppBar position="static">
             <Tabs
+              // position= '-webkit-sticky'
               value={value}
               onChange={handleChange}
               indicatorColor="primary"
@@ -213,12 +223,78 @@ export default function OrganizationEventsList() {
           </SwipeableViews>
         </Box>
 
+        :
+
+        <Box
+        className="event-tab"
+        sx={{ bgcolor: 'background.paper', height: '0px', width: '100%', textAlign: 'center', }}>
+        <AppBar position="static">
+          <Tabs
+            // position= '-webkit-sticky'
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="inherit"
+            variant="fullWidth"
+            aria-label="full width tabs example"
+          >
+            <Tab label="Approved" {...a11yProps(0)} />
+
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={handleChangeIndex}
+        >
+          <TabPanel value={value} index={0} dir={theme.direction}>
 
 
 
 
 
-        {/* <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" /> */}
+            <div className="org-event-view">
+              <div className="org-event-list">
+                {orgEvents?.map((event, i) => {
+                  return (
+                    <div key={i}>
+                      <OrgEventListItem event={event} />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+
+
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction}>
+
+
+
+          <div className="org-event-view">
+              <div className="org-event-list">
+                {pendingOrgEvents?.map((events, i) => {
+                  return (
+                    <div key={i}>
+                      <OrganizationPendingEventsListItem events={events} />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+
+
+
+          </TabPanel>
+
+        </SwipeableViews>
+      </Box>
+
+
+
+                }
 
 
       </div>
@@ -231,14 +307,4 @@ export default function OrganizationEventsList() {
   )
 }
 
-{/* <div className="org-event-view">
-<div className="org-event-list">
-  {orgEvents?.map((event, i) => {
-    return (
-      <div key={i}>
-        <OrgEventListItem event={event} />
-      </div>
-    );
-  })}
-</div>
-</div> */}
+
