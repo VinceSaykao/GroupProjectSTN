@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
             join organizations
             on
             organizations.id = events.org_id
-            where events.status = 'approved'
+            where events.status = 'approved' AND end_date > NOW()
             order by start_date asc;
             `)
         .then((results) => res.send(results.rows))
@@ -223,7 +223,7 @@ router.post('/', (req, res) => {
     }
 });
 
-// update information for specific user profile
+// update information for specific event
 router.put('/:id', (req, res) => {
     const queryText = `
     update "events" set
