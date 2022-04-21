@@ -13,6 +13,7 @@ const profileRouter = require('./routes/profile.router');
 const organizationRouter = require('./routes/organization.router');
 const eventRouter = require('./routes/event.router');
 const categoryRouter = require('./routes/category.router');
+const filterRouter = require('./routes/filter.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/api/profile', profileRouter);
 app.use('/api/organization', organizationRouter);
 app.use('/api/event', eventRouter);
 app.use('/api/category', categoryRouter);
+app.use('/api/filter', filterRouter);
 
 // Serve static files
 app.use(express.static('build'));

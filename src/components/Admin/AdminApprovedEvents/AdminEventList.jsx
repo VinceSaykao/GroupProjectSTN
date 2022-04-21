@@ -71,14 +71,14 @@ function a11yProps(index) {
 
 // MUI TAB FUNCTIONS END
 
+// SEARCH BAR FUNCTION
+
 
 
 
 
 
 export default function AdminEventList() {
-
-
 
     // store that grabs approved events, although fetchApprovedEvents brings in more data...??
     const fetchApprovedEvents = useSelector(store => store.fetchApprovedEvents);
@@ -91,11 +91,6 @@ export default function AdminEventList() {
     useEffect(() => {
         dispatch({ type: 'FETCH_APPROVED_EVENTS' });
     }, []);
-
-
-
-
-
 
 
     // MUI TAB
@@ -112,7 +107,31 @@ export default function AdminEventList() {
 
     // END MUI TAB
 
-
+    const handleSearch = (event) => {
+        event.preventDefault();
+        // Searching Approved Events...
+        if (value == 0) {
+            // if user enters search
+            if (event.target.value.length > 0) {
+                dispatch({ type: 'FETCH_APPROVED_SEARCH', payload: { search: event.target.value } })
+            } 
+            // if search is left blank
+            else {
+                dispatch({ type: 'FETCH_APPROVED_EVENTS' })
+            }
+        }
+        // Searching Pending Events...
+        if (value == 1) {
+            // if user enters search
+            if (event.target.value.length > 0) {
+                dispatch({ type: 'FETCH_PENDING_SEARCH', payload: { search: event.target.value } })
+            } 
+            // if search is left blank
+            else {
+                dispatch({ type: 'FETCH_PENDING_EVENT_ADMIN' })
+            }
+        }
+    }
 
     return (
         <div className="admin-event-view">
@@ -130,25 +149,26 @@ export default function AdminEventList() {
             >Admin Event List</h1>
             <div>
 
-                
+
 
                 <div className="admin-search-div">
                     <InputBase
                         sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
-                        placeholder="| Search"
-                        inputProps={{ 'aria-label': 'search google maps' }}
+                        placeholder="Search"
+                        // inputProps={{ 'aria-label': 'search google maps' }}
+                        onChange={event => handleSearch(event)}
                     />
                     <IconButton>
                         <SearchIcon />
                     </IconButton>
                 </div>
 
-                <Divider sx={{ height: 10, m: 0.5 }} orientation="vertical" /> 
+                <Divider sx={{ height: 10, m: 0.5 }} orientation="vertical" />
 
 
-                <Box 
-                className="event-tab"
-                sx={{ bgcolor: 'background.paper', height: '0px', width: '100%', textAlign: 'center', }}>
+                <Box
+                    className="event-tab"
+                    sx={{ bgcolor: 'background.paper', height: '0px', width: '100%', textAlign: 'center', }}>
                     <AppBar position="static">
                         <Tabs
                             value={value}
@@ -160,7 +180,7 @@ export default function AdminEventList() {
                         >
                             <Tab label="Approved" {...a11yProps(0)} />
                             <Tab label="Pending" {...a11yProps(1)} />
-            
+
                         </Tabs>
                     </AppBar>
                     <SwipeableViews
@@ -174,26 +194,26 @@ export default function AdminEventList() {
 
 
 
-            <div className="approved-event-list">
-                {fetchApprovedEvents?.map((event, i) => {
-                    return (
-                        <div key={i}>
+                            <div className="approved-event-list">
+                                {fetchApprovedEvents?.map((event, i) => {
+                                    return (
+                                        <div key={i}>
 
-                            
-                            <AdminEventListItem
-                                event={event}
-                            />
 
-                        </div>
-                    )
-                })}
-            </div>
+                                            <AdminEventListItem
+                                                event={event}
+                                            />
+
+                                        </div>
+                                    )
+                                })}
+                            </div>
 
                         </TabPanel>
                         <TabPanel value={value} index={1} dir={theme.direction}>
                             <AdminPendingEventList />
                         </TabPanel>
- 
+
                     </SwipeableViews>
                 </Box>
 
