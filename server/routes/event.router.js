@@ -229,11 +229,15 @@ router.post('/', (req, res) => {
 
 // update information for specific event
 router.put('/:id', (req, res) => {
+    
+    
+    console.log('event !!!', req.body.status)
+    
     const queryText = `
     update "events" set
     "org_id" = $1,
     "category_id" = $2,
-    "status" = case when ($7 < NOW()) then 'expired' else 'approved' end,
+    "status" = $3,
     "name" = $4,
     "description" = $5,
     "start_date" = $6,
@@ -271,12 +275,14 @@ router.put('/:id', (req, res) => {
 
 // update approved events to status expired
 
-router.put('/expired', (req, res) => {
+router.put('/expired/status', (req, res) => {
+
+    console.log('ROUTER EXPIRED!!!', req.body);
     const queryText = `
     update "events" set
     "org_id" = $1,
     "category_id" = $2,
-    "status" = case when ($7 < NOW()) then 'expired' else 'approved' end,
+    "status" = $3,
     "name" = $4,
     "description" = $5,
     "start_date" = $6,

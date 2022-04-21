@@ -29,7 +29,7 @@ router.get("/save", (req, res) => {
 
   let id = req.user.id;
 
-  console.log('id is :', req.user.id)
+
 
   if (req.isAuthenticated()) {
     pool

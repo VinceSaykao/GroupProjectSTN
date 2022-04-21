@@ -177,7 +177,7 @@ export default function Nav() {
 
 
 
-console.log('this is user', user)
+
 
 
   switch (user.access_level) {
