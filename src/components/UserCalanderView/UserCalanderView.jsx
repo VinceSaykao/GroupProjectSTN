@@ -48,7 +48,7 @@ function UserCalanderView(){
 
     const onClickDay = (value, event)=>{
 
-        dispatch({type:"FETCH_SAVED_EVENTS", payload: calendarValue})
+        dispatch({type:"FETCH_SAVED_EVENTS", payload: calendarValue}})
         
     }
 
