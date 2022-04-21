@@ -42,7 +42,6 @@ router.get("/save", (req, res) => {
         where 
         fav_events.user_id = $1;`, [id])
       .then((result) => {
-        console.log('saved router', result.rows);
         res.send(result.rows)})
 
       .catch((error) => {

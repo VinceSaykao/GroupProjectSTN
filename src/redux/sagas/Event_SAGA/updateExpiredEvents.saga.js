@@ -20,8 +20,8 @@ function* updateExpiredEvents (action) {
 
 }
 
-function* fetchSavedEventsSaga() {
+function* updateExpiredEventsSaga() {
     yield takeEvery('UPDATE_EXPIRED_EVENTS', updateExpiredEvents);
 }
 
-export default fetchSavedEventsSaga;
+export default updateExpiredEventsSaga;
