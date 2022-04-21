@@ -117,11 +117,6 @@ function AdminEventEdit() {
     const categories = useSelector(store => store.categories);
     const selectedEvent = useSelector(store => store.updateEvent);
 
-    console.log('selectedEvent:', selectedEvent);
-    // const selectedEvent = allEvents.filter(event => event.id == id);
-    // console.log('selectedEvent:', selectedEvent);
-
-
     // Form Submit
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -129,7 +124,6 @@ function AdminEventEdit() {
         history.push('/calanderview');
     }
 
-    console.log('event cat id:', selectedEvent.id);
 
     return (
         <Box
@@ -139,7 +133,7 @@ function AdminEventEdit() {
 
                 {/*  -----------------------------------------------------------------------
                         EVENT DETAIL
-            ------------------------------------------------------------------------- */}
+                ------------------------------------------------------------------------- */}
 
                 <Typography variant="h5" sx={{ my: 2 }}>Event Detail</Typography>
 

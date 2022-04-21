@@ -116,8 +116,6 @@ function AdminEventCopy() {
     const categories = useSelector(store => store.categories);
     const copiedEvent = useSelector(store => store.updateEvent);
 
-    console.log('copiedEvent:', copiedEvent);
-
     // Form Submit
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -125,14 +123,13 @@ function AdminEventCopy() {
         history.push('/calanderview');
     }
 
-
     return (
         <Box
             sx={{ mx: 2 }}
         >
             <form onSubmit={event => handleFormSubmit(event)}>
 
-            {/*  -----------------------------------------------------------------------
+                {/*  -----------------------------------------------------------------------
                  EVENT DETAIL
             ------------------------------------------------------------------------- */}
 
