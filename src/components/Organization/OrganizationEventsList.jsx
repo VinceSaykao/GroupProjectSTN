@@ -124,9 +124,9 @@ export default function OrganizationEventsList() {
     (fetchPendingEvents) => fetchPendingEvents.org_id === org.id
 );
 
-const expiredOrgEvents = fetchPendingEvents.filter(
-  (fetchPendingEvents) => fetchPendingEvents.org_id === org.id 
-);
+// const pendingOrgEvents = fetchPendingEvents.filter(
+//   (fetchPendingEvents) => fetchPendingEvents.org_id === org.id // uh oh, big flaw with using user.org_id
+// );
 
 
 
@@ -178,17 +178,18 @@ const expiredOrgEvents = fetchPendingEvents.filter(
 
             </Tabs>
           </AppBar>
+
+
+
           <SwipeableViews
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
             index={value}
             onChangeIndex={handleChangeIndex}
           >
+
+
+
             <TabPanel value={value} index={0} dir={theme.direction}>
-
-
-
-
-
               <div className="org-event-view">
                 <div className="org-event-list">
                   {orgEvents?.map((event, i) => {
@@ -200,14 +201,12 @@ const expiredOrgEvents = fetchPendingEvents.filter(
                   })}
                 </div>
               </div>
-
-
-
             </TabPanel>
+
+
+
+
             <TabPanel value={value} index={1} dir={theme.direction}>
-
-
-
             <div className="org-event-view">
                 <div className="org-event-list">
                   {pendingOrgEvents?.map((events, i) => {
@@ -219,16 +218,39 @@ const expiredOrgEvents = fetchPendingEvents.filter(
                   })}
                 </div>
               </div>
-
-
-
-
             </TabPanel>
+
+
+
+
+            <TabPanel value={value} index={2} dir={theme.direction}>
+<div className="org-event-view">
+    <div className="org-event-list">
+      {pendingOrgEvents?.map((events, i) => {
+        return (
+          <div key={i}>
+            <OrganizationPendingEventsListItem events={events} />
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</TabPanel>
+
 
           </SwipeableViews>
         </Box>
 
+
+
+
+
         :
+
+
+
+
+
 
         <Box
         className="event-tab"
@@ -253,9 +275,6 @@ const expiredOrgEvents = fetchPendingEvents.filter(
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-
-
-
 
 
             <div className="org-event-view">
@@ -303,9 +322,6 @@ const expiredOrgEvents = fetchPendingEvents.filter(
 
 
       </div>
-
-
-
 
 
     </div>
