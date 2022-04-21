@@ -29,6 +29,7 @@ import Box from '@mui/material/Box';
 import TabList from '@mui/lab/TabList';
 
 import './OrganizationView.css';
+import OrganizationPendingEventsList from './OrganizationPendingEventsList';
 
 
 
@@ -176,7 +177,7 @@ export default function OrganizationEventsList() {
 
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              {/* <AdminPendingEventList /> */}
+              <OrganizationPendingEventsList />
             </TabPanel>
 
           </SwipeableViews>
