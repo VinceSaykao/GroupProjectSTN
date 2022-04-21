@@ -565,7 +565,7 @@ export default function Nav() {
                     </ListItemIcon>
                     {/* <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/> */}
                     <ListItemText className='nav-text'>
-                    {index === 0 && <h2 onClick={handleOrgProfile}>Profile</h2>}
+                    {index === 0 && <h2 onClick={handleProfile}>Profile</h2>}
                       {index === 1 && <h2 onClick={handleHome}>Home</h2>}
                       {index === 2 && <h2 onClick={handleOrganizations} >Organizations</h2>}
 
