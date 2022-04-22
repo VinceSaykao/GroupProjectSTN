@@ -25,6 +25,7 @@ function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
   const history = useHistory();
+  const user = useSelector(store => store.user);
 
   const [values, setValues] = React.useState({
     password: '',
@@ -48,6 +49,7 @@ function RegisterForm() {
     setValue(event.target.value);
   };
 
+
   const registerUser = (event) => {
     event.preventDefault();
 
@@ -60,8 +62,11 @@ function RegisterForm() {
 
       },
     });
-    history.push('/organization-register-form');
+  
   }; // end registerUser
+
+
+
 
   return (
     <Box component="form" container onSubmit={registerUser} textAlign="center" sx={{ mt:"33.33%"}}>
@@ -130,6 +135,6 @@ function RegisterForm() {
       </div>
     </Box>
   );
-}
+          };
 
 export default RegisterForm;

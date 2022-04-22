@@ -131,9 +131,9 @@ function OrganizationView() {
             {org.name}
           </Typography>
         </Grid>
-        {user.access_level === 1 ? (
-          <div></div>
-        ) : (
+
+
+        {user.access_level >= 2 ? (
           <div>
             {
               <Box
@@ -157,6 +157,9 @@ function OrganizationView() {
               </Box>
             }
           </div>
+        ) : (
+          <div></div>
+
         )}
 
         <Typography

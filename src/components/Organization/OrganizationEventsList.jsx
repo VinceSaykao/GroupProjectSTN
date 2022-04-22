@@ -94,7 +94,7 @@ export default function OrganizationEventsList() {
   // END MUI TAB
 
   const orgEvents = approvedEvents.filter(
-    (approvedEvents) => approvedEvents.org_id === org.id // uh oh, big flaw with using user.org_id
+    (approvedEvents) => approvedEvents.org_id === org.id 
   );
 
   const pendingOrgEvents = fetchPendingEvents.filter(
