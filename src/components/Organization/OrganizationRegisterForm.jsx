@@ -14,6 +14,8 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
+import { IMaskInput } from 'react-imask';
+
 // CSS for Icons
 import '../Admin/AdminForm/CategoryItem.css';
 
@@ -261,17 +263,20 @@ function AddOrganization() {
             />
           </Grid>
           <Grid item xs={12}>
-            <MuiPhoneNumber
-              variant="outlined"
+            <TextField
+              // variant="outlined"
               fullWidth
               autoComplete="off"
-              defaultCountry={'us'}
-              onlyCountries={['us', 'ca', 'mx', 'pr']}
-              disableAreaCodes
+              // mask="(#00) 000-0000"
+              // definitions={{
+              //   '#': /[1-9]/,
+              // }}
+              type="number"
               label="Phone #"
               value={newOrg.phone}
               onChange={(e) => setNewOrg({ ...newOrg, phone: e.target.value })}
             />
+
           </Grid>
 
           <Grid item xs={12}>
@@ -311,15 +316,17 @@ function AddOrganization() {
             />
           </Grid>
           <Grid item xs={4}>
-          <FormControl sx={{ minWidth: '100%' }}>
+            <FormControl sx={{ minWidth: '100%' }}>
               <InputLabel id="state">State</InputLabel>
               <Select
                 autoComplete="off"
                 label="State"
-              value={newOrg.state}
-              onChange={(e) => setNewOrg({ ...newOrg, state: e.target.value })}
-            >
-            {usaStateList.map((usaState) => (
+                value={newOrg.state}
+                onChange={(e) =>
+                  setNewOrg({ ...newOrg, state: e.target.value })
+                }
+              >
+                {usaStateList.map((usaState) => (
                   <MenuItem key={usaState.value} value={usaState.value}>
                     {usaState.value}
                   </MenuItem>
