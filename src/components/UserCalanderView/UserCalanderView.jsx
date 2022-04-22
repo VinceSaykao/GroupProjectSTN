@@ -27,7 +27,7 @@ function UserCalanderView() {
     const history = useHistory();
 
 
-    const [calendarValue, setCalendarValue] = useState(new Date());
+    // const [calendarValue, setCalendarValue] = useState(new Date());
 
     // useEffect to grab the approved events
     useEffect(() => {
@@ -57,9 +57,7 @@ return (
     <div className="calendar-view">
 
     <Helmet>
-        <style>{`body,html { background-color: #090909ee; overflow: hidden;); 
-    
-    }`}
+        <style>{`body,html { background-color: #090909ee; overflow: hidden;`}}
 
         </style>
     </Helmet>
@@ -90,20 +88,21 @@ return (
             return (
                 <div key={i}>
                 <UserCalanderItem event={event} />
-    // Search Function ------------------------------------
+                </div>)
+        // Search Function ------------------------------------ 
     const handleSearch = (event) => {
-        event.preventDefault();
+        event.preventDefault()
         // if user enters search
         if (event.target.value.length > 0) {
-            dispatch({ type: 'FETCH_APPROVED_SEARCH', payload: { search: event.target.value } })
+            dispatch({ type: 'FETCH_APPROVED_SEARCH', payload: { search: event.target.value } } )
         }
         // if search is left blank
         else {
             dispatch({ type: 'FETCH_APPROVED_EVENTS' })
         }
     }
+    // </div>
 
-    return (
         <div className="calendar-view">
 
             <Helmet>
