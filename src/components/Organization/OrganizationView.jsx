@@ -13,6 +13,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
+import Container from '@mui/material/Container'
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -20,6 +21,8 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import OrganizationEventsList from './OrganizationEventsList';
+
+import { Helmet } from 'react-helmet';
 
 function OrganizationView() {
   const dispatch = useDispatch();
@@ -50,14 +53,30 @@ function OrganizationView() {
     let match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/);
 
     if (match) {
+<<<<<<< HEAD
       return '+' + match[1] + ' (' + match[2] + ') ' + match[3] + '-' + match[4]
     };
 
     return null
+=======
+      return (
+        '+' + match[1] + ' (' + match[2] + ') ' + match[3] + '-' + match[4]
+      );
+    }
+
+    return null;
+>>>>>>> master
   };
 
   return (
-    <div>
+    <Container sx={{minHeight: 1300}}>
+      <Helmet>
+        <style>
+          {`body { background-color: rgb(75, 75, 75);); 
+        }`}
+        </style>
+      </Helmet>
+      <Box className="org-view">
       <BottomNavigation
         sx={{ width: 'auto' }}
         style={{ backgroundColor: 'rgb(75, 75, 75)' }}
@@ -67,7 +86,7 @@ function OrganizationView() {
         ) : (
           <div>
             {
-              <Link href={org.instagram}>
+              <Link href={org.instagram}target="blank">
                 <BottomNavigationAction
                   icon={<InstagramIcon sx={{ color: 'white' }} />}
                 />
@@ -80,7 +99,7 @@ function OrganizationView() {
         ) : (
           <div>
             {
-              <Link href={org.twitter}>
+              <Link href={org.twitter}target="blank">
                 <BottomNavigationAction
                   icon={<TwitterIcon sx={{ color: 'white' }} />}
                 />
@@ -93,7 +112,7 @@ function OrganizationView() {
         ) : (
           <div>
             {
-              <Link href={org.facebook}>
+              <Link href={org.facebook}target="blank">
                 <BottomNavigationAction
                   icon={<FacebookIcon sx={{ color: 'white' }} />}
                 />
@@ -102,7 +121,6 @@ function OrganizationView() {
           </div>
         )}
       </BottomNavigation>
-      <Box className="org-view">
         <Grid container justifyContent="center">
           <div className="org-box">
             <Box
@@ -110,7 +128,7 @@ function OrganizationView() {
               sx={{
                 height: 'auto',
                 width: '400px',
-                maxHeight: { xs: 233, md: 167 },
+                maxHeight: { xs: 200, md: 167 },
                 maxWidth: { xs: 350, md: 250 },
               }}
               src={org.image}
@@ -129,9 +147,9 @@ function OrganizationView() {
                 sx={{
                   height: 25,
                   display: 'flex',
-                  justifyContent: 'flex-end',
-                  alignItems: 'flex-end',
-                  mr: 2
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  // mr: 2,
                 }}
               >
                 <Button
@@ -151,7 +169,13 @@ function OrganizationView() {
 
         )}
 
-        <Typography gutterBottom variant="body1" component="div" color="white" sx={{ mr: 2, ml:2, mt:1 }}>
+        <Typography
+          gutterBottom
+          variant="body1"
+          component="div"
+          color="white"
+          sx={{ mr: 2, ml: 2, mt: 1, }}
+        >
           {org.description}
         </Typography>
         <Accordion>
@@ -160,13 +184,18 @@ function OrganizationView() {
             aria-controls="panel1a-content"
             id="panel1a-header"
             sx={{
-              backgroundColor: "rgb(101, 101, 101)",
-              color: "white"
+              backgroundColor: 'rgb(101, 101, 101)',
+              color: 'white',
             }}
           >
             <Typography>Contact Info & Location</Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails 
+           sx={{
+            backgroundColor: 'rgb(101, 101, 101)',
+            color: 'white',
+          }}
+          >
             <Typography gutterBottom variant="body1" component="div">
               {org.website}
             </Typography>
@@ -191,18 +220,19 @@ function OrganizationView() {
             </Grid>
           </AccordionDetails>
         </Accordion>
+<<<<<<< HEAD
         <h1
           className='organization-event-header'
         >Events</h1>
         <OrganizationEventsList />
 
 
+=======
+        <Typography variant="h5" color="white" sx={{m:1, textAlign: "center"}}>Events</Typography>
+          <OrganizationEventsList />
+>>>>>>> master
       </Box>
-
-
-
-
-    </div>
+    </Container>
   );
 }
 

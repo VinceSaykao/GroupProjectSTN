@@ -22,17 +22,21 @@ function OrganizationListItem({ org }) {
   return (
     <Card
       className="org-card"
-      style={{ backgroundColor: '#dee8f1' }}
+      style={{ backgroundColor: 'white' }}
       sx={{ width: 300 }}
     >
       <CardMedia
+      sx={{                
+        maxHeight: { xs: 111, md: 167 },
+        maxWidth: { xs: 300, md: 200 },
+        }}
         component="img"
-        height="100"
         image={image}
         alt={(name, 'img')}
       ></CardMedia>
-      <CardContent sx={{ maxHeight: 60 }}>
+      <CardContent sx={{ maxHeight: 60, borderTop: 1,  borderColor: "black" }}>
         <Typography
+          sx={{textAlign: "center"}}
           gutterBottom
           variant="h6"
           component="div"

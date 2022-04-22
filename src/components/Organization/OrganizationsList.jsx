@@ -8,14 +8,15 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { IconButton } from "@mui/material";
+import { IconButton } from '@mui/material';
 import { Divider, Typography } from '@mui/material';
 
 // ---- CSS imports -------------
 import '../Admin/AdminApprovedEvents/AdminEventList.scss';
 
-function OrganizationsList() {
+import { Helmet } from 'react-helmet';
 
+function OrganizationsList() {
   const orgs = useSelector((store) => store.fetchAllOrganizations);
 
   const dispatch = useDispatch();
@@ -28,23 +29,33 @@ function OrganizationsList() {
     event.preventDefault();
     // if user enters search
     if (event.target.value.length > 0) {
-      dispatch({ type: 'FETCH_ORGANIZATION_SEARCH', payload: { search: event.target.value } })
+      dispatch({
+        type: 'FETCH_ORGANIZATION_SEARCH',
+        payload: { search: event.target.value },
+      });
     }
     // if search is left blank
     else {
-      dispatch({ type: 'FETCH_ORGANIZATIONS' })
+      dispatch({ type: 'FETCH_ORGANIZATIONS' });
     }
-
-  }
+  };
 
   return (
     <div className="org-list-container">
-      <Typography variant="h4" sx={{ textAlign: 'center', my: 2 }}>Organizations</Typography>
+      <Helmet>
+        <style>
+          {`body { background-color: rgb(75, 75, 75);); 
+            }`}
+        </style>
+      </Helmet>
+      <Typography variant="h4" color="white" sx={{ textAlign: 'center', my: 2 }}>
+        Organizations
+      </Typography>
       <Box className="admin-search-div" sx={{ my: 2 }}>
         <InputBase
           sx={{ ml: 5, flex: 1, bgcolor: 'white' }}
           placeholder="Search"
-          onChange={event => handleSearch(event)}
+          onChange={(event) => handleSearch(event)}
         />
         <IconButton>
           <SearchIcon />

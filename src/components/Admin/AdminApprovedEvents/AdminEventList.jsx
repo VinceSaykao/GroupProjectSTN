@@ -228,6 +228,10 @@ export default function AdminEventList() {
     //     RETURN
     // ===============================================================================
 
+
+
+    console.log()
+
     return (
         <div className="admin-event-view">
 
