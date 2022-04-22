@@ -46,115 +46,65 @@ function UserCalanderView() {
     }));
 
 
-    const onClickDay = (value, event)=>{
+    const onClickDay = (value, event) => {
 
-        dispatch({type:"FETCH_SAVED_EVENTS", payload: calendarValue})
+        dispatch({ type: "FETCH_SAVED_EVENTS", payload: calendarValue })
     }
 
 
-
-return (
-    <div className="calendar-view">
-
-    <Helmet>
-        <style>{`body,html { background-color: #090909ee; overflow: hidden;); 
-    
-    }`}
-
-        </style>
-    </Helmet>
-
-    <div className="react-calendar">
-      <header>
-        {/* <Typography variant="h2">Hello World.</Typography> */}
-        <br />
-        <Calendar onChange={setCalendarValue} value={calendarValue} onClickDay={onClickDay} />
-        <br />
-        <Typography variant="h5">{calendarValue.toString()}</Typography>
-      </header>
-    </div>
-    <div>
-
-
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-    </div>
-
-
-    <StyledBox
-    sx={{
-        bottom: '0',
-    }}
-    >
-    <div className="home-approved-event-list">
-        {fetchApprovedEvents?.map((event, i) => {
-            return (
-                <div key={i}>
-                <UserCalanderItem event={event} />
-    // Search Function ------------------------------------
-    const handleSearch = (event) => {
-        event.preventDefault();
-        // if user enters search
-        if (event.target.value.length > 0) {
-            dispatch({ type: 'FETCH_APPROVED_SEARCH', payload: { search: event.target.value } })
-        }
-        // if search is left blank
-        else {
-            dispatch({ type: 'FETCH_APPROVED_EVENTS' })
-        }
-    }
 
     return (
         <div className="calendar-view">
 
-            <Helmet>
-                <style>
-                    {`body,html { background-color: #090909ee;);}`}
-                </style>
-            </Helmet>
+        <Helmet>
+            <style>
+                {`body,html { background-color: #090909ee;);}`}
+            </style>
+        </Helmet>
 
-            <Grid sx={{height: '80px', top: '10px'}}>
-            <Box className="home-search-div" sx={{ mt: 4, top: 23, backdropFilter: 'blur:50px', width: '100%', bgcolor: '#00000078'}}>
-                <InputBase
-                    className="home-search-search"
-                    sx={{ ml: 5, flex: 1, color: 'white', height: '90px', lineHeight: '50px', fontSize: '40px'}}
-                    placeholder="Search"
-                    // inputProps={{ 'aria-label': 'search google maps' }}
-                    onChange={event => handleSearch(event)}
+        <Grid sx={{height: '80px', top: '10px'}}>
+        <Box className="home-search-div" sx={{ mt: 4, top: 23, backdropFilter: 'blur:50px', width: '100%', bgcolor: '#00000078'}}>
+            <InputBase
+                className="home-search-search"
+                sx={{ ml: 5, flex: 1, color: 'white', height: '90px', lineHeight: '50px', fontSize: '40px'}}
+                placeholder="Search"
+                // inputProps={{ 'aria-label': 'search google maps' }}
+                onChange={event => handleSearch(event)}
+            />
+            <IconButton>
+                <SearchIcon 
+                fontSize="large"
+                sx={{color: 'white'}}
                 />
-                <IconButton>
-                    <SearchIcon 
-                    fontSize="large"
-                    sx={{color: 'white'}}
-                    />
-                </IconButton>
-            </Box>
-            </Grid>
-   
+            </IconButton>
+        </Box>
+        </Grid>
 
 
-            {/* 
-            <h1>Calander Goes Here =-) (hopefully)</h1>
-            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" /> 
-            */}
 
-            <StyledBox
-            // sx={{
-            //     bottom: '0',
-            // }}
-            >
-                <div className="home-approved-event-list" >
-                    {fetchApprovedEvents?.map((event, i) => {
-                        return (
-                            <div key={i}>
-                                <UserCalanderItem event={event} />
-                            </div>
-                        )
-                    })}
-                </div>
-            </StyledBox>
+        {/* 
+        <h1>Calander Goes Here =-) (hopefully)</h1>
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" /> 
+        */}
 
-        </div>
-    )
+        <StyledBox
+        // sx={{
+        //     bottom: '0',
+        // }}
+        >
+            <div className="home-approved-event-list" >
+                {fetchApprovedEvents?.map((event, i) => {
+                    return (
+                        <div key={i}>
+                            <UserCalanderItem event={event} />
+                        </div>
+                    )
+                })}
+            </div>
+        </StyledBox>
+
+    </div>
+                                )
 }
 
-export default UserCalanderView;
+                                export default UserCalanderView;
