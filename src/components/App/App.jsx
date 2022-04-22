@@ -68,7 +68,7 @@ const something = () => {
 
     const dateNow = format(new Date(), 'yyyy/MM/dd')
     if (exp.end_date < dateNow) {
-      console.log('expired!!!!!!!!!!!!!!!!')
+      console.log('expired!!!!!!!!!!!!!!!')
       dispatch({
           type: 'UPDATE_EVENT',
           payload:
