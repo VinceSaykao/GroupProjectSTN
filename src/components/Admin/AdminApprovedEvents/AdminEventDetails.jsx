@@ -221,6 +221,7 @@ export default function AdminEventDetails() {
 
                                                 {user.access_level >= 2 ?
                                                     <Button
+                                                        onClick={handleEdit}
                                                         variant="contained"
                                                         startIcon={<EditIcon />}
                                                     >Edit</Button>
@@ -235,6 +236,7 @@ export default function AdminEventDetails() {
                                                 {user.access_level >= 2 ?
 
                                                     <Button
+                                                    onClick={handleCopy}
                                                         startIcon={<ContentCopyIcon />}
                                                         variant="contained"
                                                     >Copy</Button>
@@ -245,7 +247,7 @@ export default function AdminEventDetails() {
                                                 }
 
                                                 {user.access_level >= 2 ?
-
+                
                                                     <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
                                                         Delete
                                                     </Button>
@@ -314,14 +316,14 @@ export default function AdminEventDetails() {
                                 </Box>
                             </Modal>
                         </div>
-                    )
+            )
                 })}
-            </div>
-
-
-
-
         </div>
+
+
+
+
+        </div >
 
 
 
