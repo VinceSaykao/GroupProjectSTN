@@ -62,8 +62,11 @@ function RegisterForm() {
 
       },
     });
-    history.push('/organization-register-form');
+  
   }; // end registerUser
+
+
+
 
   return (
     <Box component="form" container onSubmit={registerUser} textAlign="center" sx={{ mt:"33.33%"}}>
