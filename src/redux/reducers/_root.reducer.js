@@ -21,8 +21,9 @@ import addEvent from "./Event_Reducers/addEvent.reducer";
 import updateEvent from "./Event_Reducers/updateEvent.reducer";
 import fetchSavedEvents from "./Event_Reducers/fetchSavedEvents.reducer";
 import fetchPendingEvents from "./Event_Reducers/fetchPendingEvents.reducer";
-// Categories
+// Other
 import categories from "./categories.reducer";
+import filters from "./Filter_Reducers/filters.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -55,8 +56,9 @@ const rootReducer = combineReducers({
   updateEvent,
   fetchSavedEvents,
   fetchPendingEvents,
-  // Categories
+  // Other
   categories,
+  filters,
 });
 
 export default rootReducer;

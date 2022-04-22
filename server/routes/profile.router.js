@@ -29,12 +29,36 @@ router.get("/save", (req, res) => {
 
   let id = req.user.id;
 
-  console.log('id is :', req.user.id)
+
 
   if (req.isAuthenticated()) {
     pool
       .query(
-        `select * 
+        `select events.id,
+        event_id,
+        events.category_id,
+        events.status,
+        events."name",
+        events.description,
+        TO_CHAR(start_date, 'Mon') AS "month",
+        extract(
+        day from events.start_date
+        ) AS "day",
+        to_char(events.start_date, 'Dy') AS "dayname",
+        TO_CHAR(events.start_date, 'YYYY-MM-DD') AS start_date,
+        TO_CHAR(end_date, 'YYYY-MM-DD') AS end_date,
+        events.start_time,
+        events.end_time,
+        events.image,
+        events.address1,
+        events.address2,
+        events.city,
+        events.zip,
+        events.state,
+        events.email,
+        events.phone,
+        events.link,
+        events.feedback
         from events 
         join fav_events on fav_events.event_id = events.id
         join "user" 
@@ -42,7 +66,6 @@ router.get("/save", (req, res) => {
         where 
         fav_events.user_id = $1;`, [id])
       .then((result) => {
-        console.log('saved router', result.rows);
         res.send(result.rows)})
 
       .catch((error) => {

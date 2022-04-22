@@ -3,17 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
-
-import { Helmet } from 'react-helmet';
-
-
 // ----material ui imports----
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { IconButton } from "@mui/material";
+import { IconButton } from '@mui/material';
 import { Divider } from '@mui/material';
-
-
+import Link from '@mui/material/Link';
 
 // TAB MUI
 
@@ -30,8 +25,6 @@ import TabList from '@mui/lab/TabList';
 
 import './OrganizationView.css';
 import OrganizationPendingEventsListItem from './OrganizationPendingEventsListItem';
-
-
 
 // MUI TAB FUNCTIONS
 
@@ -70,22 +63,12 @@ function a11yProps(index) {
 
 // MUI TAB FUNCTIONS END
 
-
-
-
-
-
-
-
-
-
-
 export default function OrganizationEventsList() {
   // store that grabs approved events, although fetchApprovedEvents brings in more data...??
   const approvedEvents = useSelector((store) => store.fetchApprovedEvents);
-  const fetchPendingEvents = useSelector(store => store.fetchPendingEvents);
+  const fetchPendingEvents = useSelector((store) => store.fetchPendingEvents);
   const org = useSelector((store) => store.fetchOrganization);
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -95,11 +78,6 @@ export default function OrganizationEventsList() {
     dispatch({ type: 'FETCH_APPROVED_EVENTS' });
     dispatch({ type: 'FETCH_PENDING_EVENT_ADMIN' });
   }, []);
-
-
-
-
-
 
   // MUI TAB
   const theme = useTheme();
@@ -115,196 +93,136 @@ export default function OrganizationEventsList() {
 
   // END MUI TAB
 
-
   const orgEvents = approvedEvents.filter(
-    (approvedEvents) => approvedEvents.org_id === org.id // uh oh, big flaw with using user.org_id
+    (approvedEvents) => approvedEvents.org_id === org.id 
   );
 
   const pendingOrgEvents = fetchPendingEvents.filter(
     (fetchPendingEvents) => fetchPendingEvents.org_id === org.id // uh oh, big flaw with using user.org_id
-);
-
-
+  );
 
   return (
-
-    
     <div className="admin-event-view">
-
-
-
-
-
-      <Helmet>
-        <style>{`body { background-color: #090909ee;); 
-        
-        }`}
-
-        </style>
-      </Helmet>
-
-
-      <div> 
-
-
-
-        
-
-        {/* <Divider sx={{ height: 10, m: 0.5 }} orientation="vertical" /> */}
-
-        {user.access_level >= 2 ?
-
-
-        <Box
-          className="event-tab"
-          sx={{ bgcolor: 'background.paper', height: '0px', width: '100%', textAlign: 'center', }}>
-          <AppBar position="static">
-            <Tabs
-              // position= '-webkit-sticky'
-              value={value}
-              onChange={handleChange}
-              indicatorColor="primary"
-              textColor="inherit"
-              variant="fullWidth"
-              aria-label="full width tabs example"
+      <div>
+        {user.access_level >= 2 ? (
+          <Box
+            className="event-tab"
+            sx={{
+              bgcolor: 'background.paper',
+              height: '0px',
+              width: '100%',
+              textAlign: 'center',
+            }}
+          >
+            <AppBar position="static">
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                sx={{
+                  backgroundColor: 'rgb(101, 101, 101)',
+                  color: 'white',
+                }}
+                indicatorColor="primary"
+                textColor="inherit"
+                variant="fullWidth"
+                aria-label="full width tabs example"
+              >
+                <Tab label="Approved" {...a11yProps(0)} />
+                <Tab label="Pending" {...a11yProps(1)} />
+              </Tabs>
+            </AppBar>
+            <SwipeableViews
+              axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+              index={value}
+              onChangeIndex={handleChangeIndex}
             >
-              <Tab label="Approved" {...a11yProps(0)} />
-              <Tab label="Pending" {...a11yProps(1)} />
-
-            </Tabs>
-          </AppBar>
-          <SwipeableViews
-            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-            index={value}
-            onChangeIndex={handleChangeIndex}
-          >
-            <TabPanel value={value} index={0} dir={theme.direction}>
-
-
-
-
-
-              <div className="org-event-view">
-                <div className="org-event-list">
-                  {orgEvents?.map((event, i) => {
-                    return (
-                      <div key={i}>
-                        <OrgEventListItem event={event} />
-                      </div>
-                    );
-                  })}
+              <TabPanel value={value} index={0} dir={theme.direction}>
+                <div className="org-event-view">
+                  <div className="org-event-list">
+                    {orgEvents?.map((event, i) => {
+                      return (
+                        <div key={i}>
+                          <OrgEventListItem event={event} />
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-
-
-
-            </TabPanel>
-            <TabPanel value={value} index={1} dir={theme.direction}>
-
-
-
-            <div className="org-event-view">
-                <div className="org-event-list">
-                  {pendingOrgEvents?.map((events, i) => {
-                    return (
-                      <div key={i}>
-                        <OrganizationPendingEventsListItem events={events} />
-                      </div>
-                    );
-                  })}
+              </TabPanel>
+              <TabPanel value={value} index={1} dir={theme.direction}>
+                <div className="org-event-view">
+                  <div className="org-event-list">
+                    {pendingOrgEvents?.map((events, i) => {
+                      return (
+                        <div key={i}>
+                          <OrganizationPendingEventsListItem events={events} />
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-
-
-
-
-            </TabPanel>
-
-          </SwipeableViews>
-        </Box>
-
-        :
-
-        <Box
-        className="event-tab"
-        sx={{ bgcolor: 'background.paper', height: '0px', width: '100%', textAlign: 'center', }}>
-        <AppBar position="static">
-          <Tabs
-            // position= '-webkit-sticky'
-            value={value}
-            onChange={handleChange}
-            indicatorColor="primary"
-            textColor="inherit"
-            variant="fullWidth"
-            aria-label="full width tabs example"
+              </TabPanel>
+            </SwipeableViews>
+          </Box>
+        ) : (
+          <Box
+            className="event-tab"
+            sx={{
+              bgcolor: 'background.paper',
+              height: '0px',
+              width: '100%',
+              textAlign: 'center',
+            }}
           >
-            <Tab label="Approved" {...a11yProps(0)} />
-
-          </Tabs>
-        </AppBar>
-        <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={value}
-          onChangeIndex={handleChangeIndex}
-        >
-          <TabPanel value={value} index={0} dir={theme.direction}>
-
-
-
-
-
-            <div className="org-event-view">
-              <div className="org-event-list">
-                {orgEvents?.map((event, i) => {
-                  return (
-                    <div key={i}>
-                      <OrgEventListItem event={event} />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-
-
-          </TabPanel>
-          <TabPanel value={value} index={1} dir={theme.direction}>
-
-
-
-          <div className="org-event-view">
-              <div className="org-event-list">
-                {pendingOrgEvents?.map((events, i) => {
-                  return (
-                    <div key={i}>
-                      <OrganizationPendingEventsListItem events={events} />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-
-
-
-          </TabPanel>
-
-        </SwipeableViews>
-      </Box>
-
-
-
-                }
-
-
+            <AppBar position="static">
+              <Tabs
+                // position= '-webkit-sticky'
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="inherit"
+                variant="fullWidth"
+                aria-label="full width tabs example"
+              >
+                <Tab label="Approved" {...a11yProps(0)} />
+              </Tabs>
+            </AppBar>
+            <SwipeableViews
+              axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+              index={value}
+              onChangeIndex={handleChangeIndex}
+            >
+              <TabPanel value={value} index={0} dir={theme.direction}>
+                <div className="org-event-view">
+                  <div className="org-event-list">
+                    {orgEvents?.map((event, i) => {
+                      return (
+                        <div key={i}>
+                          <OrgEventListItem event={event} />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </TabPanel>
+              <TabPanel value={value} index={1} dir={theme.direction}>
+                <div className="org-event-view">
+                  <div className="org-event-list">
+                    {pendingOrgEvents?.map((events, i) => {
+                      return (
+                        <div key={i}>
+                          <OrganizationPendingEventsListItem events={events} />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </TabPanel>
+            </SwipeableViews>
+          </Box>
+        )}
       </div>
-
-
-
-
-
     </div>
-  )
+    
+  );
 }
-
-

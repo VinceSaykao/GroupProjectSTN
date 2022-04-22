@@ -108,7 +108,7 @@ function AdminEventCopy() {
         dispatch({ type: 'FETCH_EVENT_DETAILS', payload: id })
     }, []);
 
-
+    const history = useHistory();
     const { id } = useParams();
     const dispatch = useDispatch();
     const user = useSelector(store => store.user);
@@ -116,14 +116,12 @@ function AdminEventCopy() {
     const categories = useSelector(store => store.categories);
     const copiedEvent = useSelector(store => store.updateEvent);
 
-    console.log('copiedEvent:', copiedEvent);
-
     // Form Submit
     const handleFormSubmit = (event) => {
         event.preventDefault();
         dispatch({ type: 'POST_EVENT', payload: copiedEvent })
+        history.push('/calanderview');
     }
-
 
     return (
         <Box
@@ -131,7 +129,7 @@ function AdminEventCopy() {
         >
             <form onSubmit={event => handleFormSubmit(event)}>
 
-            {/*  -----------------------------------------------------------------------
+                {/*  -----------------------------------------------------------------------
                  EVENT DETAIL
             ------------------------------------------------------------------------- */}
 

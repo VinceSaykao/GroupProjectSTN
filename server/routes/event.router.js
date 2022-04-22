@@ -21,6 +21,7 @@ router.get('/', (req, res) => {
             day from start_date
             ) AS "day",
             to_char(start_date, 'Dy') AS "dayname",
+            TO_CHAR(end_date, 'YYYY/MM/DD') AS stop_date,
             events.start_date,
             events.end_date,
             events.start_time,
@@ -40,9 +41,10 @@ router.get('/', (req, res) => {
             join organizations
             on
             organizations.id = events.org_id
-            where events.status = 'approved'
+            where events.status = 'approved' 
             order by start_date asc;
             `)
+            // AND end_date > NOW()
         .then((results) => res.send(results.rows))
         .catch((error) => {
             console.log('Error in GET for all events information', error);
@@ -73,6 +75,8 @@ router.get('/:id', (req, res) => {
             TO_CHAR(end_date, 'YYYY-MM-DD') AS end_date,
             start_time,
             end_time,
+            link,
+            email,
             image,
             address1,
             address2,
@@ -93,6 +97,7 @@ router.get('/:id', (req, res) => {
         });
 
 });
+//  TO_CHAR(end_date, 'YYYY/MM/DD') AS end_date, for expired 
 
 // GET all pending admin event information
 router.get('/admin/pending', (req, res) => {
@@ -193,7 +198,7 @@ router.post('/', (req, res) => {
         req.body.category_id,
         req.body.name,
         req.body.description,
-        req.body.status,
+        'pending',
         req.body.start_date,
         req.body.end_date,
         req.body.start_time,
@@ -223,8 +228,12 @@ router.post('/', (req, res) => {
     }
 });
 
-// update information for specific user profile
+// update information for specific event
 router.put('/:id', (req, res) => {
+    
+    
+    console.log('event !!!', req.body.status)
+    
     const queryText = `
     update "events" set
     "org_id" = $1,
@@ -258,7 +267,52 @@ router.put('/:id', (req, res) => {
     pool.query(queryText, queryValues).then(() => {
         res.sendStatus(200)
     }).catch((error) => {
-        console.log('Error updating specific profile user', error);
+        console.log('Error updating specific profile event', error);
+        res.sendStatus(500);
+    })
+});
+
+
+
+// update approved events to status expired
+
+router.put('/expired/status', (req, res) => {
+
+    console.log('ROUTER EXPIRED!!!', req.body);
+    const queryText = `
+    update "events" set
+    "org_id" = $1,
+    "category_id" = $2,
+    "status" = $3,
+    "name" = $4,
+    "description" = $5,
+    "start_date" = $6,
+    "end_date" = $7,
+    "start_time" = $8,
+    "end_time" = $9,
+    "image" = $10,
+    "address1" = $11,
+    "address2" = $12,
+    "city" = $13,
+    "zip" = $14,
+    "state" = $15,
+    "phone" = $16,
+    "email" = $17,
+    "link" = $18,
+    "feedback" = $19
+    where "id" = $20
+    ;
+    `;
+
+    const queryValues = [req.body.org_id, req.body.category_id, req.body.status, req.body.name,
+    req.body.description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time,
+    req.body.image, req.body.address1, req.body.address2, req.body.city, req.body.zip, req.body.state,
+    req.body.phone, req.body.email, req.body.link, req.body.feedback, req.params.id];
+
+    pool.query(queryText, queryValues).then(() => {
+        res.sendStatus(200)
+    }).catch((error) => {
+        console.log('Error updating expired users', error);
         res.sendStatus(500);
     })
 });
@@ -308,3 +362,44 @@ router.delete("/delete/fave/:id/:eventid", (req, res) => {
 
 
 module.exports = router;
+
+
+// // update information for specific event
+// router.put('/:id', (req, res) => {
+//     const queryText = `
+//     update "events" set
+//     "org_id" = $1,
+//     "category_id" = $2,
+//     "status" = $3,
+//     "name" = $4,
+//     "description" = $5,
+//     "start_date" = $6,
+//     "end_date" = $7,
+//     "start_time" = $8,
+//     "end_time" = $9,
+//     "image" = $10,
+//     "address1" = $11,
+//     "address2" = $12,
+//     "city" = $13,
+//     "zip" = $14,
+//     "state" = $15,
+//     "phone" = $16,
+//     "email" = $17,
+//     "link" = $18,
+//     "feedback" = $19
+//     where "id" = $20
+//     ;
+//     `;
+
+//     const queryValues = [req.body.org_id, req.body.category_id, req.body.status, req.body.name,
+//     req.body.description, req.body.start_date, req.body.end_date, req.body.start_time, req.body.end_time,
+//     req.body.image, req.body.address1, req.body.address2, req.body.city, req.body.zip, req.body.state,
+//     req.body.phone, req.body.email, req.body.link, req.body.feedback, req.params.id];
+
+//     pool.query(queryText, queryValues).then(() => {
+//         res.sendStatus(200)
+//     }).catch((error) => {
+//         console.log('Error updating specific profile user', error);
+//         res.sendStatus(500);
+//     })
+// });
