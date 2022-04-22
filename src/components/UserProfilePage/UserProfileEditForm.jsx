@@ -35,7 +35,7 @@ function UserProfileEditForm() {
     });
     history.push("/userprofile");
   };
-  // console.log("bio, email= ", firstName, lastName, bio, email);
+
   return (
     <>
       <Container sx={{ mt: "30px", display: "flex", justifyContent: "center" }}>
@@ -50,22 +50,17 @@ function UserProfileEditForm() {
           }}
         >
           <FormControl sx={{ width: "100%" }}>
-            {/* <input type="text" name="image" value={image} onChange={(event) => setImage(event.target.value)} /> */}
+          <form encType="multipart/form-data" >
             <TextField
               sx={{ margin: "10px" }}
               // autoComplete="off"
-              type="text"
-              label="Image URL"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
+              type='file'
+              name='file'
+              placeholder="image"
+              onChange={(e) => setImage(e.target.files[0])}
             />
 
-            {/* <input
-                type="text"
-                name="firstName"
-                value={firstName}
-                onChange={(event) => setFirstName(event.target.value)}
-              /> */}
+    
             <TextField
               sx={{ margin: "10px" }}
               // autoComplete="off"
@@ -90,7 +85,7 @@ function UserProfileEditForm() {
               onChange={(e) => setLastName(e.target.value)}
             />
 
-            {/* <input type="text" name="Bio" value={bio} onChange={(event) => setBio(event.target.value)} /> */}
+        
             <TextField
               sx={{ margin: "10px" }}
               // autoComplete="off"
@@ -99,7 +94,7 @@ function UserProfileEditForm() {
               value={bio}
               onChange={(e) => setBio(e.target.value)}
             />
-            {/* <input type="text" name="Email" value={email} onChange={(event) => setEmail(event.target.value)} /> */}
+         
             <TextField
               sx={{ margin: "10px" }}
               // autoComplete="off"
@@ -108,8 +103,7 @@ function UserProfileEditForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {/* <input type="text" name="Phone Number" onChange={(event) => setPhoneNumber(event.target.value)} /> */}
-            {/*  TODO: Image upload input  */}
+         </form>
           </FormControl>
 
           <Box
@@ -124,8 +118,7 @@ function UserProfileEditForm() {
               <Typography variant="h6">Update</Typography>
             </Button>
           </Box>
-
-          {/* <button onClick={handleUpdateUser}>Update</button> */}
+         
         </Box>
       </Container>
     </>
