@@ -85,7 +85,7 @@ function UserProfileItem({ info, detail }) {
                 {info.category_id == 1 && (
                   <Avatar
                     className="avatar"
-                    sx={{ width: 80, height: 80 }}
+                    sx={{ width: 80, height: 80,}}
                     src={icon_cleanup}
                   />
                 )}
@@ -172,10 +172,11 @@ function UserProfileItem({ info, detail }) {
                   className="edit-button"
                   size="small"
                   variant="contained"
-                  sx={{height: '100%', float: 'right', top: 12, left: 40, background: 'transparent', boxShadow:'none' ,color: '#444',}}
+                  sx={{height: '70%', float: 'right', top: 25, left: 35, background: '#444', boxShadow:'none' ,color: '#fff', borderRadiusRight: '10px', border:'1px solid white', boxShadow:'1px 1px 10px 3px black'}}
                 >
                   <StarIcon 
-                  fontSize='large'
+            
+                  sx={{fontSize:'50px',}}
 
                   />
                 </Button>
