@@ -94,6 +94,10 @@ export default function AdminEventDetails() {
         // history.goBack();
     }
 
+    const handleOops = () => {
+        alert('Only Registered Users Can Save!')
+    }
+
 
     // modal
     const style = {
@@ -196,7 +200,7 @@ export default function AdminEventDetails() {
                                     </Grid>
 
 
-                                    <Grid sx={{width: '100%', background: 'black'}}>
+                                    <Grid sx={{ width: '100%', background: 'black' }}>
                                         <Item
                                             className='detail-name'
                                         >{detail.name}</Item>
@@ -204,7 +208,7 @@ export default function AdminEventDetails() {
 
                                             <Item>
 
-                                                {user.access_level != 2 ?
+                                                {user.access_level === 3 || user.access_level === 1 ?
 
 
                                                     <Button
@@ -215,7 +219,29 @@ export default function AdminEventDetails() {
 
                                                     :
 
+
                                                     <div></div>
+
+                                                }
+
+
+                                                {user.id ?
+
+                                                    <div></div>
+
+
+                                                    :
+
+
+
+
+
+                                                    <Button
+                                                        onClick={handleOops}
+                                                        variant="contained"
+                                                        startIcon={<EditIcon />}
+                                                    >Save</Button>
+
 
                                                 }
 
@@ -236,7 +262,7 @@ export default function AdminEventDetails() {
                                                 {user.access_level >= 2 ?
 
                                                     <Button
-                                                    onClick={handleCopy}
+                                                        onClick={handleCopy}
                                                         startIcon={<ContentCopyIcon />}
                                                         variant="contained"
                                                     >Copy</Button>
@@ -247,7 +273,7 @@ export default function AdminEventDetails() {
                                                 }
 
                                                 {user.access_level >= 2 ?
-                
+
                                                     <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
                                                         Delete
                                                     </Button>
@@ -265,7 +291,7 @@ export default function AdminEventDetails() {
 
 
 
-                                    <Grid sx={{width: '100%', background: '#4444'}} >
+                                    <Grid sx={{ width: '100%', background: '#4444' }} >
                                         <StyledItem><u>{detail.dayname} {detail.month} {detail.day}</u></StyledItem>
                                         <StyledItem>
                                             <u><b>Details</b></u>
@@ -316,9 +342,9 @@ export default function AdminEventDetails() {
                                 </Box>
                             </Modal>
                         </div>
-            )
+                    )
                 })}
-        </div>
+            </div>
 
 
 
