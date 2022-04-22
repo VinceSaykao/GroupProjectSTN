@@ -157,4 +157,18 @@ VALUES (
   '92399'
 );
 
-
+INSERT INTO organizations (name, email, phone, website, twitter, facebook, instagram, description, image, address1, address2, city, state, zip)
+VALUES (
+  'TruEvolution',
+  'info@truevolution.org',
+  '951-888-1346',
+  'truevolution.org',
+  'https://twitter.com/truevolutioninc',
+  'facebook.com/truevolutioninc',
+  'https://www.instagram.com/truevolutioninc',
+  'TruEvolution fights for health equity and racial justice to advance the quality of life and human dignity of LGBTQ+ people.',
+  '4164 Brockton Ave. Suite A',
+  'Riverside',
+  'CA',
+  '92501'
+);
