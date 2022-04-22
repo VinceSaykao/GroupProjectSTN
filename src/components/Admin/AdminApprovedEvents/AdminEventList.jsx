@@ -244,7 +244,9 @@ export default function AdminEventList() {
             {/* <h1 className="admin-event-header">Admin Event List</h1> */}
             <Typography variant="h4" sx={{ color: 'white', textAlign: 'center', my: 2 }}>Admin Event List</Typography>
 
+
             <div>
+    
                 <div className="admin-search-div">
                     <InputBase
                         sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
@@ -256,6 +258,7 @@ export default function AdminEventList() {
                         <SearchIcon />
                     </IconButton>
                 </div>
+                
 
                 {/* Filter by Category in progress...
                 

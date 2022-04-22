@@ -26,7 +26,7 @@ const addEvent = (state = [], action) => {
         zip: null,
         state: '',
         email: '',
-        phone: null,
+        phone: '',
         link: '',
       }
   }

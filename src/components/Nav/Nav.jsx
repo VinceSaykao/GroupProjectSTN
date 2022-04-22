@@ -152,7 +152,7 @@ export default function Nav() {
   const navOrg = ['Profile', 'Calendar', 'Add Event', 'Organizations'];
   const navUser = ['Profile', 'Calendar', 'Organizations'];
 
-  console.log('this is user', user);
+
 
   switch (user.access_level) {
     case 3:

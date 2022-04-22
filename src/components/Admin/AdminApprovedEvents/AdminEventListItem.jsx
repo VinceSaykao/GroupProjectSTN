@@ -47,7 +47,7 @@ export default function AdminEventListItem({ event }) {
 
 
     const categories = useSelector(store => store.categories);
-    const fetchApprovedEvents = useSelector(store => store.fetchApprovedEvents);
+    // const fetchApprovedEvents = useSelector(store => store.fetchApprovedEvents);
 
     // useEffect to grab the approved events
     useEffect(() => {
