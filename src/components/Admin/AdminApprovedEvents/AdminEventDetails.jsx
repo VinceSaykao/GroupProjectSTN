@@ -187,7 +187,7 @@ export default function AdminEventDetails() {
                                             }}
                                         >
                                             <img
-                                                src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" // Gonna be {detail.image}
+                                                src={detail.image} // Gonna be {detail.image}
                                                 loading="lazy"
                                                 height="140px"
                                                 width="100%"
