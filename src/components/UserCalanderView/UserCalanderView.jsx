@@ -12,8 +12,7 @@ import { styled } from '@mui/material/styles';
 import { Divider, Grid } from '@mui/material';
 
 import UserCalanderItem from './UserCalanderItem';
-
-// import './UserCalendarView.scss';
+import './UserCalendarView.scss';
 
 
 function UserCalanderView() {
