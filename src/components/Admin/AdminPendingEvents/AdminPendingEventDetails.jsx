@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
 import { useSelector, useDispatch } from "react-redux";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import "./AdminPendingEventDetails.scss";
@@ -16,10 +16,46 @@ export default function AdminPendingEventDetails() {
     const history = useHistory();
 
     const [status, setStatus] = useState('approved');
+    const [expired, setExpired] = useState('expired');
 
-
+    // const event = fetchEventId[0];
+    // console.log(fetchEventId);
+    
     // store that has the specific event I want by id
     const fetchEventId = useSelector(store => store.fetchEventId);
+
+    // Update status     
+    useEffect(() => {
+        updateExpired()
+     }, []); 
+ 
+     function updateExpired () {
+         const event = fetchEventId[0];
+         if (event.end_date > Date()) {
+             dispatch ({ type: 'UPDATE_EVENT', 
+         payload: 
+         {
+             id: event.id, 
+             org_id: event.org_id, 
+             category_id: event.category_id, 
+             status: expired,
+             name: event.name,
+             description: event.description,
+             date: event.date,
+             start_time: event.start_time,
+             end_time: event.end_time,
+             image: event.image,
+             address1: event.address1,
+             address2: event.address2,
+             city: event.city,
+             zip: event.zip,
+             state: event.state,
+             feedback: event.feedback,
+         } });
+ 
+         }
+     }
+
 
     // when approve button is pressed, it will change event status to approved
     const handleApprove = () => {
