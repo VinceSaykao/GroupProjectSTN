@@ -41,9 +41,10 @@ router.get('/', (req, res) => {
             join organizations
             on
             organizations.id = events.org_id
-            where events.status = 'approved' AND end_date > NOW()
+            where events.status = 'approved' 
             order by start_date asc;
             `)
+            // AND end_date > NOW()
         .then((results) => res.send(results.rows))
         .catch((error) => {
             console.log('Error in GET for all events information', error);

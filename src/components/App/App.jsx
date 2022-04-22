@@ -59,7 +59,7 @@ function App() {
     );
     
     console.log('this is events: ', events)
-      console.log('this filters: ', expiredEvents );
+    console.log('this filters: ', expiredEvents );
 
 const something = () => {
 
