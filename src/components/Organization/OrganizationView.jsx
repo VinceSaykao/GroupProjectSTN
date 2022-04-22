@@ -53,19 +53,12 @@ function OrganizationView() {
     let match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/);
 
     if (match) {
-<<<<<<< HEAD
-      return '+' + match[1] + ' (' + match[2] + ') ' + match[3] + '-' + match[4]
-    };
-
-    return null
-=======
       return (
         '+' + match[1] + ' (' + match[2] + ') ' + match[3] + '-' + match[4]
       );
     }
 
     return null;
->>>>>>> master
   };
 
   return (
@@ -220,17 +213,8 @@ function OrganizationView() {
             </Grid>
           </AccordionDetails>
         </Accordion>
-<<<<<<< HEAD
-        <h1
-          className='organization-event-header'
-        >Events</h1>
-        <OrganizationEventsList />
-
-
-=======
         <Typography variant="h5" color="white" sx={{m:1, textAlign: "center"}}>Events</Typography>
           <OrganizationEventsList />
->>>>>>> master
       </Box>
     </Container>
   );
