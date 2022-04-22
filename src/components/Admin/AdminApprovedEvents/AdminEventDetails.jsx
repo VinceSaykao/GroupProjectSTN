@@ -72,11 +72,19 @@ export default function AdminEventDetails() {
     }));
 
     const handleSave = () => {
-        dispatch({ type: "ADD_SAVE_EVENT", payload: { user_id: fetchProfile.id, event_id: fetchEventId[0].id } })
+        dispatch({ type: "ADD_SAVE_EVENT", payload: { user_id: fetchProfile?.id, event_id: fetchEventId[0]?.id } })
+    }
+
+    const handleEdit = () => {
+        history.push(`/admin-event-edit/${fetchEventId[0]?.id}`)
+    }
+
+    const handleCopy = () => {
+        history.push(`/admin-event-copy/${fetchEventId[0]?.id}`)
     }
 
     const handleDelete = () => {
-        dispatch({ type: 'DELETE_EVENT', payload: fetchEventId[0].id })
+        dispatch({ type: 'DELETE_EVENT', payload: fetchEventId[0]?.id })
         history.push("/adminlist");
 
     }
@@ -151,9 +159,6 @@ export default function AdminEventDetails() {
     }
 
 
-
-
-
     return (
         <div>
             <Helmet>
@@ -196,58 +201,24 @@ export default function AdminEventDetails() {
                                         <Grid item xs={12}>
 
                                             <Item>
-
-                                                {user.access_level != 2  ?
-
-
-                                                    <Button
-                                                        onClick={handleSave}
-                                                        variant="contained"
-                                                        startIcon={<EditIcon />}
-                                                    >Save</Button>
-
-                                                    :
-
-                                                    <div></div>
-
-                                                }
-
-                                                {user.access_level >= 2 ?
-                                                    <Button
-                                                        variant="contained"
-                                                        startIcon={<EditIcon />}
-                                                    >Edit</Button>
-
-                                                    :
-
-                                                    <div></div>
-
-                                                }
-
-
-                                                {user.access_level >= 2 ?
-
-                                                    <Button
-                                                        startIcon={<ContentCopyIcon />}
-                                                        variant="contained"
-                                                    >Copy</Button>
-
-                                                    :
-
-                                                    <div></div>
-                                                }
-
-                                                {user.access_level >= 2 ?
-
-                                                    <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
-                                                        Delete
-                                                    </Button>
-
-                                                    :
-
-                                                    <div></div>
-
-                                                }
+                                                <Button
+                                                    onClick={handleSave}
+                                                    variant="contained"
+                                                    startIcon={<EditIcon />}
+                                                >Save</Button>
+                                                <Button
+                                                    onClick={handleEdit}
+                                                    variant="contained"
+                                                    startIcon={<EditIcon />}
+                                                >Edit</Button>
+                                                <Button
+                                                    onClick={handleCopy}
+                                                    variant="contained"
+                                                    startIcon={<ContentCopyIcon />}
+                                                >Copy</Button>
+                                                <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
+                                                    Delete
+                                                </Button>
 
                                             </Item>
                                         </Grid>

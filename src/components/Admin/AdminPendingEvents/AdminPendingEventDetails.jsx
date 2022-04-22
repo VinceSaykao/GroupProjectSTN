@@ -19,10 +19,12 @@ export default function AdminPendingEventDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const [status, setStatus] = useState('approved');
+    const [expired, setExpired] = useState('expired');
 
-    // const [expired, setExpired] = useState('expired');
-
-
+    // const event = fetchEventId[0];
+    // console.log(fetchEventId);
+    
     // store that has the specific event I want by id
     const fetchEventId = useSelector(store => store.fetchEventId);
 //     const exp = useSelector(store => store.fetchEventId[0]);
@@ -95,6 +97,39 @@ export default function AdminPendingEventDetails() {
 
 
 
+
+
+    // Update status     
+    useEffect(() => {
+        updateExpired()
+     }, []); 
+ 
+     function updateExpired () {
+         const event = fetchEventId[0];
+         if (event.end_date > Date()) {
+             dispatch ({ type: 'UPDATE_EVENT', 
+         payload: 
+         {
+             id: event.id, 
+             org_id: event.org_id, 
+             category_id: event.category_id, 
+             status: expired,
+             name: event.name,
+             description: event.description,
+             date: event.date,
+             start_time: event.start_time,
+             end_time: event.end_time,
+             image: event.image,
+             address1: event.address1,
+             address2: event.address2,
+             city: event.city,
+             zip: event.zip,
+             state: event.state,
+             feedback: event.feedback,
+         } });
+ 
+         }
+     }
 
 
     // when approve button is pressed, it will change event status to approved
