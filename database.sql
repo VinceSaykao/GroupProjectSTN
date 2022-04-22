@@ -112,7 +112,7 @@ INSERT INTO organizations (name, email, phone, website, twitter, facebook, insta
 VALUES (
   'One Future Coachella Valley',
   'paul@onefuturecv.org',
-  '760-625-0422',
+  '7606250422',
   'https://www.onefuturecv.org/',
   'https://twitter.com/OneFutureCV',
   'https://www.facebook.com/OneFutureCV/',
@@ -137,7 +137,7 @@ INSERT INTO organizations (name, email, phone, website, twitter, facebook, insta
 VALUES (
   'Growing Inland Acheivement',
   'info@inlandempiregia.org',
-  '(909) 256-0011',
+  '9092560011',
   'https://inlandempiregia.org/',
   'https://twitter.com/GIA_Together',
   'https://www.facebook.com/GIATogether',
@@ -152,6 +152,7 @@ VALUES (
   studies, and conducts business in the Inland Empire plays a critical role in achieving GIA’s vision.',
   'https://inlandempiregia.org/wp-content/uploads/2021/04/GIA_Icon-PNG-300x300.png',
   '33562 Yucaipa Blvd 4-209',
+  '',
   'Yucaipa',
   'CA',
   '92399'
@@ -161,13 +162,15 @@ INSERT INTO organizations (name, email, phone, website, twitter, facebook, insta
 VALUES (
   'TruEvolution',
   'info@truevolution.org',
-  '951-888-1346',
+  '9518881346',
   'truevolution.org',
   'https://twitter.com/truevolutioninc',
   'facebook.com/truevolutioninc',
   'https://www.instagram.com/truevolutioninc',
+  'https://uploads-ssl.webflow.com/5f19bcec9b6683a6b7e50801/61f35732266dc270dcd31dab_TruEvolution-Logo-White-Slogan-p-500.png',
   'TruEvolution fights for health equity and racial justice to advance the quality of life and human dignity of LGBTQ+ people.',
   '4164 Brockton Ave. Suite A',
+  '',
   'Riverside',
   'CA',
   '92501'
