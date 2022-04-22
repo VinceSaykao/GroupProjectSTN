@@ -32,13 +32,13 @@ import icon_other from '../../category_icons/icon_other.png'
 
 
 
-function UserCalanderItem({event}){
+function UserCalanderItem({ event }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
 
     const handleClick = () => {
-        dispatch({type: 'FETCH_EVENT_DETAILS', payload: event.id});
+        dispatch({ type: 'FETCH_EVENT_DETAILS', payload: event.id });
         history.push('/approved-events');
     }
 
@@ -51,16 +51,15 @@ function UserCalanderItem({event}){
         color: theme.palette.text.primary,
     }));
 
-    
-
 
     return (
 
         <div
-        className='home-admin-event-item'
-        onClick={handleClick}>
+            className='home-admin-event-item'
+            onClick={handleClick}
+        >
 
-        {/* <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}> */}
+            {/* <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}> */}
             <StyledPaper
                 sx={{
                     my: 1,
@@ -74,7 +73,7 @@ function UserCalanderItem({event}){
                             {event.category_id == 1 &&
                                 <Avatar
                                     className='avatar'
-                                    sx={{ width: 80, height: 80 }}
+                                    sx={{ width: 75, height: 75 }}
                                     src={icon_cleanup}
                                 />}
 
@@ -82,49 +81,49 @@ function UserCalanderItem({event}){
                             {event.category_id == 2 &&
                                 <Avatar
                                     className='avatar'
-                                    sx={{ width: 80, height: 80 }}
+                                    sx={{ width: 75, height: 75 }}
                                     src={icon_community_meeting}
                                 />}
 
                             {event.category_id == 3 &&
                                 <Avatar
                                     className='avatar'
-                                    sx={{ width: 80, height: 80 }}
+                                    sx={{ width: 75, height: 75 }}
                                     src={icon_donations}
                                 />}
 
                             {event.category_id == 4 &&
                                 <Avatar
                                     className='avatar'
-                                    sx={{ width: 80, height: 80 }}
+                                    sx={{ width: 75, height: 75 }}
                                     src={icon_drives}
                                 />}
 
                             {event.category_id == 5 &&
                                 <Avatar
                                     className='avatar'
-                                    sx={{ width: 80, height: 80 }}
+                                    sx={{ width: 75, height: 75 }}
                                     src={icon_education}
                                 />}
 
                             {event.category_id == 6 &&
                                 <Avatar
                                     className='avatar'
-                                    sx={{ width: 80, height: 80 }}
+                                    sx={{ width: 75, height: 75 }}
                                     src={icon_events}
                                 />}
 
                             {event.category_id == 7 &&
                                 <Avatar
                                     className='avatar'
-                                    sx={{ width: 80, height: 80 }}
+                                    sx={{ width: 75, height: 75 }}
                                     src={icon_popups}
                                 />}
 
                             {event.category_id == 8 &&
                                 <Avatar
                                     className='avatar'
-                                    sx={{ width: 80, height: 80 }}
+                                    sx={{ width: 75, height: 75 }}
                                     src={icon_other}
                                 />}
 
@@ -139,7 +138,7 @@ function UserCalanderItem({event}){
                             noWrap>{event.dayname}, {event.month} {event.day}</Typography>
 
                         <Divider />
-                        
+
                         <Typography className='event-list-name' noWrap><b>{event.name}</b></Typography>
                         <Typography className='event-list-name' noWrap>{event.orgname} </Typography>
 
@@ -151,16 +150,16 @@ function UserCalanderItem({event}){
             </StyledPaper>
             {/* <Typography className='event-list-name' noWrap><b>{event.name}</b><ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
             {/* <Typography className='event-list-orgname' noWrap>{event.orgname}  <ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
-                                    {/* <ArrowForwardIosIcon className='event-arrow'/> */}
+            {/* <ArrowForwardIosIcon className='event-arrow'/> */}
 
-        {/* </Box> */}
-
-
+            {/* </Box> */}
 
 
 
 
-    </div>
+
+
+        </div>
 
     )
 }

@@ -42,8 +42,6 @@ export default function AdminEventDetails() {
 
 
 
-
-
     // Styles the items mui
     // const Item = styled(Paper)(({ theme }) => ({
     //     color: theme.palette.mode === 'dark' ? '#fff' : '#fff',
@@ -72,11 +70,19 @@ export default function AdminEventDetails() {
     }));
 
     const handleSave = () => {
-        dispatch({ type: "ADD_SAVE_EVENT", payload: { user_id: fetchProfile.id, event_id: fetchEventId[0].id } })
+        dispatch({ type: "ADD_SAVE_EVENT", payload: { user_id: fetchProfile?.id, event_id: fetchEventId[0]?.id } })
+    }
+
+    const handleEdit = () => {
+        history.push(`/admin-event-edit/${fetchEventId[0]?.id}`)
+    }
+
+    const handleCopy = () => {
+        history.push(`/admin-event-copy/${fetchEventId[0]?.id}`)
     }
 
     const handleDelete = () => {
-        dispatch({ type: 'DELETE_EVENT', payload: fetchEventId[0].id })
+        dispatch({ type: 'DELETE_EVENT', payload: fetchEventId[0]?.id })
         history.push("/adminlist");
 
     }
@@ -149,9 +155,6 @@ export default function AdminEventDetails() {
     const handleExit = () => {
         history.goBack();
     }
-
-
-
 
 
     return (
