@@ -3,7 +3,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 
 function* updateEvent(action) {
     const exp = action.payload
-    console.log('inside update even saga: ', action.payload);
+    console.log('inside update even saga: ', action.payload[0]);
 
     for (let i=0; i < exp.length; i++) {
     try {

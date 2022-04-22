@@ -109,7 +109,7 @@ const something = () => {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_EVENT_ADMIN' });
-    // something();
+    something();
   }, []);
 
 
