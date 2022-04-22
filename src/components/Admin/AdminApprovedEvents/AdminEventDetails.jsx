@@ -196,29 +196,65 @@ export default function AdminEventDetails() {
                                     </Grid>
 
 
-                                    <Grid item xs={12}>
-                                        <Item>{detail.name}</Item>
+                                    <Grid sx={{width: '100%', background: 'black'}}>
+                                        <Item
+                                            className='detail-name'
+                                        >{detail.name}</Item>
                                         <Grid item xs={12}>
 
                                             <Item>
-                                                <Button
-                                                    onClick={handleSave}
-                                                    variant="contained"
-                                                    startIcon={<EditIcon />}
-                                                >Save</Button>
-                                                <Button
-                                                    onClick={handleEdit}
-                                                    variant="contained"
-                                                    startIcon={<EditIcon />}
-                                                >Edit</Button>
-                                                <Button
-                                                    onClick={handleCopy}
-                                                    variant="contained"
-                                                    startIcon={<ContentCopyIcon />}
-                                                >Copy</Button>
-                                                <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
-                                                    Delete
-                                                </Button>
+
+                                                {user.access_level != 2 ?
+
+
+                                                    <Button
+                                                        onClick={handleSave}
+                                                        variant="contained"
+                                                        startIcon={<EditIcon />}
+                                                    >Save</Button>
+
+                                                    :
+
+                                                    <div></div>
+
+                                                }
+
+                                                {user.access_level >= 2 ?
+                                                    <Button
+                                                        variant="contained"
+                                                        startIcon={<EditIcon />}
+                                                    >Edit</Button>
+
+                                                    :
+
+                                                    <div></div>
+
+                                                }
+
+
+                                                {user.access_level >= 2 ?
+
+                                                    <Button
+                                                        startIcon={<ContentCopyIcon />}
+                                                        variant="contained"
+                                                    >Copy</Button>
+
+                                                    :
+
+                                                    <div></div>
+                                                }
+
+                                                {user.access_level >= 2 ?
+
+                                                    <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
+                                                        Delete
+                                                    </Button>
+
+                                                    :
+
+                                                    <div></div>
+
+                                                }
 
                                             </Item>
                                         </Grid>
@@ -227,9 +263,10 @@ export default function AdminEventDetails() {
 
 
 
-                                    <Grid item xs={10}>
+                                    <Grid sx={{width: '100%', background: '#4444'}} >
+                                        <StyledItem><u>{detail.dayname} {detail.month} {detail.day}</u></StyledItem>
                                         <StyledItem>
-                                            <b>Details</b>
+                                            <u><b>Details</b></u>
                                             <br></br>
                                             {/* <Divider sx={{ height: 15, m: 0.5 }} orientation="vertical"/> */}
                                             {detail.description}
@@ -241,8 +278,22 @@ export default function AdminEventDetails() {
 
 
 
-                                        <StyledItem>{detail.month}</StyledItem>
-                                        <StyledItem>{detail.description}</StyledItem>
+
+                                        <StyledItem>
+                                            <u><b>Contact</b></u>
+                                            <br></br>
+                                            {detail.email}
+                                            <br></br>
+                                            {detail.phone}
+
+                                        </StyledItem>
+
+                                        <StyledItem>
+                                            <u><b>Location</b></u>
+                                            <br></br>
+                                            {detail.address1}
+
+                                        </StyledItem>
                                     </Grid>
 
                                 </Grid>
@@ -271,6 +322,7 @@ export default function AdminEventDetails() {
 
 
         </div>
+
 
 
 
