@@ -72,7 +72,7 @@ router.get('/:id', (req, res) => {
             ) AS "day",
             to_char(start_date, 'Dy') AS "dayname",
             TO_CHAR(start_date, 'YYYY-MM-DD') AS start_date,
-            TO_CHAR(end_date, 'YYYY/MM/DD') AS end_date,
+            TO_CHAR(end_date, 'YYYY-MM-DD') AS end_date,
             start_time,
             end_time,
             link,
@@ -97,6 +97,7 @@ router.get('/:id', (req, res) => {
         });
 
 });
+//  TO_CHAR(end_date, 'YYYY/MM/DD') AS end_date, for expired 
 
 // GET all pending admin event information
 router.get('/admin/pending', (req, res) => {
