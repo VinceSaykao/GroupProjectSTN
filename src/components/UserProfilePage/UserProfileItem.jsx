@@ -21,7 +21,6 @@ import { styled } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 
-import './UserProfilePage.css';
 
 // Icons
 import icon_cleanup from '../../category_icons/icon_cleanup.png'
@@ -33,6 +32,7 @@ import icon_events from '../../category_icons/icon_events.png'
 import icon_popups from '../../category_icons/icon_popups.png'
 import icon_other from '../../category_icons/icon_other.png'
 import { intlFormat } from 'date-fns';
+import StarIcon from '@mui/icons-material/Star';
 
 
 function UserProfileItem({ info, detail }) {
@@ -65,7 +65,7 @@ function UserProfileItem({ info, detail }) {
     marginBottom: '30px',
     maxWidth: '100%',
     color: theme.palette.text.primary,
-}));
+  }));
 
 
   return (
@@ -161,23 +161,30 @@ function UserProfileItem({ info, detail }) {
 
               <Typography className="event-list-name" noWrap>
                 <b>{info.name}</b>
+
+  
+
               </Typography>
-              <Typography className="event-list-name" noWrap>
-                {/* {info.orgname}{' '} */}
-              </Typography>
+  
             </Grid>
+            <Button
+                  onClick={handleFaveEventClick}
+                  className="edit-button"
+                  size="small"
+                  variant="contained"
+                  sx={{height: '100%', float: 'right', top: 12, left: 40, background: 'transparent', boxShadow:'none' ,color: '#444',}}
+                >
+                  <StarIcon 
+                  fontSize='large'
+
+                  />
+                </Button>
           </Grid>
+          
         </StyledPaper>
       </div>
 
-      <Button
-        onClick={handleFaveEventClick}
-        className="edit-button"
-        size="small"
-        variant="contained"
-      >
-        Delete
-      </Button>
+
     </div>
   );
 }
