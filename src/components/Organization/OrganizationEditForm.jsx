@@ -20,7 +20,10 @@ import '../Admin/AdminForm/CategoryItem.css';
 // CUSTOM MUI Phone TextField
 import MuiPhoneNumber from 'material-ui-phone-number';
 
+// import { Helmet } from 'react-helmet';
+
 function OrganizationEditForm() {
+
   // Included for USA State Dropdown
   let usaStateList = [
     { value: 'AK', text: 'Alaska' },
@@ -85,7 +88,6 @@ function OrganizationEditForm() {
   const { id } = useParams();
 
   const org = useSelector((store) => store.fetchOrganization);
-  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     // Upon load, get the selected organization profile based on their user id
@@ -134,8 +136,14 @@ function OrganizationEditForm() {
         mx: 2,
       }}
     >
+      {/* <Helmet>
+        <style>
+          {`body { background-color: rgb(75, 75, 75);); 
+        }`}
+        </style>
+      </Helmet> */}
       <FormControl>
-        <Typography variant="h5" sx={{ mb: '10px' }}>
+        <Typography variant="h5"  sx={{ mb: '10px' }}>
           Organization Details
         </Typography>
 
@@ -232,6 +240,7 @@ function OrganizationEditForm() {
         <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
           Contact & Location
         </Typography>
+
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
@@ -245,7 +254,7 @@ function OrganizationEditForm() {
           </Grid>
           <Grid item xs={12}>
             <MuiPhoneNumber
-              variant='outlined'
+              variant="outlined"
               fullWidth
               autoComplete="off"
               defaultCountry={'us'}
@@ -298,8 +307,7 @@ function OrganizationEditForm() {
                 label="State"
                 value={update.state}
                 onChange={(e) =>
-                  setUpdate({ ...update, state: e.target.value })
-                }
+                  setUpdate({ ...update, state: e.target.value })}
               >
                 {usaStateList.map((usaState) => (
                   <MenuItem key={usaState.value} value={usaState.value}>

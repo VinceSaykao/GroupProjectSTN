@@ -46,13 +46,6 @@ const Img = styled('img')({
 
 export default function OrgEventListItem({ event }) {
 
-
-
-
-
-
-
-
     const dispatch = useDispatch();
     const history = useHistory();
 
