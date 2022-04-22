@@ -79,7 +79,7 @@ function OrganizationView() {
         ) : (
           <div>
             {
-              <Link href={org.instagram}>
+              <Link href={org.instagram}target="blank">
                 <BottomNavigationAction
                   icon={<InstagramIcon sx={{ color: 'white' }} />}
                 />
@@ -92,7 +92,7 @@ function OrganizationView() {
         ) : (
           <div>
             {
-              <Link href={org.twitter}>
+              <Link href={org.twitter}target="blank">
                 <BottomNavigationAction
                   icon={<TwitterIcon sx={{ color: 'white' }} />}
                 />
@@ -105,7 +105,7 @@ function OrganizationView() {
         ) : (
           <div>
             {
-              <Link href={org.facebook}>
+              <Link href={org.facebook}target="blank">
                 <BottomNavigationAction
                   icon={<FacebookIcon sx={{ color: 'white' }} />}
                 />
@@ -121,7 +121,7 @@ function OrganizationView() {
               sx={{
                 height: 'auto',
                 width: '400px',
-                maxHeight: { xs: 233, md: 167 },
+                maxHeight: { xs: 200, md: 167 },
                 maxWidth: { xs: 350, md: 250 },
               }}
               src={org.image}
@@ -140,9 +140,9 @@ function OrganizationView() {
                 sx={{
                   height: 25,
                   display: 'flex',
-                  justifyContent: 'flex-end',
-                  alignItems: 'flex-end',
-                  mr: 2,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  // mr: 2,
                 }}
               >
                 <Button
@@ -164,7 +164,7 @@ function OrganizationView() {
           variant="body1"
           component="div"
           color="white"
-          sx={{ mr: 2, ml: 2, mt: 1 }}
+          sx={{ mr: 2, ml: 2, mt: 1, }}
         >
           {org.description}
         </Typography>

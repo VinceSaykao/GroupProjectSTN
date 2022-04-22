@@ -20,6 +20,8 @@ import '../Admin/AdminForm/CategoryItem.css';
 // CUSTOM MUI Phone TextField
 import MuiPhoneNumber from 'material-ui-phone-number';
 
+import { Helmet } from 'react-helmet';
+
 function OrganizationEditForm() {
   // Included for USA State Dropdown
   let usaStateList = [
@@ -134,14 +136,21 @@ function OrganizationEditForm() {
         mx: 2,
       }}
     >
+      {/* <Helmet>
+        <style>
+          {`body { background-color: rgb(75, 75, 75);); 
+        }`}
+        </style>
+      </Helmet> */}
       <FormControl>
-        <Typography variant="h5" sx={{ mb: '10px' }}>
+        <Typography variant="h5"  sx={{ mb: '10px' }}>
           Organization Details
         </Typography>
 
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
+              // color="secondary"
               fullWidth
               autoComplete="off"
               type="text"
@@ -245,7 +254,7 @@ function OrganizationEditForm() {
           </Grid>
           <Grid item xs={12}>
             <MuiPhoneNumber
-              variant='outlined'
+              variant="outlined"
               fullWidth
               autoComplete="off"
               defaultCountry={'us'}
