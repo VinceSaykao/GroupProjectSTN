@@ -20,9 +20,10 @@ import '../Admin/AdminForm/CategoryItem.css';
 // CUSTOM MUI Phone TextField
 import MuiPhoneNumber from 'material-ui-phone-number';
 
-import { Helmet } from 'react-helmet';
+// import { Helmet } from 'react-helmet';
 
 function OrganizationEditForm() {
+
   // Included for USA State Dropdown
   let usaStateList = [
     { value: 'AK', text: 'Alaska' },
@@ -87,7 +88,6 @@ function OrganizationEditForm() {
   const { id } = useParams();
 
   const org = useSelector((store) => store.fetchOrganization);
-  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     // Upon load, get the selected organization profile based on their user id
@@ -150,7 +150,6 @@ function OrganizationEditForm() {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
-              // color="secondary"
               fullWidth
               autoComplete="off"
               type="text"
@@ -241,6 +240,7 @@ function OrganizationEditForm() {
         <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
           Contact & Location
         </Typography>
+
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
@@ -307,8 +307,7 @@ function OrganizationEditForm() {
                 label="State"
                 value={update.state}
                 onChange={(e) =>
-                  setUpdate({ ...update, state: e.target.value })
-                }
+                  setUpdate({ ...update, state: e.target.value })}
               >
                 {usaStateList.map((usaState) => (
                   <MenuItem key={usaState.value} value={usaState.value}>
