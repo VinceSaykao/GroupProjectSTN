@@ -198,7 +198,7 @@ router.post('/', (req, res) => {
         req.body.category_id,
         req.body.name,
         req.body.description,
-        req.body.status,
+        'pending',
         req.body.start_date,
         req.body.end_date,
         req.body.start_time,

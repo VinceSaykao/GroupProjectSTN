@@ -25,6 +25,7 @@ function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
   const history = useHistory();
+  const user = useSelector(store => store.user);
 
   const [values, setValues] = React.useState({
     password: '',
@@ -47,6 +48,7 @@ function RegisterForm() {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -130,6 +132,6 @@ function RegisterForm() {
       </div>
     </Box>
   );
-}
+          };
 
 export default RegisterForm;
