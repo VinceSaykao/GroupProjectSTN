@@ -61,46 +61,46 @@ function App() {
     console.log('this is events: ', events)
     console.log('this filters: ', expiredEvents );
 
-const something = () => {
+// const something = () => {
 
-  console.log('dsajfsdjflkdjfkdfk')
-  {expiredEvents.map((exp) => {
+//   console.log('dsajfsdjflkdjfkdfk')
+//   {expiredEvents.map((exp) => {
 
-    const dateNow = format(new Date(), 'yyyy/MM/dd')
-    if (exp.end_date < dateNow) {
-      console.log('expired!!!!!!!!!!!!!!!')
-      dispatch({
-          type: 'UPDATE_EVENT',
-          payload:
-          {
-              id: exp.id,
-              org_id: exp.org_id,
-              category_id: exp.category_id,
-              status: 'expired',
-              name: exp.name,
-              description: exp.description,
-              date: exp.date,
-              link: exp.link,
-              start_date: exp.start_date,
-              end_date: exp.end_date,
-              start_time: exp.start_time,
-              end_time: exp.end_time,
-              image: exp.image,
-              email: exp.email,
-              phone: exp.phone,
-              address1: exp.address1,
-              address2: exp.address2,
-              city: exp.city,
-              zip: exp.zip,
-              state: exp.state,
-              feedback: exp.feedback,
-          }
-      });
-  } else {
-      console.log('not expired');
-  }
-  })}
-}
+//     const dateNow = format(new Date(), 'yyyy/MM/dd')
+//     if (exp.end_date < dateNow) {
+//       console.log('expired!!!!!!!!!!!!!!!')
+//       dispatch({
+//           type: 'UPDATE_EVENT',
+//           payload:
+//           {
+//               id: exp.id,
+//               org_id: exp.org_id,
+//               category_id: exp.category_id,
+//               status: 'expired',
+//               name: exp.name,
+//               description: exp.description,
+//               date: exp.date,
+//               link: exp.link,
+//               start_date: exp.start_date,
+//               end_date: exp.end_date,
+//               start_time: exp.start_time,
+//               end_time: exp.end_time,
+//               image: exp.image,
+//               email: exp.email,
+//               phone: exp.phone,
+//               address1: exp.address1,
+//               address2: exp.address2,
+//               city: exp.city,
+//               zip: exp.zip,
+//               state: exp.state,
+//               feedback: exp.feedback,
+//           }
+//       });
+//   } else {
+//       console.log('not expired');
+//   }
+//   })}
+// }
 
 
   // dispatch saga -> loop for each event.id axios.put /:id ,  run the put
@@ -109,7 +109,7 @@ const something = () => {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_EVENT_ADMIN' });
-    something();
+    // something();
   }, []);
 
 
