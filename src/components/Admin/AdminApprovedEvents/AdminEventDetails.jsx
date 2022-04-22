@@ -85,7 +85,7 @@ export default function AdminEventDetails() {
 
     const handleDelete = () => {
         dispatch({ type: 'DELETE_EVENT', payload: fetchEventId[0]?.id })
-        history.push("/adminlist");
+        history.goBack();
 
     }
 
