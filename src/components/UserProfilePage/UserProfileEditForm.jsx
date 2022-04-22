@@ -13,11 +13,13 @@ function UserProfileEditForm() {
   const fetchProfile = useSelector((store) => store.fetchProfile[0]);
   const user = useSelector((store) => store.user);
   //   const [profileUser, setProfileUser] = useState(user.id);
-  const [image, setImage] = useState(fetchProfile?.image);
-  const [bio, setBio] = useState(fetchProfile?.bio);
-  const [email, setEmail] = useState(fetchProfile?.email);
-  const [firstName, setFirstName] = useState(fetchProfile?.first_name);
-  const [lastName, setLastName] = useState(fetchProfile?.last_name);
+  const [image, setImage] = useState(user?.image);
+  const [bio, setBio] = useState(user?.bio);
+  const [email, setEmail] = useState(user?.email);
+  const [firstName, setFirstName] = useState(user?.first_name);
+  const [lastName, setLastName] = useState(user?.last_name);
+
+  console.warn('user', user)
 
 
   const handleUpdateUser = (e) => {
@@ -50,60 +52,64 @@ function UserProfileEditForm() {
           }}
         >
           <FormControl sx={{ width: "100%" }}>
-          <form encType="multipart/form-data" >
-            <TextField
-              sx={{ margin: "10px" }}
-              // autoComplete="off"
-              type='file'
-              name='file'
-              placeholder="image"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
+            <form encType="multipart/form-data" onSubmit={handleUpdateUser}>
+              <TextField
+                sx={{ margin: "10px" }}
+                // autoComplete="off"
+                type='file'
+                name='file'
+                placeholder="image"
+                onChange={(e) => setImage(e.target.files[0])}
+                required
+              />
 
-    
-            <TextField
-              sx={{ margin: "10px" }}
-              // autoComplete="off"
-              type="text"
-              label="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
 
-            {/* <input
+              <TextField
+                sx={{ margin: "10px" }}
+                // autoComplete="off"
+                type="text"
+                label="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+
+              {/* <input
                 type="text"
                 name="lastName"
                 value={lastName}
                 onChange={(event) => setLastName(event.target.value)}
               /> */}
-            <TextField
-              sx={{ margin: "10px" }}
-              // autoComplete="off"
-              type="text"
-              label="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
+              <TextField
+                sx={{ margin: "10px" }}
+                // autoComplete="off"
+                type="text"
+                label="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
 
-        
-            <TextField
-              sx={{ margin: "10px" }}
-              // autoComplete="off"
-              type="text"
-              label="Bio"
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-            />
-         
-            <TextField
-              sx={{ margin: "10px" }}
-              // autoComplete="off"
-              type="text"
-              label="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-         </form>
+
+              <TextField
+                sx={{ margin: "10px" }}
+                // autoComplete="off"
+                type="text"
+                label="Bio"
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+              />
+
+              <TextField
+                sx={{ margin: "10px" }}
+                // autoComplete="off"
+                type="text"
+                label="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Button variant="contained" type='submit' sx={{ margin: "10px", fontSize: "20px" }}>
+                Update
+              </Button>
+            </form>
           </FormControl>
 
           <Box
@@ -114,11 +120,12 @@ function UserProfileEditForm() {
               mt: "10px",
             }}
           >
-            <Button variant="outlined" onClick={handleUpdateUser} sx={{ margin: "10px" }}>
+            {/* <Button variant="outlined" onClick={handleUpdateUser} sx={{ margin: "10px" }}>
               <Typography variant="h6">Update</Typography>
-            </Button>
+            </Button> */}
+
           </Box>
-         
+
         </Box>
       </Container>
     </>

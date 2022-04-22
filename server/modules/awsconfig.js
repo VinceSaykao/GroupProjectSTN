@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { filterableGridColumnsIdsSelector } = require('@mui/x-data-grid');
 const S3 = require('aws-sdk/clients/s3');
 const fs = require('fs');
 
@@ -10,36 +11,38 @@ const secretAccessKey = process.env.AWS_SECRET_KEY
 
 
 const s3 = new S3({
-  region,
-  accessKeyId,
-  secretAccessKey
- });
+    region,
+    accessKeyId,
+    secretAccessKey
+});
 
- /**
- * Single Upload
- */
- 
+/**
+* Single Upload
+*/
+
 function uploadFile(file) {
-  const fileStream = fs.createReadStream(file.path)
 
-  const uploadParams = {
-    Bucket: bucketName,
-    Body: fileStream,
-    Key: file.filename
-  }
-  return s3.upload(uploadParams).promise()
+    const fileStream = fs.createReadStream(file.path)
+
+    const uploadParams = {
+        Bucket: bucketName,
+        Body: fileStream,
+        Key: file.filename
+    }
+    return s3.upload(uploadParams).promise()
 }
+
 
 
 
 // downloads a file from s3
 function getFileStream(fileKey) {
-  const downloadParams = {
-    Key: fileKey,
-    Bucket: bucketName
-  }
+    const downloadParams = {
+        Key: fileKey,
+        Bucket: bucketName
+    }
 
-  return s3.getObject(downloadParams).createReadStream()
+    return s3.getObject(downloadParams).createReadStream()
 }
 
-module.exports = {uploadFile, getFileStream}
+module.exports = { uploadFile, getFileStream }
