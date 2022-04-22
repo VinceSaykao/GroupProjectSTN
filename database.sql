@@ -106,3 +106,30 @@ Through the support of a loving community of donors and volunteers, we harvest, 
 At Open Arms, we believe that food is medicine, and there is always room for one more at our table.', 
 'https://www.openarmsmn.org/wp-content/uploads/2020/09/oam-volunteers.png', 
 '2500 Bloomington Ave', '', 'Minneapolis', 'MN', '55404' );
+
+
+INSERT INTO organizations (name, email, phone, website, twitter, facebook, instagram, description, image, address1, address2, city, state, zip)
+VALUES (
+  'One Future Coachella Valley',
+  'paul@onefuturecv.org',
+  '760-625-0422',
+  'https://www.onefuturecv.org/',
+  'https://twitter.com/OneFutureCV',
+  'https://www.facebook.com/OneFutureCV/',
+  'https://www.instagram.com/onefuturecv/',
+  'Today, OneFuture Coachella Valley, the valley’s three K-12 school districts, local colleges, nonprofits, cities and 
+  business community, provide students with meaningful career explorations, work experience, and scholarships, as well 
+  as other college success support. The key to this approach is involvement from our region’s employers, ensuring student 
+  preparation is aligned with local workforce needs.Since 2009, OneFuture Coachella Valley and its nonprofit partners have 
+  awarded more than $16 million in scholarships to 2,600 students from the Coachella Valley. With a diverse and experienced 
+  leadership staff, and an energized board of directors, OneFuture Coachella Valley is poised to pursue a variety of new 
+  opportunities across the region, working with new industries and expanding our scholarship program, as well as adopting 
+  and aligning with national models on the cutting edge of innovative workforce development.',
+  'https://www.onefuturecv.org/wp-content/themes/onefuturecv/img/onefuture-logo.png',
+  '41550 Eclectic Street',
+   'Suite 200 E',
+   'Palm Desert',
+   'CA',
+   '92260'
+);
+
