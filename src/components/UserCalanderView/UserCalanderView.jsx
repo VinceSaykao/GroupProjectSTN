@@ -63,16 +63,18 @@ function UserCalanderView() {
             </Helmet>
 
             <Grid sx={{height: '80px', top: '10px'}}>
-            <Box className="home-search-div" sx={{ mt: 4, top: 50 }}>
+            <Box className="home-search-div" sx={{ mt: 4, top: 50,}}>
                 <InputBase
-                
+                    className="home-search-search"
                     sx={{ ml: 5, flex: 1, bgcolor: '#3e3e3e', color: 'white', height: '60px', lineHeight: '50px', fontSize: '40px'}}
                     placeholder="Search"
                     // inputProps={{ 'aria-label': 'search google maps' }}
                     onChange={event => handleSearch(event)}
                 />
                 <IconButton>
-                    <SearchIcon />
+                    <SearchIcon 
+                    sx={{color: 'white'}}
+                    />
                 </IconButton>
             </Box>
             </Grid>
