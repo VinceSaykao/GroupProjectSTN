@@ -133,3 +133,28 @@ VALUES (
    '92260'
 );
 
+INSERT INTO organizations (name, email, phone, website, twitter, facebook, instagram, description, image, address1, address2, city, state, zip)
+VALUES (
+  'Growing Inland Acheivement',
+  'info@inlandempiregia.org',
+  '(909) 256-0011',
+  'https://inlandempiregia.org/',
+  'https://twitter.com/GIA_Together',
+  'https://www.facebook.com/GIATogether',
+  'https://www.instagram.com/giatogether',
+  'Growing Inland Achievement (GIA) is a regional, collective impact organization that works to achieve educational and 
+  economic equity in the Inland Empire. GIA accomplishes this by serving as a collective impact (backbone) organization 
+  that supports a cross-sector network of education, government, nonprofit, and business institutions in the Inland Empire 
+  who are all collectively working towards a shared vision of educational and economic success. GIA researches issues and 
+  opportunities, resources innovations and solutions, and connects diverse stakeholders across the two-county region of the 
+  Inland Empire. GIA’s vision is that by 2035, San Bernardino and Riverside Counties will be widely recognized for their 
+  educated workforce, thriving communities, and vibrant economy that creates prosperity for all. Everyone who lives, works, 
+  studies, and conducts business in the Inland Empire plays a critical role in achieving GIA’s vision.',
+  'https://inlandempiregia.org/wp-content/uploads/2021/04/GIA_Icon-PNG-300x300.png',
+  '33562 Yucaipa Blvd 4-209',
+  'Yucaipa',
+  'CA',
+  '92399'
+);
+
+
