@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from "@mui/material";
-import {Divider} from '@mui/material';
+import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 
@@ -16,7 +16,7 @@ import UserCalanderItem from './UserCalanderItem';
 import './UserCalendarView.scss';
 
 
-function UserCalanderView(){
+function UserCalanderView() {
     // store that grabs approved events, although fetchApprovedEvents brings in more data...??
     const fetchApprovedEvents = useSelector(store => store.fetchApprovedEvents);
 
@@ -40,44 +40,64 @@ function UserCalanderView(){
         color: theme.palette.text.primary,
     }));
 
+    // Search Function ------------------------------------
+    const handleSearch = (event) => {
+        event.preventDefault();
+        // if user enters search
+        if (event.target.value.length > 0) {
+            dispatch({ type: 'FETCH_APPROVED_SEARCH', payload: { search: event.target.value } })
+        }
+        // if search is left blank
+        else {
+            dispatch({ type: 'FETCH_APPROVED_EVENTS' })
+        }
+    }
 
-return (
-    <div className="calendar-view">
+    return (
+        <div className="calendar-view">
 
-    <Helmet>
-        <style>{`body,html { background-color: #090909ee; overflow: hidden;); 
-    
-    }`}
+            <Helmet>
+                <style>
+                    {`body,html { background-color: #090909ee; overflow: hidden;);}`}
+                </style>
+            </Helmet>
 
-        </style>
-    </Helmet>
+            <Box className="admin-search-div" sx={{ mt: 4 }}>
+                <InputBase
+                    sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
+                    placeholder="Search"
+                    // inputProps={{ 'aria-label': 'search google maps' }}
+                    onChange={event => handleSearch(event)}
+                />
+                <IconButton>
+                    <SearchIcon />
+                </IconButton>
+            </Box>
 
-    <h1>Calander Goes Here =-) (hopefully)</h1>
-    <div>
 
+            {/* 
+            <h1>Calander Goes Here =-) (hopefully)</h1>
+            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" /> 
+            */}
 
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-    </div>
-
-
-    <StyledBox
-    sx={{
-        bottom: '0',
-    }}
-    >
-    <div className="home-approved-event-list">
-        {fetchApprovedEvents?.map((event, i) => {
-            return (
-                <div key={i}>
-                <UserCalanderItem event={event} />
+            <StyledBox
+            // sx={{
+            //     bottom: '0',
+            // }}
+            >
+                <div className="home-approved-event-list" >
+                    {fetchApprovedEvents?.map((event, i) => {
+                        return (
+                            <div key={i}>
+                                <UserCalanderItem event={event} />
+                            </div>
+                        )
+                    })}
                 </div>
-            )
-        })}
-    </div>
-    </StyledBox>
+            </StyledBox>
 
-</div>
-)
+        </div>
+    )
 }
 
 export default UserCalanderView;
