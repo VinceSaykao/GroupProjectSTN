@@ -59,7 +59,7 @@ function UserCalanderItem({ event }) {
             onClick={handleClick}
         >
 
-            {/* <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}> */}
+            <Box sx={{ flexGrow: 1, overflow: 'scroll', px: 1, width:'100%'}}>
             <StyledPaper
                 sx={{
                     my: 1,
@@ -152,7 +152,7 @@ function UserCalanderItem({ event }) {
             {/* <Typography className='event-list-orgname' noWrap>{event.orgname}  <ArrowForwardIosIcon className='event-arrow'/> </Typography> */}
             {/* <ArrowForwardIosIcon className='event-arrow'/> */}
 
-            {/* </Box> */}
+            </Box>
 
 
 

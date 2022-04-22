@@ -7,9 +7,9 @@ import { Helmet } from 'react-helmet';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from "@mui/material";
-import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
+import { Divider, Grid } from '@mui/material';
 
 import UserCalanderItem from './UserCalanderItem';
 
@@ -58,13 +58,15 @@ function UserCalanderView() {
 
             <Helmet>
                 <style>
-                    {`body,html { background-color: #090909ee; overflow: hidden;);}`}
+                    {`body,html { background-color: #090909ee;);}`}
                 </style>
             </Helmet>
 
-            <Box className="admin-search-div" sx={{ mt: 4 }}>
+            <Grid sx={{height: '80px', top: '10px'}}>
+            <Box className="home-search-div" sx={{ mt: 4, top: 50 }}>
                 <InputBase
-                    sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
+                
+                    sx={{ ml: 5, flex: 1, bgcolor: '#3e3e3e', color: 'white', height: '60px', lineHeight: '50px', fontSize: '40px'}}
                     placeholder="Search"
                     // inputProps={{ 'aria-label': 'search google maps' }}
                     onChange={event => handleSearch(event)}
@@ -73,6 +75,8 @@ function UserCalanderView() {
                     <SearchIcon />
                 </IconButton>
             </Box>
+            </Grid>
+   
 
 
             {/* 
