@@ -11,6 +11,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 import { Divider } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
 
 import './AdminEventDetails.scss'
 
@@ -60,6 +61,18 @@ export default function AdminEventDetails() {
         padding: theme.spacing(1),
         borderRadius: theme.shape.borderRadius,
     }));
+
+
+
+    // delete button theme 
+    // const DeleteButton = styled('button')(({ theme }) => ({
+    //     color: 'white',
+    //     // varaint: 'contained',
+    //     // width: '10%',
+    //     // backgroundColor: 'red',
+    //     // padding: theme.spacing(1),
+    //     // borderRadius: theme.shape.borderRadius,
+    // }));
 
 
 
@@ -203,26 +216,30 @@ export default function AdminEventDetails() {
                                     <Grid sx={{ width: '100%', background: 'black' }}>
                                         <Item
                                             className='detail-name'
-                                        >{detail.name}</Item>
+                                        >{detail.name}
+
+                                            {user.access_level === 3 || user.access_level === 1 ?
+                                                <div
+                                                    className='star-saved-event'
+                                                    onClick={handleSave}
+                                                ><StarIcon 
+                                                fontSize='15px'
+                                               sx={{marginTop:'0px',}}
+
+                                                
+                                                /></div>
+                                                :
+                                                <div></div>
+                                            }
+
+
+
+                                        </Item>
                                         <Grid item xs={12}>
 
                                             <Item>
 
-                                                {user.access_level === 3 || user.access_level === 1 ?
 
-
-                                                    <Button
-                                                        onClick={handleSave}
-                                                        variant="contained"
-                                                        startIcon={<EditIcon />}
-                                                    >Save</Button>
-
-                                                    :
-
-
-                                                    <div></div>
-
-                                                }
 
 
                                                 {user.id ?
@@ -234,12 +251,11 @@ export default function AdminEventDetails() {
 
 
 
-
-
                                                     <Button
                                                         onClick={handleOops}
+                                                        sx={{ background: 'green', }}
                                                         variant="contained"
-                                                        startIcon={<EditIcon />}
+                                                        startIcon={<StarIcon />}
                                                     >Save</Button>
 
 
@@ -248,6 +264,7 @@ export default function AdminEventDetails() {
                                                 {user.access_level >= 2 ?
                                                     <Button
                                                         onClick={handleEdit}
+
                                                         variant="contained"
                                                         startIcon={<EditIcon />}
                                                     >Edit</Button>
@@ -263,6 +280,7 @@ export default function AdminEventDetails() {
 
                                                     <Button
                                                         onClick={handleCopy}
+                                                        sx={{ background: 'orange', }}
                                                         startIcon={<ContentCopyIcon />}
                                                         variant="contained"
                                                     >Copy</Button>
@@ -274,7 +292,7 @@ export default function AdminEventDetails() {
 
                                                 {user.access_level >= 2 ?
 
-                                                    <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
+                                                    <Button onClick={handleOpen} variant="contained" sx={{ background: 'red', }} startIcon={<DeleteIcon />}>
                                                         Delete
                                                     </Button>
 
