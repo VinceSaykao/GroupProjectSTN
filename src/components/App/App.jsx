@@ -52,8 +52,7 @@ function App() {
 
   }, []);
 
-
-  const something = async() => {
+  function stuff() {
 
     console.log('dsajfsdjflkdjfkdfk', expiredEvents, events)
 
@@ -93,7 +92,12 @@ function App() {
         console.log('not expired!______________');
     }
     })}
-  }; // end of something functionss
+
+
+
+  }
+
+
 
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
@@ -182,6 +186,48 @@ console.log('this filters: ', expiredEvents );
 
 
   // }; // end of handleExpired
+
+  const something = () => {
+
+    console.log('dsajfsdjflkdjfkdfk', expiredEvents, events)
+
+
+    {expiredEvents.map((exp) => {
+  
+      const dateNow = format(new Date(), 'yyyy/MM/dd')
+      if (exp.end_date < dateNow) {
+        console.log('expired!!!!!!!!!!!!!!!')
+        // dispatch({
+        //     type: 'UPDATE_EVENT',
+        //     payload:
+        //     {
+        //         id: exp.id,
+        //         org_id: exp.org_id,
+        //         category_id: exp.category_id,
+        //         status: status,
+        //         name: exp.name,
+        //         description: exp.description,
+        //         link: exp.link,
+        //         start_date: exp.start_date,
+        //         end_date: exp.end_date,
+        //         start_time: exp.start_time,
+        //         end_time: exp.end_time,
+        //         image: exp.image,
+        //         email: exp.email,
+        //         phone: exp.phone,
+        //         address1: exp.address1,
+        //         address2: exp.address2,
+        //         city: exp.city,
+        //         zip: exp.zip,
+        //         state: exp.state,
+        //         feedback: exp.feedback,
+        //     }
+        // });
+    } else {
+        console.log('not expired!______________');
+    }
+    })}
+  }; // end of something functions
 
 
 
