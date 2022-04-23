@@ -109,6 +109,7 @@ function AdminEventEdit() {
     }, []);
 
 
+    const history = useHistory();
     const { id } = useParams();
     const dispatch = useDispatch();
     const user = useSelector(store => store.user);
@@ -116,17 +117,12 @@ function AdminEventEdit() {
     const categories = useSelector(store => store.categories);
     const selectedEvent = useSelector(store => store.updateEvent);
 
-    console.log('selectedEvent:', selectedEvent);
-    // const selectedEvent = allEvents.filter(event => event.id == id);
-    // console.log('selectedEvent:', selectedEvent);
-
-
     // Form Submit
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        dispatch({ type: 'POST_EVENT', payload: newEvent })
+        dispatch({ type: 'UPDATE_EVENT', payload: selectedEvent })
+        history.push('/calanderview');
     }
-
 
 
     return (
@@ -137,7 +133,7 @@ function AdminEventEdit() {
 
                 {/*  -----------------------------------------------------------------------
                         EVENT DETAIL
-            ------------------------------------------------------------------------- */}
+                ------------------------------------------------------------------------- */}
 
                 <Typography variant="h5" sx={{ my: 2 }}>Event Detail</Typography>
 
@@ -209,12 +205,11 @@ function AdminEventEdit() {
                             <Select
                                 label="Category"
                                 variant={muiVariant}
-                                value={selectedEvent.category_id || ''}
+                                value={selectedEvent?.category_id || ''}
                                 onChange={e => dispatch({
-                                    type: 'SET_ADD_EVENT',
+                                    type: 'SET_EDIT_UPDATE_EVENT',
                                     payload: { property: 'category_id', value: e.target.value }
                                 })}
-
                             >
                                 {categories.map(category => (
                                     <MenuItem key={category.id} value={category.id}>

@@ -108,7 +108,7 @@ function AdminEventCopy() {
         dispatch({ type: 'FETCH_EVENT_DETAILS', payload: id })
     }, []);
 
-
+    const history = useHistory();
     const { id } = useParams();
     const dispatch = useDispatch();
     const user = useSelector(store => store.user);
@@ -116,14 +116,12 @@ function AdminEventCopy() {
     const categories = useSelector(store => store.categories);
     const copiedEvent = useSelector(store => store.updateEvent);
 
-    console.log('copiedEvent:', copiedEvent);
-
     // Form Submit
     const handleFormSubmit = (event) => {
         event.preventDefault();
         dispatch({ type: 'POST_EVENT', payload: copiedEvent })
+        history.push('/calanderview');
     }
-
 
     return (
         <Box
@@ -132,7 +130,7 @@ function AdminEventCopy() {
             <form onSubmit={event => handleFormSubmit(event)}>
 
                 {/*  -----------------------------------------------------------------------
-                        EVENT DETAIL
+                 EVENT DETAIL
             ------------------------------------------------------------------------- */}
 
                 <Typography variant="h5" sx={{ my: 2 }}>Event Detail</Typography>
@@ -207,10 +205,9 @@ function AdminEventCopy() {
                                 variant={muiVariant}
                                 value={copiedEvent.category_id || ''}
                                 onChange={e => dispatch({
-                                    type: 'SET_ADD_EVENT',
+                                    type: 'SET_EDIT_UPDATE_EVENT',
                                     payload: { property: 'category_id', value: e.target.value }
                                 })}
-
                             >
                                 {categories.map(category => (
                                     <MenuItem key={category.id} value={category.id}>
@@ -225,6 +222,17 @@ function AdminEventCopy() {
                                         {category.name}
                                     </MenuItem>
                                 ))};
+
+                                {/* <MenuItem onClick={e => dispatch({
+                                    type: 'SET_EDIT_UPDATE_EVENT',
+                                    payload: { property: 'category_id', value: 999 }
+                                    })}
+                                >
+                                    <img className="icon_dropdown" src={icon_other} /> 
+                                    Other
+                                </MenuItem> */}
+
+
                             </Select>
                         </FormControl>
                     </Grid>
@@ -232,8 +240,8 @@ function AdminEventCopy() {
                 </Grid>
 
                 {/*  -----------------------------------------------------------------------
-                        TIME & DATE
-            ------------------------------------------------------------------------- */}
+                    TIME & DATE
+                ------------------------------------------------------------------------- */}
 
                 <Typography variant="h5" sx={{ mt: 4, mb: 2 }}>Time & Date</Typography>
 
@@ -347,7 +355,7 @@ function AdminEventCopy() {
                 </Grid>
 
                 {/*  -----------------------------------------------------------------------
-                        CONTACT & LOCATION
+                    CONTACT & LOCATION
                 ------------------------------------------------------------------------- */}
 
                 <Typography variant="h5" sx={{ mt: 4, mb: 2 }}>Contact & Location</Typography>

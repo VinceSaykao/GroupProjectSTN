@@ -29,9 +29,16 @@ import fetchSavedEvents from "./Event_SAGA/fetchSavedEvents.saga";
 import updateEvent from "./Event_SAGA/updateEvent.saga";
 import fetchAdminPendingEvents from "./Event_SAGA/fetchAdminPendingEvents.saga";
 import deleteFaveEventSaga from "./Event_SAGA/deleteFaveEvent.saga";
+import updateExpiredEvents from './Event_SAGA/updateExpiredEvents.saga';
 
 // Categories
 import categories from "./categories.saga";
+
+// Filters
+import fetchApprovedSearch from './Filter_SAGA/fetchApprovedSearch.saga'
+import fetchPendingSearch from './Filter_SAGA/fetchPendingSearch.saga'
+import fetchOrganizationSearchSaga from './Filter_SAGA/fetchOrganizationSearch.saga'
+import fetchFilteredEventsAdmin from './Filter_SAGA/fetchFilteredEventsAdmin.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -73,8 +80,15 @@ export default function* rootSaga() {
     updateEvent(),
     fetchAdminPendingEvents(),
     deleteFaveEventSaga(),
+    updateExpiredEvents(),
 
     // Categories
     categories(),
+
+    // Filters
+    fetchApprovedSearch(),
+    fetchPendingSearch(),
+    fetchOrganizationSearchSaga(),
+    fetchFilteredEventsAdmin(),
   ]);
 }
