@@ -30,14 +30,16 @@ export default function UserProfile() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_SAVE_EVENT' });
-    dispatch({ type: 'SET_PROFILE_SAGA' });
+    // dispatch({ type: 'SET_PROFILE_SAGA' });
+    // dispatch({type: 'FETCH_USER'})
   }, []);
 
   const handleEditClick = () => {
     history.push('/userprofileedit');
   };
 
-  const fetchProfile = useSelector((store) => store.fetchProfile[0]);
+  // const fetchProfile = useSelector((store) => store.fetchProfile[0]);
+  const user = useSelector((store) => store.user);
   const fetchSave = useSelector((store) => store.fetchSave);
 
   return (
@@ -60,7 +62,7 @@ export default function UserProfile() {
           <Avatar
             className="avatar"
             sx={{ width: 200, height: 200 }}
-            src={fetchProfile?.image}
+            src={user?.image}
           />
 
           <Box
@@ -82,20 +84,29 @@ export default function UserProfile() {
               <EditIcon fontSize="small" />
               Edit
             </Button>
+            {/* <Button
+              className="edit-button"
+              size="small"
+              variant="contained"
+              onClick={handleEditClick}
+            >
+              <EditIcon fontSize="small" />
+              Update Photo
+            </Button> */}
           </Box>
         </div>
       </Grid>
 
       <Typography gutterBottom variant="body1" sx={{ ml: 2 }}>
         <Typography color="white">
-          {fetchProfile?.first_name} {fetchProfile?.last_name}
+          {user?.first_name} {user?.last_name}
         </Typography>
-        <Typography color="white">{fetchProfile?.email}</Typography>
+        <Typography color="white">{user?.email}</Typography>
         <Typography color="white" sx={{ mt: 2 }}>
           About Me:
         </Typography>
         <Typography color="white" sx={{ mb: 2 }}>
-          {fetchProfile?.bio}
+          {user?.bio}
         </Typography>
       </Typography>
       <Box
