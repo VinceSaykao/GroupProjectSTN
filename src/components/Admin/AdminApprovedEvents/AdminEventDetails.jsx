@@ -12,6 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 import { Divider } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
 
 import './AdminEventDetails.scss'
 
@@ -228,9 +229,9 @@ export default function AdminEventDetails() {
                                                 <div
                                                     className='star-saved-event'
                                                     onClick={handleSave}
-                                                ><StarIcon
-                                                        fontSize='15px'
-                                                        sx={{ marginTop: '0px', color: 'white',}}
+                                                ><BookmarkAddOutlinedIcon 
+                                                
+                                                        sx={{ marginTop: '0px', fontSize: '40px',float:'right', textAlign:'right',}}
 
 
                                                     /></div>
@@ -270,7 +271,8 @@ export default function AdminEventDetails() {
                                                 {user.access_level >= 2 ?
                                                     <Button
                                                         onClick={handleEdit}
-
+                                                        sx={{ color:'#299bff', background: '#444', 
+                                                    border: '0.5px solid white' }} 
                                                         variant="contained"
                                                         startIcon={<EditIcon />}
                                                     >Edit</Button>
@@ -286,7 +288,8 @@ export default function AdminEventDetails() {
 
                                                     <Button
                                                         onClick={handleCopy}
-                                                        sx={{ background: 'orange', }}
+                                                        sx={{ background: '#444', 
+                                                    border: '0.5px solid white', color:'#ff9500' }} 
                                                         startIcon={<ContentCopyIcon />}
                                                         variant="contained"
                                                     >Copy</Button>
@@ -298,7 +301,9 @@ export default function AdminEventDetails() {
 
                                                 {user.access_level >= 2 ?
 
-                                                    <Button onClick={handleOpen} variant="contained" sx={{ background: 'red', }} startIcon={<DeleteIcon />}>
+                                                    <Button onClick={handleOpen} variant="contained" sx={{ background: '#444', 
+                                                    border: '0.5px solid white', color: 'red', }} 
+                                                    startIcon={<DeleteIcon />}>
                                                         Delete
                                                     </Button>
 

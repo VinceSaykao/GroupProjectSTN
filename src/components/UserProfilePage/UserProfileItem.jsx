@@ -33,6 +33,7 @@ import icon_popups from '../../category_icons/icon_popups.png'
 import icon_other from '../../category_icons/icon_other.png'
 import { intlFormat } from 'date-fns';
 import StarIcon from '@mui/icons-material/Star';
+import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
 
 
 function UserProfileItem({ info, detail }) {
@@ -174,10 +175,10 @@ function UserProfileItem({ info, detail }) {
                   className="edit-button"
                   size="small"
                   variant="contained"
-                  sx={{height: '110%', float: 'right', top: 7, left: 38, background: '#88888898', boxShadow:'none' ,color: '#fff', borderRadiusRight: '10px', border:'0.5px solid white', 
-                  boxShadow:'1px 1px 5px 1px black', zIndex: '10'}}
+                  sx={{height: '70%', float: 'right', top: 7, left: 40, background: '#ff0000d9', boxShadow:'none' ,color: '#fff', borderRadiusRight: '10px', border:'0.5px solid white', 
+                  boxShadow:'1px 1px 3px 1px black', zIndex: '10'}}
                 >
-                  <StarIcon 
+                  <BookmarkRemoveIcon 
             
                   sx={{fontSize:'50px',}}
 
