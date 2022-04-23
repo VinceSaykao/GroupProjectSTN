@@ -176,6 +176,12 @@ export default function AdminEventDetails() {
     }
 
 
+
+
+
+    
+
+
     return (
         <div>
             <Helmet>
@@ -222,12 +228,12 @@ export default function AdminEventDetails() {
                                                 <div
                                                     className='star-saved-event'
                                                     onClick={handleSave}
-                                                ><StarIcon 
-                                                fontSize='15px'
-                                               sx={{marginTop:'0px',}}
+                                                ><StarIcon
+                                                        fontSize='15px'
+                                                        sx={{ marginTop: '0px', color: 'white',}}
 
-                                                
-                                                /></div>
+
+                                                    /></div>
                                                 :
                                                 <div></div>
                                             }

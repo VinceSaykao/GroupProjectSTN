@@ -174,8 +174,8 @@ function UserProfileItem({ info, detail }) {
                   className="edit-button"
                   size="small"
                   variant="contained"
-                  sx={{height: '90%', float: 'right', top: 25, left: 35, background: '#33333394', boxShadow:'none' ,color: '#fff', borderRadiusRight: '10px', border:'0.5px solid white', 
-                  boxShadow:'1px 1px 10px 2px black', zIndex: '10'}}
+                  sx={{height: '110%', float: 'right', top: 7, left: 38, background: '#88888898', boxShadow:'none' ,color: '#fff', borderRadiusRight: '10px', border:'0.5px solid white', 
+                  boxShadow:'1px 1px 5px 1px black', zIndex: '10'}}
                 >
                   <StarIcon 
             
