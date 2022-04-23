@@ -13,7 +13,7 @@ function* editProfileSaga(action) {
   imageForm.append('last_name', action.payload.last_name);
   imageForm.append('bio', action.payload.bio);
   imageForm.append('email', action.payload.email);
-  console.warn('imageFrom:', imageForm)
+  // console.warn('imageFrom:', imageForm)
   console.log('action payload image is', action.payload.image)
   try {
     console.log('headers is', headers);

@@ -31,6 +31,7 @@ export default function UserProfile() {
   useEffect(() => {
     dispatch({ type: 'FETCH_SAVE_EVENT' });
     // dispatch({ type: 'SET_PROFILE_SAGA' });
+    // dispatch({type: 'FETCH_USER'})
   }, []);
 
   const handleEditClick = () => {
@@ -83,7 +84,7 @@ export default function UserProfile() {
               <EditIcon fontSize="small" />
               Edit
             </Button>
-            <Button
+            {/* <Button
               className="edit-button"
               size="small"
               variant="contained"
@@ -91,7 +92,7 @@ export default function UserProfile() {
             >
               <EditIcon fontSize="small" />
               Update Photo
-            </Button>
+            </Button> */}
           </Box>
         </div>
       </Grid>

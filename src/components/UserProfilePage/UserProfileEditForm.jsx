@@ -19,7 +19,7 @@ function UserProfileEditForm() {
   const [firstName, setFirstName] = useState(user?.first_name);
   const [lastName, setLastName] = useState(user?.last_name);
 
-  console.warn('user', user)
+  // console.warn('user', user)
 
 
   const handleUpdateUser = (e) => {
