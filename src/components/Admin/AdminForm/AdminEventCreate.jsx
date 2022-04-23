@@ -103,6 +103,7 @@ function AdminEventCreate() {
     // ------------------------------------------------------------
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const user = useSelector(store => store.user);
     const newEvent = useSelector(store => store.addEvent);
     const categories = useSelector(store => store.categories);
@@ -111,6 +112,8 @@ function AdminEventCreate() {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         dispatch({ type: 'POST_EVENT', payload: newEvent })
+        history.goBack();
+        
     }
 
     // Fetches Categories on page load

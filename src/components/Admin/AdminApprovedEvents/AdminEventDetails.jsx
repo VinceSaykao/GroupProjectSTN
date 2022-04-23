@@ -1,6 +1,6 @@
 // Event Details
 import * as React from 'react';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -31,13 +31,14 @@ export default function AdminEventDetails() {
     const history = useHistory();
 
     useEffect(() => {
-        dispatch({ type: "FETCH_SAVE_EVENT"});
-        dispatch({ type: "SET_PROFILE_SAGA"});
+        dispatch({ type: "FETCH_SAVE_EVENT" });
+        dispatch({ type: "SET_PROFILE_SAGA" });
     }, [])
 
-    const fetchEventId = useSelector(store => store.fetchEventId)
-    const fetchProfile = useSelector(store=> store.fetchProfile[0])
-    
+    const fetchEventId = useSelector(store => store.fetchEventId);
+    const fetchProfile = useSelector(store => store.fetchProfile[0]);
+    const user = useSelector(store => store.user);
+
 
 
 
@@ -71,18 +72,30 @@ export default function AdminEventDetails() {
     }));
 
     const handleSave = () => {
-        dispatch({type:"ADD_SAVE_EVENT" , payload: { user_id: fetchProfile.id, event_id: fetchEventId[0].id }})
+        dispatch({ type: "ADD_SAVE_EVENT", payload: { user_id: fetchProfile?.id, event_id: fetchEventId[0]?.id } })
+    }
+
+    const handleEdit = () => {
+        history.push(`/admin-event-edit/${fetchEventId[0]?.id}`)
+    }
+
+    const handleCopy = () => {
+        history.push(`/admin-event-copy/${fetchEventId[0]?.id}`)
     }
 
     const handleDelete = () => {
-        dispatch({ type: 'DELETE_EVENT', payload: fetchEventId[0].id })
-        history.push("/adminlist");
+        dispatch({ type: 'DELETE_EVENT', payload: fetchEventId[0]?.id })
+        history.goBack();
 
     }
 
     const handleCancel = () => {
         handleClose();
         // history.goBack();
+    }
+
+    const handleOops = () => {
+        alert('Only Registered Users Can Save!')
     }
 
 
@@ -150,9 +163,6 @@ export default function AdminEventDetails() {
     }
 
 
-
-
-
     return (
         <div>
             <Helmet>
@@ -181,7 +191,7 @@ export default function AdminEventDetails() {
                                             }}
                                         >
                                             <img
-                                                src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" // Gonna be {detail.image}
+                                                src={detail.image} // Gonna be {detail.image}
                                                 loading="lazy"
                                                 height="140px"
                                                 width="100%"
@@ -190,27 +200,89 @@ export default function AdminEventDetails() {
                                     </Grid>
 
 
-                                    <Grid item xs={12}>
-                                        <Item>{detail.name}</Item>
+                                    <Grid sx={{ width: '100%', background: 'black' }}>
+                                        <Item
+                                            className='detail-name'
+                                        >{detail.name}</Item>
                                         <Grid item xs={12}>
 
                                             <Item>
-                                            <Button
-                                                    onClick={handleSave}
-                                                    variant="contained"
-                                                    startIcon={<EditIcon />}
-                                                >Save</Button>
-                                                <Button
-                                                    variant="contained"
-                                                    startIcon={<EditIcon />}
-                                                >Edit</Button>
-                                                <Button
-                                                    startIcon={<ContentCopyIcon />}
-                                                    variant="contained"
-                                                >Copy</Button>
-                                                <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
-                                                    Delete
-                                                </Button>
+
+                                                {user.access_level === 3 || user.access_level === 1 ?
+
+
+                                                    <Button
+                                                        onClick={handleSave}
+                                                        variant="contained"
+                                                        startIcon={<EditIcon />}
+                                                    >Save</Button>
+
+                                                    :
+
+
+                                                    <div></div>
+
+                                                }
+
+
+                                                {user.id ?
+
+                                                    <div></div>
+
+
+                                                    :
+
+
+
+
+
+                                                    <Button
+                                                        onClick={handleOops}
+                                                        variant="contained"
+                                                        startIcon={<EditIcon />}
+                                                    >Save</Button>
+
+
+                                                }
+
+                                                {user.access_level >= 2 ?
+                                                    <Button
+                                                        onClick={handleEdit}
+                                                        variant="contained"
+                                                        startIcon={<EditIcon />}
+                                                    >Edit</Button>
+
+                                                    :
+
+                                                    <div></div>
+
+                                                }
+
+
+                                                {user.access_level >= 2 ?
+
+                                                    <Button
+                                                        onClick={handleCopy}
+                                                        startIcon={<ContentCopyIcon />}
+                                                        variant="contained"
+                                                    >Copy</Button>
+
+                                                    :
+
+                                                    <div></div>
+                                                }
+
+                                                {user.access_level >= 2 ?
+
+                                                    <Button onClick={handleOpen} variant="contained" startIcon={<DeleteIcon />}>
+                                                        Delete
+                                                    </Button>
+
+                                                    :
+
+                                                    <div></div>
+
+                                                }
 
                                             </Item>
                                         </Grid>
@@ -219,9 +291,10 @@ export default function AdminEventDetails() {
 
 
 
-                                    <Grid item xs={10}>
+                                    <Grid sx={{ width: '100%', background: '#4444' }} >
+                                        <StyledItem><u>{detail.dayname} {detail.month} {detail.day}</u></StyledItem>
                                         <StyledItem>
-                                            <b>Details</b>
+                                            <u><b>Details</b></u>
                                             <br></br>
                                             {/* <Divider sx={{ height: 15, m: 0.5 }} orientation="vertical"/> */}
                                             {detail.description}
@@ -233,8 +306,22 @@ export default function AdminEventDetails() {
 
 
 
-                                        <StyledItem>{detail.month}</StyledItem>
-                                        <StyledItem>{detail.description}</StyledItem>
+
+                                        <StyledItem>
+                                            <u><b>Contact</b></u>
+                                            <br></br>
+                                            {detail.email}
+                                            <br></br>
+                                            {detail.phone}
+
+                                        </StyledItem>
+
+                                        <StyledItem>
+                                            <u><b>Location</b></u>
+                                            <br></br>
+                                            {detail.address1}
+
+                                        </StyledItem>
                                     </Grid>
 
                                 </Grid>
@@ -262,7 +349,8 @@ export default function AdminEventDetails() {
 
 
 
-        </div>
+        </div >
+
 
 
 

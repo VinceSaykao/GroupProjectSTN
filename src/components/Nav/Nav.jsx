@@ -15,13 +15,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 
 import LandingPage from '../LandingPage/LandingPage.jsx';
 
-
-
-
-
-
 //DRAWER
-
 
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -41,10 +35,6 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-
-
-
-
 const drawerWidth = 250;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -63,7 +53,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
       }),
       marginRight: 0,
     }),
-  }),
+  })
 );
 
 const AppBar = styled(MuiAppBar, {
@@ -94,24 +84,14 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-start',
 }));
 
-
-
-
-
-
-
-
-
 export default function Nav() {
   const user = useSelector((store) => store.user);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -121,99 +101,75 @@ export default function Nav() {
     setOpen(false);
   };
 
-
   // event listeners for drawer pushes
 
   const handleProfile = () => {
     console.log('Send-Profile');
     handleDrawerClose();
     history.push('/userprofile');
-  }
+  };
 
   const handleOrgProfile = () => {
     console.log('Send-Org-Profile');
     handleDrawerClose();
-    history.push(`/organization-view/${user.org_id}`)
-  }
+    history.push(`/organization-view/${user.org_id}`);
+  };
 
   const handleHome = () => {
     console.log('Send-Home');
     handleDrawerClose();
     history.push('/calanderview');
-  }
+  };
 
   const handleAdd = () => {
     console.log('Send-Add');
     handleDrawerClose();
     history.push('/admin-event-create');
-  }
+  };
 
   const handleOrganizations = () => {
     console.log('Send-Org');
     handleDrawerClose();
     history.push(`/organizations-list/`);
-  }
+  };
 
   const handleEvents = () => {
     console.log('Send Events');
     handleDrawerClose();
     history.push('/adminlist');
-  }
+  };
 
   const handleLogout = () => {
     console.log('Logout');
     // LogOutButton();
     history.push('/login');
-    dispatch({ type: 'LOGOUT' })
-  }
+    dispatch({ type: 'LOGOUT' });
+  };
 
   // end of event listeners
 
-
   const nav = ['Profile', 'Calendar', 'Add Event', 'Organizations', 'Events'];
   const navOrg = ['Profile', 'Calendar', 'Add Event', 'Organizations'];
-  const navUser = ['Calendar', 'Organizations'];
+  const navUser = ['Profile', 'Calendar', 'Organizations'];
 
-
-
-
-console.log('this is user', user)
 
 
   switch (user.access_level) {
     case 3:
-
       return (
         <div className="nav">
-
-
-
-
-
           <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar position="fixed" open={open}>
               <Toolbar>
                 <Typography noWrap sx={{ flexGrow: 1 }} component="div">
-
-
                   <IconButton
                     color="inherit"
                     aria-label="open drawer"
                     edge="end"
                   >
-
-
-                    <HomeIcon
-                      fontSize='large'
-                      onClick={handleHome}
-                    />
-
-
+                    <HomeIcon fontSize="large" onClick={handleHome} />
                   </IconButton>
-
-
-
                 </Typography>
 
                 <IconButton
@@ -223,19 +179,16 @@ console.log('this is user', user)
                   onClick={handleDrawerOpen}
                   sx={{ ...(open && { display: 'none' }) }}
                 >
-                  <MenuIcon
-                    fontSize='large'
-                  />
+                  <MenuIcon fontSize="large" />
                 </IconButton>
               </Toolbar>
             </AppBar>
             <Main open={open}>
               <DrawerHeader />
-
             </Main>
             <Drawer
               onClick={handleDrawerClose}
-              className='nav-drawer'
+              className="nav-drawer"
               sx={{
                 width: drawerWidth,
                 flexShrink: 0,
@@ -249,123 +202,117 @@ console.log('this is user', user)
             >
               <DrawerHeader>
                 <IconButton onClick={handleDrawerClose}>
-                  {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon className='chevron-right' fontSize='large' />}
+                  {theme.direction === 'rtl' ? (
+                    <ChevronLeftIcon />
+                  ) : (
+                    <ChevronRightIcon
+                      className="chevron-right"
+                      fontSize="large"
+                    />
+                  )}
                 </IconButton>
               </DrawerHeader>
               <Divider />
 
-
-
-
-              <List className='nav-row'>
+              <List className="nav-row">
                 {nav.map((text, index) => (
                   <ListItem button key={index}>
-                    <ListItemIcon className='nav-tab'>
-                      {index == 0 && <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} />}
-                      {index == 1 && <HomeIcon fontSize='large' className='nav-icon' onClick={handleHome} />}
-                      {index == 2 && <AddIcon fontSize='large' className='nav-icon' onClick={handleAdd} />}
-                      {index == 3 && <GroupIcon fontSize='large' className='nav-icon' onClick={handleOrganizations} />}
-                      {index === 4 && <EventAvailableIcon fontSize='large' className='nav-icon' onClick={handleEvents} />}
-
+                    <ListItemIcon className="nav-tab">
+                      {index == 0 && (
+                        <PersonIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleProfile}
+                        />
+                      )}
+                      {index == 1 && (
+                        <HomeIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleHome}
+                        />
+                      )}
+                      {index == 2 && (
+                        <AddIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleAdd}
+                        />
+                      )}
+                      {index == 3 && (
+                        <GroupIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleOrganizations}
+                        />
+                      )}
+                      {index === 4 && (
+                        <EventAvailableIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleEvents}
+                        />
+                      )}
                     </ListItemIcon>
                     {/* <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/> */}
-                    <ListItemText className='nav-text'>
+                    <ListItemText className="nav-text">
                       {index === 0 && <h2 onClick={handleProfile}>Profile</h2>}
                       {index === 1 && <h2 onClick={handleHome}>Home</h2>}
                       {index === 2 && <h2 onClick={handleAdd}>Add Event</h2>}
-                      {index === 3 && <h2 onClick={handleOrganizations} >Organizations</h2>}
+                      {index === 3 && (
+                        <h2 onClick={handleOrganizations}>Organizations</h2>
+                      )}
                       {index === 4 && <h2 onClick={handleEvents}>Admin</h2>}
-
                     </ListItemText>
-
                   </ListItem>
-
                 ))}
               </List>
 
-
-
-
-
-
-
-
               <Divider />
-              <List className='nav-logout'>
+              <List className="nav-logout">
                 {['Logout'].map((text, index) => (
                   <ListItem button key={text}>
                     <ListItemIcon onClick={handleLogout}>
-                      {index % 2 === 0 ? <ExitToAppIcon fontSize='large' className='nav-icon' /> : <MailIcon />}
+                      {index % 2 === 0 ? (
+                        <ExitToAppIcon fontSize="large" className="nav-icon" />
+                      ) : (
+                        <MailIcon />
+                      )}
                     </ListItemIcon>
                     <ListItemText onClick={handleLogout}>
-                      {index === 0 ? <h2><LogOutButton className='nav-logout-text' /></h2> : <p>NA</p>}
-
+                      {index === 0 ? (
+                        <h2>
+                          <LogOutButton className="nav-logout-text" />
+                        </h2>
+                      ) : (
+                        <p>NA</p>
+                      )}
                     </ListItemText>
-
                   </ListItem>
                 ))}
               </List>
 
-
               <Divider />
-
-
-
-
-
-
-
-
-
-
-
-
             </Drawer>
           </Box>
-
-
-
-
-
-
         </div>
-      )
-
+      );
 
     case 2:
-
       return (
         <div className="nav">
-
-
-
-
-
           <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar position="fixed" open={open}>
               <Toolbar>
                 <Typography noWrap sx={{ flexGrow: 1 }} component="div">
-
-
                   <IconButton
                     color="inherit"
                     aria-label="open drawer"
                     edge="end"
-
                   >
-
-
-                    <HomeIcon
-                      fontSize='large'
-                      onClick={handleHome}
-                    />
-
-
+                    <HomeIcon fontSize="large" onClick={handleHome} />
                   </IconButton>
-
-
-
                 </Typography>
 
                 <IconButton
@@ -375,19 +322,16 @@ console.log('this is user', user)
                   onClick={handleDrawerOpen}
                   sx={{ ...(open && { display: 'none' }) }}
                 >
-                  <MenuIcon
-                    fontSize='large'
-                  />
+                  <MenuIcon fontSize="large" />
                 </IconButton>
               </Toolbar>
             </AppBar>
             <Main open={open}>
               <DrawerHeader />
-
             </Main>
             <Drawer
               onClick={handleDrawerClose}
-              className='nav-drawer'
+              className="nav-drawer"
               sx={{
                 width: drawerWidth,
                 flexShrink: 0,
@@ -401,119 +345,111 @@ console.log('this is user', user)
             >
               <DrawerHeader>
                 <IconButton onClick={handleDrawerClose}>
-                  {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon className='chevron-right' fontSize='large' />}
+                  {theme.direction === 'rtl' ? (
+                    <ChevronLeftIcon />
+                  ) : (
+                    <ChevronRightIcon
+                      className="chevron-right"
+                      fontSize="large"
+                    />
+                  )}
                 </IconButton>
               </DrawerHeader>
               <Divider />
 
-
-
-
-              <List className='nav-row'>
+              <List className="nav-row">
                 {navOrg.map((text, index) => (
                   <ListItem button key={index}>
-                    <ListItemIcon className='nav-tab'>
-                      {index == 0 && <PersonIcon fontSize='large' className='nav-icon' onClick={handleProfile} />}
-                      {index == 1 && <HomeIcon fontSize='large' className='nav-icon' onClick={handleHome} />}
-                      {index == 2 && <AddIcon fontSize='large' className='nav-icon' onClick={handleAdd} />}
-                      {index == 3 && <GroupIcon fontSize='large' className='nav-icon' onClick={handleOrganizations} />}
-
-
+                    <ListItemIcon className="nav-tab">
+                      {index == 0 && (
+                        <PersonIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleProfile}
+                        />
+                      )}
+                      {index == 1 && (
+                        <HomeIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleHome}
+                        />
+                      )}
+                      {index == 2 && (
+                        <AddIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleAdd}
+                        />
+                      )}
+                      {index == 3 && (
+                        <GroupIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleOrganizations}
+                        />
+                      )}
                     </ListItemIcon>
                     {/* <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/> */}
-                    <ListItemText className='nav-text'>
-                      {index === 0 && <h2 onClick={handleOrgProfile}>Profile</h2>}
+                    <ListItemText className="nav-text">
+                      {index === 0 && (
+                        <h2 onClick={handleOrgProfile}>Profile</h2>
+                      )}
                       {index === 1 && <h2 onClick={handleHome}>Home</h2>}
                       {index === 2 && <h2 onClick={handleAdd}>Add Event</h2>}
-                      {index === 3 && <h2 onClick={handleOrganizations} >Organizations</h2>}
-
-
+                      {index === 3 && (
+                        <h2 onClick={handleOrganizations}>Organizations</h2>
+                      )}
                     </ListItemText>
-
                   </ListItem>
-
                 ))}
               </List>
 
-
-
-
-
-
               <Divider />
-              <List className='nav-logout'>
+              <List className="nav-logout">
                 {['Logout'].map((text, index) => (
                   <ListItem button key={text}>
                     <ListItemIcon onClick={handleLogout}>
-                      {index % 2 === 0 ? <ExitToAppIcon fontSize='large' className='nav-icon' /> : <MailIcon />}
+                      {index % 2 === 0 ? (
+                        <ExitToAppIcon fontSize="large" className="nav-icon" />
+                      ) : (
+                        <MailIcon />
+                      )}
                     </ListItemIcon>
                     <ListItemText onClick={handleLogout}>
-                      {index === 0 ? <h2><LogOutButton className='nav-logout-text' /></h2> : <p>NA</p>}
-
+                      {index === 0 ? (
+                        <h2>
+                          <LogOutButton className="nav-logout-text" />
+                        </h2>
+                      ) : (
+                        <p>NA</p>
+                      )}
                     </ListItemText>
-
                   </ListItem>
                 ))}
               </List>
 
-
               <Divider />
-
-
-
-
-
-
-
-
-
-
-
             </Drawer>
           </Box>
-
-
-
-
-
-
         </div>
-      )
+      );
 
     case 1:
-
       return (
         <div className="nav">
-
-
-
-
-
           <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar position="fixed" open={open}>
               <Toolbar>
                 <Typography noWrap sx={{ flexGrow: 1 }} component="div">
-
-
                   <IconButton
                     color="inherit"
                     aria-label="open drawer"
                     edge="end"
-
                   >
-
-
-                    <HomeIcon
-                      fontSize='large'
-                      onClick={handleHome}
-                    />
-
-
+                    <HomeIcon fontSize="large" onClick={handleHome} />
                   </IconButton>
-
-
-
                 </Typography>
 
                 <IconButton
@@ -523,19 +459,16 @@ console.log('this is user', user)
                   onClick={handleDrawerOpen}
                   sx={{ ...(open && { display: 'none' }) }}
                 >
-                  <MenuIcon
-                    fontSize='large'
-                  />
+                  <MenuIcon fontSize="large" />
                 </IconButton>
               </Toolbar>
             </AppBar>
             <Main open={open}>
               <DrawerHeader />
-
             </Main>
             <Drawer
               onClick={handleDrawerClose}
-              className='nav-drawer'
+              className="nav-drawer"
               sx={{
                 width: drawerWidth,
                 flexShrink: 0,
@@ -549,112 +482,103 @@ console.log('this is user', user)
             >
               <DrawerHeader>
                 <IconButton onClick={handleDrawerClose}>
-                  {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon className='chevron-right' fontSize='large' />}
+                  {theme.direction === 'rtl' ? (
+                    <ChevronLeftIcon />
+                  ) : (
+                    <ChevronRightIcon
+                      className="chevron-right"
+                      fontSize="large"
+                    />
+                  )}
                 </IconButton>
               </DrawerHeader>
               <Divider />
 
-
-
-
-              <List className='nav-row'>
+              <List className="nav-row">
                 {navUser.map((text, index) => (
                   <ListItem button key={index}>
-                    <ListItemIcon className='nav-tab'>
-                      {index == 0 && <HomeIcon fontSize='large' className='nav-icon' onClick={handleHome} />}
-                      {index == 1 && <GroupIcon fontSize='large' className='nav-icon' onClick={handleOrganizations} />}
-
-
+                    <ListItemIcon className="nav-tab">
+                      {index == 0 && (
+                        <PersonIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleProfile}
+                        />
+                      )}
+                      {index == 1 && (
+                        <HomeIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleHome}
+                        />
+                      )}
+                      {index == 2 && (
+                        <GroupIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleOrganizations}
+                        />
+                      )}
                     </ListItemIcon>
                     {/* <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/> */}
-                    <ListItemText className='nav-text'>
-                      {index === 0 && <h2 onClick={handleHome}>Home</h2>}
-                      {index === 1 && <h2 onClick={handleOrganizations} >Organizations</h2>}
-
+                    <ListItemText className="nav-text">
+                      {index === 0 && (
+                        <h2 onClick={handleProfile}>Profile</h2>
+                      )}
+                      {index === 1 && <h2 onClick={handleHome}>Home</h2>}
+                      {index === 2 && (
+                        <h2 onClick={handleOrganizations}>Organizations</h2>
+                      )}
                     </ListItemText>
-
                   </ListItem>
-
                 ))}
               </List>
 
-
-
               <Divider />
-              <List className='nav-logout'>
+              <List className="nav-logout">
                 {['Logout'].map((text, index) => (
                   <ListItem button key={text}>
                     <ListItemIcon onClick={handleLogout}>
-                      {index % 2 === 0 ? <ExitToAppIcon fontSize='large' className='nav-icon' /> : <MailIcon />}
+                      {index % 2 === 0 ? (
+                        <ExitToAppIcon fontSize="large" className="nav-icon" />
+                      ) : (
+                        <MailIcon />
+                      )}
                     </ListItemIcon>
                     <ListItemText onClick={handleLogout}>
-                      {index === 0 ? <h2><LogOutButton className='nav-logout-text' /></h2> : <p>NA</p>}
-
+                      {index === 0 ? (
+                        <h2>
+                          <LogOutButton className="nav-logout-text" />
+                        </h2>
+                      ) : (
+                        <p>NA</p>
+                      )}
                     </ListItemText>
-
                   </ListItem>
                 ))}
               </List>
 
-
               <Divider />
-
-
-
-
-
-
-
-
-
-
-
-
             </Drawer>
           </Box>
-
-
-
-
-
-
         </div>
-      )
+      );
 
     default:
-
       return (
         <div className="nav">
-
-
-
-
-
           <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar position="fixed" open={open}>
               <Toolbar>
                 <Typography noWrap sx={{ flexGrow: 1 }} component="div">
-
-
                   <IconButton
                     color="inherit"
                     aria-label="open drawer"
                     edge="end"
-
                   >
-
-
-                    <HomeIcon
-                      fontSize='large'
-                      onClick={handleHome}
-                    />
-
-
+                    <HomeIcon fontSize="large" onClick={handleHome} />
                   </IconButton>
-
-
-
                 </Typography>
 
                 <IconButton
@@ -664,19 +588,16 @@ console.log('this is user', user)
                   onClick={handleDrawerOpen}
                   sx={{ ...(open && { display: 'none' }) }}
                 >
-                  <MenuIcon
-                    fontSize='large'
-                  />
+                  <MenuIcon fontSize="large" />
                 </IconButton>
               </Toolbar>
             </AppBar>
             <Main open={open}>
               <DrawerHeader />
-
             </Main>
             <Drawer
               onClick={handleDrawerClose}
-              className='nav-drawer'
+              className="nav-drawer"
               sx={{
                 width: drawerWidth,
                 flexShrink: 0,
@@ -690,66 +611,70 @@ console.log('this is user', user)
             >
               <DrawerHeader>
                 <IconButton onClick={handleDrawerClose}>
-                  {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon className='chevron-right' fontSize='large' />}
+                  {theme.direction === 'rtl' ? (
+                    <ChevronLeftIcon />
+                  ) : (
+                    <ChevronRightIcon
+                      className="chevron-right"
+                      fontSize="large"
+                    />
+                  )}
                 </IconButton>
               </DrawerHeader>
               <Divider />
 
-
-
-
-              <List className='nav-row'>
+              <List className="nav-row">
                 {navUser.map((text, index) => (
                   <ListItem button key={index}>
-                    <ListItemIcon className='nav-tab'>
-                      {index == 0 && <HomeIcon fontSize='large' className='nav-icon' onClick={handleHome} />}
-                      {index == 1 && <GroupIcon fontSize='large' className='nav-icon' onClick={handleOrganizations} />}
-
-
+                    <ListItemIcon className="nav-tab">
+                      {index == 0 && (
+                        <HomeIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleHome}
+                        />
+                      )}
+                      {index == 1 && (
+                        <GroupIcon
+                          fontSize="large"
+                          className="nav-icon"
+                          onClick={handleOrganizations}
+                        />
+                      )}
                     </ListItemIcon>
                     {/* <ListItemText primary={text} className='nav-text' onClick={handleNavTag}/> */}
-                    <ListItemText className='nav-text'>
+                    <ListItemText className="nav-text">
                       {index === 0 && <h2 onClick={handleHome}>Home</h2>}
-                      {index === 1 && <h2 onClick={handleOrganizations} >Organizations</h2>}
-
+                      {index === 1 && (
+                        <h2 onClick={handleOrganizations}>Organizations</h2>
+                      )}
                     </ListItemText>
-
                   </ListItem>
-
                 ))}
               </List>
 
-
-
               <Divider />
-              <List className='nav-logout'>
+              <List className="nav-logout">
                 {['Logout'].map((text, index) => (
                   <ListItem button key={text}>
                     <ListItemIcon onClick={handleLogout}>
-                      {index % 2 === 0 ? <ExitToAppIcon fontSize='large' className='nav-icon' /> : <MailIcon />}
+                      {index % 2 === 0 ? (
+                        <ExitToAppIcon fontSize="large" className="nav-icon" />
+                      ) : (
+                        <MailIcon />
+                      )}
                     </ListItemIcon>
                     <ListItemText onClick={handleLogout}>
                       {index === 0 ? <h2>Login</h2> : <p>NA</p>}
-
                     </ListItemText>
-
                   </ListItem>
                 ))}
               </List>
 
-
               <Divider />
-
             </Drawer>
           </Box>
-
         </div>
-      )
-
-
-
-
+      );
   } // end of switch
-
 } // end of Nav
-

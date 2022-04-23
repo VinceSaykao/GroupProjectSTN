@@ -1,0 +1,22 @@
+.image-container * {
+  margin: 0px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.profile-container {
+  background-color: rgb(75, 75, 75);
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-container .edit-overlay {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #333;
+  background-color: #ffffffd5;
+}
+
