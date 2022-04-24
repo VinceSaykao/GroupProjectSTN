@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   HashRouter as Router,
@@ -44,73 +44,91 @@ import './App.css';
 
 function App() {
 
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'FETCH_ADMIN_EVENTS' });
+    something();
+
+  }, []);
+
+  function stuff() {
+
+    console.log('dsajfsdjflkdjfkdfk', expiredEvents, events)
+
+
+    {expiredEvents.map((exp) => {
+  
+      const dateNow = format(new Date(), 'yyyy/MM/dd')
+      if (exp.end_date < dateNow) {
+        console.log('expired!!!!!!!!!!!!!!!')
+        // dispatch({
+        //     type: 'UPDATE_EVENT',
+        //     payload:
+        //     {
+        //         id: exp.id,
+        //         org_id: exp.org_id,
+        //         category_id: exp.category_id,
+        //         status: status,
+        //         name: exp.name,
+        //         description: exp.description,
+        //         link: exp.link,
+        //         start_date: exp.start_date,
+        //         end_date: exp.end_date,
+        //         start_time: exp.start_time,
+        //         end_time: exp.end_time,
+        //         image: exp.image,
+        //         email: exp.email,
+        //         phone: exp.phone,
+        //         address1: exp.address1,
+        //         address2: exp.address2,
+        //         city: exp.city,
+        //         zip: exp.zip,
+        //         state: exp.state,
+        //         feedback: exp.feedback,
+        //     }
+        // });
+    } else {
+        console.log('not expired!______________');
+    }
+    })}
+
+
+
+  }
+
+
+
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
+
+    // fetch approved events
+    const events = useSelector(store => store.fetchAdminEvents);
+
+
+    const [status, setStatus] = useState('expired');
 
 
   const dateNow = format(new Date(), 'yyyy/MM/dd')
 
-  // fetch approved events
-  const events = useSelector(store => store.fetchAdminEvents);
+
 
   
   const expiredEvents = events.filter(
     (events) => events.stop_date < dateNow
     );
     
-    console.log('this is events: ', events)
-    console.log('this filters: ', expiredEvents );
+  
 
-// const something = () => {
 
-//   console.log('dsajfsdjflkdjfkdfk')
-//   {expiredEvents.map((exp) => {
 
-//     const dateNow = format(new Date(), 'yyyy/MM/dd')
-//     if (exp.end_date < dateNow) {
-//       console.log('expired!!!!!!!!!!!!!!!')
-//       dispatch({
-//           type: 'UPDATE_EVENT',
-//           payload:
-//           {
-//               id: exp.id,
-//               org_id: exp.org_id,
-//               category_id: exp.category_id,
-//               status: 'expired',
-//               name: exp.name,
-//               description: exp.description,
-//               date: exp.date,
-//               link: exp.link,
-//               start_date: exp.start_date,
-//               end_date: exp.end_date,
-//               start_time: exp.start_time,
-//               end_time: exp.end_time,
-//               image: exp.image,
-//               email: exp.email,
-//               phone: exp.phone,
-//               address1: exp.address1,
-//               address2: exp.address2,
-//               city: exp.city,
-//               zip: exp.zip,
-//               state: exp.state,
-//               feedback: exp.feedback,
-//           }
-//       });
-//   } else {
-//       console.log('not expired');
-//   }
-//   })}
-// }
+console.log('this filters: ', expiredEvents );
 
 
   // dispatch saga -> loop for each event.id axios.put /:id ,  run the put
 
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
-    dispatch({ type: 'FETCH_EVENT_ADMIN' });
-    // something();
-  }, []);
+
 
 
 
@@ -168,6 +186,57 @@ function App() {
 
 
   // }; // end of handleExpired
+
+  const something = () => {
+
+    console.log('dsajfsdjflkdjfkdfk', expiredEvents, events)
+
+
+    {expiredEvents.map((exp) => {
+  
+      const dateNow = format(new Date(), 'yyyy/MM/dd')
+      if (exp.end_date < dateNow) {
+        console.log('expired!!!!!!!!!!!!!!!')
+        // dispatch({
+        //     type: 'UPDATE_EVENT',
+        //     payload:
+        //     {
+        //         id: exp.id,
+        //         org_id: exp.org_id,
+        //         category_id: exp.category_id,
+        //         status: status,
+        //         name: exp.name,
+        //         description: exp.description,
+        //         link: exp.link,
+        //         start_date: exp.start_date,
+        //         end_date: exp.end_date,
+        //         start_time: exp.start_time,
+        //         end_time: exp.end_time,
+        //         image: exp.image,
+        //         email: exp.email,
+        //         phone: exp.phone,
+        //         address1: exp.address1,
+        //         address2: exp.address2,
+        //         city: exp.city,
+        //         zip: exp.zip,
+        //         state: exp.state,
+        //         feedback: exp.feedback,
+        //     }
+        // });
+    } else {
+        console.log('not expired!______________');
+    }
+    })}
+  }; // end of something functions
+
+
+
+
+
+
+
+
+
 
   return (
     <Router>
