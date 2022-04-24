@@ -12,6 +12,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 import { Divider } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+<<<<<<< HEAD
+=======
+import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+>>>>>>> master
 
 import './AdminEventDetails.scss'
 
@@ -55,15 +60,62 @@ export default function AdminEventDetails() {
     //     color: theme.palette.text.secondary,
     // }));
 
+    // Date for Event
+    const ItemDateTime = styled('div')(({ theme }) => ({
+        // color: '#ff3700',
+        color: 'white',
+        fontSize: '25px',
+        margin: '0',
+        padding: '0',
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+        // borderRadius: theme.shape.borderRadius,
+    }));
+
+
+    // Event Title!
+    const ItemName = styled('div')(({ theme }) => ({
+        fontSize: '35px',
+        color: 'white',
+        backgroundColor: 'transparent',
+        borderBottom: '1px solid #fff',
+        padding: theme.spacing(1),
+        borderRadius: theme.shape.borderRadius,
+    }));
+
+
+    // Regular Items
     const Item = styled('div')(({ theme }) => ({
         color: 'white',
-        backgroundColor: '#88888844',
+        backgroundColor: 'transparent',
         padding: theme.spacing(1),
         borderRadius: theme.shape.borderRadius,
     }));
 
 
 
+
+
+    const StyledItemDate = styled('div')(({ theme }) => ({
+        color: '#ff6200',
+        textAlign: 'center',
+        fontSize: '30px',
+        backgroundColor: 'transparent',
+        borderBottom: '1px solid #fff',
+        padding: theme.spacing(1),
+        borderRadius: theme.shape.borderRadius,
+    }));
+
+
+    const StyleDetailItem = styled('div')(({ theme }) => ({
+        fontSize: '30px',
+        textAlign: 'center',
+        color: 'white',
+        backgroundColor: '#transparent',
+        padding: theme.spacing(1),
+    }));
+
+<<<<<<< HEAD
     // delete button theme 
     // const DeleteButton = styled('button')(({ theme }) => ({
     //     color: 'white',
@@ -76,13 +128,37 @@ export default function AdminEventDetails() {
 
 
 
+=======
+
+    // fix this 
+>>>>>>> master
     const StyledItem = styled('div')(({ theme }) => ({
         color: 'white',
         fontSize: '30px',
-        backgroundColor: '#88888844',
+        backgroundColor: '#transparent',
         padding: theme.spacing(1),
         borderRadius: theme.shape.borderRadius,
     }));
+
+    const StyledItemDetails = styled('div')(({ theme }) => ({
+        marginTop: '-40px',
+        textAlign: 'center',
+        color: 'white',
+        fontSize: '25px',
+        backgroundColor: 'transparent',
+        padding: theme.spacing(1),
+        borderRadius: theme.shape.borderRadius,
+    }));
+
+
+
+
+
+
+
+
+
+
 
     const handleSave = () => {
         dispatch({ type: "ADD_SAVE_EVENT", payload: { user_id: fetchProfile?.id, event_id: fetchEventId[0]?.id } })
@@ -175,7 +251,16 @@ export default function AdminEventDetails() {
         history.goBack();
     }
 
+    const handleSignUp = () => {
+        console.log('saved');
+    }
 
+
+
+
+
+
+    console.log('REEEEEEE', fetchEventId);
     return (
         <div>
             <Helmet>
@@ -186,16 +271,33 @@ export default function AdminEventDetails() {
 
             <CloseIcon
                 className='exit-icon'
-                fontSize='large'
+                sx={{fontSize:'50px',}}
                 onClick={handleExit}
             />
+
+
+
+            {fetchEventId.map((detail, i) => {
+                return (
+                    <ItemDateTime>
+
+                        {detail.dayname}, {detail.month} {detail.day} - {detail.end_date}
+                    </ItemDateTime>
+
+                )
+
+            })}
+
+
+
+
 
             <div className="event-approved-list-container">
                 {fetchEventId.map((detail, i) => {
                     return (
                         <div id={i}>
 
-                            <Box sx={{ flexGrow: 1 }}>
+                            <Box sx={{ flexGrow: 1, height: '900px', }}>
                                 <Grid container spacing={1}>
                                     <Grid item xs={12}>
                                         <Paper
@@ -206,13 +308,18 @@ export default function AdminEventDetails() {
                                             <img
                                                 src={detail.image} // Gonna be {detail.image}
                                                 loading="lazy"
-                                                height="140px"
+                                                height="180px"
                                                 width="100%"
                                             />
                                         </Paper>
+
+
+
+
                                     </Grid>
 
 
+<<<<<<< HEAD
                                     <Grid sx={{ width: '100%', background: 'black' }}>
                                         <Item
                                             className='detail-name'
@@ -236,10 +343,27 @@ export default function AdminEventDetails() {
 
                                         </Item>
                                         <Grid item xs={12}>
+=======
+
+
+                                    <Grid sx={{ width: '100%', marginTop: '43px', background: '#090909ee', alignItems: 'center', }}>
+
+
+
+>>>>>>> master
 
                                             <Item>
 
 
+<<<<<<< HEAD
+=======
+
+                                        <Grid item xs={12}>
+
+                                            <Item>
+
+
+>>>>>>> master
 
 
                                                 {user.id ?
@@ -264,7 +388,14 @@ export default function AdminEventDetails() {
                                                 {user.access_level >= 2 ?
                                                     <Button
                                                         onClick={handleEdit}
+<<<<<<< HEAD
 
+=======
+                                                        sx={{
+                                                            color: '#fff', background: '#444',
+                                                            border: '0.5px solid white'
+                                                        }}
+>>>>>>> master
                                                         variant="contained"
                                                         startIcon={<EditIcon />}
                                                     >Edit</Button>
@@ -280,7 +411,14 @@ export default function AdminEventDetails() {
 
                                                     <Button
                                                         onClick={handleCopy}
+<<<<<<< HEAD
                                                         sx={{ background: 'orange', }}
+=======
+                                                        sx={{
+                                                            background: '#444',
+                                                            border: '0.5px solid white', color: '#fff'
+                                                        }}
+>>>>>>> master
                                                         startIcon={<ContentCopyIcon />}
                                                         variant="contained"
                                                     >Copy</Button>
@@ -292,7 +430,15 @@ export default function AdminEventDetails() {
 
                                                 {user.access_level >= 2 ?
 
+<<<<<<< HEAD
                                                     <Button onClick={handleOpen} variant="contained" sx={{ background: 'red', }} startIcon={<DeleteIcon />}>
+=======
+                                                    <Button onClick={handleOpen} variant="contained" sx={{
+                                                        background: '#444',
+                                                        border: '0.5px solid white', color: '#fff',
+                                                    }}
+                                                        startIcon={<DeleteIcon />}>
+>>>>>>> master
                                                         Delete
                                                     </Button>
 
@@ -310,9 +456,51 @@ export default function AdminEventDetails() {
 
 
                                     <Grid sx={{ width: '100%', background: '#4444' }} >
-                                        <StyledItem><u>{detail.dayname} {detail.month} {detail.day}</u></StyledItem>
-                                        <StyledItem>
+
+
+                                        <ItemName
+                                            sx={{ textAlign: 'center', width: '100%', }}
+                                            className='detail-name'
+                                        >
+
+                                            <b>{detail.name}</b>
+
+
+                                            {user.access_level === 3 || user.access_level === 1 ?
+                                                <div
+                                                    className='star-saved-event'
+                                                    onClick={handleSave}
+                                                >
+                                                    <BookmarkAddOutlinedIcon
+                                                        sx={{ fontSize: '40px', right: '0', marginBottom: '-10px', color:'#3f7fff' }}
+                                                    />
+                                                    {/* <p className='save'>save</p> */}
+
+                                                </div>
+
+                                                :
+                                                <div></div>
+                                            }
+
+
+                                        </ItemName>
+
+
+                                        {/* <StyledItemDate><u>{detail.dayname}, {detail.month} {detail.day}</u></StyledItemDate> */}
+                                        <StyleDetailItem >
+
+
                                             <u><b>Details</b></u>
+                                        </StyleDetailItem>
+                        
+
+
+                                        <StyledItemDetails>
+
+
+
+
+
                                             <br></br>
                                             {/* <Divider sx={{ height: 15, m: 0.5 }} orientation="vertical"/> */}
                                             {detail.description}
@@ -320,7 +508,7 @@ export default function AdminEventDetails() {
 
 
 
-                                        </StyledItem>
+                                        </StyledItemDetails>
 
 
 
@@ -363,6 +551,19 @@ export default function AdminEventDetails() {
                     )
                 })}
             </div>
+
+            {user.access_level != 2 ?
+                <div
+                    onClick={handleSignUp}
+                // src={detail.link}
+                ><h1
+                    className='sign-up'
+                >Sign Up <AddOutlinedIcon
+                            sx={{ fontSize: '73px', }}
+                        /></h1></div>
+                :
+                <div> </div>
+            }
 
 
 
