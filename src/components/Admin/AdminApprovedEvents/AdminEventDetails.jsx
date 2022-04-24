@@ -57,12 +57,14 @@ export default function AdminEventDetails() {
     //     color: theme.palette.text.secondary,
     // }));
 
+    // Date for Event
     const ItemDateTime = styled('div')(({ theme }) => ({
-        fontSize: '20px',
+        // color: '#ff3700',
+        color: 'white',
+        fontSize: '25px',
         margin: '0',
         padding: '0',
         textAlign: 'center',
-        color: 'white',
         backgroundColor: 'transparent',
         // borderRadius: theme.shape.borderRadius,
     }));
@@ -72,7 +74,7 @@ export default function AdminEventDetails() {
     const ItemName = styled('div')(({ theme }) => ({
         fontSize: '35px',
         color: 'white',
-        backgroundColor: '#161616',
+        backgroundColor: 'transparent',
         borderBottom: '1px solid #fff',
         padding: theme.spacing(1),
         borderRadius: theme.shape.borderRadius,
@@ -82,7 +84,7 @@ export default function AdminEventDetails() {
     // Regular Items
     const Item = styled('div')(({ theme }) => ({
         color: 'white',
-        backgroundColor: '#88888844',
+        backgroundColor: 'transparent',
         padding: theme.spacing(1),
         borderRadius: theme.shape.borderRadius,
     }));
@@ -104,28 +106,28 @@ export default function AdminEventDetails() {
 
     const StyleDetailItem = styled('div')(({ theme }) => ({
         fontSize: '30px',
-        textAlign: 'left',
+        textAlign: 'center',
         color: 'white',
-        backgroundColor: '#88888844',
+        backgroundColor: '#transparent',
         padding: theme.spacing(1),
     }));
 
 
-
+    // fix this 
     const StyledItem = styled('div')(({ theme }) => ({
         color: 'white',
         fontSize: '30px',
-        backgroundColor: '#88888844',
+        backgroundColor: '#transparent',
         padding: theme.spacing(1),
         borderRadius: theme.shape.borderRadius,
     }));
 
     const StyledItemDetails = styled('div')(({ theme }) => ({
-        marginTop: '-60px',
-        textAlign: 'left',
+        marginTop: '-40px',
+        textAlign: 'center',
         color: 'white',
-        fontSize: '30px',
-        backgroundColor: '#88888844',
+        fontSize: '25px',
+        backgroundColor: 'transparent',
         padding: theme.spacing(1),
         borderRadius: theme.shape.borderRadius,
     }));
@@ -251,14 +253,17 @@ export default function AdminEventDetails() {
 
             <CloseIcon
                 className='exit-icon'
-                fontSize='large'
+                sx={{fontSize:'50px',}}
                 onClick={handleExit}
             />
+
+
+
             {fetchEventId.map((detail, i) => {
                 return (
                     <ItemDateTime>
 
-                        {detail.dayname}, {detail.month} {detail.day}
+                        {detail.dayname}, {detail.month} {detail.day} - {detail.end_date}
                     </ItemDateTime>
 
                 )
@@ -274,7 +279,7 @@ export default function AdminEventDetails() {
                     return (
                         <div id={i}>
 
-                            <Box sx={{ flexGrow: 1, height: '920px', }}>
+                            <Box sx={{ flexGrow: 1, height: '900px', }}>
                                 <Grid container spacing={1}>
                                     <Grid item xs={12}>
                                         <Paper
@@ -407,7 +412,7 @@ export default function AdminEventDetails() {
                                                     onClick={handleSave}
                                                 >
                                                     <BookmarkAddOutlinedIcon
-                                                        sx={{ fontSize: '40px', right: '0', marginBottom: '-10px', }}
+                                                        sx={{ fontSize: '40px', right: '0', marginBottom: '-10px', color:'#3f7fff' }}
                                                     />
                                                     {/* <p className='save'>save</p> */}
 
@@ -427,6 +432,7 @@ export default function AdminEventDetails() {
 
                                             <u><b>Details</b></u>
                                         </StyleDetailItem>
+                        
 
 
                                         <StyledItemDetails>
