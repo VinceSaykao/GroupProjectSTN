@@ -177,6 +177,10 @@ export default function AdminEventDetails() {
         history.goBack();
     }
 
+    const handleSignUp = () => {
+        console.log('saved');
+    }
+
 
 
 
@@ -202,7 +206,7 @@ export default function AdminEventDetails() {
                     return (
                         <div id={i}>
 
-                            <Box sx={{ flexGrow: 1 }}>
+                            <Box sx={{ flexGrow: 1, height:'950px',}}>
                                 <Grid container spacing={1}>
                                     <Grid item xs={12}>
                                         <Paper
@@ -226,7 +230,7 @@ export default function AdminEventDetails() {
 
 
 
-                                    <Grid sx={{ width: '100%', background: '#090909ee', alignItems: 'center', }}>
+                                    <Grid sx={{ width: '100%', marginTop:'43px', background: '#090909ee', alignItems: 'center', }}>
                                         <Item
                                             sx={{ textAlign: 'center', width: '100%', }}
                                             className='detail-name'
@@ -400,10 +404,13 @@ export default function AdminEventDetails() {
             </div>
 
             {user.access_level != 2 ?
-                <div><h1
+                <div
+                onClick={handleSignUp}
+                // src={detail.link}
+                ><h1
                 className='sign-up'
                 >Sign Up <AddOutlinedIcon 
-                sx={{fontSize: '70px', }}
+                sx={{fontSize: '73px', }}
                 /></h1></div>
                 :
                 <div> </div>
