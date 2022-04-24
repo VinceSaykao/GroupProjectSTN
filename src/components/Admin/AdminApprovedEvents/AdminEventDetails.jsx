@@ -308,7 +308,6 @@ export default function AdminEventDetails() {
 
 
 
-                                            <Item>
 
 
 
