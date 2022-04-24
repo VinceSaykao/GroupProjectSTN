@@ -2,6 +2,11 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
+const multer = require('multer');
+const upload = multer ({dest: 'uploads/'})
+const { uploadFile, getFileStream } = require('../modules/awsconfig')
+const fs = require('fs')
+const util = require('fs')
 // This will GET all profile information for a specific profile user
 
 
@@ -76,7 +81,7 @@ router.get("/save", (req, res) => {
 });
 
 // This will POST for when a new user registers an account
-router.post("/", (req, res) => {
+router.post("/:id", (req, res) => {
   let queryText = `
     insert into "user" ("access_level","first_name","last_name","bio","email","image") values
     ($1,$2,$3,$4,$5,$6);
@@ -127,15 +132,28 @@ router.post("/save", (req, res) => {
 });
 
 // update information for specific user profile
-router.put("/:id", (req, res) => {
+router.put("/:id", upload.single("image"), async (req, res) => {
+  console.log('req.file is', req.file);
   console.log("req.body= ", req.body);
   console.log("params.id= ", req.params.id);
+  const file = req.file
+  // console.log('file is', file);
+  // console.log('req file is ', req);
+  const result = await uploadFile(file)
+  // console.log('result location is', result.location);
+  const description = req.body.description; 
+  // res.send({imagePath: `/testbucketstn/${result.Key}`})
+  const imageUrl = 'https://testbucketstn.s3.us-east-2.amazonaws.com/' + req.file.filename; 
+
+
+
+
   const queryText = `
     update "user" set
     "first_name" = $1,
     "last_name" = $2,
     "bio" = $3,
-    "email" = $4,
+    "email" = $4, 
     "image" = $5
     WHERE "id" = $6;
     `;
@@ -145,7 +163,7 @@ router.put("/:id", (req, res) => {
     req.body.last_name,
     req.body.bio,
     req.body.email,
-    req.body.image,
+    imageUrl,
     req.params.id,
   ];
 
