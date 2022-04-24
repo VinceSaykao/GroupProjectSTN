@@ -54,7 +54,8 @@ export default function AdminPendingEventList() {
 
                 <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
-            </div> */}
+            </div> 
+            */}
 
 
             <div className="pending-event-list-container">
