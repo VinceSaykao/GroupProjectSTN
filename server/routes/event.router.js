@@ -317,6 +317,28 @@ router.put('/expired/status', (req, res) => {
     })
 });
 
+// Admin Decline Event
+router.put('/deny/:id', (req, res) => {
+
+    console.log('req.params.id', req.params.id);
+
+    const queryText = `
+    UPDATE 
+        events 
+    SET
+        status = 'pending'
+    WHERE
+        id = $1
+    ;`;
+
+    pool.query(queryText, [req.params.id]).then(() => {
+        res.sendStatus(200)
+    }).catch((error) => {
+        console.log('Error in Router Put /deny', error);
+        res.sendStatus(500);
+    })
+});
+
 // delete a event by id
 router.delete("/:id", (req, res) => {
     let queryText = `delete from events where id = $1;`;

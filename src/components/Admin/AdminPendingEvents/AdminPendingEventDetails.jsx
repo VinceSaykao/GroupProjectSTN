@@ -30,27 +30,10 @@ export default function AdminPendingEventDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [status, setStatus] = useState('approved');
-    const [expired, setExpired] = useState('expired');
-
-    // const event = fetchEventId[0];
-    // console.log(fetchEventId);
-
     // store that has the specific event I want by id
     const fetchEventId = useSelector(store => store.fetchEventId);
+    console.log('fetchEventId:', fetchEventId);
     //     const exp = useSelector(store => store.fetchEventId[0]);
-
-    // // console.log(exp)
-
-
-    // useEffect(() => {
-    //     handleExpired()
-    // }, [])
-
-
-
-
-
 
 
 
@@ -158,7 +141,7 @@ export default function AdminPendingEventDetails() {
                 id: event.id,
                 org_id: event.org_id,
                 category_id: event.category_id,
-                status: status,
+                status: 'approved',
                 name: event.name,
                 description: event.description,
                 start_date: event.start_date,
@@ -186,7 +169,8 @@ export default function AdminPendingEventDetails() {
     const handleDeny = () => {
         console.log('denied')
         alert('denied')
-        history.push('./adminlist');
+        dispatch({ type: 'UPDATE_EVENT_STATUS_DENY', payload: fetchEventId[0].id })
+        // history.push('./adminlist');
         
     }; // end of handleDeny
 
