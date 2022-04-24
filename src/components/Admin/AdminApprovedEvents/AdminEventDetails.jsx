@@ -57,9 +57,20 @@ export default function AdminEventDetails() {
     //     color: theme.palette.text.secondary,
     // }));
 
+    const ItemDateTime = styled('div')(({ theme }) => ({
+        fontSize: '20px',
+        margin: '0',
+        padding: '0',
+        textAlign: 'center',
+        color: 'white',
+        backgroundColor: 'transparent',
+        // borderRadius: theme.shape.borderRadius,
+    }));
 
+
+    // Event Title!
     const ItemName = styled('div')(({ theme }) => ({
-        fontSize: '40px',
+        fontSize: '35px',
         color: 'white',
         backgroundColor: '#161616',
         borderBottom: '1px solid #fff',
@@ -67,6 +78,8 @@ export default function AdminEventDetails() {
         borderRadius: theme.shape.borderRadius,
     }));
 
+
+    // Regular Items
     const Item = styled('div')(({ theme }) => ({
         color: 'white',
         backgroundColor: '#88888844',
@@ -76,17 +89,6 @@ export default function AdminEventDetails() {
 
 
 
-
-
-    // delete button theme 
-    // const DeleteButton = styled('button')(({ theme }) => ({
-    //     color: 'white',
-    //     // varaint: 'contained',
-    //     // width: '10%',
-    //     // backgroundColor: 'red',
-    //     // padding: theme.spacing(1),
-    //     // borderRadius: theme.shape.borderRadius,
-    // }));
 
 
     const StyledItemDate = styled('div')(({ theme }) => ({
@@ -119,6 +121,8 @@ export default function AdminEventDetails() {
     }));
 
     const StyledItemDetails = styled('div')(({ theme }) => ({
+        marginTop: '-60px',
+        textAlign: 'left',
         color: 'white',
         fontSize: '30px',
         backgroundColor: '#88888844',
@@ -250,6 +254,20 @@ export default function AdminEventDetails() {
                 fontSize='large'
                 onClick={handleExit}
             />
+            {fetchEventId.map((detail, i) => {
+                return (
+                    <ItemDateTime>
+
+                        {detail.dayname}, {detail.month} {detail.day}
+                    </ItemDateTime>
+
+                )
+
+            })}
+
+
+
+
 
             <div className="event-approved-list-container">
                 {fetchEventId.map((detail, i) => {
