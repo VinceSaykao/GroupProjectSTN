@@ -4,7 +4,7 @@ import axios from "axios";
 function* saveEvent(action) {
   console.log("ACTION.PAYLOAD =", action.payload);
   try {
-    yield axios.post(`/api/profile/save`, action.payload);
+    yield axios.post(`/api/profile/save/event`, action.payload);
     yield put({ type: "SET_FETCH_SAVE_EVENT" });
   } catch (error) {
     console.log("FAILED", error);
