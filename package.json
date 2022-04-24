@@ -13,7 +13,7 @@
     "@mui/styles": "^5.6.1",
     "@mui/x-data-grid": "^5.8.0",
     "@mui/x-date-pickers": "^5.0.0-alpha.0",
-    "aws-sdk": "^2.1119.0",
+    "aws-sdk": "^2.1120.0",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "cookie-session": "^2.0.0",
