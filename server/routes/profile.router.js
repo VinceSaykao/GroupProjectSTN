@@ -111,7 +111,7 @@ router.post("/:id", (req, res) => {
 });
 
 // This POST is for the "SAVE" button that will favorite events
-router.post("/save", (req, res) => {
+router.post("/save/event", (req, res) => {
   let queryText = `
   insert into "fav_events" ("user_id", "event_id")
   values ($1, $2);  
