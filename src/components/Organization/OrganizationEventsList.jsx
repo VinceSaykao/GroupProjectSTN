@@ -25,6 +25,7 @@ import TabList from '@mui/lab/TabList';
 
 import './OrganizationView.css';
 import OrganizationPendingEventsListItem from './OrganizationPendingEventsListItem';
+import { JoinRight } from '@mui/icons-material';
 
 // MUI TAB FUNCTIONS
 
@@ -66,9 +67,15 @@ function a11yProps(index) {
 export default function OrganizationEventsList() {
   // store that grabs approved events, although fetchApprovedEvents brings in more data...??
   const approvedEvents = useSelector((store) => store.fetchApprovedEvents);
-  const fetchPendingEvents = useSelector((store) => store.fetchPendingEvents);
   const org = useSelector((store) => store.fetchOrganization);
   const user = useSelector((store) => store.user);
+  const fetchPendingEvents = useSelector((store) => store.fetchPendingEvents.sort(sortEventsByStatus));
+
+  // Alphabetical Sort Function (Sorting by Status)
+  function sortEventsByStatus(a, b) {
+    return b.status.localeCompare(a.status);
+  }
+
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -94,11 +101,14 @@ export default function OrganizationEventsList() {
   // END MUI TAB
 
   const orgEvents = approvedEvents.filter(
-    (approvedEvents) => approvedEvents.org_id === org.id 
+    (approvedEvents) => approvedEvents.org_id === org.id
   );
 
+
+
+  // uh oh, big flaw with using user.org_id
   const pendingOrgEvents = fetchPendingEvents.filter(
-    (fetchPendingEvents) => fetchPendingEvents.org_id === org.id // uh oh, big flaw with using user.org_id
+    fetchPendingEvents => fetchPendingEvents.org_id === org.id
   );
 
   return (
@@ -223,6 +233,6 @@ export default function OrganizationEventsList() {
         )}
       </div>
     </div>
-    
+
   );
 }

@@ -104,6 +104,7 @@ function AdminEventCopy() {
 
     // Fetches Categories on page load
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch({ type: 'FETCH_CATEGORIES' })
         dispatch({ type: 'FETCH_EVENT_DETAILS', payload: id })
     }, []);

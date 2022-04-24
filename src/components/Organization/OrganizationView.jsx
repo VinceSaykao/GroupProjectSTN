@@ -33,6 +33,7 @@ function OrganizationView() {
   const user = useSelector((store) => store.user);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     // Upon load, get the selected organization profile based on their user id
     dispatch({ type: 'FETCH_ORG_PROFILE', payload: id });
   }, []);

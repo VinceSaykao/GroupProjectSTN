@@ -7,8 +7,8 @@ function* updateEventStatusDeny(action) {
     console.log('In updateEventStatusDeny, id of event: ', action.payload);
 
     try {
-        yield axios.put(`/api/event/deny/${action.payload}`);   // Updates Specified Event
-        yield put({ type: 'FETCH_EVENT' });                        // Re-Fetch ALL Events
+        yield axios.put(`/api/event/deny/${action.payload.id}`, action.payload);   // Updates Specified Event
+        yield put({ type: 'FETCH_EVENT' });                                        // Re-Fetch ALL Events
 
     } catch (error) {
         console.log('updateEventStatusDeny Failed:', error);

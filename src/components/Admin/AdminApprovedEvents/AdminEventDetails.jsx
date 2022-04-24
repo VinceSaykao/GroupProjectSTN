@@ -34,6 +34,7 @@ export default function AdminEventDetails() {
     const history = useHistory();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch({ type: "FETCH_SAVE_EVENT" });
         dispatch({ type: "SET_PROFILE_SAGA" });
     }, [])
