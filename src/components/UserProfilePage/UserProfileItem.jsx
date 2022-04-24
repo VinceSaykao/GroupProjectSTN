@@ -175,7 +175,7 @@ function UserProfileItem({ info, detail }) {
                   className="edit-button"
                   size="small"
                   variant="contained"
-                  sx={{height: '70%', float: 'right', top: 7, left: 40, background: '#ff0000d9', boxShadow:'none' ,color: '#fff', borderRadiusRight: '10px', border:'0.5px solid white', 
+                  sx={{height: '70%', float: 'right', top: 7, left: 40, background: '#e0e0e046', boxShadow:'none' ,color: 'red', borderRadiusRight: '10px', border:'0.5px solid white', 
                   boxShadow:'1px 1px 3px 1px black', zIndex: '10'}}
                 >
                   <BookmarkRemoveIcon 

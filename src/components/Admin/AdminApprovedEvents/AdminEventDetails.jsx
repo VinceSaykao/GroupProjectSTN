@@ -13,6 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Divider } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 import './AdminEventDetails.scss'
 
@@ -180,7 +181,6 @@ export default function AdminEventDetails() {
 
 
 
-    
 
 
     return (
@@ -213,35 +213,53 @@ export default function AdminEventDetails() {
                                             <img
                                                 src={detail.image} // Gonna be {detail.image}
                                                 loading="lazy"
-                                                height="140px"
+                                                height="180px"
                                                 width="100%"
                                             />
                                         </Paper>
+
+
+
+
                                     </Grid>
 
 
-                                    <Grid sx={{ width: '100%', background: 'black' }}>
+
+
+                                    <Grid sx={{ width: '100%', background: '#090909ee', alignItems: 'center', }}>
                                         <Item
+                                            sx={{ textAlign: 'center', width: '100%', }}
                                             className='detail-name'
-                                        >{detail.name}
+                                        >
+
+                                            {detail.name}
+
 
                                             {user.access_level === 3 || user.access_level === 1 ?
                                                 <div
                                                     className='star-saved-event'
                                                     onClick={handleSave}
-                                                ><BookmarkAddOutlinedIcon 
-                                                
-                                                        sx={{ marginTop: '0px', fontSize: '40px',float:'right', textAlign:'right',}}
+                                                >
+                                                    <BookmarkAddOutlinedIcon
+                                                        sx={{ fontSize: '40px', right: '0', marginBottom: '-10px', }}
+                                                    />
+                                                    {/* <p className='save'>save</p> */}
+
+                                                </div>
 
 
-                                                    /></div>
                                                 :
                                                 <div></div>
                                             }
 
 
-
                                         </Item>
+
+
+
+
+
+
                                         <Grid item xs={12}>
 
                                             <Item>
@@ -271,8 +289,10 @@ export default function AdminEventDetails() {
                                                 {user.access_level >= 2 ?
                                                     <Button
                                                         onClick={handleEdit}
-                                                        sx={{ color:'#299bff', background: '#444', 
-                                                    border: '0.5px solid white' }} 
+                                                        sx={{
+                                                            color: '#fff', background: '#444',
+                                                            border: '0.5px solid white'
+                                                        }}
                                                         variant="contained"
                                                         startIcon={<EditIcon />}
                                                     >Edit</Button>
@@ -288,8 +308,10 @@ export default function AdminEventDetails() {
 
                                                     <Button
                                                         onClick={handleCopy}
-                                                        sx={{ background: '#444', 
-                                                    border: '0.5px solid white', color:'#ff9500' }} 
+                                                        sx={{
+                                                            background: '#444',
+                                                            border: '0.5px solid white', color: '#fff'
+                                                        }}
                                                         startIcon={<ContentCopyIcon />}
                                                         variant="contained"
                                                     >Copy</Button>
@@ -301,9 +323,11 @@ export default function AdminEventDetails() {
 
                                                 {user.access_level >= 2 ?
 
-                                                    <Button onClick={handleOpen} variant="contained" sx={{ background: '#444', 
-                                                    border: '0.5px solid white', color: 'red', }} 
-                                                    startIcon={<DeleteIcon />}>
+                                                    <Button onClick={handleOpen} variant="contained" sx={{
+                                                        background: '#444',
+                                                        border: '0.5px solid white', color: '#fff',
+                                                    }}
+                                                        startIcon={<DeleteIcon />}>
                                                         Delete
                                                     </Button>
 
@@ -374,6 +398,16 @@ export default function AdminEventDetails() {
                     )
                 })}
             </div>
+
+            {user.access_level != 2 ?
+                <div><h1
+                className='sign-up'
+                >Sign Up <AddOutlinedIcon 
+                sx={{fontSize: '70px', }}
+                /></h1></div>
+                :
+                <div> </div>
+            }
 
 
 
