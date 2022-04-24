@@ -14,6 +14,8 @@ import { Divider } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import LocalPostOfficeOutlinedIcon from '@mui/icons-material/LocalPostOfficeOutlined';
 
 import './AdminEventDetails.scss'
 
@@ -93,43 +95,61 @@ export default function AdminEventDetails() {
 
 
 
-    const StyledItemDate = styled('div')(({ theme }) => ({
-        color: '#ff6200',
-        textAlign: 'center',
-        fontSize: '30px',
-        backgroundColor: 'transparent',
-        borderBottom: '1px solid #fff',
-        padding: theme.spacing(1),
-        borderRadius: theme.shape.borderRadius,
-    }));
+    // const StyledItemDate = styled('div')(({ theme }) => ({
+    //     color: '#ff6200',
+    //     textAlign: 'center',
+    //     fontSize: '30px',
+    //     backgroundColor: 'transparent',
+    //     borderBottom: '1px solid #fff',
+    //     padding: theme.spacing(1),
+    //     borderRadius: theme.shape.borderRadius,
+    // }));
 
 
-    const StyleDetailItem = styled('div')(({ theme }) => ({
-        fontSize: '30px',
-        textAlign: 'center',
-        color: 'white',
-        backgroundColor: '#transparent',
-        padding: theme.spacing(1),
-    }));
+    // const StyleDetailItem = styled('div')(({ theme }) => ({
+    //     fontSize: '30px',
+    //     textAlign: 'center',
+    //     color: 'white',
+    //     backgroundColor: '#transparent',
+    //     padding: theme.spacing(1),
+    // }));
 
 
-    // fix this 
-    const StyledItem = styled('div')(({ theme }) => ({
-        color: 'white',
-        fontSize: '30px',
-        backgroundColor: '#transparent',
-        padding: theme.spacing(1),
-        borderRadius: theme.shape.borderRadius,
-    }));
-
-    const StyledItemDetails = styled('div')(({ theme }) => ({
-        marginTop: '-40px',
-        textAlign: 'center',
+    // Contact/Location Container
+    const StyledContactItem = styled('div')(({ theme }) => ({
+        textAlign: 'left',
         color: 'white',
         fontSize: '25px',
+        backgroundColor: '#transparent',
+        borderBottom:'1px solid white',
+        borderTop:'1px solid white',
+        padding: theme.spacing(2),
+        // borderRadius: theme.shape.borderRadius,
+    }));
+
+        // Location Container
+        const StyledItem = styled('div')(({ theme }) => ({
+            textAlign: 'left',
+            color: 'white',
+            fontSize: '25px',
+            backgroundColor: '#transparent',
+            // border:'0.5px solid white',
+            padding: theme.spacing(2),
+            // borderRadius: theme.shape.borderRadius,
+        }));
+
+        // details
+    const StyledItemDetails = styled('div')(({ theme }) => ({
+        marginTop: '-40px',
+        width: '100%',
+        textAlign: 'left',
+        color: 'white',
+        fontSize: '20px',
         backgroundColor: 'transparent',
-        padding: theme.spacing(1),
-        borderRadius: theme.shape.borderRadius,
+        // border:'1px solid white',
+        // borderRadius:'10px',
+        padding: theme.spacing(2),
+        // borderRadius: theme.shape.borderRadius,
     }));
 
 
@@ -303,7 +323,7 @@ export default function AdminEventDetails() {
 
 
 
-                                    <Grid sx={{ width: '100%', marginTop: '43px', background: '#090909ee', alignItems: 'center', }}>
+                                    <Grid sx={{ width: '100%', marginTop: '43px', background: 'transparent', alignItems: 'center',}}>
 
 
 
@@ -427,11 +447,13 @@ export default function AdminEventDetails() {
 
 
                                         {/* <StyledItemDate><u>{detail.dayname}, {detail.month} {detail.day}</u></StyledItemDate> */}
-                                        <StyleDetailItem >
+                                        {/* <StyleDetailItem >
 
 
-                                            <u><b>Details</b></u>
-                                        </StyleDetailItem>
+                                            <u><b> 
+                                            
+                                            Details</b></u>
+                                        </StyleDetailItem> */}
                         
 
 
@@ -453,17 +475,22 @@ export default function AdminEventDetails() {
 
 
 
-                                        <StyledItem>
-                                            <u><b>Contact</b></u>
+                                        <StyledContactItem>
+                                            <b>
+                                            <LocalPostOfficeOutlinedIcon 
+                                            sx={{fontSize:'25px',}}
+                                            /> Contact</b> 
                                             <br></br>
                                             {detail.email}
                                             <br></br>
                                             {detail.phone}
 
-                                        </StyledItem>
+                                        </StyledContactItem>
 
                                         <StyledItem>
-                                            <u><b>Location</b></u>
+                                            <b><LocationOnOutlinedIcon 
+                                            sx={{fontSize:'25px',}}
+                                            /> Location </b>
                                             <br></br>
                                             {detail.address1}
 
