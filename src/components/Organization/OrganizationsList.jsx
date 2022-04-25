@@ -43,8 +43,7 @@ function OrganizationsList() {
   return (
     <div className="org-list-container">
       <Helmet>
-        <style>
-          {`body { background-color: rgb(75, 75, 75);); 
+        <style>{`body { background-color: #090909ee;); 
             }`}
         </style>
       </Helmet>

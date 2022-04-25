@@ -44,20 +44,13 @@ export default function UserProfile() {
 
   return (
     <div className="profile-container">
-      <Helmet>
-        <style>
-          {`body { background-color: rgb(75, 75, 75);); 
+          <Helmet>
+                <style>{`body { background-color: #090909ee;); 
             }`}
-        </style>
-      </Helmet>
+                </style>
+            </Helmet>
       <Grid container justifyContent="center">
-        <Typography
-          color="white"
-          variant="h4"
-          sx={{ width: '100%', textAlign: 'center' }}
-        >
-          Profile
-        </Typography>
+
         <div>
           <Avatar
             className="avatar"
@@ -65,26 +58,46 @@ export default function UserProfile() {
             src={user?.image}
           />
 
-          <Box
-            sx={{
-              height: 25,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              mb: 1,
-              mt: 2,
-            }}
-          >
-            <Button
-              className="edit-button"
-              size="small"
-              variant="contained"
-              onClick={handleEditClick}
-            >
-              <EditIcon fontSize="small" />
-              Edit
-            </Button>
-            {/* <Button
+
+        </div>
+      </Grid>
+
+      <Typography gutterBottom variant="body1" sx={{ ml: 2 }}>
+        <Typography
+          sx={{ color: 'white', textAlign: 'center', fontSize: '30px', }}
+        >
+          <b>{user?.first_name} {user?.last_name}</b>
+        </Typography>
+        {/* <Typography color="white">{user?.email}</Typography> */}
+
+        <Typography sx={{ textAlign: 'center', color: '#e6e6e6', fontSize: '20px', }}>
+          {user?.bio}
+        </Typography>
+      </Typography>
+
+
+
+      <Box
+        sx={{
+          height: 50,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          mt: 1,
+          borderBottom: '2px solid #e6e6e6',
+        }}
+      >
+        <Button
+          className="edit-button"
+          size="small"
+          variant="contained"
+          onClick={handleEditClick}
+          sx={{ background: 'grey', }}
+        >
+          <EditIcon fontSize="small" />    
+          Edit Profile
+        </Button>
+        {/* <Button
               className="edit-button"
               size="small"
               variant="contained"
@@ -93,34 +106,18 @@ export default function UserProfile() {
               <EditIcon fontSize="small" />
               Update Photo
             </Button> */}
-          </Box>
-        </div>
-      </Grid>
+      </Box>
 
-      <Typography gutterBottom variant="body1" sx={{ ml: 2 }}>
-        <Typography color="white">
-          {user?.first_name} {user?.last_name}
-        </Typography>
-        <Typography color="white">{user?.email}</Typography>
-        <Typography color="white" sx={{ mt: 2 }}>
-          About Me:
-        </Typography>
-        <Typography color="white" sx={{ mb: 2 }}>
-          {user?.bio}
-        </Typography>
-      </Typography>
+
+
       <Box
         sx={{
           height: 30,
-          display: 'flex',
-          pr: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          mb: 1,
+          textAlign: 'center',
         }}
       >
         <Typography variant="h5" color="white">
-          Saved Events
+          <b> Saved Events </b>
         </Typography>
       </Box>
 

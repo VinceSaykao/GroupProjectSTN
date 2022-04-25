@@ -1,3 +1,4 @@
+
 import { InfoRounded } from '@mui/icons-material';
 import React from 'react';
 import { useEffect } from 'react';
@@ -72,6 +73,8 @@ function UserProfileItem({ info, detail }) {
 
   return (
     <div>
+
+
       <div className="admin-event-item" >
         {/* <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}> */}
         <StyledPaper

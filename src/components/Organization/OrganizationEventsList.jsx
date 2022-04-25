@@ -119,7 +119,7 @@ export default function OrganizationEventsList() {
                 value={value}
                 onChange={handleChange}
                 sx={{
-                  backgroundColor: 'rgb(101, 101, 101)',
+                  backgroundColor: '#444',
                   color: 'white',
                 }}
                 indicatorColor="primary"
