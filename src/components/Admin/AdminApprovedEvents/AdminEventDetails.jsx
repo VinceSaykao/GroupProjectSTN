@@ -438,20 +438,20 @@ export default function AdminEventDetails() {
                                             <b>{detail.name}</b>
 
 
-                                            {user.access_level === 3 || user.access_level === 1 ?
-                                                <div
-                                                    className='star-saved-event'
-                                                    onClick={handleSave}
-                                                >
-                                                    <BookmarkAddOutlinedIcon
-                                                        sx={{ fontSize: '40px', right: '0', marginBottom: '-10px', color:'#3f7fff' }}
-                                                    />
-                                                    {/* <p className='save'>save</p> */}
-
-                                                </div>
+                                            {user.access_level === 2 ?
+                                              <div></div>
 
                                                 :
-                                                <div></div>
+                                                <div
+                                                className='star-saved-event'
+                                                onClick={handleSave}
+                                            >
+                                                <BookmarkAddOutlinedIcon
+                                                    sx={{ fontSize: '40px', right: '0', marginBottom: '-10px', color:'#3f7fff' }}
+                                                />
+                                                {/* <p className='save'>save</p> */}
+
+                                            </div>
                                             }
 
 
