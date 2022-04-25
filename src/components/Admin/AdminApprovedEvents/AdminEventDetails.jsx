@@ -291,7 +291,7 @@ export default function AdminEventDetails() {
                 return (
                     <ItemDateTime>
 
-                        {detail.dayname}, {detail.month} {detail.day} - {detail.end_date}
+                        {detail.dayname}, {detail.month} {detail.day} - {detail.enddayname}, {detail.endmonth} {detail.endday}
                     </ItemDateTime>
 
                 )
