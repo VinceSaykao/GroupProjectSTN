@@ -215,7 +215,7 @@ function OrganizationView() {
                 {org.website}
               </Typography>
             </Link>
-            <Typography gutterBottom variant="body1" component="div">
+            <Typography gutterBottom variant="body1" component="div" onClick={() => window.location = `mailto:${org.email}`}>
               {org.email}
             </Typography>
             <Typography gutterBottom variant="body1" component="div">
