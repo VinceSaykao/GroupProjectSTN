@@ -553,11 +553,18 @@ export default function AdminEventDetails() {
                 })}
             </div>
 
+            {fetchEventId.map((detail) => {
 
-            {user.access_level != 2 ?
+                return (
+                    <div>
+                                    {user.access_level != 2 ?
                 <div
-                    onClick={handleSignUp}
-                // src={detail.link}
+                onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = `https://www.google.com/maps?q=${detail.link}`;
+                }}
+                //     onClick={handleSignUp}
+                // // src={detail.link}
                 ><h1
                     className='sign-up'
                 >Sign Up <AddOutlinedIcon
@@ -566,6 +573,13 @@ export default function AdminEventDetails() {
                 :
                 <div> </div>
             }
+                    </div>
+                )
+
+
+
+            })}
+
 
 
 
