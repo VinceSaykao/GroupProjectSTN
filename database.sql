@@ -175,3 +175,7 @@ VALUES (
   'CA',
   '92501'
 );
+
+INSERT INTO "public"."events"("id","org_id","category_id","status","name","description","link","start_date","end_date","start_time","end_time","image","email","phone","address1","address2","city","zip","state","feedback")
+VALUES
+(18,NULL,NULL,E'approved',E'Regional College Fair',E'College & Carrer Fair for the Coachella Valley',NULL,E'2022-11-06',E'2022-11-06',E'06:59:00',NULL,NULL,NULL,NULL,E'Agua Caliente Spa Resort Casino Rancho Mirage',E'32-250 Bob Hope Dr',E'Rancho Mirage',92270,E'CA',NULL);
