@@ -184,55 +184,18 @@ export default function OrganizationEventsList() {
               textAlign: 'center',
             }}
           >
-            <AppBar position="static">
-              <Tabs
-                // position= '-webkit-sticky'
-                value={value}
-                onChange={handleChange}
-                indicatorColor="primary"
-                textColor="inherit"
-                variant="fullWidth"
-                aria-label="full width tabs example"
-              >
-                <Tab label="Approved" {...a11yProps(0)} />
-              </Tabs>
-            </AppBar>
-            <SwipeableViews
-              axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-              index={value}
-              onChangeIndex={handleChangeIndex}
-            >
-              <TabPanel value={value} index={0} dir={theme.direction}>
-                <div className="org-event-view">
-                  <div className="org-event-list">
-                    {orgEvents?.map((event, i) => {
-                      return (
-                        <div key={i}>
-                          <OrgEventListItem event={event} />
-                        </div>
-                      );
-                    })}
+            <div className="org-event-list">
+              {orgEvents?.map((event, i) => {
+                return (
+                  <div key={i}>
+                    <OrgEventListItem event={event} />
                   </div>
-                </div>
-              </TabPanel>
-              <TabPanel value={value} index={1} dir={theme.direction}>
-                <div className="org-event-view">
-                  <div className="org-event-list">
-                    {pendingOrgEvents?.map((events, i) => {
-                      return (
-                        <div key={i}>
-                          <OrganizationPendingEventsListItem events={events} />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </TabPanel>
-            </SwipeableViews>
+                );
+              })}
+            </div>
           </Box>
         )}
       </div>
     </div>
-
   );
 }

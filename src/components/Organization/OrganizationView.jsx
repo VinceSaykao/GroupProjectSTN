@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
+import ShowMoreText from 'react-show-more-text';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -13,14 +15,19 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
-import Container from '@mui/material/Container'
+import Container from '@mui/material/Container';
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
+import UnfoldLessIcon from '@mui/icons-material/UnfoldLess';
+
+
 import OrganizationEventsList from './OrganizationEventsList';
+
 
 import { Helmet } from 'react-helmet';
 
@@ -61,9 +68,10 @@ function OrganizationView() {
 
     return null;
   };
+  
 
   return (
-    <Container sx={{minHeight: 1300}}>
+    <Container sx={{ minHeight: 1200 }}>
       <Helmet>
         <style>
           {`body { background-color: rgb(75, 75, 75);); 
@@ -71,50 +79,50 @@ function OrganizationView() {
         </style>
       </Helmet>
       <Box className="org-view">
-      <BottomNavigation
-        sx={{ width: 'auto' }}
-        style={{ backgroundColor: 'rgb(75, 75, 75)' }}
-      >
-        {org.instagram === '' ? (
-          <div></div>
-        ) : (
-          <div>
-            {
-              <Link href={org.instagram}target="blank">
-                <BottomNavigationAction
-                  icon={<InstagramIcon sx={{ color: 'white' }} />}
-                />
-              </Link>
-            }
-          </div>
-        )}
-        {org.twitter === '' ? (
-          <div></div>
-        ) : (
-          <div>
-            {
-              <Link href={org.twitter}target="blank">
-                <BottomNavigationAction
-                  icon={<TwitterIcon sx={{ color: 'white' }} />}
-                />
-              </Link>
-            }
-          </div>
-        )}
-        {org.facebook === '' ? (
-          <div></div>
-        ) : (
-          <div>
-            {
-              <Link href={org.facebook}target="blank">
-                <BottomNavigationAction
-                  icon={<FacebookIcon sx={{ color: 'white' }} />}
-                />
-              </Link>
-            }
-          </div>
-        )}
-      </BottomNavigation>
+        <BottomNavigation
+          sx={{ width: 'auto' }}
+          style={{ backgroundColor: 'rgb(75, 75, 75)' }}
+        >
+          {org.instagram === '' ? (
+            <div></div>
+          ) : (
+            <div>
+              {
+                <Link href={org.instagram} target="blank">
+                  <BottomNavigationAction
+                    icon={<InstagramIcon sx={{ color: 'white' }} />}
+                  />
+                </Link>
+              }
+            </div>
+          )}
+          {org.twitter === '' ? (
+            <div></div>
+          ) : (
+            <div>
+              {
+                <Link href={org.twitter} target="blank">
+                  <BottomNavigationAction
+                    icon={<TwitterIcon sx={{ color: 'white' }} />}
+                  />
+                </Link>
+              }
+            </div>
+          )}
+          {org.facebook === '' ? (
+            <div></div>
+          ) : (
+            <div>
+              {
+                <Link href={org.facebook} target="blank">
+                  <BottomNavigationAction
+                    icon={<FacebookIcon sx={{ color: 'white' }} />}
+                  />
+                </Link>
+              }
+            </div>
+          )}
+        </BottomNavigation>
         <Grid container justifyContent="center">
           <div className="org-box">
             <Box
@@ -132,7 +140,6 @@ function OrganizationView() {
             {org.name}
           </Typography>
         </Grid>
-
 
         {user.access_level >= 2 ? (
           <div>
@@ -160,17 +167,26 @@ function OrganizationView() {
           </div>
         ) : (
           <div></div>
-
         )}
-
         <Typography
           gutterBottom
           variant="body1"
           component="div"
           color="white"
-          sx={{ mr: 2, ml: 2, mt: 1, }}
+          sx={{ mr: 2, ml: 2, mt: 1 }}
         >
-          {org.description}
+          <ShowMoreText
+            lines={6}
+            more={<Typography color="white" sx={{textDecoration: 'underline'}} display="inline">Show More</Typography>}
+            less={<Typography color="white"sx={{textDecoration: 'underline'}} display="inline">Show Less</Typography>}
+            className="content-css"
+            anchorClass="my-anchor-css-class"
+            expanded={false}
+            width={300}
+            truncatedEndingComponent={'... '}
+          >
+            {org.description}
+          </ShowMoreText>
         </Typography>
         <Accordion>
           <AccordionSummary
@@ -184,20 +200,28 @@ function OrganizationView() {
           >
             <Typography>Contact Info & Location</Typography>
           </AccordionSummary>
-          <AccordionDetails 
-           sx={{
-            backgroundColor: 'rgb(101, 101, 101)',
-            color: 'white',
-          }}
+          <AccordionDetails
+            sx={{
+              backgroundColor: 'rgb(101, 101, 101)',
+              color: 'white',
+            }}
           >
-            <Typography gutterBottom variant="body1" component="div">
-              {org.website}
-            </Typography>
-            <Typography gutterBottom variant="body1" component="div">
+            <Link href={org.website} target="blank">
+              <Typography
+                gutterBottom
+                variant="body1"
+                color="white"
+                component="div"
+                sx={{textDecoration: 'underline'}}
+              >
+                {org.website}
+              </Typography>
+            </Link>
+            <Typography gutterBottom variant="body1" component="div" sx={{textDecoration: 'underline'}} onClick={() => window.location = `mailto:${org.email}`}>
               {org.email}
             </Typography>
             <Typography gutterBottom variant="body1" component="div">
-              {org.phone}
+              {formatPhoneNumber(org.phone)}
             </Typography>
             <Typography gutterBottom variant="body1" component="div">
               {org.address1} {org.address2} {org.city}, {org.state} {org.zip}
@@ -214,8 +238,14 @@ function OrganizationView() {
             </Grid>
           </AccordionDetails>
         </Accordion>
-        <Typography variant="h5" color="white" sx={{m:1, textAlign: "center"}}>Events</Typography>
-          <OrganizationEventsList />
+        <Typography
+          variant="h5"
+          color="white"
+          sx={{ m: 1, textAlign: 'center' }}
+        >
+          Events
+        </Typography>
+        <OrganizationEventsList />
       </Box>
     </Container>
   );
