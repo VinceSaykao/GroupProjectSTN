@@ -53,7 +53,7 @@ function OrganizationsList() {
       </Typography>
       <Box className="admin-search-div" sx={{ my: 2 }}>
         <InputBase
-          sx={{ ml: 5, flex: 1, bgcolor: 'white' }}
+          sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
           placeholder="Search"
           onChange={(event) => handleSearch(event)}
         />

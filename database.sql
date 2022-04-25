@@ -168,7 +168,7 @@ VALUES (
   'facebook.com/truevolutioninc',
   'https://www.instagram.com/truevolutioninc',
   'TruEvolution fights for health equity and racial justice to advance the quality of life and human dignity of LGBTQ+ people.',
-   'https://uploads-ssl.webflow.com/5f19bcec9b6683a6b7e50801/61f35732266dc270dcd31dab_TruEvolution-Logo-White-Slogan-p-500.png',
+  'https://inlandempiregia.org/wp-content/uploads/2020/04/GIA_Logo_OFFICIAL-05.png',
   '4164 Brockton Ave. Suite A',
   '',
   'Riverside',
