@@ -31,6 +31,9 @@ import { useHistory } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
 
 
+import Swal from 'sweetalert2';
+
+
 
 
 
@@ -131,24 +134,24 @@ export default function AdminEventDetails() {
         color: 'white',
         fontSize: '25px',
         backgroundColor: '#transparent',
-        borderBottom:'1px solid white',
-        borderTop:'1px solid white',
+        borderBottom: '1px solid white',
+        borderTop: '1px solid white',
         padding: theme.spacing(2),
         // borderRadius: theme.shape.borderRadius,
     }));
 
-        // Location Container
-        const StyledItem = styled('div')(({ theme }) => ({
-            textAlign: 'left',
-            color: 'white',
-            fontSize: '25px',
-            backgroundColor: '#transparent',
-            // border:'0.5px solid white',
-            padding: theme.spacing(2),
-            // borderRadius: theme.shape.borderRadius,
-        }));
+    // Location Container
+    const StyledItem = styled('div')(({ theme }) => ({
+        textAlign: 'left',
+        color: 'white',
+        fontSize: '25px',
+        backgroundColor: '#transparent',
+        // border:'0.5px solid white',
+        padding: theme.spacing(2),
+        // borderRadius: theme.shape.borderRadius,
+    }));
 
-        // details
+    // details
     const StyledItemDetails = styled('div')(({ theme }) => ({
         marginTop: '-40px',
         width: '100%',
@@ -173,7 +176,19 @@ export default function AdminEventDetails() {
 
 
     const handleSave = () => {
-        dispatch({ type: "ADD_SAVE_EVENT", payload: { user_id: fetchProfile?.id, event_id: fetchEventId[0]?.id } })
+
+        return Swal.fire({
+            title: "Saved Event!",
+            text: "View Saved Events In Profile!",
+            icon: "success",
+            button: "Aww yiss!",
+
+
+        }) &&
+            dispatch({ type: "ADD_SAVE_EVENT", payload: { user_id: fetchProfile?.id, event_id: fetchEventId[0]?.id } })
+
+
+
     }
 
     const handleEdit = () => {
@@ -283,7 +298,7 @@ export default function AdminEventDetails() {
 
             <CloseIcon
                 className='exit-icon'
-                sx={{fontSize:'50px',}}
+                sx={{ fontSize: '50px', }}
                 onClick={handleExit}
             />
 
@@ -333,7 +348,7 @@ export default function AdminEventDetails() {
 
 
 
-                                    <Grid sx={{ width: '100%', marginTop: '43px', background: 'transparent', alignItems: 'center',}}>
+                                    <Grid sx={{ width: '100%', marginTop: '43px', background: 'transparent', alignItems: 'center', }}>
 
 
 
@@ -373,7 +388,7 @@ export default function AdminEventDetails() {
                                                         sx={{
                                                             color: '#fff', background: '#444',
                                                             border: '0.5px solid white',
-                                                            marginRight:'25px',
+                                                            marginRight: '25px',
                                                         }}
                                                         variant="contained"
                                                         startIcon={<EditIcon />}
@@ -408,7 +423,7 @@ export default function AdminEventDetails() {
                                                     <Button onClick={handleOpen} variant="contained" sx={{
                                                         background: '#444',
                                                         border: '0.5px solid white', color: '#fff',
-                                                        marginLeft:'25px',
+                                                        marginLeft: '25px',
                                                     }}
                                                         startIcon={<DeleteIcon />}>
                                                         Delete
@@ -439,19 +454,19 @@ export default function AdminEventDetails() {
 
 
                                             {user.access_level === 2 ?
-                                              <div></div>
+                                                <div></div>
 
                                                 :
                                                 <div
-                                                className='star-saved-event'
-                                                onClick={handleSave}
-                                            >
-                                                <BookmarkAddOutlinedIcon
-                                                    sx={{ fontSize: '40px', right: '0', marginBottom: '-10px', color:'#3f7fff' }}
-                                                />
-                                                {/* <p className='save'>save</p> */}
+                                                    className='star-saved-event'
+                                                    onClick={handleSave}
+                                                >
+                                                    <BookmarkAddOutlinedIcon
+                                                        sx={{ fontSize: '40px', right: '0', marginBottom: '-10px', color: '#3f7fff' }}
+                                                    />
+                                                    {/* <p className='save'>save</p> */}
 
-                                            </div>
+                                                </div>
                                             }
 
 
@@ -466,7 +481,7 @@ export default function AdminEventDetails() {
                                             
                                             Details</b></u>
                                         </StyleDetailItem> */}
-                        
+
 
 
                                         <StyledItemDetails>
@@ -489,9 +504,9 @@ export default function AdminEventDetails() {
 
                                         <StyledContactItem>
                                             <b>
-                                            <LocalPostOfficeOutlinedIcon 
-                                            sx={{fontSize:'25px',}}
-                                            /> Contact</b> 
+                                                <LocalPostOfficeOutlinedIcon
+                                                    sx={{ fontSize: '25px', }}
+                                                /> Contact</b>
                                             <br></br>
                                             {detail.email}
                                             <br></br>
@@ -500,8 +515,8 @@ export default function AdminEventDetails() {
                                         </StyledContactItem>
 
                                         <StyledItem>
-                                            <b><LocationOnOutlinedIcon 
-                                            sx={{fontSize:'25px',}}
+                                            <b><LocationOnOutlinedIcon
+                                                sx={{ fontSize: '25px', }}
                                             /> Location </b>
                                             <br></br>
                                             {detail.address1}
@@ -510,15 +525,15 @@ export default function AdminEventDetails() {
                                     </Grid>
 
                                     <Grid container justifyContent="center">
-              <iframe
-                width="100%"
-                height="200"
-                frameBorder={0}
-                style={{ border: 0 }}
-                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDX4e7v69d8lQVeWvBOcs-Bt9mFS2VVogg&q=${detail.address1}${detail.address2}${detail.city}${detail.state}${detail.zip}`}
-                allowFullScreen
-              ></iframe>
-            </Grid>
+                                        <iframe
+                                            width="100%"
+                                            height="200"
+                                            frameBorder={0}
+                                            style={{ border: 0 }}
+                                            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDX4e7v69d8lQVeWvBOcs-Bt9mFS2VVogg&q=${detail.address1}${detail.address2}${detail.city}${detail.state}${detail.zip}`}
+                                            allowFullScreen
+                                        ></iframe>
+                                    </Grid>
 
 
                                 </Grid>
