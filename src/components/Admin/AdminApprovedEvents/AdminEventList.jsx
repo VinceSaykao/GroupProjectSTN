@@ -258,37 +258,6 @@ export default function AdminEventList() {
                         <SearchIcon />
                     </IconButton>
                 </div>
-                
-
-                {/* Filter by Category in progress...
-                
-                <Accordion expanded={expandedFilter1} sx={{ mt: 2, mx: 3 }}>
-                    <AccordionSummary
-                        aria-controls="panel2d-content"
-                        id="panel2d-header"
-                        onClick={() => setExpandedFilter1(!expandedFilter1)}
-                    >
-                        <Typography>Filter</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <FormGroup>
-                            {categories.map(category => (
-                                <AdminEventListFilterItem 
-                                    key={category.id} 
-                                    category={category} 
-                                    handleSearch={handleSearch}/>
-                            ))}
-                        </FormGroup>
-                        <Button 
-                            variant="contained"
-                            onClick={handleFilterSubmit}
-                        >
-                            Filter
-                        </Button>
-                    </AccordionDetails>
-                </Accordion > 
-                
-                */}
 
                 <Divider sx={{ height: 10, m: 0.5 }} orientation="vertical" />
 

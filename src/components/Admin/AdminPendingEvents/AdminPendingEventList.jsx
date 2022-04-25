@@ -23,7 +23,11 @@ export default function AdminPendingEventList() {
     }, []);
 
     //store that grabs events that are ONLY pending
-    const fetchPendingEvents = useSelector(store => store.fetchPendingEvents);
+    const fetchPendingEvents = useSelector(
+        store => store.fetchPendingEvents.filter(
+            event => event.status == 'pending'
+        )
+    );
 
 
     return (

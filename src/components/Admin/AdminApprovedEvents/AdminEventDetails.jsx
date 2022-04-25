@@ -292,6 +292,7 @@ export default function AdminEventDetails() {
                                             />
                                         </Paper>
                                     </Grid>
+
                                     <Grid sx={{ width: '100%', marginTop: '43px', background: '#090909ee', alignItems: 'center', }}>
                                         <Grid item xs={12}>
                                             <Item>
@@ -347,6 +348,21 @@ export default function AdminEventDetails() {
                                         </Grid>
                                     </Grid>
 
+                                    {(detail.feedback && detail.status == 'denied') && // ---------------- Rejection Reason ------------------------------------
+                                        <Box sx={{ my: 2, py: 1, px: 2, backgroundColor: 'red' }}>
+                                            <Typography variant="h5">
+                                                Rejection Reason:
+                                            </Typography>
+                                            <Typography>
+                                                {detail.feedback}
+                                            </Typography>
+                                            <br />
+                                            <Typography>
+                                                You may either <b>delete</b> this event, or <b>edit</b> and resubmit to the moderation team
+                                            </Typography>
+                                        </Box>
+                                    }
+
                                     <Grid sx={{ width: '100%', background: '#4444' }} >
                                         <ItemName
                                             sx={{ textAlign: 'center', width: '100%', }}
@@ -368,21 +384,6 @@ export default function AdminEventDetails() {
                                             }
                                         </ItemName>
                                         {/* <StyledItemDate><u>{detail.dayname}, {detail.month} {detail.day}</u></StyledItemDate> */}
-
-                                        {detail.feedback && // ---------------- Rejection Reason ------------------------------------
-                                            <Box sx={{ my: 2, py: 1, px: 2, backgroundColor: 'red' }}>
-                                                <Typography variant="h5">
-                                                    Rejection Reason:
-                                                </Typography>
-                                                <Typography>
-                                                    {detail.feedback}
-                                                </Typography>
-                                                <br />
-                                                <Typography>
-                                                    You may either <b>delete</b> this event, or <b>edit</b> and resubmit to the moderation team
-                                                </Typography>
-                                            </Box>
-                                        }
 
                                         {detail.description && // ---------------- Description ------------------------------------
                                             <>

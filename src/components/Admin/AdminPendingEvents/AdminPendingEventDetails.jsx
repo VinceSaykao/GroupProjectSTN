@@ -98,6 +98,7 @@ export default function AdminPendingEventDetails() {
                 feedback: rejectReason
             }
         })
+        history.push('./adminlist')
     }; // end of handleDeny
 
 

@@ -109,7 +109,6 @@ function AdminEventEdit() {
         dispatch({ type: 'FETCH_EVENT_DETAILS', payload: id })
     }, []);
 
-
     const history = useHistory();
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -124,6 +123,8 @@ function AdminEventEdit() {
         dispatch({ type: 'UPDATE_EVENT', payload: selectedEvent })
         history.push('/calanderview');
     }
+
+    const [category, setCategory] = useState(selectedEvent?.category_id)
 
 
     return (
@@ -206,14 +207,14 @@ function AdminEventEdit() {
                             <Select
                                 label="Category"
                                 variant={muiVariant}
-                                value={selectedEvent?.category_id || ''}
+                                value={selectedEvent?.category_id  || ''}
                                 onChange={e => dispatch({
                                     type: 'SET_EDIT_UPDATE_EVENT',
                                     payload: { property: 'category_id', value: e.target.value }
                                 })}
                             >
-                                {categories.map(category => (
-                                    <MenuItem key={category.id} value={category.id}>
+                                {categories.map((category, i) => (
+                                    <MenuItem key={i} value={category?.id}>
                                         {category.id == 1 && <img className="icon_dropdown" src={icon_cleanup} />}
                                         {category.id == 2 && <img className="icon_dropdown" src={icon_community_meeting} />}
                                         {category.id == 3 && <img className="icon_dropdown" src={icon_donations} />}
@@ -432,7 +433,7 @@ function AdminEventEdit() {
                             <InputLabel id="state">State</InputLabel>
                             <Select
                                 variant={muiVariant}
-                                value={selectedEvent?.state || ''} // Async issues without: || ''
+                                value={selectedEvent?.state || ''} // Async issues without || ''
                                 autoComplete="off"
                                 label="State"
                                 onChange={e => dispatch({
@@ -440,8 +441,8 @@ function AdminEventEdit() {
                                     payload: { property: 'state', value: e.target.value }
                                 })}
                             >
-                                {usaStateList.map(usaState => (
-                                    <MenuItem key={usaState.value} value={usaState.value}>{usaState.value}</MenuItem>
+                                {usaStateList.map((usaState, i) => (
+                                    <MenuItem key={i} value={usaState.value}>{usaState.value}</MenuItem>
                                 ))}
 
                             </Select>
