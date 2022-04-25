@@ -23,7 +23,7 @@ const addEvent = (state = [], action) => {
         address1: '',
         address2: '',
         city: '',
-        zip: null,
+        zip: '',
         state: '',
         email: '',
         phone: '',

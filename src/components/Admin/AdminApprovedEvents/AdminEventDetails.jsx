@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
@@ -47,6 +48,7 @@ export default function AdminEventDetails() {
     const history = useHistory();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch({ type: "FETCH_SAVE_EVENT" });
         dispatch({ type: "SET_PROFILE_SAGA" });
     }, [])
@@ -54,11 +56,6 @@ export default function AdminEventDetails() {
     const fetchEventId = useSelector(store => store.fetchEventId);
     const fetchProfile = useSelector(store => store.fetchProfile[0]);
     const user = useSelector(store => store.user);
-
-
-
-
-
 
     // Styles the items mui
     // const Item = styled(Paper)(({ theme }) => ({
@@ -278,11 +275,6 @@ export default function AdminEventDetails() {
     }
 
 
-
-
-
-
-    console.log('REEEEEEE', fetchEventId);
     return (
         <div>
             <Helmet>
@@ -317,7 +309,7 @@ export default function AdminEventDetails() {
             <div className="event-approved-list-container">
                 {fetchEventId.map((detail, i) => {
                     return (
-                        <div id={i}>
+                        <div id={i} key={i}>
 
                             <Box sx={{ flexGrow: 1, minHeight: '1050px', }}>
                                 <Grid container spacing={1}>
@@ -334,10 +326,6 @@ export default function AdminEventDetails() {
                                                 width="100%"
                                             />
                                         </Paper>
-
-
-
-
                                     </Grid>
 
 
@@ -352,31 +340,17 @@ export default function AdminEventDetails() {
 
 
                                         <Grid item xs={12}>
-
                                             <Item>
-
-
-
-
                                                 {user.id ?
-
-                                                    <div></div>
-
-
+                                                    <></>
                                                     :
-
-
-
                                                     <Button
                                                         onClick={handleOops}
                                                         sx={{ background: 'green', }}
                                                         variant="contained"
                                                         startIcon={<StarIcon />}
                                                     >Save</Button>
-
-
                                                 }
-
                                                 {user.access_level >= 2 ?
                                                     <Button
                                                         onClick={handleEdit}
@@ -388,16 +362,10 @@ export default function AdminEventDetails() {
                                                         variant="contained"
                                                         startIcon={<EditIcon />}
                                                     >Edit</Button>
-
                                                     :
-
                                                     <div></div>
-
                                                 }
-
-
                                                 {user.access_level >= 2 ?
-
                                                     <Button
                                                         onClick={handleCopy}
                                                         sx={{
@@ -407,14 +375,10 @@ export default function AdminEventDetails() {
                                                         startIcon={<ContentCopyIcon />}
                                                         variant="contained"
                                                     >Copy</Button>
-
                                                     :
-
                                                     <div></div>
                                                 }
-
                                                 {user.access_level >= 2 ?
-
                                                     <Button onClick={handleOpen} variant="contained" sx={{
                                                         background: '#444',
                                                         border: '0.5px solid white', color: '#fff',
@@ -423,28 +387,34 @@ export default function AdminEventDetails() {
                                                         startIcon={<DeleteIcon />}>
                                                         Delete
                                                     </Button>
-
                                                     :
-
                                                     <div></div>
-
                                                 }
 
                                             </Item>
                                         </Grid>
                                     </Grid>
 
-
-
+                                    {(detail.feedback && detail.status == 'denied') && // ---------------- Rejection Reason ------------------------------------
+                                        <Box sx={{ my: 2, py: 1, px: 2, backgroundColor: 'red' }}>
+                                            <Typography variant="h5">
+                                                Rejection Reason:
+                                            </Typography>
+                                            <Typography>
+                                                {detail.feedback}
+                                            </Typography>
+                                            <br />
+                                            <Typography>
+                                                You may either <b>delete</b> this event, or <b>edit</b> and resubmit to the moderation team
+                                            </Typography>
+                                        </Box>
+                                    }
 
                                     <Grid sx={{ width: '100%', background: '#4444' }} >
-
-
                                         <ItemName
                                             sx={{ textAlign: 'center', width: '100%', }}
                                             className='detail-name'
                                         >
-
                                             <b>{detail.name}</b>
 
 
@@ -460,14 +430,9 @@ export default function AdminEventDetails() {
                                                         sx={{ fontSize: '40px', right: '0', marginBottom: '-10px', color: '#3f7fff' }}
                                                     />
                                                     {/* <p className='save'>save</p> */}
-
                                                 </div>
                                             }
-
-
                                         </ItemName>
-
-
                                         {/* <StyledItemDate><u>{detail.dayname}, {detail.month} {detail.day}</u></StyledItemDate> */}
                                         {/* <StyleDetailItem >
 
@@ -485,10 +450,42 @@ export default function AdminEventDetails() {
 
 
 
-                                            <br></br>
-                                            {/* <Divider sx={{ height: 15, m: 0.5 }} orientation="vertical"/> */}
-                                            {detail.description}
-                                            <br></br>
+                                        {detail.description && // ---------------- Description ------------------------------------
+                                            <>
+                                                <StyleDetailItem >
+                                                    <u><b>Details</b></u>
+                                                </StyleDetailItem>
+
+                                                <StyledItemDetails>
+                                                    <br></br>
+                                                    {/* <Divider sx={{ height: 15, m: 0.5 }} orientation="vertical"/> */}
+                                                    {detail.description}
+                                                    <br></br>
+                                                </StyledItemDetails>
+                                            </>
+                                        }
+
+                                        {detail.email || detail.phone && // --------------- Phone & Email ------------------------
+                                            <>
+                                                <StyledItem>
+                                                    <u><b>Contact</b></u>
+                                                    <br></br>
+                                                    {detail.email}
+                                                    <br></br>
+                                                    {detail.phone}
+                                                </StyledItem>
+                                            </>
+                                        }
+
+                                        {detail.address1 && // ---------------------------- Location ------------------------
+                                            <>
+                                                <StyledItem>
+                                                    <u><b>Location</b></u>
+                                                    <br></br>
+                                                    {detail.address1}
+                                                </StyledItem>
+                                            </>
+                                        }
 
 
 

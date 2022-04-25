@@ -7,9 +7,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from "@mui/material";
 import { Divider } from '@mui/material';
 
-
-
-
 import { Helmet } from 'react-helmet';
 
 import AdminPendingEventListItem from "./AdminPendingEventListItem";
@@ -26,7 +23,11 @@ export default function AdminPendingEventList() {
     }, []);
 
     //store that grabs events that are ONLY pending
-    const fetchPendingEvents = useSelector(store => store.fetchPendingEvents);
+    const fetchPendingEvents = useSelector(
+        store => store.fetchPendingEvents.filter(
+            event => event.status == 'pending'
+        )
+    );
 
 
     return (
@@ -36,7 +37,10 @@ export default function AdminPendingEventList() {
             }`}
                 </style>
             </Helmet>
-            {/* <h1
+
+
+            {/* 
+            <h1
                 className="admin-event-header"
             >Admin Pending Events</h1>
             <div>
@@ -54,32 +58,19 @@ export default function AdminPendingEventList() {
 
                 <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
-            </div> */}
+            </div> 
+            */}
 
-
-
-
-
-
-
-                
 
             <div className="pending-event-list-container">
                 {fetchPendingEvents.map((event, i) => {
-
                     return (
-                        <div id={i}>
-
-                            <AdminPendingEventListItem
-                                event={event}
-                            />
-
+                        <div id={i} key={i}>
+                            <AdminPendingEventListItem event={event} />
                         </div>
                     )
                 })}
             </div>
-
-
         </div>
     )
 

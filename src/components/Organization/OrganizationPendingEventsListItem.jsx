@@ -57,7 +57,7 @@ export default function OrganizationPendingEventsListItem({ events }) {
     const handleClick = () => {
 
         // will dispatch the event id that grabs that specific event 
-        // dispatch({ type: 'FETCH_EVENT_DETAILS', payload: event.id })
+        dispatch({ type: 'FETCH_EVENT_DETAILS', payload: events.id })
 
         // push to this url
         history.push('/approved-events')
@@ -75,9 +75,7 @@ export default function OrganizationPendingEventsListItem({ events }) {
 
     return (
 
-        <Box
-            onClick={handleClick}>
-
+        <Box onClick={handleClick}>
             <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}>
                 <StyledPaper
                     sx={{
@@ -159,7 +157,16 @@ export default function OrganizationPendingEventsListItem({ events }) {
                             <Divider />
                             
                             <Typography className='event-list-name' noWrap><b>{events.name}</b></Typography>
-                            <Typography className='event-list-name' noWrap>{events.orgname} </Typography>
+                            <Typography className='event-list-name' noWrap><b>Status: {events.status}</b></Typography>
+
+                            {/* 
+                            {events.status == 'pending' &&
+                                <Typography className='event-list-name' noWrap>Status: {events.status}</Typography>
+                            }
+                            {events.status == 'denied' &&
+                                <Typography className='event-list-name' noWrap>Status: {events.status}</Typography>
+                            } 
+                            */}
 
                         </Grid>
 

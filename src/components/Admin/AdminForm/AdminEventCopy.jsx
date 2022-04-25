@@ -104,6 +104,7 @@ function AdminEventCopy() {
 
     // Fetches Categories on page load
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch({ type: 'FETCH_CATEGORIES' })
         dispatch({ type: 'FETCH_EVENT_DETAILS', payload: id })
     }, []);
@@ -141,12 +142,12 @@ function AdminEventCopy() {
                             variant={muiVariant}
                             label="Event Name"
                             autoComplete="off"
-                            value={copiedEvent.name}
+                            value={copiedEvent?.name}
                             onChange={e => dispatch({
                                 type: 'SET_EDIT_UPDATE_EVENT',
                                 payload: { property: 'name', value: e.target.value }
                             })}
-                            InputLabelProps={{ shrink: copiedEvent.name ? true : false }}
+                            InputLabelProps={{ shrink: copiedEvent?.name ? true : false }}
                             required
                             fullWidth
                         />
@@ -156,12 +157,12 @@ function AdminEventCopy() {
                             variant={muiVariant}
                             label="Sign Up Link"
                             autoComplete="off"
-                            value={copiedEvent.link}
+                            value={copiedEvent?.link}
                             onChange={e => dispatch({
                                 type: 'SET_EDIT_UPDATE_EVENT',
                                 payload: { property: 'link', value: e.target.value }
                             })}
-                            InputLabelProps={{ shrink: copiedEvent.link ? true : false }}
+                            InputLabelProps={{ shrink: copiedEvent?.link ? true : false }}
                             required
                             fullWidth
                         />
@@ -171,12 +172,12 @@ function AdminEventCopy() {
                             variant={muiVariant}
                             label="Description"
                             autoComplete="off"
-                            value={copiedEvent.description}
+                            value={copiedEvent?.description}
                             onChange={e => dispatch({
                                 type: 'SET_EDIT_UPDATE_EVENT',
                                 payload: { property: 'description', value: e.target.value }
                             })}
-                            InputLabelProps={{ shrink: copiedEvent.description ? true : false }}
+                            InputLabelProps={{ shrink: copiedEvent?.description ? true : false }}
                             required
                             // minRows={3}
                             multiline
@@ -188,12 +189,12 @@ function AdminEventCopy() {
                             variant={muiVariant}
                             label="Image / Flyer URL"
                             autoComplete="off"
-                            value={copiedEvent.image}
+                            value={copiedEvent?.image}
                             onChange={e => dispatch({
                                 type: 'SET_EDIT_UPDATE_EVENT',
                                 payload: { property: 'image', value: e.target.value }
                             })}
-                            InputLabelProps={{ shrink: copiedEvent.image ? true : false }}
+                            InputLabelProps={{ shrink: copiedEvent?.image ? true : false }}
                             fullWidth
                         />
                     </Grid>
@@ -203,7 +204,7 @@ function AdminEventCopy() {
                             <Select
                                 label="Category"
                                 variant={muiVariant}
-                                value={copiedEvent.category_id || ''}
+                                value={copiedEvent?.category_id || ''}
                                 onChange={e => dispatch({
                                     type: 'SET_EDIT_UPDATE_EVENT',
                                     payload: { property: 'category_id', value: e.target.value }
@@ -253,7 +254,7 @@ function AdminEventCopy() {
                             {/* <MobileDatePicker
                         label="Start Date"
                         inputFormat="MM/dd/yyyy"
-                        value={copiedEvent.start_date}
+                        value={copiedEvent?.start_date}
                         onChange={e => dispatch({ type: 'SET_EDIT_UPDATE_EVENT', payload: { property: 'start_date', value: e.target.value } })}
                         renderInput={(params) => <TextField {...params} />}
                     /> */}
@@ -263,7 +264,7 @@ function AdminEventCopy() {
                                 id="date"
                                 label="Start Date"
                                 type="date"
-                                value={copiedEvent.start_date}
+                                value={copiedEvent?.start_date}
                                 onChange={e => dispatch({
                                     type: 'SET_EDIT_UPDATE_EVENT',
                                     payload: { property: 'start_date', value: e.target.value }
@@ -285,7 +286,7 @@ function AdminEventCopy() {
                                 id="date"
                                 label="End Date"
                                 type="date"
-                                value={copiedEvent.end_date}
+                                value={copiedEvent?.end_date}
                                 onChange={e => dispatch({
                                     type: 'SET_EDIT_UPDATE_EVENT',
                                     payload: { property: 'end_date', value: e.target.value }
@@ -307,7 +308,7 @@ function AdminEventCopy() {
                                 id="time"
                                 label="Start Time"
                                 type="time"
-                                value={copiedEvent.start_time}
+                                value={copiedEvent?.start_time}
                                 onChange={e => dispatch({
                                     type: 'SET_EDIT_UPDATE_EVENT',
                                     payload: { property: 'start_time', value: e.target.value }
@@ -328,7 +329,7 @@ function AdminEventCopy() {
                             {/* -----  MUI TIME PICKER ----- */}
                             {/* <MobileTimePicker
                         label="End Time"
-                        value={copiedEvent.end_time}
+                        value={copiedEvent?.end_time}
                         onChange={dispatchEndTime}
                         renderInput={(params) => <TextField {...params} />}
                     /> */}
@@ -338,7 +339,7 @@ function AdminEventCopy() {
                                 id="time"
                                 label="End Time"
                                 type="time"
-                                value={copiedEvent.end_time}
+                                value={copiedEvent?.end_time}
                                 onChange={e => dispatch({
                                     type: 'SET_EDIT_UPDATE_EVENT',
                                     payload: { property: 'end_time', value: e.target.value }
@@ -366,12 +367,12 @@ function AdminEventCopy() {
                             variant={muiVariant}
                             label="Email"
                             autoComplete="off"
-                            value={copiedEvent.email}
+                            value={copiedEvent?.email}
                             onChange={e => dispatch({
                                 type: 'SET_EDIT_UPDATE_EVENT',
                                 payload: { property: 'email', value: e.target.value }
                             })}
-                            InputLabelProps={{ shrink: copiedEvent.email ? true : false }}
+                            InputLabelProps={{ shrink: copiedEvent?.email ? true : false }}
                             fullWidth
                         />
                     </Grid>
@@ -379,7 +380,7 @@ function AdminEventCopy() {
                         <MuiPhoneNumber
                             fullWidth
                             variant={muiVariant}
-                            value={copiedEvent.phone}
+                            value={copiedEvent?.phone}
                             defaultCountry={'us'}
                             onlyCountries={['us', 'ca', 'mx', 'pr']}
                             disableAreaCodes
@@ -396,12 +397,12 @@ function AdminEventCopy() {
                             variant={muiVariant}
                             label="Address Line 1"
                             autoComplete="off"
-                            value={copiedEvent.address1}
+                            value={copiedEvent?.address1}
                             onChange={e => dispatch({
                                 type: 'SET_EDIT_UPDATE_EVENT',
                                 payload: { property: 'address1', value: e.target.value }
                             })}
-                            InputLabelProps={{ shrink: copiedEvent.address1 ? true : false }}
+                            InputLabelProps={{ shrink: copiedEvent?.address1 ? true : false }}
                             required
                             fullWidth
                         />
@@ -411,12 +412,12 @@ function AdminEventCopy() {
                             variant={muiVariant}
                             label="Address Line 2"
                             autoComplete="off"
-                            value={copiedEvent.address2}
+                            value={copiedEvent?.address2}
                             onChange={e => dispatch({
                                 type: 'SET_EDIT_UPDATE_EVENT',
                                 payload: { property: 'address2', value: e.target.value }
                             })}
-                            InputLabelProps={{ shrink: copiedEvent.address2 ? true : false }}
+                            InputLabelProps={{ shrink: copiedEvent?.address2 ? true : false }}
                             fullWidth
                         />
                     </Grid>
@@ -425,12 +426,12 @@ function AdminEventCopy() {
                             variant={muiVariant}
                             label="City"
                             autoComplete="off"
-                            value={copiedEvent.city}
+                            value={copiedEvent?.city}
                             onChange={e => dispatch({
                                 type: 'SET_EDIT_UPDATE_EVENT',
                                 payload: { property: 'city', value: e.target.value }
                             })}
-                            InputLabelProps={{ shrink: copiedEvent.city ? true : false }}
+                            InputLabelProps={{ shrink: copiedEvent?.city ? true : false }}
                             required
                             fullWidth
                         />
@@ -440,7 +441,7 @@ function AdminEventCopy() {
                             <InputLabel id="state">State</InputLabel>
                             <Select
                                 variant={muiVariant}
-                                value={copiedEvent.state || ''} // Async issues without: || ''
+                                value={copiedEvent?.state || ''} // Async issues without: || ''
                                 autoComplete="off"
                                 label="State"
                                 onChange={e => dispatch({
@@ -461,7 +462,7 @@ function AdminEventCopy() {
                             label="Zip"
                             type='text'
                             autoComplete='off'
-                            value={copiedEvent.zip}
+                            value={copiedEvent?.zip}
                             onChange={e => dispatch({
                                 type: 'SET_EDIT_UPDATE_EVENT',
                                 payload: { property: 'zip', value: e.target.value }
