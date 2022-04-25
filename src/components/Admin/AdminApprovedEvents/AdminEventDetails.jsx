@@ -332,7 +332,7 @@ export default function AdminEventDetails() {
                     return (
                         <div id={i}>
 
-                            <Box sx={{ flexGrow: 1, minHeight: '1050px', }}>
+                            <Box sx={{ flexGrow: 1, minHeight: '1300px', }}>
                                 <Grid container spacing={1}>
                                     <Grid item xs={12}>
                                         <Paper

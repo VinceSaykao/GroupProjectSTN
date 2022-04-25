@@ -60,7 +60,7 @@ CREATE TABLE "events" (
 "category_id" int,
 "status" VARCHAR (100) DEFAULT 'pending',
 "name" VARCHAR (100),
-"description" VARCHAR (300),
+"description" VARCHAR (2000),
 "link" VARCHAR (500),
 "start_date" DATE,
 "end_date" DATE,

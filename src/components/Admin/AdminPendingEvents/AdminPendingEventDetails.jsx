@@ -25,6 +25,9 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
 
+import Swal from 'sweetalert2';
+
+
 // Modal Styling
 const style = {
     position: 'absolute',
@@ -58,6 +61,14 @@ export default function AdminPendingEventDetails() {
         // destructures the array of object
         const event = fetchEventId[0];
 
+
+        return Swal.fire({
+            title: "Approved Event!",
+            text: "Event Has Been Approved!",
+            icon: "success",
+            button: "Aww yiss!",
+        }) &&
+
         dispatch({
             type: 'UPDATE_EVENT',
             payload:
@@ -83,9 +94,10 @@ export default function AdminPendingEventDetails() {
                 state: event.state,
                 feedback: event.feedback,
             }
-        });
-
+        }) &&
         history.push('./adminlist');
+
+    
 
     }; // end of handleApprove
 
@@ -189,14 +201,15 @@ export default function AdminPendingEventDetails() {
 
             {/* ---------------------------------------------------------------------- */}
 
-
-            <Button onClick={handleApprove} variant="contained" startIcon={<CheckCircleOutlineIcon fontSize='large' sx={{ textAlign: 'center', alignItems: 'center', margin: '0 auto' }} />}>
+            <Box sx={{textAlign:'center', }}>
+            <Button sx={{background:'color'}} onClick={handleApprove} variant="contained" startIcon={<CheckCircleOutlineIcon fontSize='large' sx={{ textAlign: 'center', alignItems: 'center', margin: '0 auto', textAlign:'center', }} />}>
                 Approve
             </Button>
 
-            <Button onClick={handleDenyModalOpen} variant="contained" startIcon={<CloseIcon fontSize='large' sx={{ textAlign: 'center', alignItems: 'center', margin: '0 auto' }} />}>
+            <Button  sx={{background:'color'}}  onClick={handleDenyModalOpen} variant="contained" startIcon={<CloseIcon fontSize='large' sx={{ textAlign: 'center', alignItems: 'center', margin: '0 auto',textAlign:'center', }} />}>
                 Deny
             </Button>
+            </Box>
 
 
 
@@ -211,7 +224,7 @@ export default function AdminPendingEventDetails() {
 
 
                             <Grid sx={{ width: '100%', background: '#4444', textAlign: 'center' }} >
-                                <StyledItem><u>{detail.dayname} {detail.month} {detail.day}</u></StyledItem>
+                                <StyledItem><u>{detail.dayname}, {detail.month} {detail.day} - {detail.enddayname}, {detail.endmonth} {detail.endday}</u></StyledItem>
                                 <StyledItem>
                                     <u><b>Details</b></u>
                                     <br></br>

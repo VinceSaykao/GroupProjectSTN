@@ -36,6 +36,8 @@ import { intlFormat } from 'date-fns';
 import StarIcon from '@mui/icons-material/Star';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
 
+import Swal from 'sweetalert2';
+
 
 function UserProfileItem({ info, detail }) {
   const dispatch = useDispatch();
@@ -45,11 +47,17 @@ function UserProfileItem({ info, detail }) {
   console.log('info = ', info);
 
   const handleFaveEventClick = () => {
-    alert('You sure?')
+
+    return Swal.fire({
+      title: "Unsaved Event!",
+      text: "Event is unsaved!",
+      icon: "success",
+      button: "Aww yiss!",
+  }) &&
     dispatch({
       type: 'DELETE_FAVE_EVENT',
       payload: { user_id: user.id, event_id: info.event_id },
-    });
+    }) &&
     dispatch({ type: 'FETCH_SAVE_EVENT' });
   };
 
