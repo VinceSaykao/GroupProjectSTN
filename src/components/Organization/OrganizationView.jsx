@@ -21,6 +21,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import OrganizationEventsList from './OrganizationEventsList';
+import ReadMore from './ReadMore'
 
 import { Helmet } from 'react-helmet';
 
@@ -31,6 +32,8 @@ function OrganizationView() {
 
   const org = useSelector((store) => store.fetchOrganization);
   const user = useSelector((store) => store.user);
+
+
 
   useEffect(() => {
     // Upon load, get the selected organization profile based on their user id
@@ -169,7 +172,8 @@ function OrganizationView() {
           color="white"
           sx={{ mr: 2, ml: 2, mt: 1, }}
         >
-          {org.description}
+          
+          <ReadMore description={org.description}/>
         </Typography>
         <Accordion>
           <AccordionSummary
