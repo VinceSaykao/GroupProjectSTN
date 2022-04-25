@@ -177,13 +177,20 @@ export default function AdminEventDetails() {
 
     const handleSave = () => {
 
-        return Swal.fire({
-            title: "Saved Event!",
-            text: "View Saved Events In Profile!",
-            icon: "success",
-            button: "Aww yiss!",
-        }) &&
-            dispatch({ type: "ADD_SAVE_EVENT", payload: { user_id: fetchProfile?.id, event_id: fetchEventId[0]?.id } })
+        if (user.id >= 1) {
+
+            return Swal.fire({
+                title: "Saved Event!",
+                text: "View Saved Events In Profile!",
+                icon: "success",
+                button: "Aww yiss!",
+            }) &&
+                dispatch({ type: "ADD_SAVE_EVENT", payload: { user_id: fetchProfile?.id, event_id: fetchEventId[0]?.id } })
+
+        } else
+        return handleOops();
+
+ 
     }
 
     const handleEdit = () => {
@@ -206,7 +213,13 @@ export default function AdminEventDetails() {
     }
 
     const handleOops = () => {
-        alert('Only Registered Users Can Save!')
+        // alert('Only Registered Users Can Save!')
+        return Swal.fire({
+            title: "Oops!",
+            text: "Only Registered Users can Save!!",
+            icon: "error",
+            // button: "Aww yiss!",
+        })
     }
 
 
@@ -365,14 +378,14 @@ export default function AdminEventDetails() {
 
                                                     :
 
+                                                    <div></div>
 
-
-                                                    <Button
-                                                        onClick={handleOops}
-                                                        sx={{ background: 'green', }}
-                                                        variant="contained"
-                                                        startIcon={<StarIcon />}
-                                                    >Save</Button>
+                                                    // <Button
+                                                    //     onClick={handleOops}
+                                                    //     sx={{ background: 'green', }}
+                                                    //     variant="contained"
+                                                    //     startIcon={<StarIcon />}
+                                                    // >Save</Button>
 
 
                                                 }
