@@ -28,6 +28,8 @@ function OrganizationListItem({ org }) {
       <CardMedia
       sx={{                
         maxHeight: { xs: 111, md: 167 },
+        minHeight: { xs: 111, md: 167 },
+        maxWidth: { xs: 300, md: 200 },
         maxWidth: { xs: 300, md: 200 },
         }}
         component="img"
