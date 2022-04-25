@@ -72,7 +72,7 @@ CREATE TABLE "events" (
 "address1" VARCHAR (1000),
 "address2" VARCHAR (1000),
 "city" VARCHAR (60),
-"zip" int,
+"zip" VARCHAR(5),
 "state" VARCHAR (50),
 "feedback" VARCHAR (300)
 );

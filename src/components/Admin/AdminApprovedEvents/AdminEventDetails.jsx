@@ -44,11 +44,6 @@ export default function AdminEventDetails() {
     const fetchProfile = useSelector(store => store.fetchProfile[0]);
     const user = useSelector(store => store.user);
 
-
-
-
-
-
     // Styles the items mui
     // const Item = styled(Paper)(({ theme }) => ({
     //     color: theme.palette.mode === 'dark' ? '#fff' : '#fff',
@@ -258,8 +253,7 @@ export default function AdminEventDetails() {
 
             {fetchEventId.map((detail, i) => {
                 return (
-                    <ItemDateTime>
-
+                    <ItemDateTime key={i}>
                         {detail.dayname}, {detail.month} {detail.day} - {detail.end_date}
                     </ItemDateTime>
 
@@ -274,7 +268,7 @@ export default function AdminEventDetails() {
             <div className="event-approved-list-container">
                 {fetchEventId.map((detail, i) => {
                     return (
-                        <div id={i}>
+                        <div id={i} key={i}>
 
                             <Box sx={{ flexGrow: 1, height: '900px', }}>
                                 <Grid container spacing={1}>
