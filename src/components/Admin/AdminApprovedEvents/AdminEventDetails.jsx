@@ -182,13 +182,8 @@ export default function AdminEventDetails() {
             text: "View Saved Events In Profile!",
             icon: "success",
             button: "Aww yiss!",
-
-
         }) &&
             dispatch({ type: "ADD_SAVE_EVENT", payload: { user_id: fetchProfile?.id, event_id: fetchEventId[0]?.id } })
-
-
-
     }
 
     const handleEdit = () => {

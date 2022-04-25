@@ -50,7 +50,7 @@ function App() {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_ADMIN_EVENTS' });
-    something();
+    // something();
 
   }, []);
 
