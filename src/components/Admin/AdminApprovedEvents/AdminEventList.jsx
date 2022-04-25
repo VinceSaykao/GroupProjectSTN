@@ -246,7 +246,7 @@ export default function AdminEventList() {
 
 
             <div>
-    
+
                 <div className="admin-search-div">
                     <InputBase
                         sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
@@ -258,7 +258,7 @@ export default function AdminEventList() {
                         <SearchIcon />
                     </IconButton>
                 </div>
-                
+
 
                 {/* Filter by Category in progress...
                 
@@ -294,9 +294,13 @@ export default function AdminEventList() {
 
                 <Box
                     className="event-tab"
-                    sx={{ bgcolor: 'background.paper', height: '0px', width: '100%', textAlign: 'center', }}>
+                    sx={{ height: '0px', width: '100%', textAlign: 'center', background: 'green', }}>
                     <AppBar position="static">
                         <Tabs
+                            sx={{
+                                backgroundColor: 'rgb(101, 101, 101)',
+                                color: 'white',
+                            }}
                             value={value}
                             onChange={handleChange}
                             indicatorColor="primary"
