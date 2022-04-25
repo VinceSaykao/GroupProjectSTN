@@ -83,7 +83,7 @@ export default function UserProfile() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          mt: 1,
+          mt: 2,
           borderBottom: '2px solid #e6e6e6',
         }}
       >
@@ -92,7 +92,8 @@ export default function UserProfile() {
           size="small"
           variant="contained"
           onClick={handleEditClick}
-          sx={{ background: 'grey', }}
+          sx={{ background: 'grey', mt: -2,}}
+     
         >
           <EditIcon fontSize="small" />    
           Edit Profile
@@ -114,6 +115,7 @@ export default function UserProfile() {
         sx={{
           height: 30,
           textAlign: 'center',
+          mt: 1,
         }}
       >
         <Typography variant="h5" color="white">
