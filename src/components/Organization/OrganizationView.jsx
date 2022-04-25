@@ -22,6 +22,10 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
+import UnfoldLessIcon from '@mui/icons-material/UnfoldLess';
+
+
 import OrganizationEventsList from './OrganizationEventsList';
 
 
@@ -172,9 +176,8 @@ function OrganizationView() {
         >
           <ShowMoreText
             lines={6}
-            more="Show more"
-            less="Show less"
-            color="blue"
+            more={<Typography color="white">Show More</Typography>}
+            less={<Typography color="white">Show Less</Typography>}
             className="content-css"
             anchorClass="my-anchor-css-class"
             expanded={false}
