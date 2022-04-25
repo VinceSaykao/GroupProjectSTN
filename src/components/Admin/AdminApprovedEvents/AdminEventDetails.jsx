@@ -309,12 +309,12 @@ export default function AdminEventDetails() {
                     return (
                         <div id={i}>
 
-                            <Box sx={{ flexGrow: 1, height: '900px', }}>
+                            <Box sx={{ flexGrow: 1, minHeight: '1050px', }}>
                                 <Grid container spacing={1}>
                                     <Grid item xs={12}>
                                         <Paper
                                             sx={{
-                                                height: 140,
+                                                height: 160,
                                             }}
                                         >
                                             <img
@@ -509,6 +509,18 @@ export default function AdminEventDetails() {
                                         </StyledItem>
                                     </Grid>
 
+                                    <Grid container justifyContent="center">
+              <iframe
+                width="100%"
+                height="200"
+                frameBorder={0}
+                style={{ border: 0 }}
+                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDX4e7v69d8lQVeWvBOcs-Bt9mFS2VVogg&q=${detail.address1}${detail.address2}${detail.city}${detail.state}${detail.zip}`}
+                allowFullScreen
+              ></iframe>
+            </Grid>
+
+
                                 </Grid>
                             </Box>
 
@@ -530,6 +542,7 @@ export default function AdminEventDetails() {
                     )
                 })}
             </div>
+
 
             {user.access_level != 2 ?
                 <div
