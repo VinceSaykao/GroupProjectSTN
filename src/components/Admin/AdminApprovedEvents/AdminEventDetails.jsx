@@ -70,6 +70,8 @@ export default function AdminEventDetails() {
     // Date for Event
     const ItemDateTime = styled('div')(({ theme }) => ({
         // color: '#ff3700',
+        // position: 'absolute',
+        top: '900',
         color: 'white',
         fontSize: '25px',
         margin: '0',
@@ -370,7 +372,8 @@ export default function AdminEventDetails() {
                                                         onClick={handleEdit}
                                                         sx={{
                                                             color: '#fff', background: '#444',
-                                                            border: '0.5px solid white'
+                                                            border: '0.5px solid white',
+                                                            marginRight:'25px',
                                                         }}
                                                         variant="contained"
                                                         startIcon={<EditIcon />}
@@ -405,6 +408,7 @@ export default function AdminEventDetails() {
                                                     <Button onClick={handleOpen} variant="contained" sx={{
                                                         background: '#444',
                                                         border: '0.5px solid white', color: '#fff',
+                                                        marginLeft:'25px',
                                                     }}
                                                         startIcon={<DeleteIcon />}>
                                                         Delete
