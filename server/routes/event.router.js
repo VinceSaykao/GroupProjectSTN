@@ -104,34 +104,41 @@ router.get('/admin/pending', (req, res) => {
 
     if (req.isAuthenticated()) {
         pool
-            .query(`select 
-            events.id,
-            events.org_id,
-            events.category_id,
-            events.status,
-            events."name",
-            events.description,
-            TO_CHAR(start_date, 'Mon') AS "month",
-            extract(
-            day from start_date
-            ) AS "day",
-            to_char(start_date, 'Dy') AS "dayname",
-            events.start_time,
-            events.end_time,
-            events.image,
-            events.address1,
-            events.address2,
-            events.city,
-            events.zip,
-            events. state,
-            events.feedback, 
-            organizations.name as "orgname"
-            from events 
-            join organizations
-            on
-            organizations.id = events.org_id
-            where events.status = 'pending'
-            order by start_date asc;`)
+            .query(`
+            SELECT 
+                events.id,
+                events.org_id,
+                events.category_id,
+                events.status,
+                events."name",
+                events.description,
+                TO_CHAR(start_date, 'Mon') AS "month",
+                extract(
+                day from start_date
+                ) AS "day",
+                to_char(start_date, 'Dy') AS "dayname",
+                events.start_time,
+                events.end_time,
+                events.image,
+                events.address1,
+                events.address2,
+                events.city,
+                events.zip,
+                events. state,
+                events.feedback, 
+                organizations.name as "orgname"
+            FROM 
+                events 
+            JOIN 
+                organizations
+            ON
+                organizations.id = events.org_id
+            WHERE 
+                events.status = 'pending'
+            OR 
+                events.status = 'denied'
+            ORDER BY 
+                start_date asc;`)
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error in GET for admin pending event information', error);
@@ -313,6 +320,32 @@ router.put('/expired/status', (req, res) => {
         res.sendStatus(200)
     }).catch((error) => {
         console.log('Error updating expired users', error);
+        res.sendStatus(500);
+    })
+});
+
+// Admin Decline Event w/ Feedback
+router.put('/deny/:id', (req, res) => {
+
+    console.log('req.params.id', req.params.id);
+
+    id = req.params.id
+    feedback = req.body.feedback
+
+    const queryText = `
+    UPDATE 
+        events 
+    SET
+        status = 'denied',
+        feedback = $1
+    WHERE
+        id = $2
+    ;`;
+
+    pool.query(queryText, [feedback, id]).then(() => {
+        res.sendStatus(200)
+    }).catch((error) => {
+        console.log('Error in Router Put /deny', error);
         res.sendStatus(500);
     })
 });
