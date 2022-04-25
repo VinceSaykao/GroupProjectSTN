@@ -78,6 +78,7 @@ CREATE TABLE "events" (
 );
 
 
+-- ORGANIZATION MOCK DATA
 
 
 INSERT INTO organizations (name, email, phone, website, twitter, facebook, instagram, description, image, address1, address2, city, state, zip)
@@ -175,3 +176,26 @@ VALUES (
   'CA',
   '92501'
 );
+
+-- EVENT MOCK DATA
+
+-- TruEvolution
+
+INSERT INTO "public"."events"("org_id","category_id","status","name","description","link","start_date","end_date","start_time","end_time","image","email","phone","address1","address2","city","zip","state","feedback")
+VALUES
+(5,2,E'approved',E'Youth United Mentorship Program',E'Mentorship is a key component of Youth United. Our Youth United Mentorship Program addresses three components: Community, Advocacy, and Professional Development.',E'https://www.truevolution.org/youth-united',E'2022-05-20',E'2022-05-20',E'12:00:00',E'12:00:00',E'https://i.imgur.com/Lp6UEM1.png',E'info@truevolution.com',E'+1 (951) 888-1346',E'4164 Brockton Ave',E'Ste A',E'Riverside',92501,E'CA',NULL),
+(5,5,E'approved',E'Health Equity Advancement Lab (H.E.A.L.)',E'Mentorship is a key component of Youth United. Our Youth United Mentorship Program addresses three components: Community, Advocacy, and Professional Development.',E'https://www.truevolution.org/heal',E'2022-05-21',E'2022-05-21',E'12:00:00',E'12:00:00',E'https://i.imgur.com/FevWoHS.png',E'info@truevolution.com',E'+1 (951) 888-1346',E'4164 Brockton Ave',E'Ste A',E'Riverside',92501,E'CA',NULL);
+
+-- One Future Cochella Valley
+
+INSERT INTO "public"."events"("org_id","category_id","status","name","description","link","start_date","end_date","start_time","end_time","image","email","phone","address1","address2","city","zip","state","feedback")
+VALUES
+(3,4,E'approved',E'Regional College Fair',E'College & Carrer Fair for the Coachella Valley',E'https://www.onefuturecv.org/events/',E'2022-05-06',E'2022-05-06',E'12:00:00',E'12:00:00',E'blob:https://imgur.com/c43dc716-bb92-458e-9b28-ccf786caddf2',E'info@OneFuture.com',E'+1 (760) 625-0422',E'Agua Caliente Spa Resort Casino Rancho Mirage',E'32-250 Bob Hope Dr',E'Rancho Mirage',92270,E'CA',NULL),
+(3,6,E'approved',E'Pop-Up Volunteer Fair',E'Pop-Up Volunteer Fair',E'https://www.onefuturecv.org/events/',E'2022-05-07',E'2022-05-07',E'12:00:00',E'12:00:00',E'https://i.imgur.com/cFL2gve.png',E'info@OneFuture.com',E'+1 (760) 625-0422',E'Agua Caliente Spa Resort Casino Rancho Mirage',E'32-250 Bob Hope Dr',E'Rancho Mirage',92270,E'CA',NULL);
+
+-- One Future Cochella Valley
+
+INSERT INTO "public"."events"("org_id","category_id","status","name","description","link","start_date","end_date","start_time","end_time","image","email","phone","address1","address2","city","zip","state","feedback")
+VALUES
+(4,4,E'pending',E'Food Drive',E'Community Food and Donation Drive',E'https://inlandempiregia.org/',E'2022-05-10',E'2022-05-10',E'12:00:00',E'12:00:00',E'blob:https://imgur.com/5b7afb55-d37a-4b07-830f-1e23e26c4c03',E'info@GrowingInland.org',E'+1 (909) 256-0011',E'33562 Yucaipa Blvd ',E'209',E'209',92399,E'CA',NULL),
+(4,1,E'approved',E'City Council Meet Up',E'Inland Empire Community Council Meeting. Come make your voice heard!',E'https://inlandempiregia.org/',E'2022-05-10',E'2022-05-10',E'12:00:00',E'12:00:00',E'https://i.imgur.com/bJh0zKT.png',E'info@GrowingInland.org',E'+1 (909) 256-0011',E'33562 Yucaipa Blvd ',E'209',E'209',92399,E'CA',NULL);
