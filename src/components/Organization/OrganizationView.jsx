@@ -176,8 +176,8 @@ function OrganizationView() {
         >
           <ShowMoreText
             lines={6}
-            more={<Typography color="white">Show More</Typography>}
-            less={<Typography color="white">Show Less</Typography>}
+            more={<Typography color="white" sx={{textDecoration: 'underline'}} display="inline">Show More</Typography>}
+            less={<Typography color="white"sx={{textDecoration: 'underline'}} display="inline">Show Less</Typography>}
             className="content-css"
             anchorClass="my-anchor-css-class"
             expanded={false}
@@ -211,11 +211,12 @@ function OrganizationView() {
                 variant="body1"
                 color="white"
                 component="div"
+                sx={{textDecoration: 'underline'}}
               >
                 {org.website}
               </Typography>
             </Link>
-            <Typography gutterBottom variant="body1" component="div" onClick={() => window.location = `mailto:${org.email}`}>
+            <Typography gutterBottom variant="body1" component="div" sx={{textDecoration: 'underline'}} onClick={() => window.location = `mailto:${org.email}`}>
               {org.email}
             </Typography>
             <Typography gutterBottom variant="body1" component="div">
