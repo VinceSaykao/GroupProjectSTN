@@ -3,14 +3,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin: 0 0 10px;
+  margin: 0 0 7px;
   background-color: rgba(255, 255, 255, 0);
   overflow: hidden;
 
   height: 50px;
 }
-
 
 
 /* .navLink {

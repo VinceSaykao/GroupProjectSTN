@@ -16,6 +16,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Helmet } from 'react-helmet';
 
 
 function RegisterForm() {
@@ -69,7 +70,9 @@ function RegisterForm() {
 
 
   return (
-    <Box component="form" container onSubmit={registerUser} textAlign="center" sx={{ mt:"33.33%"}}>
+    <>
+
+    <Box component="form" container onSubmit={registerUser} textAlign="center" sx={{ mt:"33.33%",}}>
       <h2>Register</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
@@ -134,6 +137,7 @@ function RegisterForm() {
       <Button variant="filled" value="Login" onClick={() => { history.push('/login') }}>Login</Button>
       </div>
     </Box>
+    </>
   );
           };
 

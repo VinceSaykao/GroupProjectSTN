@@ -40,6 +40,8 @@ import AdminEventCreate from '../Admin/AdminForm/AdminEventCreate';
 import AdminEventEdit from '../Admin/AdminForm/AdminEventEdit';
 import AdminEventCopy from '../Admin/AdminForm/AdminEventCopy';
 
+import ScrollToTop from '../../ScrollToTop';
+
 import './App.css';
 
 function App() {
@@ -48,7 +50,7 @@ function App() {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_ADMIN_EVENTS' });
-    something();
+    // something();
 
   }, []);
 
@@ -240,17 +242,23 @@ console.log('this filters: ', expiredEvents );
 
   return (
     <Router>
+      
       <div>
+        
         <Nav />
 
+
         <Switch>
+          
 
           {/* --------------------------------------------------
               ADMIN COMPONENTS 
           ---------------------------------------------------*/}
 
           <Route exact path="/approved-events">
+            
             <AdminEventDetails />
+      
           </Route>
 
           <ProtectedRoute exact path="/adminlist">
@@ -413,6 +421,7 @@ console.log('this filters: ', expiredEvents );
         </Switch>
         {/* <Footer /> */}
       </div>
+      
     </Router>
   );
 }

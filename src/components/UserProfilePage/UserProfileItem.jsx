@@ -1,3 +1,4 @@
+
 import { InfoRounded } from '@mui/icons-material';
 import React from 'react';
 import { useEffect } from 'react';
@@ -35,6 +36,8 @@ import { intlFormat } from 'date-fns';
 import StarIcon from '@mui/icons-material/Star';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
 
+import Swal from 'sweetalert2';
+
 
 function UserProfileItem({ info, detail }) {
   const dispatch = useDispatch();
@@ -44,11 +47,17 @@ function UserProfileItem({ info, detail }) {
   console.log('info = ', info);
 
   const handleFaveEventClick = () => {
-    alert('You sure?')
+
+    return Swal.fire({
+      title: "Unsaved Event!",
+      text: "Event is unsaved!",
+      icon: "success",
+      button: "Aww yiss!",
+  }) &&
     dispatch({
       type: 'DELETE_FAVE_EVENT',
       payload: { user_id: user.id, event_id: info.event_id },
-    });
+    }) &&
     dispatch({ type: 'FETCH_SAVE_EVENT' });
   };
 
@@ -72,6 +81,8 @@ function UserProfileItem({ info, detail }) {
 
   return (
     <div>
+
+
       <div className="admin-event-item" >
         {/* <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 1, width:'100%'}}> */}
         <StyledPaper
@@ -169,13 +180,12 @@ function UserProfileItem({ info, detail }) {
 
               </Typography>
   
-            </Grid>
             <Button
                   onClick={handleFaveEventClick}
                   className="edit-button"
                   size="small"
                   variant="contained"
-                  sx={{height: '70%', float: 'right', top: 7, left: 40, background: '#e0e0e046', boxShadow:'none' ,color: 'red', borderRadiusRight: '10px', border:'0.5px solid white', 
+                  sx={{height: '100%', float: 'right', top: -70, left: 40, background: '#e0e0e046', boxShadow:'none' ,color: 'red', borderRadiusRight: '10px', border:'0.5px solid white', 
                   boxShadow:'1px 1px 3px 1px black', zIndex: '10'}}
                 >
                   <BookmarkRemoveIcon 
@@ -184,6 +194,7 @@ function UserProfileItem({ info, detail }) {
 
                   />
                 </Button>
+            </Grid>
           </Grid>
           
         </StyledPaper>

@@ -246,7 +246,7 @@ export default function AdminEventList() {
 
 
             <div>
-    
+
                 <div className="admin-search-div">
                     <InputBase
                         sx={{ ml: 5, flex: 1, bgcolor: 'white', }}
@@ -259,13 +259,48 @@ export default function AdminEventList() {
                     </IconButton>
                 </div>
 
+
+                {/* Filter by Category in progress...
+                
+                <Accordion expanded={expandedFilter1} sx={{ mt: 2, mx: 3 }}>
+                    <AccordionSummary
+                        aria-controls="panel2d-content"
+                        id="panel2d-header"
+                        onClick={() => setExpandedFilter1(!expandedFilter1)}
+                    >
+                        <Typography>Filter</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <FormGroup>
+                            {categories.map(category => (
+                                <AdminEventListFilterItem 
+                                    key={category.id} 
+                                    category={category} 
+                                    handleSearch={handleSearch}/>
+                            ))}
+                        </FormGroup>
+                        <Button 
+                            variant="contained"
+                            onClick={handleFilterSubmit}
+                        >
+                            Filter
+                        </Button>
+                    </AccordionDetails>
+                </Accordion > 
+                
+                */}
+
                 <Divider sx={{ height: 10, m: 0.5 }} orientation="vertical" />
 
                 <Box
                     className="event-tab"
-                    sx={{ bgcolor: 'background.paper', height: '0px', width: '100%', textAlign: 'center', }}>
+                    sx={{ height: '0px', width: '100%', textAlign: 'center', background: 'green', }}>
                     <AppBar position="static">
                         <Tabs
+                            sx={{
+                                backgroundColor: 'rgb(101, 101, 101)',
+                                color: 'white',
+                            }}
                             value={value}
                             onChange={handleChange}
                             indicatorColor="primary"

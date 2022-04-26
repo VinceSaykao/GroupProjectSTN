@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { TextField, Button } from '@mui/material';
@@ -17,6 +17,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import './LoginForm.scss';
+import { Helmet } from 'react-helmet';
+
+import stn from './stn-horz.png';
 
 
 
@@ -25,13 +29,13 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
-  
+
   const [values, setValues] = React.useState({
     password: '',
     showPassword: false,
   });
 
-  
+
   const handleClickShowPassword = () => {
     setValues({
       ...values,
@@ -67,27 +71,34 @@ function LoginForm() {
   }; // end login
 
   return (
-    <Box component="form" container onSubmit={login} textAlign="center" sx={{mt:'33.33%'}}>
-      <h2>Login</h2>
-      {errors.loginMessage && (
-        <h3 className="alert" role="alert">
-          {errors.loginMessage}
-        </h3>
-      )}
-      <TextField
-        id="username"
-        maxRows={1}
-        sx={{ color: 'white', mt: 1, mb: 1, width: 300 }}
-        required
-        label="Username"
-        color="primary"
-        autoComplete="off"
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
-      />
-      <FormControl sx={{ m: 1, width: 300 }} variant="outlined">
+    <div>
+      <Helmet>
+        <style>{`body { background-color: #1a1a1a); 
+        }`}
+        </style>
+      </Helmet>
+      <Box component="form" container onSubmit={login} textAlign="center" sx={{ mt: '30.33%', color: 'black', zIndex: '10000', }}>
+        <h2>Login</h2>
+        {errors.loginMessage && (
+          <h3 className="alert" role="alert">
+            {errors.loginMessage}
+          </h3>
+        )}
+        <TextField
+          id="username"
+          maxRows={1}
+          sx={{ color: 'white', mt: 1, mb: 1, width: 300, }}
+          required
+          label="Username"
+          color="primary"
+          autoComplete="off"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+        <FormControl sx={{ m: 1, width: 300, color: 'white', }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
+            sx={{}}
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
             value={password}
@@ -95,6 +106,7 @@ function LoginForm() {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
+                  sx={{ color: 'black', }}
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
@@ -107,10 +119,10 @@ function LoginForm() {
             label="Password"
           />
         </FormControl>
-      <div>
-        <Button variant="outlined" type="submit" name="submit" value="Log In">Login</Button>
-      </div>
-      <Button
+        <div>
+          <Button sx={{ color: 'black', }} variant="outlined" type="submit" name="submit" value="Log In">Login</Button>
+        </div>
+        <Button
           variant="filled"
           onClick={() => {
             history.push('/registration');
@@ -119,8 +131,14 @@ function LoginForm() {
         >
           Register
         </Button>
-    </Box>
+
+      </Box>
+      <img
+        className='stn-logo'
+        src={stn}></img>
+    </div>
   );
+
 }
 
 export default LoginForm;

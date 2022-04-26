@@ -35,6 +35,8 @@ import './CategoryItem.css';
 // CUSTOM MUI Phone TextField
 import MuiPhoneNumber from 'material-ui-phone-number';
 
+import Swal from 'sweetalert2';
+
 function AdminEventCopy() {
 
     // Included for USA State Dropdown
@@ -120,7 +122,15 @@ function AdminEventCopy() {
     // Form Submit
     const handleFormSubmit = (event) => {
         event.preventDefault();
+
+        return Swal.fire({
+            title: "Event Created!",
+            text: "You have created a new event!",
+            icon: "success",
+            button: "Aww yiss!",
+        }) &&
         dispatch({ type: 'POST_EVENT', payload: copiedEvent })
+        &&
         history.push('/calanderview');
     }
 

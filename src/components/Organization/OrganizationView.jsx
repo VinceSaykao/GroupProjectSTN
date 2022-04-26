@@ -68,20 +68,19 @@ function OrganizationView() {
 
     return null;
   };
-  
+
 
   return (
     <Container sx={{ minHeight: 1200 }}>
       <Helmet>
-        <style>
-          {`body { background-color: rgb(75, 75, 75);); 
-        }`}
+        <style>{`body { background-color: #090909ee;); 
+            }`}
         </style>
       </Helmet>
-      <Box className="org-view">
+      <Box className="org-view" sx={{background:'#4444'}}>
         <BottomNavigation
           sx={{ width: 'auto' }}
-          style={{ backgroundColor: 'rgb(75, 75, 75)' }}
+          style={{ background: 'transparent' }}
         >
           {org.instagram === '' ? (
             <div></div>
@@ -158,6 +157,7 @@ function OrganizationView() {
                   size="small"
                   variant="contained"
                   onClick={handleEditClick}
+                  sx={{background:'#444'}}
                 >
                   <EditIcon fontSize="small" />
                   Edit
@@ -177,8 +177,8 @@ function OrganizationView() {
         >
           <ShowMoreText
             lines={6}
-            more={<Typography color="white" sx={{textDecoration: 'underline'}} display="inline">Show More</Typography>}
-            less={<Typography color="white"sx={{textDecoration: 'underline'}} display="inline">Show Less</Typography>}
+            more={<Typography color="white" sx={{ textDecoration: 'underline' }} display="inline">Show More</Typography>}
+            less={<Typography color="white" sx={{ textDecoration: 'underline' }} display="inline">Show Less</Typography>}
             className="content-css"
             anchorClass="my-anchor-css-class"
             expanded={false}
@@ -194,7 +194,7 @@ function OrganizationView() {
             aria-controls="panel1a-content"
             id="panel1a-header"
             sx={{
-              backgroundColor: 'rgb(101, 101, 101)',
+              backgroundColor: '#444',
               color: 'white',
             }}
           >
@@ -212,12 +212,12 @@ function OrganizationView() {
                 variant="body1"
                 color="white"
                 component="div"
-                sx={{textDecoration: 'underline'}}
+                sx={{ textDecoration: 'underline' }}
               >
                 {org.website}
               </Typography>
             </Link>
-            <Typography gutterBottom variant="body1" component="div" sx={{textDecoration: 'underline'}} onClick={() => window.location = `mailto:${org.email}`}>
+            <Typography gutterBottom variant="body1" component="div" sx={{ textDecoration: 'underline' }} onClick={() => window.location = `mailto:${org.email}`}>
               {org.email}
             </Typography>
             <Typography gutterBottom variant="body1" component="div">

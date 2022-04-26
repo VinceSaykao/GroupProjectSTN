@@ -9,40 +9,45 @@ router.get('/', (req, res) => {
 
     pool
         .query(` 
-            select 
-            events.id,
-            events.org_id,
-            events.category_id,
-            events.status,
-            events."name",
-            events.description,
-            TO_CHAR(start_date, 'Mon') AS "month",
-            extract(
-            day from start_date
-            ) AS "day",
-            to_char(start_date, 'Dy') AS "dayname",
-            TO_CHAR(end_date, 'YYYY/MM/DD') AS stop_date,
-            events.start_date,
-            events.end_date,
-            events.start_time,
-            events.end_time,
-            events.image,
-            events.address1,
-            events.address2,
-            events.city,
-            events.zip,
-            events.state,
-            events.email,
-            events.phone,
-            events.link,
-            events.feedback, 
-            organizations.name as "orgname"
-            from events 
-            join organizations
-            on
-            organizations.id = events.org_id
-            where events.status = 'approved' 
-            order by start_date asc;
+        select 
+        events.id,
+        events.org_id,
+        events.category_id,
+        events.status,
+        events."name",
+        events.description,
+        TO_CHAR(start_date, 'Mon') AS "month",
+        extract(
+        day from start_date
+        ) AS "day",
+        to_char(start_date, 'Dy') AS "dayname",
+        TO_CHAR(end_date, 'YYYY/MM/DD') AS stop_date,
+        events.start_date,
+        events.end_date,
+            TO_CHAR(end_date, 'Mon') AS "endmonth",
+        extract(
+        day from end_date
+        ) AS "endday",
+        to_char(end_date, 'Dy') AS "enddayname",
+        events.start_time,
+        events.end_time,
+        events.image,
+        events.address1,
+        events.address2,
+        events.city,
+        events.zip,
+        events.state,
+        events.email,
+        events.phone,
+        events.link,
+        events.feedback, 
+        organizations.name as "orgname"
+        from events 
+        join organizations
+        on
+        organizations.id = events.org_id
+        where events.status = 'approved' 
+        order by start_date asc;
             `)
             // AND end_date > NOW()
         .then((results) => res.send(results.rows))
@@ -59,7 +64,8 @@ router.get('/:id', (req, res) => {
 
 
     pool
-        .query(`select 
+        .query(`
+            select 
             id,
             org_id,
             category_id,
@@ -73,6 +79,11 @@ router.get('/:id', (req, res) => {
             to_char(start_date, 'Dy') AS "dayname",
             TO_CHAR(start_date, 'YYYY-MM-DD') AS start_date,
             TO_CHAR(end_date, 'YYYY-MM-DD') AS end_date,
+            TO_CHAR(end_date, 'Mon') AS "endmonth",
+            extract(
+            day from end_date
+            ) AS "endday",
+            to_char(end_date, 'Dy') AS "enddayname",
             start_time,
             end_time,
             link,
