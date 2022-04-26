@@ -16,6 +16,7 @@ import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import LocalPostOfficeOutlinedIcon from '@mui/icons-material/LocalPostOfficeOutlined';
+import Typography from '@mui/material/Typography';
 
 import './AdminEventDetails.scss'
 
@@ -57,19 +58,6 @@ export default function AdminEventDetails() {
 
 
 
-
-
-
-    // Styles the items mui
-    // const Item = styled(Paper)(({ theme }) => ({
-    //     color: theme.palette.mode === 'dark' ? '#fff' : '#fff',
-    //     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    //     ...theme.typography.body2,
-    //     padding: theme.spacing(1),
-    //     textAlign: 'center',
-    //     color: theme.palette.text.secondary,
-    // }));
-
     // Date for Event
     const ItemDateTime = styled('div')(({ theme }) => ({
         // color: '#ff3700',
@@ -103,29 +91,6 @@ export default function AdminEventDetails() {
         padding: theme.spacing(1),
         borderRadius: theme.shape.borderRadius,
     }));
-
-
-
-
-
-    // const StyledItemDate = styled('div')(({ theme }) => ({
-    //     color: '#ff6200',
-    //     textAlign: 'center',
-    //     fontSize: '30px',
-    //     backgroundColor: 'transparent',
-    //     borderBottom: '1px solid #fff',
-    //     padding: theme.spacing(1),
-    //     borderRadius: theme.shape.borderRadius,
-    // }));
-
-
-    // const StyleDetailItem = styled('div')(({ theme }) => ({
-    //     fontSize: '30px',
-    //     textAlign: 'center',
-    //     color: 'white',
-    //     backgroundColor: '#transparent',
-    //     padding: theme.spacing(1),
-    // }));
 
 
     // Contact/Location Container
@@ -446,6 +411,30 @@ export default function AdminEventDetails() {
                                             </Item>
                                         </Grid>
                                     </Grid>
+
+
+
+
+
+                                    {(detail.feedback && detail.status == 'denied') && // ---------------- Rejection Reason ------------------------------------
+                                        <Box sx={{ my: 2, py: 1, px: 2, backgroundColor: 'red' }}>
+                                            <Typography variant="h5">
+                                                Rejection Reason:
+                                            </Typography>
+                                            <Typography>
+                                                {detail.feedback}
+                                            </Typography>
+                                            <br />
+                                            <Typography>
+                                                You may either <b>delete</b> this event, or <b>edit</b> and resubmit to the moderation team
+                                            </Typography>
+                                        </Box>
+                                    }
+
+
+
+
+
 
 
 
