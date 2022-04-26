@@ -77,7 +77,7 @@ function LoginForm() {
         }`}
         </style>
       </Helmet>
-      <Box component="form" container onSubmit={login} textAlign="center" sx={{ mt: '12.33%', color: 'black', zIndex: '10000', }}>
+      <Box component="form" container onSubmit={login} textAlign="center" sx={{ mt: '30.33%', color: 'black', zIndex: '10000', }}>
         <h2>Login</h2>
         {errors.loginMessage && (
           <h3 className="alert" role="alert">
