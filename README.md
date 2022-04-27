@@ -68,7 +68,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<img width="316" alt="image" src="https://user-images.githubusercontent.com/90466599/165603715-840ed8b2-80c8-45c2-a198-ff7ab4a4b0c4.png">
 
   - Stronger Together Now, a non-profit organization in California from the Inland Empire. STN realized there was no central location for volunteer events and had a goal in mind to connect them all. The purpose of this application is to create a visible platform for volunteers within the Inland Empire Community; where volunteers can save these events or sign up on a 3rd party website to volunteer. 
 - <u>Volunteers</u>: This application allows easy access to view and save these event details. 
@@ -134,17 +134,6 @@ _Below is an example of how you can instruct your audience on installing and set
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-As a volunteer you can view all approved events!
-<img width="312" alt="image" src="https://user-images.githubusercontent.com/90466599/165602544-d641512e-07e6-415e-a796-f0761cf925bf.png">
-
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
