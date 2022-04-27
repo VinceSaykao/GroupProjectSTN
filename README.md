@@ -40,10 +40,6 @@
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
-  - Stronger Together Now, a non-profit organization in California from the Inland Empire. STN realized there was no central location for volunteer events and had a goal in mind to connect them all. The purpose of this application is to create a visible platform for volunteers within the Inland Empire Community; where volunteers can save these events or sign up on a 3rd party website to volunteer. 
-- <u>Volunteers</u>: This application allows easy access to view and save these event details. 
-- <u>Organizations</u>: This application gives organizations an easy way to post their events and edit their profiles which volunteers can view.
-- <u>Admins</u>: This applications allow admins to have control over what events are being created and by whom. They have full access to modifying events and can deny events and give feedback. 
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -74,16 +70,11 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+  - Stronger Together Now, a non-profit organization in California from the Inland Empire. STN realized there was no central location for volunteer events and had a goal in mind to connect them all. The purpose of this application is to create a visible platform for volunteers within the Inland Empire Community; where volunteers can save these events or sign up on a 3rd party website to volunteer. 
+- <u>Volunteers</u>: This application allows easy access to view and save these event details. 
+- <u>Organizations</u>: This application gives organizations an easy way to post their events and edit their profiles which volunteers can view.
+- <u>Admins</u>: This applications allow admins to have control over what events are being created and by whom. They have full access to modifying events and can deny events and give feedback. 
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -91,16 +82,19 @@ Use the `BLANK_README.md` to get started.
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+Built with
+* Javscript
+* HTML/CSS
+* React
+* Redux/SAGA
+*  MUI
+*   SASS
+*    Express
+*     Passport
+*      Node
+* PostgreSQL
+*  AWS
+* Google Maps API. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
