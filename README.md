@@ -87,11 +87,11 @@ Built with
 * HTML/CSS
 * React
 * Redux/SAGA
-*  MUI
-*   SASS
-*    Express
-*     Passport
-*      Node
+* MUI
+* SASS
+* Express
+* Passport
+* Node
 * PostgreSQL
 *  AWS
 * Google Maps API. 
