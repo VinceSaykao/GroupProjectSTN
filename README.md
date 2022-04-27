@@ -20,7 +20,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img width="1117" alt="image" src="https://user-images.githubusercontent.com/90466599/165603905-bdd96bfc-c21c-4b66-a861-0471ec60da88.png">
   </a>
 
   <h3 align="center">STN Connect Application</h3>
