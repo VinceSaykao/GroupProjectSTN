@@ -1,32 +1,32 @@
 CREATE TABLE "user" (
 "id" SERIAL PRIMARY KEY,
-"username" VARCHAR (100),
-"password" VARCHAR (200),
+"username" VARCHAR,
+"password" VARCHAR,
 "active" BOOLEAN DEFAULT TRUE,
 "access_level" int,
 "org_id" int,
-"first_name" VARCHAR (50),
-"last_name" VARCHAR (50),
-"bio" VARCHAR (500),
-"email" VARCHAR (50),
-"image" VARCHAR (1000)
+"first_name" VARCHAR,
+"last_name" VARCHAR,
+"bio" VARCHAR,
+"email" VARCHAR,
+"image" VARCHAR
 );
 
 CREATE TABLE "organizations" (
 "id" SERIAL PRIMARY KEY,
-"name" VARCHAR (50),
-"email" VARCHAR (50),
+"name" VARCHAR,
+"email" VARCHAR,
 "phone" VARCHAR,
-"website" VARCHAR (100),
-"twitter" VARCHAR (100),
-"facebook" VARCHAR (100),
-"instagram" VARCHAR (100),
-"description" VARCHAR (2000),
-"image" VARCHAR (1000),
-"address1" VARCHAR (150),
-"address2" VARCHAR (150),
-"city" VARCHAR (150),
-"state" VARCHAR (125),
+"website" VARCHAR,
+"twitter" VARCHAR,
+"facebook" VARCHAR,
+"instagram" VARCHAR,
+"description" VARCHAR,
+"image" VARCHAR,
+"address1" VARCHAR,
+"address2" VARCHAR,
+"city" VARCHAR,
+"state" VARCHAR,
 "zip" int
 );
 
@@ -37,10 +37,33 @@ CREATE TABLE "fav_events" (
 
 CREATE TABLE "categories" (
 "id" SERIAL PRIMARY KEY,
-"name" VARCHAR (50),
-"description" VARCHAR (300),
-"icon" VARCHAR (1000)
+"name" VARCHAR,
 );
+
+CREATE TABLE "events" (
+"id" SERIAL PRIMARY KEY,
+"org_id" int,
+"category_id" int,
+"status" VARCHAR DEFAULT 'pending',
+"name" VARCHAR,
+"description" VARCHAR,
+"link" VARCHAR,
+"start_date" DATE,
+"end_date" DATE,
+"start_time" TIME,
+"end_time" TIME,
+"image" VARCHAR,
+"email" VARCHAR,
+"phone" VARCHAR,
+"address1" VARCHAR,
+"address2" VARCHAR,
+"city" VARCHAR,
+"zip" VARCHAR,
+"state" VARCHAR,
+"feedback" VARCHAR
+);
+
+------- INSERT: Categories -------
 
 INSERT INTO "categories" (name)
 VALUES 
@@ -54,31 +77,7 @@ VALUES
 ('Other');
 
 
-CREATE TABLE "events" (
-"id" SERIAL PRIMARY KEY,
-"org_id" int,
-"category_id" int,
-"status" VARCHAR (100) DEFAULT 'pending',
-"name" VARCHAR (100),
-"description" VARCHAR (2000),
-"link" VARCHAR (500),
-"start_date" DATE,
-"end_date" DATE,
-"start_time" TIME,
-"end_time" TIME,
-"image" VARCHAR (1000),
-"email" VARCHAR (50),
-"phone" VARCHAR,
-"address1" VARCHAR (1000),
-"address2" VARCHAR (1000),
-"city" VARCHAR (60),
-"zip" VARCHAR(5),
-"state" VARCHAR (50),
-"feedback" VARCHAR (300)
-);
-
-
-
+------- INSERT: Organizations -------
 
 INSERT INTO organizations (name, email, phone, website, twitter, facebook, instagram, description, image, address1, address2, city, state, zip)
 VALUES (
@@ -175,3 +174,16 @@ VALUES (
   'CA',
   '92501'
 );
+
+------- INSERT: Events ---------
+
+INSERT INTO "public"."events"("org_id","category_id","status","name","description","link","start_date","end_date","start_time","end_time","image","email","phone","address1","address2","city","zip","state","feedback")
+VALUES
+(1,4,E'approved',E'Food Prep Friday',E'From preparing medically tailored meals in our state-of-the-art kitchen to delivering our nourishing food to our critically ill clients, every aspect of our operations is made possible because of the incredible dedication of our volunteers.\n\nJoin us in making a profound difference for our neighbors living with life-threatening illnesses. Whether youre part of an organization or an individual wanting to make a difference, we have a wide variety of opportunities and will work with you to find the perfect fit for your skills, interests, and availability.',E'https://www.openarmsmn.org/volunteer/',E'2022-04-29',E'2022-04-29',E'06:00:00',E'12:00:00',E'https://www.openarmsmn.org/wp-content/uploads/2020/09/DSC_4878-2048x1356.jpg',E'volunteer@openarmsmn.org',6128721152,E'2500 Bloomington Ave',NULL,E'Minneapolis',55404,E'MN',NULL),
+(2,1,E'approved',E'Food Prep Tuesday',E'From preparing medically tailored meals in our state-of-the-art kitchen to delivering our nourishing food to our critically ill clients, every aspect of our operations is made possible because of the incredible dedication of our volunteers.\n\nJoin us in making a profound difference for our neighbors living with life-threatening illnesses. Whether youre part of an organization or an individual wanting to make a difference, we have a wide variety of opportunities and will work with you to find the perfect fit for your skills, interests, and availability.',E'https://www.openarmsmn.org/volunteer/',E'2022-04-26',E'2022-04-26',E'06:00:00',E'12:00:00',E'https://www.openarmsmn.org/wp-content/uploads/2020/09/DSC_4878-2048x1356.jpg',E'volunteer@openarmsmn.org',6128721152,E'2500 Bloomington Ave',NULL,E'Minneapolis',55404,E'MN',NULL),
+(3,4,E'pending',E'Food Prep Wednesday',E'From preparing medically tailored meals in our state-of-the-art kitchen to delivering our nourishing food to our critically ill clients, every aspect of our operations is made possible because of the incredible dedication of our volunteers.\n\nJoin us in making a profound difference for our neighbors living with life-threatening illnesses. Whether youre part of an organization or an individual wanting to make a difference, we have a wide variety of opportunities and will work with you to find the perfect fit for your skills, interests, and availability.',E'https://www.openarmsmn.org/volunteer/',E'2022-04-27',E'2022-04-29',E'06:00:00',E'12:00:00',E'https://www.openarmsmn.org/wp-content/uploads/2020/09/DSC_4878-2048x1356.jpg',E'volunteer@openarmsmn.org',6128721152,E'2500 Bloomington Ave',NULL,E'Minneapolis',55404,E'MN',NULL),
+(4,4,E'pending',E'Food Prep Thursday',E'From preparing medically tailored meals in our state-of-the-art kitchen to delivering our nourishing food to our critically ill clients, every aspect of our operations is made possible because of the incredible dedication of our volunteers.\n\nJoin us in making a profound difference for our neighbors living with life-threatening illnesses. Whether youre part of an organization or an individual wanting to make a difference, we have a wide variety of opportunities and will work with you to find the perfect fit for your skills, interests, and availability.',E'https://www.openarmsmn.org/volunteer/',E'2022-04-28',E'2022-04-29',E'06:00:00',E'12:00:00',E'https://www.openarmsmn.org/wp-content/uploads/2020/09/DSC_4878-2048x1356.jpg',E'volunteer@openarmsmn.org',6128721152,E'2500 Bloomington Ave',NULL,E'Minneapolis',55404,E'MN',NULL),
+(5,2,1,E'pending',E'City Council Meeting - Inland Empire',E'Come meet up!',E'www.realwebsite.com',E'2022-04-20',E'2022-04-20',E'19:19:00',E'21:19:00',E'',E'me@email.com',E'+1 (777) 555-7654',E'1 Main St.',E'',E'Los Angeles',12345,E'CA',NULL),
+(1,2,E'approved',E'Youth United Mentorship Program',E'Mentorship is a key component of Youth United. Our Youth United Mentorship Program addresses three components: Community, Advocacy, and Professional Development.',E'https://www.truevolution.org/youth-united',E'2022-05-20',E'2022-05-20',E'12:00:00',E'12:00:00',E'https://i.imgur.com/Lp6UEM1.png',E'info@truevolution.com',E'+1 (951) 888-1346',E'4164 Brockton Ave',E'Ste A',E'Riverside',92501,E'CA',NULL),
+(2,5,E'approved',E'Health Equity Advancement Lab (H.E.A.L.)',E'Mentorship is a key component of Youth United. Our Youth United Mentorship Program addresses three components: Community, Advocacy, and Professional Development.',E'https://www.truevolution.org/heal',E'2022-05-21',E'2022-05-21',E'12:00:00',E'12:00:00',E'https://i.imgur.com/FevWoHS.png',E'info@truevolution.com',E'+1 (951) 888-1346',E'4164 Brockton Ave',E'Ste A',E'Riverside',92501,E'CA',NULL),
+(3,4,E'approved',E'Regional College Fair',E'College & Carrer Fair for the Coachella Valley',NULL,E'2022-11-06',E'2022-11-06',E'06:59:00',NULL,NULL,NULL,NULL,E'Agua Caliente Spa Resort Casino Rancho Mirage',E'32-250 Bob Hope Dr',E'Rancho Mirage',92270,E'CA',NULL);
