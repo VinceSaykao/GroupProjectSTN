@@ -73,11 +73,6 @@
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Installation
-* Step One: Git Clone Repo
-* Step Two: In terminal, npm install
-* Step Three: In terminal, npm start
-* Step Four: Open browser, in address-bar, go to http://localhost:4200/ 
 
 
 ### Built With
